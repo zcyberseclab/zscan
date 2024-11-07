@@ -38,3 +38,27 @@ A fast, customizable service detection tool powered by a flexible fingerprint sy
 ### From Binary
 
 Download the latest version from [Releases](https://github.com/zcyberseclab/zscan/releases)
+
+## Usage
+
+### Examples
+
+```bash
+# Scan a single target
+zscan --target 192.168.1.1
+
+# Scan a CIDR range
+zscan --target 192.168.1.0/24
+
+# Use custom config file
+zscan --target 192.168.1.1 --config /path/to/config.yaml
+
+# Enable geolocation lookup
+zscan --target 192.168.1.1 --geo
+
+# Use Censys integration
+zscan --target 192.168.1.1 --censys --censys-api-key <your-key> --censys-secret <your-secret>
+
+# Use custom fingerprints and plugins
+zscan --target 192.168.1.1 --fingerprints /path/to/fingerprints.json --plugins-dir /path/to/plugins
+```
