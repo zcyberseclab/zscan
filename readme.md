@@ -13,6 +13,8 @@ A fast, customizable service detection tool powered by a flexible fingerprint sy
 ## Features
 
 - **Fast Scanning Engine**: High-performance concurrent scanning
+- **Precise POC targeting**: 
+  - High-precision POC targeting via fingerprinting, faster and more accurate than traditional scanners
 - **Third-party Integration**:
   - Censys integration for extended scanning
   - Additional threat intelligence support
