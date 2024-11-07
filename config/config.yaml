@@ -1,0 +1,106 @@
+tcp_ports:
+  - 21    # FTP Control
+  - 22    # SSH
+  - 23    # Telnet
+  - 25    # SMTP
+  - 80    # HTTP
+  - 81    # HTTP Alternate
+  - 82    # HTTP Alternate
+  - 83    # HTTP Alternate
+  - 84    # HTTP Alternate
+  - 85    # HTTP Alternate
+  - 86    # HTTP Alternate
+  - 88    # Kerberos
+  - 90    # HTTP Alternate
+  - 110   # POP3
+  - 111   # RPCbind
+  - 135   # Microsoft EPMAP
+  - 137   # NetBIOS Name Service
+  - 139   # NetBIOS Session Service
+  - 143   # IMAP
+  - 179   # BGP
+  - 389   # LDAP
+  - 443   # HTTPS
+  - 445   # Microsoft-DS (SMB)
+  - 465   # SMTPS
+  - 514   # Shell
+  - 515   # Printer (LPD/LPR)
+  - 548   # Nettalk
+  - 631   # IPP (Internet Printing Protocol)
+  - 587   # SMTP Submission
+  - 636   # LDAPS
+  - 873   # rsync
+  - 989   # FTPS Data
+  - 990   # FTPS Control
+  - 993   # IMAPS
+  - 995   # POP3S
+  - 1024 
+  - 1194  # OpenVPN
+  - 1433  # Microsoft SQL Server
+  - 1434  # Microsoft SQL Monitor
+  - 1521  # Oracle DB
+  - 1701  # L2TP
+  - 1723  # PPTP
+  - 2049  # NFS
+  - 2181  # ZooKeeper
+  - 2375  # Docker
+  - 2376  # Docker SSL
+  - 2555  # Proxmox VE
+  - 3128  # Squid Proxy
+  - 3265  # Synology DSM iSCSI
+  - 3306  # MySQL
+  - 3389  # RDP
+  - 4000  # TiDB
+  - 4369  # Erlang Port Mapper
+  - 5000  # Docker Registry
+  - 5222
+  - 5432  # PostgreSQL
+  - 5672  # RabbitMQ
+  - 5900  # VNC
+  - 6379  # Redis
+  - 6443  # Kubernetes API
+  - 7001  # WebLogic
+  - 7080  # Generic
+  - 7979  # Generic
+  - 8001  # HTTP Alternate
+  - 8002  # HTTP Alternate
+  - 8080  # HTTP Alternate
+  - 8081  # HTTP Alternate
+  - 8082  # HTTP Alternate
+  - 8083  # HTTP Alternate
+  - 8084  # HTTP Alternate
+  - 8090  # HTTP Alternate
+  - 8443  # HTTPS Alternate
+  - 8888  # HTTP Alternate
+  - 8889  # HTTP Alternate
+  - 9000  # Jenkins
+  - 9005  
+  - 9006 
+  - 9007 
+  - 9008 
+  - 9090  # Generic
+  - 9100  # Raw Printer Port / HP JetDirect
+  - 9200  # Elasticsearch HTTP
+  - 9300  # Elasticsearch Transport
+  - 10000 # Network Data Management
+  - 10080 # TiDB
+  - 11211 # Memcached
+  - 12320 # Proprietary
+  - 12321 # Proprietary
+  - 15672 # RabbitMQ Management
+  - 16379 # Redis Cluster
+  - 25022 
+  - 25251 
+  - 27017 # MongoDB
+  - 28017 # MongoDB Web
+  - 50000 # Generic
+  - 53002 # Generic
+  - 60001 # Generic
+  - 60774 # Generic
+  - 62443
+  - 65101
+  
+
+udp_ports:
+ 
+

@@ -1,0 +1,94 @@
+{
+  "ssh": {
+    "patterns": [
+      "(?i)SSH"
+    ]
+  },
+  "netgear": {
+    "type": "router",
+    "manufacturer": "netgear",
+    "patterns": [
+      "(?i)NETGEAR"
+    ]
+  },
+  "pure-ftpd": {
+    "patterns": [
+      "Pure-FTPd"
+    ]
+  },
+  "proftpd": {
+    "patterns": [
+      "(?i)ProFTPD"
+    ]
+  },
+  "vsftpd": {
+    "patterns": [
+      "(?i)vsftpd"
+    ]
+  },
+  "ricoh":{
+    "type": "printer",
+    "manufacturer": "ricoh",
+    "patterns": [
+      "(?i)RICOH"
+    ]
+  },
+  "ricoh-maintenance": {
+    "type": "printer",
+    "manufacturer": "ricoh",
+    "patterns": [
+      "\\xff\\xfb\\x01\\xff\\xfb\\x03"
+    ]
+  },
+  "ftp": {
+    "patterns": [
+      "(?i)ftp"
+    ]
+  },
+  "mariadb": {
+    "patterns": [
+      "(?i)MariaDB"
+    ]
+  },
+  "mysql": {
+    "patterns": [
+      "(?i)MySQL"
+    ]
+  },
+  "vnc": {
+    "patterns": [
+      "(?i)RFB"
+    ]
+  },
+  "redis": {
+    "patterns": [
+      "(?i)Redis"
+    ]
+  },
+  "filezilla": {
+    "patterns": [
+      "(?i)FileZilla"
+    ]
+  },
+  "smtp": {
+    "patterns": [
+      "(?i)SMTP"
+    ]
+  },
+  "pop3": {
+    "patterns": [
+      "(?i)POP3"
+    ]
+  },
+  "imap": {
+    "patterns": [
+      "(?i)IMAP"
+    ]
+  },
+  "netatalk": {
+    "patterns": [
+      "(?i)Netatalk"
+    ]
+  }
+  
+}

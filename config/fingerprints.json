@@ -1,0 +1,758 @@
+{
+  "gitlab": {
+    "headers": [
+      "(?i)gitlab"
+    ],
+    "body": [
+      "(?i)gitlab"
+    ]
+  },
+  "nginx": {
+    "headers": [
+      "(?i)nginx"
+    ],
+    "body": [
+      "(?i)nginx"
+    ]
+  },
+  "wordpress":{
+    "body":[
+      "(?i)WordPress"
+    ]
+  },
+  "netgear-nas": {
+    "type": "nas",
+    "manufacturer": "netgear",
+    "headers": [
+      "(?i)ReadyNAS"
+    ]
+  },
+  "synology-nas": {
+    "type": "nas",
+    "manufacturer": "synology",
+    "headers": [
+      "(?i)Synology"
+    ]
+  },
+  "envoy": {
+    "headers": [
+      "Server: envoy"
+    ]
+  },
+  "clickhouse": {
+    "headers": [
+      "(?i)clickhouse"
+    ],
+    "body": [
+      "(?i)clickhouse"
+    ]
+  },
+  "kafka": {
+    "body": [
+      "(?i)Kafka"
+    ]
+  },
+  "centos-webpanel": {
+    "body": [
+      "(?i)CentOS-WebPanel"
+    ]
+  },
+  "mobotix-camera": {
+    "type": "ipcamera",
+    "manufacturer": "mobotix",
+    "body": [
+      "(?i)mobotix"
+    ]
+  },
+  "axis2-camera": {
+    "type": "ipcamera",
+    "manufacturer": "axis",
+    "body": [
+      "AXIS 2\\d{2,3} Network Camera"
+    ]
+  },
+  "axis-camera": {
+    "type": "ipcamera",
+    "manufacturer": "axis",
+    "body": [
+      "URL=/view/viewer_index.shtml\\?id=\\d+",
+      "/view/view.shtml\\?id=\\d+",
+      "/view/index.shtml",
+      "/mjpg/video.mjpg\\?camera=\\d+",
+      "/mjpg/\\d+/video.mjpg"
+    ]
+  },
+  "fritz-box": {
+    "type": "router",
+    "manufacturer": "avm",
+    "body": [
+      "FRITZ!Box"
+    ]
+  },
+  "panasonic-camera": {
+    "type": "ipcamera",
+    "manufacturer": "panasonic",
+    "body": [
+      "CgiTagMenu\\?page=Top.*Language=[01]",
+      "BarFoot\\.html.*NORESIZE"
+    ]
+  },
+  "dahua-camera": {
+    "type": "ipcamera",
+    "manufacturer": "dahua",
+    "body": [
+      "id=\"b_preview\".*?data-pagename=\"Preview\".*?Live</a>",
+      "id=\"mobile_VideoEncode\""
+    ]
+  },
+  "dlink-camera": {
+    "type": "ipcamera",
+    "manufacturer": "dlink",
+    "headers": [
+      "Server: dcs-lig-httpd"
+    ],
+    "body": [
+      "dcs-lig-httpd"
+    ]
+  },
+  "dlink-dcs932-camera": {
+    "type": "ipcamera",
+    "manufacturer": "dlink",
+    "headers": [
+      "alphapd"
+    ],
+    "body": [
+      "D-Link Corporation\\. \\| WIRELESS INTERNET CAMERA",
+      "DCS-932L"
+    ]
+  },
+  "bosch-camera": {
+    "type": "ipcamera",
+    "manufacturer": "bosch",
+    "headers": [
+      "Server: VCS-VideoJet-Webserver",
+      "Set-Cookie: HcsoB="
+    ]
+  },
+  "canon-camera": {
+    "type": "ipcamera",
+    "manufacturer": "canon",
+    "headers": [
+      "Server: VB"
+    ],
+    "body": [
+      "Network Camera VB-"
+    ]
+  },
+  "defeway-camera": {
+    "type": "ipcamera",
+    "manufacturer": "defeway",
+    "headers": [
+      "Server: JAWS/1\\.0"
+    ]
+  },
+  "httpd": {
+    "headers": [
+      "Server: (?i)httpd"
+    ]
+  },
+  "strapi": {
+    "body": [
+      "(?i)strapi"
+    ]
+  },
+  "apache": {
+    "headers": [
+      "(?i)Apache"
+    ],
+    "body": [
+      "(?i)Apache"
+    ]
+  },
+  "realm": {
+    "type": "ipcamera",
+    "headers": [
+      "realm"
+    ]
+  },
+  "vivotek-camera": {
+    "type": "ipcamera",
+    "manufacturer": "vivotek",
+    "headers": [
+      "Www-Authenticate: Basic realm=\"streaming_server\""
+    ]
+  },
+  "goahead": {
+    "type": "ipcamera",
+    "headers": [
+      "Server: GoAhead-Webs"
+    ]
+  },
+  "tplink-camera": {
+    "type": "ipcamera",
+    "manufacturer": "tplink",
+    "headers": [
+      "Www-Authenticate: Basic realm=\"Internet Camera\""
+    ],
+    "body": [
+      "IP CAMERA Viewer"
+    ]
+  },
+  "tplink-router": {
+    "type": "router",
+    "manufacturer": "tplink",
+    "body": [
+      "tplink",
+      "TP-Link"
+    ]
+  },
+  "sony-camera": {
+    "type": "ipcamera",
+    "manufacturer": "sony",
+    "headers": [
+      "Server: gen5th"
+    ]
+  },
+  "vije-camera": {
+    "type": "ipcamera",
+    "manufacturer": "vije",
+    "body": [
+      "FRAMESET id='Frameset'.*FRAME SRC='/asp/view.asp'",
+      "/asp/view\\.asp"
+    ]
+  },
+  "netsurveillance": {
+    "type": "ipcamera",
+    "body": [
+      "NETSurveillance"
+    ]
+  },
+  "toshiba-camera": {
+    "type": "ipcamera",
+    "manufacturer": "toshiba",
+    "body": [
+      "TOSHIBA Network Camera - User Login",
+      "\u003cimg src=\"toshiba.gif\".*Network Camera"
+    ]
+  },
+  "thttpd": {
+    "headers": [
+      "thttpd"
+    ]
+  },
+  "netwave-camera": {
+    "type": "ipcamera",
+    "manufacturer": "netwave",
+    "headers": [
+      "Server: Netwave IP Camera"
+    ]
+  },
+  "asp.net": {
+    "headers": [
+      "X-Powered-By: ASP\\.NET",
+      "X-AspNet-Version"
+    ],
+    "body": [
+      "asp"
+    ]
+  },
+  "express": {
+    "headers": [
+      "X-Powered-By: Express"
+    ]
+  },
+  "lighttpd": {
+    "headers": [
+      "Server: lighttpd"
+    ]
+  },
+  "mongodb": {
+    "body": [
+      "(?i)MongoDB"
+    ]
+  },
+  "iis": {
+    "headers": [
+      "Microsoft-IIS"
+    ]
+  },
+  "kerio-control": {
+    "type": "firewall",
+    "manufacturer": "kerio",
+    "headers": [
+      "Server: Kerio Control Embedded Web Server"
+    ],
+    "body": [
+      "(?i)Kerio Control"
+    ]
+  },
+  "proxmox": {
+    "headers": [
+      "Server: pve-api-daemon"
+    ]
+  },
+  "jetty": {
+    "headers": [
+      "Server: Jetty"
+    ]
+  },
+  "machete": {
+    "headers": [
+      "Server: Machete Server"
+    ]
+  },
+  "tornado": {
+    "headers": [
+      "Server: TornadoServer"
+    ]
+  },
+  "rabbitmq": {
+    "headers": [
+      "Server: MochiWeb"
+    ]
+  },
+  "elasticsearch": {
+    "headers": [
+      "X-Elastic-Product: Elasticsearch"
+    ]
+  },
+  "django": {
+    "headers": [
+      "WSGIServer"
+    ],
+    "body": [
+      "Django"
+    ]
+  },
+  "bfe": {
+    "headers": [
+      "(?i)bfe"
+    ],
+    "body": [
+      "(?i)bfe"
+    ]
+  },
+  "ehang.io": {
+    "headers": [
+      "(?i)ehang.io"
+    ],
+    "body": [
+      "(?i)ehang.io"
+    ]
+  },
+  "vite": {
+    "headers": [
+      "(?i)vite"
+    ],
+    "body": [
+      "(?i)vite"
+    ]
+  },
+  "squid": {
+    "headers": [
+      "Server: squid"
+    ]
+  },
+  "microsoft-httpapi": {
+    "headers": [
+      "Server: Microsoft-HTTPAPI"
+    ],
+    "body": [
+      "Microsoft-HTTPAPI"
+    ]
+  },
+  "litespeed": {
+    "headers": [
+      "Server: LiteSpeed"
+    ]
+  },
+  "gnway": {
+    "headers": [
+      "Server: Gnway Web Server"
+    ]
+  },
+  "weblogic": {
+    "headers": [
+      "Server: WebLogic Server"
+    ]
+  },
+  "nss": {
+    "headers": [
+      "Server: NSS"
+    ]
+  },
+  "mikrotik-router": {
+    "type": "router",
+    "manufacturer": "mikrotik",
+    "body": [
+      "(?i)mikrotik"
+    ]
+  },
+  "lwip": {
+    "headers": [
+      "Server: lwIP"
+    ]
+  },
+  "tengine": {
+    "headers": [
+      "Server: Tengine"
+    ],
+    "body": [
+      "(?i)Tengine"
+    ]
+  },
+  "aliyunoss": {
+    "headers": [
+      "Server: AliyunOSS"
+    ]
+  },
+  "dnvrs": {
+    "headers": [
+      "Server: DNVRS-Webs"
+    ]
+  },
+  "elb": {
+    "headers": [
+      "Server: elb"
+    ]
+  },
+  "ats": {
+    "headers": [
+      "Server: ATS"
+    ]
+  },
+  "micro-httpd": {
+    "headers": [
+      "Server: micro_httpd"
+    ]
+  },
+  "awselb": {
+    "headers": [
+      "Server: awselb"
+    ]
+  },
+  "router": {
+    "headers": [
+      "Server: Router"
+    ]
+  },
+  "keenetic-router": {
+    "type": "router",
+    "manufacturer": "keenetic",
+    "body": [
+      "Keenetic",
+      "KeeneticOS"
+    ]
+  },
+  "rompager": {
+    "headers": [
+      "Server: RomPager"
+    ]
+  },
+  "openresty": {
+    "headers": [
+      "Server: (?i)openresty"
+    ]
+  },
+  "heroku": {
+    "headers": [
+      "Server: (?i)Heroku"
+    ]
+  },
+  "Xfinity-router": {
+    "type": "router",
+    "manufacturer": "xfinity",
+    "headers": [
+      "Server: Xfinity"
+    ]
+  },
+  "mini-httpd": {
+    "headers": [
+      "Server: mini_httpd"
+    ]
+  },
+  "runtipi": {
+    "body": [
+      "runtipi"
+    ]
+  },
+  "web-router": {
+    "headers": [
+      "Server: WEB-ROUTER"
+    ]
+  },
+  "cloudflare": {
+    "headers": [
+      "Server: cloudflare"
+    ]
+  },
+  "vigor-router": {
+    "type": "router",
+    "manufacturer": "vigor",
+    "body":[
+      "Vigor"
+    ]
+  },
+  "ct-router": {
+    "type": "router",
+    "manufacturer": "comtime",
+    "body":[
+      "CT-Router"
+    ]
+  },
+  "mini-web-server": {
+    "headers": [
+      "Server: Mini web server"
+    ]
+  },
+  "akamaighost": {
+    "headers": [
+      "Server: AkamaiGHost"
+    ]
+  },
+  "yongyou-grp-U8": {
+    "body": [
+      "GRP-U8"
+    ]
+  },
+  "apache-coyote": {
+    "headers": [
+      "Apache-Coyote"
+    ]
+  },
+  "webs": {
+    "headers": [
+      "Server: Webs"
+    ]
+  },
+  "ipc": {
+    "headers": [
+      "Server: IPC"
+    ]
+  },
+  "cloudwaf": {
+    "headers": [
+      "Server: CloudWAF"
+    ]
+  },
+  "cloudfront": {
+    "headers": [
+      "Server: CloudFront"
+    ]
+  },
+  "ecs": {
+    "headers": [
+      "Server: ECS"
+    ]
+  },
+  "geohttpserver": {
+    "headers": [
+      "Server: GeoHttpServer"
+    ]
+  },
+  "app-webs": {
+    "headers": [
+      "Server: App-webs"
+    ]
+  },
+  "plesk": {
+    "headers": [
+      "Server: (?i)sw-cp-server"
+    ]
+  },
+  "sonicwall": {
+    "type": "firewall",
+    "manufacturer": "sonicwall",
+    "headers": [
+      "Server: SonicWALL"
+    ]
+  },
+  "appsmith": {
+    "body": [
+      "(?i)Appsmith"
+    ]
+  },
+  "cups": {
+    "type" : "printer",
+    "headers": [
+      "Server: CUPS"
+    ]
+  },
+  "uc-httpd": {
+    "headers": [
+      "Server: (?i)uc-httpd"
+    ]
+  },
+  "cisco-router": {
+    "type": "router",
+    "manufacturer": "cisco",
+    "headers": [
+      "Server: (?i)cisco-IOS"
+    ]
+  },
+  "hsguiserver": {
+    "headers": [
+      "Server: (?i)hsgUiServer"
+    ]
+  },
+  "kestrel": {
+    "headers": [
+      "Server: (?i)Kestrel"
+    ]
+  },
+  "brother-printer": {
+    "type": "printer",
+    "manufacturer": "brother",
+    "body":[
+      "Brother"
+    ]
+  },
+  "dvrdvs": {
+    "type": "ipcamera",
+    "headers": [
+      "Server: DVRDVS-Webs"
+    ]
+  },
+  "qualvision ": {
+    "type": "ipcamera",
+    "headers": [
+      "Server: Qualvision"
+    ]
+  },
+  "boa": {
+    "headers": [
+      "Server: Boa"
+    ]
+  },
+  "lorex-camera": {
+    "type": "ipcamera",
+    "manufacturer": "lorex",
+    "body": [
+      "lorexcamera"
+    ]
+  },
+  "lua-configuration-interface": {
+    "body": [
+      "LuCI"
+    ]
+  },
+  "lua": {
+    "body": [
+      "Lua"
+    ]
+  },
+  "freepbx": {
+    "headers": [
+      "FreePBX"
+    ],
+    "body": [
+      "FreePBX"
+    ]
+  },
+  "minio": {
+    "headers": [
+      "MinIO"
+    ]
+  },
+  "e-mobile": {
+    "headers": [
+      "EMobileServer"
+    ]
+  },
+  "泛微移动平台": {
+    "headers": [
+      "Server: WVS"
+    ]
+  },
+  "amtt":{
+    "body":[
+      "http://www.amttgroup.com"
+    ]
+  },
+  "fortra":{
+    "body":[
+      "(?i)GoAnywhere"
+    ]
+  },
+  "wordpress-ultimate":{
+    "body":[
+      "/wp-content/plugins/ultimate-member",
+      "/wp-content/plugins/email-subscribers/"
+    ]
+  },
+  "hikvision-camera":{
+    "type": "ipcamera",
+    "manufacturer": "hikvision",
+    "body":[
+      "(updatetips|doc/page/login.asp|/ui/css/ui.css?version=\\\" + new date().gettime|ng-bind=\\\"olan.anonymous\\\" ng-click=\\\"login('anonymous')\\\"|css/login.css?version=\\\" + new date()|var syslanguage= navigator.browserlanguage.tolowercase()|var szlanguage = syslanguage.substring(0,2)|ng-bind=\\\"olan.anonymous\\\" ng-click=\\\"login('anonymous')\\\">|class=\\\"btn btn-primary login-btn\\\"|id=\\\"divanonymous\\\"|id=\\\"divpswstrength\\\"|<form action=\\\"/goform/formcobralogin|\u53bb\u9664edge\u4e0b\u5c06\u6570\u5b57\u5904\u7406\u6210\u7535\u8bdd\u7684\u9519\u8bef)"
+    ],
+    "headers":[
+      "(realm=\\\"hikvision)"
+    ]
+  },
+  "seeyon-oa":{
+    "body":[
+      "(?i)seeyon"
+    ],
+    "headers":[
+      "(path=/yyoa)"
+    ]
+  },
+  "drupal":{
+    "body":[
+      "(?i)drupal"
+    ],
+    "headers":[
+      "(?i)drupal"
+    ]
+  },
+  "apache-struts":{
+    "body":[
+      "(?i)Powered by Struts",
+      "(?i)Apache Struts"
+    ]
+  },
+  "apache-tomcat":{
+    "body":[
+      "(?i)tomcat"
+    ]
+  },
+  "apache-activemq":{
+    "body":[
+      "(?i)ActiveMQ"  
+    ]
+  },
+  "qnap-nas":{
+    "type": "nas",
+    "manufacturer": "qnap",
+    "body":[
+      "redirect_suffix",
+      "/css/qnap-default.css",
+      "/redirect.html?count=\\\"+math.random()",
+      "/indexnas.cgi?counter="
+    ]
+  },
+  "thinkphp":{
+    "headers":[
+      "X-Powered-By:ThinkPHP"
+    ]
+  },
+  "couchdb":{
+    "headers":[
+      "Server: CouchDB"
+    ] 
+  },
+  "couchbase":{
+    "headers":[
+      "Server: couchbase"
+    ]
+  },
+  "jenkins": {
+    "headers":[
+      "X-Jenkins"
+    ]
+  }
+  
+}
+  
+ 

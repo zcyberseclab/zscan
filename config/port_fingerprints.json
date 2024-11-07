@@ -1,0 +1,27 @@
+{
+  "3265":{
+    "devicetype": "nas",
+    "manufacturer": "synology",
+    "type": "synology-dsm"
+  },
+  "1900":{
+    "devicetype": "nas",
+    "manufacturer": "synology",
+    "type": "synology-audiostation"
+  },
+  "9100":{
+    "type": "prometheus"
+  },
+  "3306":{
+    "type": "mysql"
+  },
+  "23":{
+    "type": "telnet"
+  },
+  "25":{
+    "type": "smtp"
+  },
+  "1194":{
+    "type": "openvpn"
+  }
+}
