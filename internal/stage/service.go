@@ -124,7 +124,24 @@ func NewServiceDetector(fingerprints map[string]Fingerprint, pluginsDir string) 
 		DisableCompression: true,
 		MaxConnsPerHost:    clientConfig.MaxConnsPerHost,
 		DisableKeepAlives:  clientConfig.DisableKeepAlives,
-		TLSClientConfig:    &tls.Config{InsecureSkipVerify: true},
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true,
+			MinVersion:         tls.VersionTLS10,
+			MaxVersion:         tls.VersionTLS13,
+			Renegotiation:      tls.RenegotiateOnceAsClient,
+			CipherSuites: []uint16{
+				tls.TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
+				tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+				tls.TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,
+				tls.TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,
+				tls.TLS_RSA_WITH_AES_256_GCM_SHA384,
+				tls.TLS_RSA_WITH_AES_128_GCM_SHA256,
+				tls.TLS_RSA_WITH_AES_256_CBC_SHA,
+				tls.TLS_RSA_WITH_AES_128_CBC_SHA,
+			},
+			PreferServerCipherSuites: true,
+			SessionTicketsDisabled:   false,
+		},
 	}
 
 	client := &http.Client{
@@ -952,12 +969,10 @@ func (sd *ServiceDetector) Close() {
 	sd.pluginCacheMux.Lock()
 	defer sd.pluginCacheMux.Unlock()
 
-	 
 	for _, L := range sd.pluginCache {
 		L.Close()
 	}
 
- 
 	if transport, ok := sd.client.Transport.(*http.Transport); ok {
 		transport.CloseIdleConnections()
 	}
@@ -1024,11 +1039,11 @@ func extractTitle(body []byte) string {
 }
 
 func (sd *ServiceDetector) loadServicePOCs(serviceType string) (map[string]*POC, error) {
- 
+
 	sd.pocMux.RLock()
 	if pocs, exists := sd.pocCache[serviceType]; exists {
 		sd.pocMux.RUnlock()
- 
+
 		return pocs, nil
 	}
 	sd.pocMux.RUnlock()
@@ -1040,49 +1055,42 @@ func (sd *ServiceDetector) loadServicePOCs(serviceType string) (map[string]*POC,
 
 	pocPath := filepath.Join(sd.pocDirs, serviceType)
 
- 
 	if _, err := os.Stat(pocPath); os.IsNotExist(err) {
- 
+
 		sd.pocCache[serviceType] = pocs
 		return pocs, nil
 	}
 
- 
 	files, err := os.ReadDir(pocPath)
 	if err != nil {
 		return nil, fmt.Errorf("failed to read POC directory: %v", err)
 	}
 
- 
 	for _, file := range files {
- 
+
 		if !strings.HasSuffix(file.Name(), ".yml") {
 			continue
 		}
 
- 
 		data, err := os.ReadFile(filepath.Join(pocPath, file.Name()))
 		if err != nil {
 			log.Printf("Warning: Failed to read POC file %s: %v", file.Name(), err)
 			continue
 		}
 
- 
 		var poc POC
 		if err := yaml.Unmarshal(data, &poc); err != nil {
 			log.Printf("Warning: Failed to parse POC file %s: %v", file.Name(), err)
 			continue
 		}
- 
+
 		if poc.Name == "" {
 			poc.Name = strings.TrimSuffix(file.Name(), ".yml")
 		}
 
- 
 		pocs[poc.Name] = &poc
 	}
 
- 
 	sd.pocCache[serviceType] = pocs
 
 	return pocs, nil
