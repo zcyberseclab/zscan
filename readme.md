@@ -62,3 +62,9 @@ zscan --target 192.168.1.1 --censys --censys-api-key <your-key> --censys-secret 
 # Use custom fingerprints and plugins
 zscan --target 192.168.1.1 --fingerprints /path/to/fingerprints.json --plugins-dir /path/to/plugins
 ```
+
+## Contributors
+
+<a href="https://github.com/zcyberseclab/zscan/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=zcyberseclab/zscan" />
+</a>
