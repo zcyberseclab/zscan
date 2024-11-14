@@ -751,6 +751,149 @@
     "headers":[
       "X-Jenkins"
     ]
+  },
+  "huawei-auth-web-server": {
+    "headers": [
+      "Huawei Auth-Http"
+    ]
+  },
+  "kkfileview": {
+    "body": [
+      "(?i)kkFileView"
+    ]
+  },
+  "fleetcart": {
+    "body": [
+      "(?i)FleetCart"
+    ]
+  },
+  "xwiki": {
+    "body": [
+      "XWiki"
+    ]
+  },
+  "wordpress-evevton": {
+    "body": [
+      "EventON"
+    ]
+  },
+  "monitorr-server": {
+    "body": [
+      "Monitorr"
+    ]
+  },
+  "waitress": {
+    "headers": [
+      "Server: waitress"
+    ]
+  },
+  "interactsh-server": {
+    "body": [
+      "https://getrebuild.com"
+    ]
+  },
+  "wordpress-videoplayer": {
+    "body": [
+      "https://yoast.com/wordpress/plugins/seo/"
+    ]
+  },
+  "wordpress-relevanssi": {
+    "body": [
+      "(?i)Relevanssi"
+    ]
+  },
+  "obseron": {
+    "headers": [
+      "Server: Obseron"
+    ]
+  },
+  "screenconnect": {
+    "headers": [
+      "Server: ScreenConnect"
+    ]
+  },
+  "cisco-ssm": {
+    "body": [
+      "(?i)On-Prem"
+    ]
+  },
+  "cheroot": {
+    "headers": [
+      "Server: Cheroot"
+    ]
+  },
+  "ibm-odm": {
+    "body": [
+      "(?i)IBM ODM"
+    ]
+  },
+  "gestsup": {
+    "body": [
+      "(?i)GestSup"
+    ]
+  },
+  "flowmon": {
+    "headers": [
+      "Server: Flowmon"
+    ]
+  },
+  "super-web-mailer": {
+    "body": [
+      "(?i)SuperWebMailer"
+    ]
+  },
+  "kelixin-communication": {
+    "body": [
+      "app/structure/departments.php"
+    ]
+  },
+  "teamcity": {
+    "type": "ipcamera",
+    "headers": [
+      "TeamCity"
+    ]
+  },
+  "web-help-desk": {
+    "body": [
+      "Web Help Desk"
+    ]
+  },
+  "telesquare-router": {
+    "type": "router",
+    "manufacturer": "telesquare",
+    "body": [
+      "(?i)TLR-2005KSH"
+    ]
+  },
+  "vvvebjs": {
+    "body": [
+      "VvvebJs"
+    ]
+  },
+  "dataease": {
+    "body": [
+      "DataEase"
+    ]
+  },
+  "datacube": {
+    "body": [
+      "DataCube3"
+    ]
+  },
+  "cdata-apiserver": {
+    "body": [
+      "CData - API Server"
+    ]
+  },
+  "cdata-connect": {
+    "body": [
+      "CData - Connect"
+    ]
+  },
+  "cdata-arc": {
+    "body": [
+      "CData Arc"
+    ]
   }
   
 }
