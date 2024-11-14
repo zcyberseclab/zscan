@@ -228,10 +228,12 @@ func replaceVariables(input string, ctx *POCContext) string {
 func evaluateSetExpression(expr string) string {
 	// 随机整数
 	if strings.HasPrefix(expr, "randomInt") {
+
 		re := regexp.MustCompile(`randomInt\((\d+),\s*(\d+)\)`)
 		if matches := re.FindStringSubmatch(expr); len(matches) == 3 {
 			min, _ := strconv.Atoi(matches[1])
 			max, _ := strconv.Atoi(matches[2])
+
 			return strconv.Itoa(min + rand.Intn(max-min+1))
 		}
 	}
@@ -341,7 +343,29 @@ func evaluateSetExpression(expr string) string {
 }
 
 func evaluateExpression(expr string, ctx *ExprContext) bool {
-	// 处理特殊的 bcontains 语法
+	// 支持 AND 操作
+	if strings.Contains(expr, "&&") {
+		conditions := strings.Split(expr, "&&")
+		for _, condition := range conditions {
+
+			if !evaluateExpression(strings.TrimSpace(condition), ctx) {
+				return false
+			}
+		}
+		return true
+	}
+
+	// 支持 OR 操作
+	if strings.Contains(expr, "||") {
+		conditions := strings.Split(expr, "||")
+		for _, condition := range conditions {
+			if evaluateExpression(strings.TrimSpace(condition), ctx) {
+				return true
+			}
+		}
+		return false
+	}
+
 	if strings.Contains(expr, ".bcontains(") {
 		re := regexp.MustCompile(`(.+)\.bcontains\(b"([^"]+)"\)`)
 		if matches := re.FindStringSubmatch(expr); len(matches) == 3 {
@@ -465,28 +489,6 @@ func evaluateExpression(expr string, ctx *ExprContext) bool {
 		headerKey := strings.TrimSpace(parts[0])
 		headerValue := strings.TrimSpace(parts[1])
 		return containsHeader(ctx.Headers, headerKey, headerValue)
-	}
-
-	// 支持 AND 操作
-	if strings.Contains(expr, "&&") {
-		conditions := strings.Split(expr, "&&")
-		for _, condition := range conditions {
-			if !evaluateExpression(strings.TrimSpace(condition), ctx) {
-				return false
-			}
-		}
-		return true
-	}
-
-	// 支持 OR 操作
-	if strings.Contains(expr, "||") {
-		conditions := strings.Split(expr, "||")
-		for _, condition := range conditions {
-			if evaluateExpression(strings.TrimSpace(condition), ctx) {
-				return true
-			}
-		}
-		return false
 	}
 
 	return false

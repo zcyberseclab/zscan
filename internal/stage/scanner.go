@@ -227,29 +227,12 @@ func (s *Scanner) parseTarget(target string) (string, error) {
 		return target, nil
 	}
 
-	if net.ParseIP(target) != nil {
+	if ip := net.ParseIP(target); ip != nil {
 		fmt.Printf("[+] Detected IP address format\n")
 		return target, nil
 	}
 
-	fmt.Printf("[+] Attempting to find real IP for domain: %s\n", target)
-
-	realIPs, err := findRealIP(target)
-	if err == nil && len(realIPs) > 0 {
-		fmt.Printf("[*] Selected real IP: %s\n", realIPs[0])
-		return realIPs[0], nil
-	}
-
-	fmt.Printf("[+] Falling back to standard DNS resolution\n")
-	ips, err := net.LookupHost(target)
-	if err != nil {
-		return "", fmt.Errorf("failed to resolve domain %s: %v", target, err)
-	}
-	if len(ips) > 0 {
-		fmt.Printf("[*] Using standard DNS resolved IP: %s\n", ips[0])
-	}
-
-	return ips[0], nil
+	return target, nil
 }
 
 func (s *Scanner) scanParallel(ips []string) []Node {

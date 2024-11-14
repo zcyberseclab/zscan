@@ -816,7 +816,7 @@ func (sd *ServiceDetector) runAnalyzer(info *ServiceInfo) {
 
 			analyzeFunc, err := sd.getAnalyzeFunc(sType)
 			if err != nil {
-				log.Printf("Error getting analyze function for %s: %v", sType, err)
+				//log.Printf("Error getting analyze function for %s: %v", sType, err)
 				return
 			}
 
