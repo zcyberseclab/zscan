@@ -1,4 +1,8 @@
-# ZScan
+# zscan
+
+[![Go Report Card](https://goreportcard.com/badge/github.com/zcyberseclab/zscan)](https://goreportcard.com/report/github.com/zcyberseclab/zscan)
+[![GoDoc](https://godoc.org/github.com/zcyberseclab/zscan?status.svg)](https://godoc.org/github.com/zcyberseclab/zscan)
+[![License](https://img.shields.io/github/license/zcyberseclab/zscan)](https://github.com/zcyberseclab/zscan/blob/main/LICENSE)
 
 A fast, customizable service detection tool powered by a flexible fingerprint system. It helps you identify services, APIs, and network configurations across your infrastructure.
 
