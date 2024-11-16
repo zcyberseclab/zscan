@@ -5,7 +5,8 @@ import (
 	"log"
 	"os"
 	"time"
-	"zscan/internal/stage"
+
+	"github.com/zcyberseclab/zscan/pkg/stage"
 )
 
 func main() {
