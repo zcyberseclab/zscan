@@ -2,7 +2,10 @@ package stage
 
 import (
 	"fmt"
+	"io"
 	"net"
+	"net/http"
+	"os"
 	"path/filepath"
 	"sync"
 
@@ -12,11 +15,8 @@ import (
 type IPInfo struct {
 	cityReader *geoip2.Reader
 	asnReader  *geoip2.Reader
-
-	// anonymousIPReader  *geoip2.Reader
-	// ispReader          *geoip2.Reader
-	// domainReader       *geoip2.Reader
-	mu sync.RWMutex
+	dbDir      string
+	mu         sync.RWMutex
 }
 
 type IPDetails struct {
@@ -46,25 +46,35 @@ type IPDetails struct {
 	AccuracyRadius uint16 `json:"accuracy_radius,omitempty"`
 }
 
+const (
+	cityDBURL = "https://raw.githubusercontent.com/zcyberseclab/zscan/main/data/GeoLite2-City.mmdb"
+	asnDBURL  = "https://raw.githubusercontent.com/zcyberseclab/zscan/main/data/GeoLite2-ASN.mmdb"
+)
+
 func NewIPInfo(dbDir string) (*IPInfo, error) {
-	cityDB := filepath.Join(dbDir, "GeoLite2-City.mmdb")
-	asnDB := filepath.Join(dbDir, "GeoLite2-ASN.mmdb")
-
-	cityReader, err := geoip2.Open(cityDB)
-	if err != nil {
-		return nil, fmt.Errorf("open city db failed: %v", err)
+	if dbDir == "" {
+		userHome, err := os.UserHomeDir()
+		if err != nil {
+			return nil, fmt.Errorf("failed to get user home directory: %v", err)
+		}
+		dbDir = filepath.Join(userHome, ".zscan", "geoip")
 	}
 
-	asnReader, err := geoip2.Open(asnDB)
-	if err != nil {
-		cityReader.Close()
-		return nil, fmt.Errorf("open asn db failed: %v", err)
+	if err := os.MkdirAll(dbDir, 0755); err != nil {
+		return nil, fmt.Errorf("failed to create database directory: %v", err)
 	}
 
-	return &IPInfo{
-		cityReader: cityReader,
-		asnReader:  asnReader,
-	}, nil
+	i := &IPInfo{
+		dbDir: dbDir,
+		mu:    sync.RWMutex{},
+	}
+
+	err := i.ensureDatabases()
+	if err != nil {
+		return nil, err
+	}
+
+	return i, nil
 }
 
 func (i *IPInfo) GetIPInfo(ip string) (*IPDetails, error) {
@@ -137,4 +147,59 @@ func getLocalizedName(names map[string]string, lang string) string {
 		return name
 	}
 	return ""
+}
+
+// ensureDatabases checks if required databases exist and downloads them if necessary
+func (i *IPInfo) ensureDatabases() error {
+	cityDB := filepath.Join(i.dbDir, "GeoLite2-City.mmdb")
+	asnDB := filepath.Join(i.dbDir, "GeoLite2-ASN.mmdb")
+
+	// Download databases if they don't exist
+	if _, err := os.Stat(cityDB); os.IsNotExist(err) {
+		if err := downloadFile(cityDBURL, cityDB); err != nil {
+			return fmt.Errorf("failed to download city database: %v", err)
+		}
+	}
+
+	if _, err := os.Stat(asnDB); os.IsNotExist(err) {
+		if err := downloadFile(asnDBURL, asnDB); err != nil {
+			return fmt.Errorf("failed to download ASN database: %v", err)
+		}
+	}
+
+	// Open databases
+	var err error
+	i.cityReader, err = geoip2.Open(cityDB)
+	if err != nil {
+		return fmt.Errorf("failed to open city database: %v", err)
+	}
+
+	i.asnReader, err = geoip2.Open(asnDB)
+	if err != nil {
+		i.cityReader.Close()
+		return fmt.Errorf("failed to open ASN database: %v", err)
+	}
+
+	return nil
+}
+
+func downloadFile(url, filepath string) error {
+	resp, err := http.Get(url)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("bad status: %s", resp.Status)
+	}
+
+	out, err := os.Create(filepath)
+	if err != nil {
+		return err
+	}
+	defer out.Close()
+
+	_, err = io.Copy(out, resp.Body)
+	return err
 }

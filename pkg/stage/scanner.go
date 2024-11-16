@@ -36,11 +36,11 @@ var (
 	scannerMux    sync.RWMutex
 )
 
-func InitGlobalScanner(configPath, fingerprintsPath, pluginsDir string, enableGeo, enableCensys bool, censysAPIKey, censysSecret string) error {
+func InitGlobalScanner(configPath, pluginsDir string, enableGeo, enableCensys bool, censysAPIKey, censysSecret string) error {
 	var initErr error
 	scannerOnce.Do(func() {
 		var scanner *Scanner
-		scanner, initErr = NewScanner(configPath, fingerprintsPath, pluginsDir, enableGeo, enableCensys, censysAPIKey, censysSecret)
+		scanner, initErr = NewScanner(configPath, pluginsDir, enableGeo, enableCensys, censysAPIKey, censysSecret)
 		if initErr == nil {
 			globalScanner = scanner
 		}
@@ -54,10 +54,17 @@ func GetGlobalScanner() *Scanner {
 	return globalScanner
 }
 
-func NewScanner(configPath, fingerprintsPath, pluginsDir string, enableGeo bool, enableCensys bool, censysAPIKey, censysSecret string) (*Scanner, error) {
+func NewScanner(
+	configPath string,
+	templatesDir string,
+	enableGeo bool,
+	enableCensys bool,
+	censysAPIKey string,
+	censysSecret string,
+) (*Scanner, error) {
 	config := loadConfig(configPath)
-	fingerprints := loadFingerprints(fingerprintsPath)
-	detector := NewServiceDetector(fingerprints, pluginsDir)
+
+	detector := NewServiceDetector(templatesDir)
 
 	var ipInfo *IPInfo
 	if enableGeo {
@@ -281,8 +288,6 @@ func (s *Scanner) scanHost(target string) *Node {
 	if s.ipInfo != nil {
 		if ipDetails, err := s.ipInfo.GetIPInfo(target); err == nil {
 			s.updateNodeWithIPDetails(node, ipDetails)
-		} else {
-			log.Printf("Warning: Failed to get IP info for %s: %v", target, err)
 		}
 	}
 

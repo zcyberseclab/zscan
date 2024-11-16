@@ -43,7 +43,7 @@ Download the latest version from [Releases](https://github.com/zcyberseclab/zsca
 
 ## Usage
 
-### cmd tool examples
+### Command Line Usage
 
 ```bash
 # Scan a single target
@@ -55,17 +55,20 @@ zscan --target 192.168.1.0/24
 # Use custom config file
 zscan --target 192.168.1.1 --config /path/to/config.yaml
 
+# Use custom templates directory
+zscan --target 192.168.1.1 --templates-dir /path/to/templates
+
 # Enable geolocation lookup
 zscan --target 192.168.1.1 --geo
 
 # Use Censys integration
 zscan --target 192.168.1.1 --censys --censys-api-key <your-key> --censys-secret <your-secret>
 
-# Use custom fingerprints and plugins
-zscan --target 192.168.1.1 --fingerprints /path/to/fingerprints.json --plugins-dir /path/to/plugins
+# Show version information
+zscan --version
 ```
 
-### use as go libaray
+### Using as a Go Library
 
 ```go
 package main
@@ -82,8 +85,7 @@ import (
 func main() {
 	target := flag.String("target", "", "IP address or CIDR range to scan")
 	configPath := flag.String("config", "config/config.yaml", "Path to config file")
-	fingerprintsPath := flag.String("fingerprints", "config/fingerprints.json", "Path to fingerprints file")
-	pluginsDir := flag.String("plugins-dir", "plugins", "Path to plugins directory")
+	templatesDir := flag.String("templates-dir", "templates", "Path to templates directory")
 	enableGeo := flag.Bool("geo", false, "Enable geolocation and IP info lookup")
 	enableCensys := flag.Bool("censys", false, "Enable Censys data enrichment")
 	censysAPIKey := flag.String("censys-api-key", "", "Censys API Key")
@@ -107,7 +109,7 @@ func main() {
 	}
 
 	// Create scanner
-	scanner, err := stage.NewScanner(*configPath, *fingerprintsPath, *pluginsDir, *enableGeo, *enableCensys, *censysAPIKey, *censysSecret)
+	scanner, err := stage.NewScanner(*configPath, *templatesDir, *enableGeo, *enableCensys, *censysAPIKey, *censysSecret)
 	if err != nil {
 		log.Fatalf("Failed to create scanner: %v", err)
 	}

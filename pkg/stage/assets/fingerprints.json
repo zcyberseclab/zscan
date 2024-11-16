@@ -203,7 +203,8 @@
     "manufacturer": "tplink",
     "body": [
       "tplink",
-      "TP-Link"
+      "TP-Link",
+      "TL-XDR"
     ]
   },
   "sony-camera": {
@@ -895,7 +896,6 @@
       "CData Arc"
     ]
   }
-  
 }
   
  

@@ -19,8 +19,7 @@ var (
 func main() {
 	target := flag.String("target", "", "IP address or CIDR range to scan")
 	configPath := flag.String("config", "config/config.yaml", "Path to config file")
-	fingerprintsPath := flag.String("fingerprints", "config/fingerprints.json", "Path to fingerprints file")
-	pluginsDir := flag.String("plugins-dir", "plugins", "Path to plugins directory")
+	templatesDir := flag.String("templates", "templates", "Path to templates directory")
 	enableGeo := flag.Bool("geo", false, "Enable geolocation and IP info lookup")
 	enableCensys := flag.Bool("censys", false, "Enable Censys data enrichment")
 	censysAPIKey := flag.String("censys-api-key", "", "Censys API Key")
@@ -52,7 +51,7 @@ func main() {
 	}
 
 	// Create scanner
-	scanner, err := stage.NewScanner(*configPath, *fingerprintsPath, *pluginsDir, *enableGeo, *enableCensys, *censysAPIKey, *censysSecret)
+	scanner, err := stage.NewScanner(*configPath, *templatesDir, *enableGeo, *enableCensys, *censysAPIKey, *censysSecret)
 	if err != nil {
 		log.Fatalf("Failed to create scanner: %v", err)
 	}

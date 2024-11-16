@@ -56,6 +56,7 @@ tcp_ports:
   - 5000  # Docker Registry
   - 5001
   - 5222
+  - 5040  # Windows Remote Management
   - 5432  # PostgreSQL
   - 5672  # RabbitMQ
   - 5900  # VNC
@@ -63,7 +64,8 @@ tcp_ports:
   - 6443  # Kubernetes API
   - 7001  # WebLogic
   - 7080  # Generic
-  - 7979  # Generic
+  - 7080  # Generic
+  - 7680  # Windows Update Delivery Optimization
   - 8000
   - 8001  # HTTP Alternate
   - 8002  # HTTP Alternate
@@ -107,6 +109,7 @@ tcp_ports:
   - 28017 # MongoDB Web
   - 32080
   - 38800
+  - 49664 # Windows Remote Management
   - 50000 # Generic
   - 53002 # Generic
   - 60001 # Generic

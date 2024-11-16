@@ -20,9 +20,17 @@ import (
 	"sync"
 	"time"
 
+	"embed"
+
 	lua "github.com/yuin/gopher-lua"
 	"gopkg.in/yaml.v3"
 )
+
+//go:embed assets/*.json
+var configFiles embed.FS
+
+//go:embed plugins/*.lua
+var pluginFiles embed.FS
 
 // Fingerprint represents a service fingerprint
 type Fingerprint struct {
@@ -63,7 +71,6 @@ type ServiceDetector struct {
 	client           *http.Client
 	regexCache       map[string]*regexp.Regexp
 	regexMutex       sync.RWMutex
-	pluginsDir       string
 	pluginCache      map[string]*lua.LState
 	pluginCacheMux   sync.RWMutex
 	clientConfig     ClientConfig
@@ -73,7 +80,6 @@ type ServiceDetector struct {
 	pocMux           sync.RWMutex
 }
 
-// 新增 ClientConfig 结构体
 type ClientConfig struct {
 	Timeout           time.Duration
 	MaxIdleConns      int
@@ -82,32 +88,25 @@ type ClientConfig struct {
 	DisableKeepAlives bool
 }
 
-func loadPortFingerprints(path string) (map[int]PortFingerprint, error) {
-	data, err := os.ReadFile(path)
+func NewServiceDetector(templatesDir string) *ServiceDetector {
+	// Initialize fingerprints map
+	fingerprints := make(map[string]Fingerprint)
+
+	fingerprintsData, err := configFiles.ReadFile("assets/fingerprints.json")
 	if err != nil {
-		return nil, fmt.Errorf("error reading port fingerprints file: %v", err)
-	}
-
-	fingerprints := make(map[int]PortFingerprint)
-	if err := json.Unmarshal(data, &fingerprints); err != nil {
-		return nil, fmt.Errorf("error parsing port fingerprints JSON: %v", err)
-	}
-
-	return fingerprints, nil
-}
-
-func NewServiceDetector(fingerprints map[string]Fingerprint, pluginsDir string) *ServiceDetector {
-
-	if fingerprints == nil {
+		log.Printf("Error reading fingerprints.json: %v", err)
 		fingerprints = make(map[string]Fingerprint)
+	} else {
+		json.Unmarshal(fingerprintsData, &fingerprints)
 	}
 
-	rawFingerprints := loadRawFingerprints("config/raw_fingerprints.json")
-	portFingerprints, err := loadPortFingerprints("config/port_fingerprints.json")
-	if err != nil {
-		log.Printf("Warning: Failed to load port fingerprints: %v", err)
-		portFingerprints = make(map[int]PortFingerprint)
-	}
+	rawFingerprintsData, _ := configFiles.ReadFile("assets/raw_fingerprints.json")
+	rawFingerprints := make(map[string]RawFingerprint)
+	json.Unmarshal(rawFingerprintsData, &rawFingerprints)
+
+	portFingerprintsData, _ := configFiles.ReadFile("assets/port_fingerprints.json")
+	portFingerprints := make(map[int]PortFingerprint)
+	json.Unmarshal(portFingerprintsData, &portFingerprints)
 
 	// 默认客户端配置
 	clientConfig := ClientConfig{
@@ -155,34 +154,15 @@ func NewServiceDetector(fingerprints map[string]Fingerprint, pluginsDir string) 
 		PortFingerprints: portFingerprints,
 		client:           client,
 		regexCache:       make(map[string]*regexp.Regexp),
-		pluginsDir:       pluginsDir,
 		pluginCache:      make(map[string]*lua.LState),
 		pluginCacheMux:   sync.RWMutex{},
 		clientConfig:     clientConfig,
 		pocExecutor:      NewPOCExecutor(client),
-		pocDirs:          "templates",
+		pocDirs:          templatesDir,
 		pocCache:         make(map[string]map[string]*POC),
 		pocMux:           sync.RWMutex{},
 	}
 	return sd
-}
-
-// Updated function with path parameter
-func loadRawFingerprints(path string) map[string]RawFingerprint {
-	fingerprints := make(map[string]RawFingerprint)
-
-	data, err := os.ReadFile(path)
-	if err != nil {
-		log.Printf("Error reading raw fingerprints file: %v", err)
-		return fingerprints
-	}
-
-	if err := json.Unmarshal(data, &fingerprints); err != nil {
-		log.Printf("Error parsing raw fingerprints JSON: %v", err)
-		return fingerprints
-	}
-
-	return fingerprints
 }
 
 func (sd *ServiceDetector) getRegexp(pattern string) (*regexp.Regexp, error) {
@@ -546,7 +526,6 @@ func (sd *ServiceDetector) detectTCP(ip string, port int) []ServiceInfo {
 		return results
 	}
 	defer conn.Close()
-	//log.Printf("[TCP] Successfully connected to %s:%d", ip, port)
 
 	conn.SetReadDeadline(time.Now().Add(3 * time.Second))
 
@@ -561,7 +540,6 @@ func (sd *ServiceDetector) detectTCP(ip string, port int) []ServiceInfo {
 		return results
 	}
 
-	// 清理 banner
 	cleanedBanner := cleanBanner(banner)
 	matched := false
 
@@ -616,9 +594,7 @@ func (sd *ServiceDetector) detectTCP(ip string, port int) []ServiceInfo {
 	return results
 }
 
-// 添加 cleanBanner 函数
 func cleanBanner(banner string) string {
-	// 将不可打印字符转换为其十六进制表示
 	var cleaned strings.Builder
 	for _, r := range []byte(banner) {
 		if r >= 32 && r <= 126 { // 可打印ASCII字符
@@ -855,7 +831,15 @@ func (sd *ServiceDetector) getAnalyzeFunc(serviceType string) (func(*ServiceInfo
 	}
 
 	L := lua.NewState()
-	if err := L.DoFile(filepath.Join(sd.pluginsDir, serviceType+".lua")); err != nil {
+
+	scriptPath := fmt.Sprintf("plugins/%s.lua", serviceType)
+	scriptBytes, err := pluginFiles.ReadFile(scriptPath)
+	if err != nil {
+		L.Close()
+		return nil, fmt.Errorf("error reading Lua plugin %s: %v", serviceType, err)
+	}
+
+	if err := L.DoString(string(scriptBytes)); err != nil {
 		L.Close()
 		return nil, fmt.Errorf("error loading Lua plugin %s: %v", serviceType, err)
 	}
@@ -1043,7 +1027,6 @@ func (sd *ServiceDetector) loadServicePOCs(serviceType string) (map[string]*POC,
 	sd.pocMux.RLock()
 	if pocs, exists := sd.pocCache[serviceType]; exists {
 		sd.pocMux.RUnlock()
-
 		return pocs, nil
 	}
 	sd.pocMux.RUnlock()
@@ -1054,7 +1037,6 @@ func (sd *ServiceDetector) loadServicePOCs(serviceType string) (map[string]*POC,
 	pocs := make(map[string]*POC)
 
 	pocPath := filepath.Join(sd.pocDirs, serviceType)
-
 	if _, err := os.Stat(pocPath); os.IsNotExist(err) {
 
 		sd.pocCache[serviceType] = pocs
@@ -1063,24 +1045,25 @@ func (sd *ServiceDetector) loadServicePOCs(serviceType string) (map[string]*POC,
 
 	files, err := os.ReadDir(pocPath)
 	if err != nil {
-		return nil, fmt.Errorf("failed to read POC directory: %v", err)
+
+		sd.pocCache[serviceType] = pocs
+		return pocs, nil
 	}
 
 	for _, file := range files {
-
 		if !strings.HasSuffix(file.Name(), ".yml") {
 			continue
 		}
 
 		data, err := os.ReadFile(filepath.Join(pocPath, file.Name()))
 		if err != nil {
-			log.Printf("Warning: Failed to read POC file %s: %v", file.Name(), err)
+
 			continue
 		}
 
 		var poc POC
 		if err := yaml.Unmarshal(data, &poc); err != nil {
-			log.Printf("Warning: Failed to parse POC file %s: %v", file.Name(), err)
+
 			continue
 		}
 
