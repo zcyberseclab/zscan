@@ -5,27 +5,55 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       
       - name: Set up Go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v4
         with:
-          go-version: '1.x'
+          go-version: '1.21'
           
-      - name: Build
+      - name: Build Binaries
         run: |
-          chmod +x build.sh
-          ./build.sh
+          mkdir -p release
           
+          # Linux (64-bit)
+          GOOS=linux GOARCH=amd64 go build -o release/zscan-linux-amd64 cmd/main.go
+          cd release && tar -czf zscan-linux-amd64.tar.gz zscan-linux-amd64 && cd ..
+          
+          # Linux (ARM64)
+          GOOS=linux GOARCH=arm64 go build -o release/zscan-linux-arm64 cmd/main.go
+          cd release && tar -czf zscan-linux-arm64.tar.gz zscan-linux-arm64 && cd ..
+          
+          # Windows (64-bit)
+          GOOS=windows GOARCH=amd64 go build -o release/zscan-windows-amd64.exe cmd/main.go
+          cd release && zip zscan-windows-amd64.zip zscan-windows-amd64.exe && cd ..
+          
+          # macOS (64-bit)
+          GOOS=darwin GOARCH=amd64 go build -o release/zscan-darwin-amd64 cmd/main.go
+          cd release && tar -czf zscan-darwin-amd64.tar.gz zscan-darwin-amd64 && cd ..
+          
+          # macOS (ARM64/M1)
+          GOOS=darwin GOARCH=arm64 go build -o release/zscan-darwin-arm64 cmd/main.go
+          cd release && tar -czf zscan-darwin-arm64.tar.gz zscan-darwin-arm64 && cd ..
+          
+          # Generate checksums
+          cd release && sha256sum zscan-* > checksums.txt && cd ..
+
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            release/*.zip
-            release/*.tar.gz
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+            release/zscan-linux-amd64.tar.gz
+            release/zscan-linux-arm64.tar.gz
+            release/zscan-windows-amd64.zip
+            release/zscan-darwin-amd64.tar.gz
+            release/zscan-darwin-arm64.tar.gz
+            release/checksums.txt
+          generate_release_notes: true
