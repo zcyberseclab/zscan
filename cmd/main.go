@@ -2,11 +2,18 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
 	"os"
 	"time"
 
 	"github.com/zcyberseclab/zscan/pkg/stage"
+)
+
+var (
+	Version   = "dev"
+	BuildTime = "unknown"
+	CommitSHA = "unknown"
 )
 
 func main() {
@@ -18,7 +25,15 @@ func main() {
 	enableCensys := flag.Bool("censys", false, "Enable Censys data enrichment")
 	censysAPIKey := flag.String("censys-api-key", "", "Censys API Key")
 	censysSecret := flag.String("censys-secret", "", "Censys API Secret")
+	versionFlag := flag.Bool("version", false, "Show version information")
 	flag.Parse()
+
+	if *versionFlag {
+		fmt.Printf("Version: %s\n", Version)
+		fmt.Printf("Build Time: %s\n", BuildTime)
+		fmt.Printf("Git Commit: %s\n", CommitSHA)
+		return
+	}
 
 	if *target == "" {
 		log.Fatal("Target IP or CIDR range is required")
