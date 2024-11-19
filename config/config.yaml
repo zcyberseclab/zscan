@@ -14,12 +14,14 @@ tcp_ports:
   - 90    # HTTP Alternate
   - 110   # POP3
   - 111   # RPCbind
+  - 117
   - 135   # Microsoft EPMAP
   - 137   # NetBIOS Name Service
   - 139   # NetBIOS Session Service
   - 143   # IMAP
   - 179   # BGP
   - 389   # LDAP
+  - 444
   - 443   # HTTPS
   - 445   # Microsoft-DS (SMB)
   - 465   # SMTPS
@@ -69,6 +71,9 @@ tcp_ports:
   - 8000
   - 8001  # HTTP Alternate
   - 8002  # HTTP Alternate
+  - 8008
+  - 8012
+  - 8056
   - 8080  # HTTP Alternate
   - 8081  # HTTP Alternate
   - 8082  # HTTP Alternate
@@ -81,6 +86,7 @@ tcp_ports:
   - 8123
   - 8127
   - 8443  # HTTPS Alternate
+  - 8447
   - 8887
   - 8888  # HTTP Alternate
   - 8889  # HTTP Alternate
@@ -89,6 +95,7 @@ tcp_ports:
   - 9006 
   - 9007 
   - 9008 
+  - 9020
   - 9088
   - 9090  # Generic
   - 9100  # Raw Printer Port / HP JetDirect
