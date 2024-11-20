@@ -45,6 +45,7 @@ tcp_ports:
   - 2181  # ZooKeeper
   - 2375  # Docker
   - 2376  # Docker SSL
+  - 2480
   - 2555  # Proxmox VE
   - 3008
   - 3128  # Squid Proxy
