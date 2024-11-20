@@ -112,7 +112,8 @@
       "Server: dcs-lig-httpd"
     ],
     "body": [
-      "dcs-lig-httpd"
+      "dcs-lig-httpd",
+      "(?i)DlinkWhite"
     ]
   },
   "dlink-dcs932-camera": {
@@ -900,11 +901,6 @@
     "body": [
       "(?i)Mura/Masa",
       "(?i)Masa"
-    ]
-  },
-  "dlinkwhite": {
-    "body": [
-      "(?i)DlinkWhite "
     ]
   },
   "lobe-chat": {
