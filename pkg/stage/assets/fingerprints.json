@@ -112,7 +112,8 @@
       "Server: dcs-lig-httpd"
     ],
     "body": [
-      "dcs-lig-httpd"
+      "dcs-lig-httpd",
+      "(?i)DlinkWhite"
     ]
   },
   "dlink-dcs932-camera": {
@@ -894,6 +895,175 @@
   "cdata-arc": {
     "body": [
       "CData Arc"
+    ]
+  },
+  "mura-cms": {
+    "body": [
+      "(?i)Mura/Masa",
+      "(?i)Masa"
+    ]
+  },
+  "lobe-chat": {
+    "body": [
+      "(?i)Lobe Chat"
+    ]
+  },
+  "rapid-logic": {
+    "headers": [
+      "Server: (?i)Rapid Logic"
+    ]
+  },
+  "tileserver": {
+    "body": [
+      "(?i)TileServer"
+    ]
+  },
+  "sw-cp-server": {
+    "headers": [
+      "Server: sw-cp-server"
+    ]
+  },
+  "suite-crm": {
+    "body": [
+      "(?i)SuiteCRM"
+    ]
+  },
+  "crmeb": {
+    "body": [
+      "(?i)CRMEB"
+    ]
+  },
+  "argo-cd": {
+    "body": [
+      "(?i)Argo CD"
+    ]
+  },
+  "securenvoy": {
+    "body": [
+      "(?i)SecurEnvoy "
+    ]
+  },
+  "craft-cms": {
+    "body": [
+      "Craft CMS"
+    ]
+  },
+  "turbomeeting": {
+    "body": [
+      "(?i)TurboMeeting"
+    ]
+  },
+  "nextchat": {
+    "body": [
+      "(?i)NextChat"
+    ]
+  },
+  "timetrax": {
+    "body": [
+      "(?i)Timetrax"
+    ]
+  },
+  "bluenet": {
+    "body": [
+      "临床浏览"
+    ]
+  },
+  "qualitor": {
+    "body": [
+      "(?i)Qualitor"
+    ]
+  },
+  "centralsquare-crywolf": {
+    "body": [
+      "(?i)False Alarm Reduction Website"
+    ]
+  },
+  "datagerry": {
+    "body": [
+      "(?i)DATAGERRY"
+    ]
+  },
+  "utnserver": {
+    "body": [
+      "(?i)utnserver"
+    ]
+  },
+  "wpstickybar": {
+    "body": [
+      "(?i)WpStickyBar"
+    ]
+  },
+  "dse-hub": {
+    "type": "usbhub",
+    "manufacturer": "dse",
+    "body": [
+      "Deep Sea Electronics"
+    ]
+  },
+  "netgear-router": {
+    "type": "router",
+    "manufacturer": "netgear",
+    "body": [
+      "(?i)netgear"
+    ]
+  },
+  "anythingllm": {
+    "body": [
+      "(?i)AnythingLLM"
+    ]
+  },
+  "smartsearchwp": {
+    "body": [
+      "smartsearchwp"
+    ]
+  },
+  "automation-anywhere": {
+    "body": [
+      "Automation Anywhere"
+    ]
+  },
+  "calibre": {
+    "headers": [
+      "Server: (?i)calibre"
+    ],
+    "body": [
+      "calibre"
+    ]
+  },
+  "raisecom-router": {
+    "type": "router",
+    "manufacturer": "raisecom",
+    "body": [
+      "(?i)Raisecom",
+      "<TITLE>Web user login</TITLE>",
+      "<META content\\==MSHTML 6.00.2900.5583\\"
+    ]
+  },
+  "sensei-lms": {
+    "body": [
+      "sensei-lms"
+    ]
+  },
+  "fastadmin": {
+    "body": [
+      "fastadmin"
+    ]
+  },
+  "vicidial": {
+    "body": [
+      "(?i)VICIdial"
+    ]
+  },
+  "netman-204": {
+    "type": "network-card",
+    "manufacturer": "riello-netman",
+    "body": [
+      "NetMan 204"
+    ]
+  },
+  "expedition": {
+    "body": [
+      "Expedition Project"
     ]
   },
   "74cms":{
