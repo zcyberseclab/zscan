@@ -338,14 +338,14 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 					defer wg.Done()
 					for poc := range pocChan {
 						result := sd.pocExecutor.ExecutePOC(poc, url)
-						if result.Vulnerable {
-							vulnMux.Lock()
-							if info.Vulnerabilities == nil {
-								info.Vulnerabilities = make([]POCResult, 0)
-							}
-							info.Vulnerabilities = append(info.Vulnerabilities, result)
-							vulnMux.Unlock()
+
+						vulnMux.Lock()
+						if info.Vulnerabilities == nil {
+							info.Vulnerabilities = make([]POCResult, 0)
 						}
+						info.Vulnerabilities = append(info.Vulnerabilities, result)
+						vulnMux.Unlock()
+
 					}
 				}()
 			}
@@ -696,7 +696,6 @@ func (sd *ServiceDetector) detectUDP(ip string, port int) []ServiceInfo {
 	return results
 }
 
- 
 func headerToString(h http.Header) string {
 	var sb strings.Builder
 	for key, values := range h {
@@ -1064,11 +1063,11 @@ func (sd *ServiceDetector) loadServicePOCs(serviceType string) (map[string]*POC,
 			continue
 		}
 
-		if poc.Name == "" {
-			poc.Name = strings.TrimSuffix(file.Name(), ".yml")
+		if poc.CVEID == "" {
+			poc.CVEID = strings.TrimSuffix(file.Name(), ".yml")
 		}
 
-		pocs[poc.Name] = &poc
+		pocs[poc.CVEID] = &poc
 	}
 
 	sd.pocCache[serviceType] = pocs
