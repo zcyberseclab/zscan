@@ -61,6 +61,7 @@ type PortFingerprint struct {
 	Devicetype   string `json:"devicetype"`
 	Type         string `json:"type,omitempty"`
 	Manufacturer string `json:"manufacturer,omitempty"`
+	OS           string `json:"os,omitempty"`
 }
 
 // ServiceDetector struct and methods remain unchanged
@@ -303,6 +304,9 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 			if portFp.Manufacturer != "" {
 				info.Manufacturer = portFp.Manufacturer
 			}
+			if portFp.OS != "" {
+				info.OS = portFp.OS
+			}
 		}
 	}
 
@@ -522,7 +526,6 @@ func (sd *ServiceDetector) detectTCP(ip string, port int) []ServiceInfo {
 
 	conn, err := net.DialTimeout("tcp", fmt.Sprintf("%s:%d", ip, port), 5*time.Second)
 	if err != nil {
-		log.Printf("[TCP] Failed to connect to %s:%d - %v", ip, port, err)
 		return results
 	}
 	defer conn.Close()
@@ -693,13 +696,7 @@ func (sd *ServiceDetector) detectUDP(ip string, port int) []ServiceInfo {
 	return results
 }
 
-func detecthttp(host string, port int) string {
-	if port == 443 || port == 8443 {
-		return "https"
-	}
-	return "http"
-}
-
+ 
 func headerToString(h http.Header) string {
 	var sb strings.Builder
 	for key, values := range h {

@@ -127,6 +127,20 @@
       "DCS-932L"
     ]
   },
+  "dlink-nas": {
+    "type": "nas",
+    "manufacturer": "dlink",
+    "headers": [
+      "P3P: CP"
+    ]
+  },
+  "dlink-router": {
+    "type": "router",
+    "manufacturer": "dlink",
+    "body": [
+      "<title>D-LINK SYSTEMS, INC"
+    ]
+  },
   "bosch-camera": {
     "type": "ipcamera",
     "manufacturer": "bosch",
@@ -150,6 +164,34 @@
     "manufacturer": "defeway",
     "headers": [
       "Server: JAWS/1\\.0"
+    ]
+  },
+  "megapixel-camera": {
+    "type": "ipcamera",
+    "manufacturer": "megapixel",
+    "headers": [
+      "Server: Cam-Webs"
+    ]
+  },
+  "linksys-router": {
+    "type": "router",
+    "manufacturer": "linksys",
+    "headers": [
+      "Linksys"
+    ]
+  },
+  "walchem-watertreatment-system": {
+    "type": "router",
+    "manufacturer": "walchem",
+    "headers": [
+      "Server: Acadia Server"
+    ]
+  },
+  "tenda-router": {
+    "type": "router",
+    "manufacturer": "tenda",
+    "body": [
+      "reasyui.css"
     ]
   },
   "httpd": {

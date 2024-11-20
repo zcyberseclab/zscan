@@ -7,14 +7,13 @@
 A fast, customizable service detection tool powered by a flexible fingerprint system. It helps you identify services, APIs, and network configurations across your infrastructure.
 
 <h4 align="center">
-  <a href="https://docs.example.com">Documentation</a> |
+  <a href="https://github.com/zcyberseclab/zscan/wiki">Documentation</a> |
   <a href="#-features">Features</a> |
   <a href="#-installation">Installation</a> |
-  <a href="#-usage">Usage</a> |
-  <a href="#-community">Community</a>
+  <a href="#-usage">Usage</a>
 </h4>
 
-## Features
+## ✨Features
 
 - **Fast Scanning Engine**: High-performance concurrent scanning
 - **Precise POC targeting**: 
@@ -39,13 +38,13 @@ A fast, customizable service detection tool powered by a flexible fingerprint sy
   - Human-readable console output
   - Custom report generation
 
-## Installation
+## 📦 Installation
 
 ### From Binary
 
 Download the latest version from [Releases](https://github.com/zcyberseclab/zscan/releases)
 
-## Usage
+## 🚀 Usage
 
 ### Command Line Usage
 

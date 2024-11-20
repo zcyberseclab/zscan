@@ -2,13 +2,19 @@ package stage
 
 // Node represents a scanned host with all its information
 type Node struct {
-	IP            string         `json:"ip"`
-	Tags          []string       `json:"tags"`
-	OS            string         `json:"os,omitempty"`
-	Ports         []*ServiceInfo `json:"ports"`
-	Manufacturer  string         `json:"manufacturer,omitempty"`
-	Devicetype    string         `json:"devicetype,omitempty"`
-	SensitiveInfo []string       `json:"sensitive_info,omitempty"`
+	IP               string         `json:"ip"`
+	Domain           string         `json:"domain,omitempty"`
+	MAC              string         `json:"mac,omitempty"`
+	Hostname         string         `json:"hostname,omitempty"`
+	Tags             []string       `json:"tags,omitempty"`
+	OS               string         `json:"os,omitempty"`
+	Ports            []*ServiceInfo `json:"ports,omitempty"`
+	PortsHistory     []*ServiceInfo `json:"ports_history,omitempty"`
+	PortsHistoryDesc []string       `json:"ports_history_desc,omitempty"`
+	Manufacturer     string         `json:"manufacturer,omitempty"`
+	Devicetype       string         `json:"devicetype,omitempty"`
+	Model         	 string          `json:"model,omitempty"`
+	SensitiveInfo    []string       `json:"sensitive_info,omitempty"`
 
 	// Geographic Information
 	Continent     string  `json:"continent,omitempty"`
@@ -27,7 +33,6 @@ type Node struct {
 	ASN         uint   `json:"asn,omitempty"`
 	ASNOrg      string `json:"asn_org,omitempty"`
 	ISP         string `json:"isp,omitempty"`
-	Domain      string `json:"domain,omitempty"`
 	NetworkType string `json:"network_type,omitempty"`
 
 	// Security Information
