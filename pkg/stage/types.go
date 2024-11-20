@@ -13,8 +13,9 @@ type Node struct {
 	PortsHistoryDesc []string       `json:"ports_history_desc,omitempty"`
 	Manufacturer     string         `json:"manufacturer,omitempty"`
 	Devicetype       string         `json:"devicetype,omitempty"`
-	Model         	 string          `json:"model,omitempty"`
+	Model            string         `json:"model,omitempty"`
 	SensitiveInfo    []string       `json:"sensitive_info,omitempty"`
+	Vulnerabilities  []POCResult    `json:"vulnerabilities,omitempty"`
 
 	// Geographic Information
 	Continent     string  `json:"continent,omitempty"`

@@ -1,13 +1,11 @@
 package stage
 
 import (
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"net"
 	"net/url"
-	"os"
 	"strings"
 	"sync"
 	"time"
@@ -333,20 +331,6 @@ func loadConfig(configPath string) Config {
 	return config
 }
 
-func loadFingerprints(path string) map[string]Fingerprint {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		log.Fatalf("Error reading fingerprints file: %v", err)
-	}
-
-	var fingerprints map[string]Fingerprint
-	if err := json.Unmarshal(data, &fingerprints); err != nil {
-		log.Fatalf("Error parsing fingerprints: %v", err)
-	}
-
-	return fingerprints
-}
-
 // Additional helper methods for Scanner
 func (s *Scanner) scanTCPPort(target string, port int, wg *sync.WaitGroup, semaphore chan struct{}, resultsChan chan ServiceInfo) {
 	defer wg.Done()
@@ -419,6 +403,7 @@ func (s *Scanner) processResults(node *Node, resultsChan chan ServiceInfo) {
 	manufacturerSet := make(map[string]struct{})
 	devicetypeSet := make(map[string]struct{})
 	sensitiveInfoSet := make(map[string]struct{})
+	vulnerabilitiesMap := make(map[string]POCResult)
 
 	for result := range resultsChan {
 		if len(result.Types) > 0 {
@@ -445,6 +430,11 @@ func (s *Scanner) processResults(node *Node, resultsChan chan ServiceInfo) {
 				sensitiveInfoSet[info] = struct{}{}
 			}
 		}
+		if len(result.Vulnerabilities) > 0 {
+			for _, vuln := range result.Vulnerabilities {
+				vulnerabilitiesMap[vuln.CVEID] = vuln
+			}
+		}
 
 		node.Ports = append(node.Ports, &result)
 	}
@@ -457,6 +447,12 @@ func (s *Scanner) processResults(node *Node, resultsChan chan ServiceInfo) {
 
 	for info := range sensitiveInfoSet {
 		node.SensitiveInfo = append(node.SensitiveInfo, info)
+	}
+
+	node.Vulnerabilities = nil // Clear any existing vulnerabilities
+	node.Vulnerabilities = make([]POCResult, 0, len(vulnerabilitiesMap))
+	for _, vuln := range vulnerabilitiesMap {
+		node.Vulnerabilities = append(node.Vulnerabilities, vuln)
 	}
 }
 
@@ -490,41 +486,4 @@ func inc(ip net.IP) {
 			break
 		}
 	}
-}
-
-func findRealIP(domain string) ([]string, error) {
-	var ips []string
-
-	// Try to resolve the domain using different record types
-	records := []string{"A", "AAAA"}
-	for _, recordType := range records {
-		switch recordType {
-		case "A":
-			addrs, err := net.LookupIP(domain)
-			if err != nil {
-				continue
-			}
-			for _, addr := range addrs {
-				if ipv4 := addr.To4(); ipv4 != nil {
-					ips = append(ips, ipv4.String())
-				}
-			}
-		case "AAAA":
-			addrs, err := net.LookupIP(domain)
-			if err != nil {
-				continue
-			}
-			for _, addr := range addrs {
-				if ipv4 := addr.To4(); ipv4 == nil {
-					ips = append(ips, addr.String())
-				}
-			}
-		}
-	}
-
-	if len(ips) == 0 {
-		return nil, fmt.Errorf("no IP addresses found for domain: %s", domain)
-	}
-
-	return ips, nil
 }

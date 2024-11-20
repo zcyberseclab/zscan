@@ -16,17 +16,11 @@ import (
 )
 
 type POC struct {
-	Name   string            `yaml:"name"`
-	Set    map[string]string `yaml:"set"`
-	Rules  []Rule            `yaml:"rules"`
-	Detail POCDetail         `yaml:"detail"`
-}
-
-type POCDetail struct {
-	Author      string   `yaml:"author"`
-	Description string   `yaml:"description"`
-	Version     string   `yaml:"version"`
-	Tags        []string `yaml:"tags"`
+	CVEID    string            `yaml:"cve-id"`
+	Set      map[string]string `yaml:"set"`
+	Rules    []Rule            `yaml:"rules"`
+	Severity string            `yaml:"severity"`
+	Type     string            `yaml:"type"`
 }
 
 type Rule struct {
@@ -40,9 +34,9 @@ type Rule struct {
 }
 
 type POCResult struct {
-	Vulnerable bool
-	POCName    string
-	Details    string
+	CVEID    string `json:"cve-id"`
+	Severity string `json:"severity"`
+	Type     string `json:"type"`
 }
 
 type POCContext struct {
@@ -71,7 +65,7 @@ func NewPOCExecutor(client *http.Client) *POCExecutor {
 
 func (pe *POCExecutor) ExecutePOC(poc *POC, target string) POCResult {
 	result := POCResult{
-		POCName: poc.Name,
+		Severity: poc.Severity,
 	}
 
 	ctx := &POCContext{
@@ -91,9 +85,11 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) POCResult {
 		url := fmt.Sprintf("%s%s", target, path)
 
 		body := replaceVariables(rule.Body, ctx)
-
+		fmt.Printf("Debug - Request URL: %s\n", url)
+		fmt.Printf("Debug - Request Body: %s\n", body)
 		req, err := http.NewRequest(rule.Method, url, strings.NewReader(body))
 		if err != nil {
+			fmt.Printf("Debug - Request creation failed: %v\n", err)
 			continue
 		}
 
@@ -114,12 +110,14 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) POCResult {
 
 		resp, err := pe.client.Do(req)
 		if err != nil {
+			fmt.Printf("Debug - Request execution failed: %v\n", err)
 			continue
 		}
 		defer resp.Body.Close()
 
 		respBody, err := io.ReadAll(resp.Body)
 		if err != nil {
+			fmt.Printf("Debug - Response reading failed: %v\n", err)
 			continue
 		}
 
@@ -127,6 +125,7 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) POCResult {
 		if rule.Search != "" {
 			re, err := pe.getRegexp(rule.Search)
 			if err != nil {
+				fmt.Printf("Debug - Regexp compilation failed: %v\n", err)
 				continue
 			}
 
@@ -146,12 +145,13 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) POCResult {
 		if rule.SearchRegex != "" {
 			re, err := pe.getRegexp(rule.SearchRegex)
 			if err != nil {
+				fmt.Printf("Debug - Regexp compilation failed: %v\n", err)
 				continue
 			}
 			if re.Match(respBody) {
-				result.Vulnerable = true
-				result.Details = fmt.Sprintf("Matched pattern: %s", rule.SearchRegex)
-				fmt.Printf("\033[31m[POC] %s: Vulnerability found! Target: %s\033[0m\n", poc.Name, target)
+				result.CVEID = poc.CVEID
+				result.Type = poc.Type
+				fmt.Printf("\033[31m[POC] %s: Vulnerability found! Target: %s\033[0m\n", poc.CVEID, target)
 				return result
 			}
 		}
@@ -165,9 +165,10 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) POCResult {
 			})
 
 			if isVulnerable {
-				result.Vulnerable = true
-				result.Details = fmt.Sprintf("Expression matched: %s", rule.Expression)
-				fmt.Printf("\033[31m[POC] %s: Vulnerability found! Target: %s\033[0m\n", poc.Name, target)
+				result.CVEID = poc.CVEID
+				result.Type = poc.Type
+
+				fmt.Printf("\033[31m[POC] %s: Vulnerability found! Target: %s\033[0m\n", poc.CVEID, target)
 				return result
 			}
 		}
@@ -226,19 +227,21 @@ func replaceVariables(input string, ctx *POCContext) string {
 }
 
 func evaluateSetExpression(expr string) string {
-	// 随机整数
-	if strings.HasPrefix(expr, "randomInt") {
+	fmt.Printf("Evaluating set expression: %s\n", expr)
 
+	// Random integer
+	if strings.HasPrefix(expr, "randomInt") {
 		re := regexp.MustCompile(`randomInt\((\d+),\s*(\d+)\)`)
 		if matches := re.FindStringSubmatch(expr); len(matches) == 3 {
 			min, _ := strconv.Atoi(matches[1])
 			max, _ := strconv.Atoi(matches[2])
-
-			return strconv.Itoa(min + rand.Intn(max-min+1))
+			result := strconv.Itoa(min + rand.Intn(max-min+1))
+			fmt.Printf("Result of randomInt: %s\n", result)
+			return result
 		}
 	}
 
-	// 随机小写字母
+	// Random lowercase letters
 	if strings.HasPrefix(expr, "randomLowercase") {
 		re := regexp.MustCompile(`randomLowercase\((\d+)\)`)
 		if matches := re.FindStringSubmatch(expr); len(matches) == 2 {
@@ -248,11 +251,13 @@ func evaluateSetExpression(expr string) string {
 			for i := range b {
 				b[i] = letters[rand.Intn(len(letters))]
 			}
-			return string(b)
+			result := string(b)
+			fmt.Printf("Result of randomLowercase: %s\n", result)
+			return result
 		}
 	}
 
-	// 随机大写字母
+	// Random uppercase letters
 	if strings.HasPrefix(expr, "randomUppercase") {
 		re := regexp.MustCompile(`randomUppercase\((\d+)\)`)
 		if matches := re.FindStringSubmatch(expr); len(matches) == 2 {
@@ -262,11 +267,13 @@ func evaluateSetExpression(expr string) string {
 			for i := range b {
 				b[i] = letters[rand.Intn(len(letters))]
 			}
-			return string(b)
+			result := string(b)
+			fmt.Printf("Result of randomUppercase: %s\n", result)
+			return result
 		}
 	}
 
-	// 随机字母
+	// Random letters
 	if strings.HasPrefix(expr, "randomLetters") {
 		re := regexp.MustCompile(`randomLetters\((\d+)\)`)
 		if matches := re.FindStringSubmatch(expr); len(matches) == 2 {
@@ -276,11 +283,13 @@ func evaluateSetExpression(expr string) string {
 			for i := range b {
 				b[i] = letters[rand.Intn(len(letters))]
 			}
-			return string(b)
+			result := string(b)
+			fmt.Printf("Result of randomLetters: %s\n", result)
+			return result
 		}
 	}
 
-	// 随机字母数字
+	// Random alphanumeric
 	if strings.HasPrefix(expr, "randomAlphanumeric") {
 		re := regexp.MustCompile(`randomAlphanumeric\((\d+)\)`)
 		if matches := re.FindStringSubmatch(expr); len(matches) == 2 {
@@ -290,52 +299,68 @@ func evaluateSetExpression(expr string) string {
 			for i := range b {
 				b[i] = chars[rand.Intn(len(chars))]
 			}
-			return string(b)
+			result := string(b)
+			fmt.Printf("Result of randomAlphanumeric: %s\n", result)
+			return result
 		}
 	}
 
-	// 时间戳
+	// Timestamp
 	if expr == "timestamp" {
-		return strconv.FormatInt(time.Now().Unix(), 10)
+		result := strconv.FormatInt(time.Now().Unix(), 10)
+		fmt.Printf("Result of timestamp: %s\n", result)
+		return result
 	}
 
-	// 毫秒时间戳
+	// Millisecond timestamp
 	if expr == "timestampMs" {
-		return strconv.FormatInt(time.Now().UnixNano()/1e6, 10)
+		result := strconv.FormatInt(time.Now().UnixNano()/1e6, 10)
+		fmt.Printf("Result of timestampMs: %s\n", result)
+		return result
 	}
 
-	// 随机 MD5
+	// Random MD5
 	if expr == "randomMD5" {
 		randomBytes := make([]byte, 16)
 		rand.Read(randomBytes)
-		return fmt.Sprintf("%x", md5.Sum(randomBytes))
+		result := fmt.Sprintf("%x", md5.Sum(randomBytes))
+		fmt.Printf("Result of randomMD5: %s\n", result)
+		return result
 	}
 
-	// 随机 IP
+	// Random IP
 	if expr == "randomIP" {
-		return fmt.Sprintf("%d.%d.%d.%d",
+		result := fmt.Sprintf("%d.%d.%d.%d",
 			rand.Intn(256), rand.Intn(256),
 			rand.Intn(256), rand.Intn(256))
+		fmt.Printf("Result of randomIP: %s\n", result)
+		return result
 	}
 
-	// 随机端口
+	// Random port
 	if expr == "randomPort" {
-		return strconv.Itoa(rand.Intn(65535-1024) + 1024)
+		result := strconv.Itoa(rand.Intn(65535-1024) + 1024)
+		fmt.Printf("Result of randomPort: %s\n", result)
+		return result
 	}
 
-	// Base64 编码
+	// Base64 encoding
 	if strings.HasPrefix(expr, "base64") {
 		re := regexp.MustCompile(`base64\((.*?)\)`)
 		if matches := re.FindStringSubmatch(expr); len(matches) == 2 {
-			return base64.StdEncoding.EncodeToString([]byte(matches[1]))
+			result := base64.StdEncoding.EncodeToString([]byte(matches[1]))
+			fmt.Printf("Result of base64: %s\n", result)
+			return result
 		}
 	}
 
-	// URL 编码
+	// URL encoding
 	if strings.HasPrefix(expr, "urlencode") {
 		re := regexp.MustCompile(`urlencode\((.*?)\)`)
 		if matches := re.FindStringSubmatch(expr); len(matches) == 2 {
-			return url.QueryEscape(matches[1])
+			result := url.QueryEscape(matches[1])
+			fmt.Printf("Result of urlencode: %s\n", result)
+			return result
 		}
 	}
 
@@ -343,12 +368,18 @@ func evaluateSetExpression(expr string) string {
 }
 
 func evaluateExpression(expr string, ctx *ExprContext) bool {
+	fmt.Printf("Evaluating expression: %s\n", expr)
+	fmt.Printf(ctx.Body)
+
 	// 支持 AND 操作
 	if strings.Contains(expr, "&&") {
 		conditions := strings.Split(expr, "&&")
+		fmt.Printf("AND conditions: %v\n", conditions)
 		for _, condition := range conditions {
-
-			if !evaluateExpression(strings.TrimSpace(condition), ctx) {
+			condition = strings.TrimSpace(condition)
+			result := evaluateExpression(condition, ctx)
+			fmt.Printf("Condition '%s' result: %v\n", condition, result)
+			if !result {
 				return false
 			}
 		}
@@ -367,12 +398,38 @@ func evaluateExpression(expr string, ctx *ExprContext) bool {
 	}
 
 	if strings.Contains(expr, ".bcontains(") {
-		re := regexp.MustCompile(`(.+)\.bcontains\(b"([^"]+)"\)`)
-		if matches := re.FindStringSubmatch(expr); len(matches) == 3 {
-			switch matches[1] {
-			case "response.body":
-				return strings.Contains(ctx.Body, matches[2])
-			}
+		fmt.Printf("Debug - Original expression: %q\n", expr)
+
+		// 使用更简单的字符串处理方式替代复杂的正则表达式
+		prefix := "response.body.bcontains(b\""
+		prefixstr := "response.body.bcontains(bytes(string("
+		suffix := "\")"
+
+		if strings.HasPrefix(expr, prefix) && strings.HasSuffix(expr, suffix) {
+			// 提取搜索字符串
+			searchStr := expr[len(prefix) : len(expr)-len(suffix)]
+			fmt.Printf("Debug - Extracted search string: %q\n", searchStr)
+
+			// 处理双引号
+			searchStr = strings.ReplaceAll(searchStr, `""`, `"`)
+			fmt.Printf("Debug - Processed search string: %q\n", searchStr)
+
+			// 执行搜索
+			result := strings.Contains(ctx.Body, searchStr)
+			fmt.Printf("Debug - Search result: %v\n", result)
+			fmt.Printf("Debug - Body excerpt: %s\n", ctx.Body[:min(len(ctx.Body), 100)])
+
+			return result
+		} else if strings.HasPrefix(expr, prefixstr) && strings.HasSuffix(expr, suffix) {
+			// Extract the variable name
+			varName := expr[len(prefix) : len(expr)-len(suffix)]
+			fmt.Print("debug - varname is", varName)
+			// Convert the variable to a string
+			//expectedValue := ctx.Variables[varName]
+			// Check if the response body contains the expected value
+			return strings.Contains(ctx.Body, varName)
+		} else {
+			fmt.Printf("Debug - Expression format not matched\n")
 		}
 	}
 
@@ -469,7 +526,7 @@ func evaluateExpression(expr string, ctx *ExprContext) bool {
 		return len(ctx.Body) > length
 	}
 
-	// 响应体长度小于
+	// 响应体长度小
 	if strings.HasPrefix(expr, "length<") {
 		length, err := strconv.Atoi(strings.TrimPrefix(expr, "length<"))
 		if err != nil {
