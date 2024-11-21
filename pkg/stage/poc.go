@@ -85,17 +85,14 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) POCResult {
 		url := fmt.Sprintf("%s%s", target, path)
 
 		body := replaceVariables(rule.Body, ctx)
-		fmt.Printf("Debug - Request URL: %s\n", url)
-		fmt.Printf("Debug - Request Body: %s\n", body)
 		req, err := http.NewRequest(rule.Method, url, strings.NewReader(body))
 		if err != nil {
-			fmt.Printf("Debug - Request creation failed: %v\n", err)
 			continue
 		}
 
 		// 设置默认 Content-Type
 		if req.Header.Get("Content-Type") == "" {
-			req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+			req.Header.Set("Content-Type", "application/json")
 		}
 
 		// 设置自定义 Headers
@@ -110,14 +107,12 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) POCResult {
 
 		resp, err := pe.client.Do(req)
 		if err != nil {
-			fmt.Printf("Debug - Request execution failed: %v\n", err)
 			continue
 		}
 		defer resp.Body.Close()
 
 		respBody, err := io.ReadAll(resp.Body)
 		if err != nil {
-			fmt.Printf("Debug - Response reading failed: %v\n", err)
 			continue
 		}
 
@@ -125,7 +120,6 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) POCResult {
 		if rule.Search != "" {
 			re, err := pe.getRegexp(rule.Search)
 			if err != nil {
-				fmt.Printf("Debug - Regexp compilation failed: %v\n", err)
 				continue
 			}
 
@@ -145,7 +139,6 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) POCResult {
 		if rule.SearchRegex != "" {
 			re, err := pe.getRegexp(rule.SearchRegex)
 			if err != nil {
-				fmt.Printf("Debug - Regexp compilation failed: %v\n", err)
 				continue
 			}
 			if re.Match(respBody) {
@@ -227,8 +220,6 @@ func replaceVariables(input string, ctx *POCContext) string {
 }
 
 func evaluateSetExpression(expr string) string {
-	fmt.Printf("Evaluating set expression: %s\n", expr)
-
 	// Random integer
 	if strings.HasPrefix(expr, "randomInt") {
 		re := regexp.MustCompile(`randomInt\((\d+),\s*(\d+)\)`)
@@ -236,7 +227,6 @@ func evaluateSetExpression(expr string) string {
 			min, _ := strconv.Atoi(matches[1])
 			max, _ := strconv.Atoi(matches[2])
 			result := strconv.Itoa(min + rand.Intn(max-min+1))
-			fmt.Printf("Result of randomInt: %s\n", result)
 			return result
 		}
 	}
@@ -252,7 +242,6 @@ func evaluateSetExpression(expr string) string {
 				b[i] = letters[rand.Intn(len(letters))]
 			}
 			result := string(b)
-			fmt.Printf("Result of randomLowercase: %s\n", result)
 			return result
 		}
 	}
@@ -268,7 +257,6 @@ func evaluateSetExpression(expr string) string {
 				b[i] = letters[rand.Intn(len(letters))]
 			}
 			result := string(b)
-			fmt.Printf("Result of randomUppercase: %s\n", result)
 			return result
 		}
 	}
@@ -284,7 +272,6 @@ func evaluateSetExpression(expr string) string {
 				b[i] = letters[rand.Intn(len(letters))]
 			}
 			result := string(b)
-			fmt.Printf("Result of randomLetters: %s\n", result)
 			return result
 		}
 	}
@@ -300,7 +287,6 @@ func evaluateSetExpression(expr string) string {
 				b[i] = chars[rand.Intn(len(chars))]
 			}
 			result := string(b)
-			fmt.Printf("Result of randomAlphanumeric: %s\n", result)
 			return result
 		}
 	}
@@ -308,14 +294,12 @@ func evaluateSetExpression(expr string) string {
 	// Timestamp
 	if expr == "timestamp" {
 		result := strconv.FormatInt(time.Now().Unix(), 10)
-		fmt.Printf("Result of timestamp: %s\n", result)
 		return result
 	}
 
 	// Millisecond timestamp
 	if expr == "timestampMs" {
 		result := strconv.FormatInt(time.Now().UnixNano()/1e6, 10)
-		fmt.Printf("Result of timestampMs: %s\n", result)
 		return result
 	}
 
@@ -324,7 +308,6 @@ func evaluateSetExpression(expr string) string {
 		randomBytes := make([]byte, 16)
 		rand.Read(randomBytes)
 		result := fmt.Sprintf("%x", md5.Sum(randomBytes))
-		fmt.Printf("Result of randomMD5: %s\n", result)
 		return result
 	}
 
@@ -333,14 +316,12 @@ func evaluateSetExpression(expr string) string {
 		result := fmt.Sprintf("%d.%d.%d.%d",
 			rand.Intn(256), rand.Intn(256),
 			rand.Intn(256), rand.Intn(256))
-		fmt.Printf("Result of randomIP: %s\n", result)
 		return result
 	}
 
 	// Random port
 	if expr == "randomPort" {
 		result := strconv.Itoa(rand.Intn(65535-1024) + 1024)
-		fmt.Printf("Result of randomPort: %s\n", result)
 		return result
 	}
 
@@ -349,7 +330,6 @@ func evaluateSetExpression(expr string) string {
 		re := regexp.MustCompile(`base64\((.*?)\)`)
 		if matches := re.FindStringSubmatch(expr); len(matches) == 2 {
 			result := base64.StdEncoding.EncodeToString([]byte(matches[1]))
-			fmt.Printf("Result of base64: %s\n", result)
 			return result
 		}
 	}
@@ -359,7 +339,6 @@ func evaluateSetExpression(expr string) string {
 		re := regexp.MustCompile(`urlencode\((.*?)\)`)
 		if matches := re.FindStringSubmatch(expr); len(matches) == 2 {
 			result := url.QueryEscape(matches[1])
-			fmt.Printf("Result of urlencode: %s\n", result)
 			return result
 		}
 	}
@@ -368,17 +347,12 @@ func evaluateSetExpression(expr string) string {
 }
 
 func evaluateExpression(expr string, ctx *ExprContext) bool {
-	fmt.Printf("Evaluating expression: %s\n", expr)
-	fmt.Printf(ctx.Body)
-
-	// 支持 AND 操作
+	// Support AND operation
 	if strings.Contains(expr, "&&") {
 		conditions := strings.Split(expr, "&&")
-		fmt.Printf("AND conditions: %v\n", conditions)
 		for _, condition := range conditions {
 			condition = strings.TrimSpace(condition)
 			result := evaluateExpression(condition, ctx)
-			fmt.Printf("Condition '%s' result: %v\n", condition, result)
 			if !result {
 				return false
 			}
@@ -386,10 +360,9 @@ func evaluateExpression(expr string, ctx *ExprContext) bool {
 		return true
 	}
 
-	// 支持 OR 操作
+	// Support OR operation
 	if strings.Contains(expr, "||") {
-		conditions := strings.Split(expr, "||")
-		for _, condition := range conditions {
+		for _, condition := range strings.Split(expr, "||") {
 			if evaluateExpression(strings.TrimSpace(condition), ctx) {
 				return true
 			}
@@ -398,42 +371,21 @@ func evaluateExpression(expr string, ctx *ExprContext) bool {
 	}
 
 	if strings.Contains(expr, ".bcontains(") {
-		fmt.Printf("Debug - Original expression: %q\n", expr)
-
-		// 使用更简单的字符串处理方式替代复杂的正则表达式
 		prefix := "response.body.bcontains(b\""
 		prefixstr := "response.body.bcontains(bytes(string("
 		suffix := "\")"
 
 		if strings.HasPrefix(expr, prefix) && strings.HasSuffix(expr, suffix) {
-			// 提取搜索字符串
 			searchStr := expr[len(prefix) : len(expr)-len(suffix)]
-			fmt.Printf("Debug - Extracted search string: %q\n", searchStr)
-
-			// 处理双引号
 			searchStr = strings.ReplaceAll(searchStr, `""`, `"`)
-			fmt.Printf("Debug - Processed search string: %q\n", searchStr)
-
-			// 执行搜索
-			result := strings.Contains(ctx.Body, searchStr)
-			fmt.Printf("Debug - Search result: %v\n", result)
-			fmt.Printf("Debug - Body excerpt: %s\n", ctx.Body[:min(len(ctx.Body), 100)])
-
-			return result
+			return strings.Contains(ctx.Body, searchStr)
 		} else if strings.HasPrefix(expr, prefixstr) && strings.HasSuffix(expr, suffix) {
-			// Extract the variable name
 			varName := expr[len(prefix) : len(expr)-len(suffix)]
-			fmt.Print("debug - varname is", varName)
-			// Convert the variable to a string
-			//expectedValue := ctx.Variables[varName]
-			// Check if the response body contains the expected value
 			return strings.Contains(ctx.Body, varName)
-		} else {
-			fmt.Printf("Debug - Expression format not matched\n")
 		}
 	}
 
-	// 处理特殊的 bmatches 语法
+	// Handle special bmatches syntax
 	if strings.Contains(expr, ".bmatches(") {
 		re := regexp.MustCompile(`"([^"]+)"\.bmatches\((.+)\)`)
 		if matches := re.FindStringSubmatch(expr); len(matches) == 3 {
@@ -447,7 +399,7 @@ func evaluateExpression(expr string, ctx *ExprContext) bool {
 		}
 	}
 
-	// 处理 "in" 操作符
+	// Handle "in" operation
 	if strings.Contains(expr, " in ") {
 		parts := strings.Split(expr, " in ")
 		if len(parts) == 2 {
@@ -459,7 +411,7 @@ func evaluateExpression(expr string, ctx *ExprContext) bool {
 		}
 	}
 
-	// 处理状态码比较
+	// Handle status code comparison
 	if strings.Contains(expr, "response.status") {
 		re := regexp.MustCompile(`response\.status\s*==\s*(\d+)`)
 		if matches := re.FindStringSubmatch(expr); len(matches) == 2 {
@@ -468,7 +420,7 @@ func evaluateExpression(expr string, ctx *ExprContext) bool {
 		}
 	}
 
-	// 状态码相等
+	// Status code equality
 	if strings.HasPrefix(expr, "status==") {
 		code, err := strconv.Atoi(strings.TrimPrefix(expr, "status=="))
 		if err != nil {
@@ -477,7 +429,7 @@ func evaluateExpression(expr string, ctx *ExprContext) bool {
 		return ctx.StatusCode == code
 	}
 
-	// 状态码不等
+	// Status code inequality
 	if strings.HasPrefix(expr, "status!=") {
 		code, err := strconv.Atoi(strings.TrimPrefix(expr, "status!="))
 		if err != nil {
@@ -486,21 +438,21 @@ func evaluateExpression(expr string, ctx *ExprContext) bool {
 		return ctx.StatusCode != code
 	}
 
-	// 响应体包含字符串
+	// Response body contains string
 	if strings.HasPrefix(expr, "contains(") && strings.HasSuffix(expr, ")") {
-		content := expr[9 : len(expr)-1] // 提取括号中的内容
+		content := expr[9 : len(expr)-1] // Extract the content inside the parentheses
 		return strings.Contains(ctx.Body, content)
 	}
 
-	// 响应体不包含字符串
+	// Response body does not contain string
 	if strings.HasPrefix(expr, "!contains(") && strings.HasSuffix(expr, ")") {
-		content := expr[10 : len(expr)-1] // 提取括号中的内容
+		content := expr[10 : len(expr)-1] // Extract the content inside the parentheses
 		return !strings.Contains(ctx.Body, content)
 	}
 
-	// 响应体正则匹配
+	// Response body regular expression matching
 	if strings.HasPrefix(expr, "matches(") && strings.HasSuffix(expr, ")") {
-		pattern := expr[8 : len(expr)-1] // 提取括号中的内容
+		pattern := expr[8 : len(expr)-1] // Extract the content inside the parentheses
 		re, err := regexp.Compile(pattern)
 		if err != nil {
 			return false
@@ -508,7 +460,7 @@ func evaluateExpression(expr string, ctx *ExprContext) bool {
 		return re.MatchString(ctx.Body)
 	}
 
-	// 响应体长度等于
+	// Response body length equality
 	if strings.HasPrefix(expr, "length==") {
 		length, err := strconv.Atoi(strings.TrimPrefix(expr, "length=="))
 		if err != nil {
@@ -517,7 +469,7 @@ func evaluateExpression(expr string, ctx *ExprContext) bool {
 		return len(ctx.Body) == length
 	}
 
-	// 响应体长度大于
+	// Response body length greater than
 	if strings.HasPrefix(expr, "length>") {
 		length, err := strconv.Atoi(strings.TrimPrefix(expr, "length>"))
 		if err != nil {
@@ -526,7 +478,7 @@ func evaluateExpression(expr string, ctx *ExprContext) bool {
 		return len(ctx.Body) > length
 	}
 
-	// 响应体长度小
+	// Response body length less than
 	if strings.HasPrefix(expr, "length<") {
 		length, err := strconv.Atoi(strings.TrimPrefix(expr, "length<"))
 		if err != nil {
@@ -535,9 +487,9 @@ func evaluateExpression(expr string, ctx *ExprContext) bool {
 		return len(ctx.Body) < length
 	}
 
-	// 检查响应头是否包含特定值
+	// Check if the response headers contain specific values
 	if strings.HasPrefix(expr, "header(") && strings.HasSuffix(expr, ")") {
-		// 格式: header(Key: Value)
+		// Format: header(Key: Value)
 		content := expr[7 : len(expr)-1]
 		parts := strings.SplitN(content, ":", 2)
 		if len(parts) != 2 {
@@ -547,6 +499,13 @@ func evaluateExpression(expr string, ctx *ExprContext) bool {
 		headerValue := strings.TrimSpace(parts[1])
 		return containsHeader(ctx.Headers, headerKey, headerValue)
 	}
-
+	if strings.Contains(expr, "response.content_type.contains(") {
+		re := regexp.MustCompile(`response\.content_type\.contains\("([^"]+)"\)`)
+		if matches := re.FindStringSubmatch(expr); len(matches) == 2 {
+			contentType := ctx.Headers.Get("Content-Type")
+			searchStr := matches[1]
+			return strings.Contains(strings.ToLower(contentType), strings.ToLower(searchStr))
+		}
+	}
 	return false
 }

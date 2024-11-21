@@ -63,6 +63,7 @@ tcp_ports:
   - 5432  # PostgreSQL
   - 5672  # RabbitMQ
   - 5900  # VNC
+  - 6002
   - 6379  # Redis
   - 6443  # Kubernetes API
   - 7001  # WebLogic
