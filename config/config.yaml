@@ -63,12 +63,14 @@ tcp_ports:
   - 5432  # PostgreSQL
   - 5672  # RabbitMQ
   - 5900  # VNC
+  - 6002
   - 6379  # Redis
   - 6443  # Kubernetes API
   - 7001  # WebLogic
   - 7080  # Generic
-  - 7080  # Generic
+  - 7288  # Generic
   - 7680  # Windows Update Delivery Optimization
+  - 7788
   - 8000
   - 8001  # HTTP Alternate
   - 8002  # HTTP Alternate
@@ -88,6 +90,7 @@ tcp_ports:
   - 8127
   - 8443  # HTTPS Alternate
   - 8447
+  - 8500
   - 8887
   - 8888  # HTTP Alternate
   - 8889  # HTTP Alternate
@@ -119,6 +122,7 @@ tcp_ports:
   - 38800
   - 49664 # Windows Remote Management
   - 50000 # Generic
+  - 50090
   - 53002 # Generic
   - 60001 # Generic
   - 60774 # Generic
