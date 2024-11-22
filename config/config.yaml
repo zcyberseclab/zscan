@@ -70,6 +70,7 @@ tcp_ports:
   - 7080  # Generic
   - 7080  # Generic
   - 7680  # Windows Update Delivery Optimization
+  - 7788
   - 8000
   - 8001  # HTTP Alternate
   - 8002  # HTTP Alternate
@@ -80,9 +81,8 @@ tcp_ports:
   - 8081  # HTTP Alternate
   - 8082  # HTTP Alternate
   - 8083  # HTTP Alternate
-  - 8008
-  - 8012
   - 8084  # HTTP Alternate
+  - 8089
   - 8090  # HTTP Alternate
   - 8111
   - 8123

@@ -338,14 +338,14 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 					defer wg.Done()
 					for poc := range pocChan {
 						result := sd.pocExecutor.ExecutePOC(poc, url)
-
-						vulnMux.Lock()
-						if info.Vulnerabilities == nil {
-							info.Vulnerabilities = make([]POCResult, 0)
+						if result != nil {
+							vulnMux.Lock()
+							if info.Vulnerabilities == nil {
+								info.Vulnerabilities = make([]POCResult, 0)
+							}
+							info.Vulnerabilities = append(info.Vulnerabilities, *result)
+							vulnMux.Unlock()
 						}
-						info.Vulnerabilities = append(info.Vulnerabilities, result)
-						vulnMux.Unlock()
-
 					}
 				}()
 			}

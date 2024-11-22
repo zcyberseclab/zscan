@@ -1369,8 +1369,14 @@
     "body":[
       "视频编码设备接入网关"
     ]
-  }
+  },
+  "ifw8-router":{
+    "type": "ipcamera",
+    "manufacturer": "ifw8",
+    "body": [
+      "(?i)www.ifw8.cn"
+    ]
 }
- 
+}
   
  

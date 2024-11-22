@@ -34,9 +34,9 @@ type Rule struct {
 }
 
 type POCResult struct {
-	CVEID    string `json:"cve-id"`
-	Severity string `json:"severity"`
-	Type     string `json:"type"`
+	CVEID    string `json:"cve-id,omitempty"`
+	Severity string `json:"severity,omitempty"`
+	Type     string `json:"type,omitempty"`
 }
 
 type POCContext struct {
@@ -63,8 +63,8 @@ func NewPOCExecutor(client *http.Client) *POCExecutor {
 	}
 }
 
-func (pe *POCExecutor) ExecutePOC(poc *POC, target string) POCResult {
-	result := POCResult{
+func (pe *POCExecutor) ExecutePOC(poc *POC, target string) *POCResult {
+	result := &POCResult{
 		Severity: poc.Severity,
 	}
 
@@ -84,9 +84,12 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) POCResult {
 		path := replaceVariables(rule.Path, ctx)
 		url := fmt.Sprintf("%s%s", target, path)
 
+		fmt.Printf("[DEBUG] Trying URL: %s\n", url)
+
 		body := replaceVariables(rule.Body, ctx)
 		req, err := http.NewRequest(rule.Method, url, strings.NewReader(body))
 		if err != nil {
+			fmt.Printf("[ERROR] Failed to create request: %v\n", err)
 			continue
 		}
 
@@ -107,14 +110,20 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) POCResult {
 
 		resp, err := pe.client.Do(req)
 		if err != nil {
+			fmt.Printf("[ERROR] Request failed: %v\n", err)
 			continue
 		}
 		defer resp.Body.Close()
 
+		fmt.Printf("[DEBUG] Response Status: %d\n", resp.StatusCode)
+
 		respBody, err := io.ReadAll(resp.Body)
 		if err != nil {
+			fmt.Printf("[ERROR] Failed to read response body: %v\n", err)
 			continue
 		}
+
+		fmt.Printf("[DEBUG] Response Body (first 200 chars): %s\n", string(respBody)[:min(200, len(string(respBody)))])
 
 		// 处理 search 匹配
 		if rule.Search != "" {
@@ -151,11 +160,14 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) POCResult {
 
 		// 处理 expression 匹配
 		if rule.Expression != "" {
+			fmt.Printf("[DEBUG] Evaluating expression: %s\n", rule.Expression)
 			isVulnerable := evaluateExpression(rule.Expression, &ExprContext{
 				StatusCode: resp.StatusCode,
 				Body:       string(respBody),
 				Headers:    resp.Header,
 			})
+
+			fmt.Printf("[DEBUG] Expression result: %v\n", isVulnerable)
 
 			if isVulnerable {
 				result.CVEID = poc.CVEID
@@ -167,7 +179,8 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) POCResult {
 		}
 	}
 
-	return result
+	// 没有发现漏洞时返回 nil
+	return nil
 }
 
 func (pe *POCExecutor) getRegexp(pattern string) (*regexp.Regexp, error) {
@@ -347,67 +360,78 @@ func evaluateSetExpression(expr string) string {
 }
 
 func evaluateExpression(expr string, ctx *ExprContext) bool {
-	// Support AND operation
+	fmt.Printf("\n[DEBUG] ====== Starting Expression Evaluation ======\n")
+	fmt.Printf("[DEBUG] Expression: %q\n", expr)
+	fmt.Printf("[DEBUG] Context - StatusCode: %d, Body length: %d\n", ctx.StatusCode, len(ctx.Body))
+
+	// 处理 AND 操作
 	if strings.Contains(expr, "&&") {
-		conditions := strings.Split(expr, "&&")
-		for _, condition := range conditions {
-			condition = strings.TrimSpace(condition)
-			result := evaluateExpression(condition, ctx)
-			if !result {
+		parts := strings.Split(expr, "&&")
+		for _, part := range parts {
+			subExpr := strings.TrimSpace(part)
+			if !evaluateExpression(subExpr, ctx) {
+				fmt.Printf("[DEBUG] %s AND chain failed at: %q\n", formatHitMark(false), subExpr)
 				return false
 			}
 		}
+		fmt.Printf("[DEBUG] %s All AND conditions met\n", formatHitMark(true))
 		return true
 	}
 
-	// Support OR operation
+	// 处理 OR 操作
 	if strings.Contains(expr, "||") {
-		for _, condition := range strings.Split(expr, "||") {
-			if evaluateExpression(strings.TrimSpace(condition), ctx) {
+		parts := strings.Split(expr, "||")
+		for _, part := range parts {
+			subExpr := strings.TrimSpace(part)
+			if evaluateExpression(subExpr, ctx) {
+				fmt.Printf("[DEBUG] %s OR chain succeeded at: %q\n", formatHitMark(true), subExpr)
 				return true
 			}
 		}
+		fmt.Printf("[DEBUG] %s No OR conditions met\n", formatHitMark(false))
 		return false
 	}
 
-	if strings.Contains(expr, ".bcontains(") {
-		prefix := "response.body.bcontains(b\""
-		prefixstr := "response.body.bcontains(bytes(string("
-		suffix := "\")"
+	// Status code equality
+	if strings.HasPrefix(expr, "status==") {
+		code, err := strconv.Atoi(strings.TrimPrefix(expr, "status=="))
+		if err != nil {
+			fmt.Printf("[DEBUG] ❌ Invalid status code format\n")
+			return false
+		}
+		result := ctx.StatusCode == code
+		fmt.Printf("[DEBUG] %s Status check: %d == %d: %v\n",
+			formatHitMark(result), ctx.StatusCode, code, result)
+		return result
+	}
 
+	// Response body contains string
+	if strings.HasPrefix(expr, "contains(") && strings.HasSuffix(expr, ")") {
+		content := expr[9 : len(expr)-1]
+		result := strings.Contains(ctx.Body, content)
+		fmt.Printf("[DEBUG] %s Contains check for %q: %v\n",
+			formatHitMark(result), content, result)
+		return result
+	}
+
+	if strings.Contains(expr, ".bcontains(") {
+		fmt.Printf("[DEBUG] bcontains operation detected\n")
+		prefix := "response.body.bcontains(b\""
+		suffix := "\")"
 		if strings.HasPrefix(expr, prefix) && strings.HasSuffix(expr, suffix) {
 			searchStr := expr[len(prefix) : len(expr)-len(suffix)]
-			searchStr = strings.ReplaceAll(searchStr, `""`, `"`)
-			return strings.Contains(ctx.Body, searchStr)
-		} else if strings.HasPrefix(expr, prefixstr) && strings.HasSuffix(expr, suffix) {
-			varName := expr[len(prefix) : len(expr)-len(suffix)]
-			return strings.Contains(ctx.Body, varName)
-		}
-	}
+			fmt.Printf("[DEBUG] Original searchStr: %q\n", searchStr)
 
-	// Handle special bmatches syntax
-	if strings.Contains(expr, ".bmatches(") {
-		re := regexp.MustCompile(`"([^"]+)"\.bmatches\((.+)\)`)
-		if matches := re.FindStringSubmatch(expr); len(matches) == 3 {
-			pattern := matches[1]
-			target := ctx.Body
-			re, err := regexp.Compile(pattern)
-			if err != nil {
-				return false
-			}
-			return re.MatchString(target)
-		}
-	}
+			// 处理转义字符
+			searchStr = strings.ReplaceAll(searchStr, `\\`, `\`)
+			searchStr = strings.ReplaceAll(searchStr, `\"`, `"`)
+			fmt.Printf("[DEBUG] After unescape searchStr: %q\n", searchStr)
+			fmt.Printf("[DEBUG] Response body: %q\n", ctx.Body)
 
-	// Handle "in" operation
-	if strings.Contains(expr, " in ") {
-		parts := strings.Split(expr, " in ")
-		if len(parts) == 2 {
-			key := strings.Trim(parts[0], "\"")
-			if parts[1] == "response.headers" {
-				_, exists := ctx.Headers[key]
-				return exists
-			}
+			result := strings.Contains(ctx.Body, searchStr)
+			fmt.Printf("[DEBUG] %s bcontains search for %q: %v\n",
+				formatHitMark(result), searchStr, result)
+			return result
 		}
 	}
 
@@ -416,96 +440,51 @@ func evaluateExpression(expr string, ctx *ExprContext) bool {
 		re := regexp.MustCompile(`response\.status\s*==\s*(\d+)`)
 		if matches := re.FindStringSubmatch(expr); len(matches) == 2 {
 			expectedStatus, _ := strconv.Atoi(matches[1])
-			return ctx.StatusCode == expectedStatus
+			result := ctx.StatusCode == expectedStatus
+			fmt.Printf("[DEBUG] %s Response status check: %d == %d: %v\n",
+				formatHitMark(result), ctx.StatusCode, expectedStatus, result)
+			return result
 		}
-	}
-
-	// Status code equality
-	if strings.HasPrefix(expr, "status==") {
-		code, err := strconv.Atoi(strings.TrimPrefix(expr, "status=="))
-		if err != nil {
-			return false
-		}
-		return ctx.StatusCode == code
-	}
-
-	// Status code inequality
-	if strings.HasPrefix(expr, "status!=") {
-		code, err := strconv.Atoi(strings.TrimPrefix(expr, "status!="))
-		if err != nil {
-			return false
-		}
-		return ctx.StatusCode != code
-	}
-
-	// Response body contains string
-	if strings.HasPrefix(expr, "contains(") && strings.HasSuffix(expr, ")") {
-		content := expr[9 : len(expr)-1] // Extract the content inside the parentheses
-		return strings.Contains(ctx.Body, content)
-	}
-
-	// Response body does not contain string
-	if strings.HasPrefix(expr, "!contains(") && strings.HasSuffix(expr, ")") {
-		content := expr[10 : len(expr)-1] // Extract the content inside the parentheses
-		return !strings.Contains(ctx.Body, content)
 	}
 
 	// Response body regular expression matching
 	if strings.HasPrefix(expr, "matches(") && strings.HasSuffix(expr, ")") {
-		pattern := expr[8 : len(expr)-1] // Extract the content inside the parentheses
+		pattern := expr[8 : len(expr)-1]
 		re, err := regexp.Compile(pattern)
 		if err != nil {
+			fmt.Printf("[DEBUG] ❌ Invalid regex pattern: %v\n", err)
 			return false
 		}
-		return re.MatchString(ctx.Body)
-	}
-
-	// Response body length equality
-	if strings.HasPrefix(expr, "length==") {
-		length, err := strconv.Atoi(strings.TrimPrefix(expr, "length=="))
-		if err != nil {
-			return false
-		}
-		return len(ctx.Body) == length
-	}
-
-	// Response body length greater than
-	if strings.HasPrefix(expr, "length>") {
-		length, err := strconv.Atoi(strings.TrimPrefix(expr, "length>"))
-		if err != nil {
-			return false
-		}
-		return len(ctx.Body) > length
-	}
-
-	// Response body length less than
-	if strings.HasPrefix(expr, "length<") {
-		length, err := strconv.Atoi(strings.TrimPrefix(expr, "length<"))
-		if err != nil {
-			return false
-		}
-		return len(ctx.Body) < length
+		result := re.MatchString(ctx.Body)
+		fmt.Printf("[DEBUG] %s Regex match for pattern %q: %v\n",
+			formatHitMark(result), pattern, result)
+		return result
 	}
 
 	// Check if the response headers contain specific values
 	if strings.HasPrefix(expr, "header(") && strings.HasSuffix(expr, ")") {
-		// Format: header(Key: Value)
 		content := expr[7 : len(expr)-1]
 		parts := strings.SplitN(content, ":", 2)
 		if len(parts) != 2 {
+			fmt.Printf("[DEBUG] ❌ Invalid header format\n")
 			return false
 		}
 		headerKey := strings.TrimSpace(parts[0])
 		headerValue := strings.TrimSpace(parts[1])
-		return containsHeader(ctx.Headers, headerKey, headerValue)
+		result := containsHeader(ctx.Headers, headerKey, headerValue)
+		fmt.Printf("[DEBUG] %s Header check %q: %q: %v\n",
+			formatHitMark(result), headerKey, headerValue, result)
+		return result
 	}
-	if strings.Contains(expr, "response.content_type.contains(") {
-		re := regexp.MustCompile(`response\.content_type\.contains\("([^"]+)"\)`)
-		if matches := re.FindStringSubmatch(expr); len(matches) == 2 {
-			contentType := ctx.Headers.Get("Content-Type")
-			searchStr := matches[1]
-			return strings.Contains(strings.ToLower(contentType), strings.ToLower(searchStr))
-		}
-	}
+
+	fmt.Printf("[DEBUG] ❌ No matching expression found for: %s\n", expr)
 	return false
+}
+
+// 添加一个辅助函数来格式化命中标记
+func formatHitMark(hit bool) string {
+	if hit {
+		return "✅ HIT!"
+	}
+	return "❌ MISS"
 }
