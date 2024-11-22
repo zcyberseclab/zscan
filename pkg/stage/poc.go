@@ -45,9 +45,10 @@ type POCContext struct {
 }
 
 type ExprContext struct {
-	StatusCode int
-	Body       string
-	Headers    http.Header
+	StatusCode  int
+	Body        string
+	ContentType string
+	Headers     http.Header
 }
 
 type POCExecutor struct {
@@ -65,7 +66,9 @@ func NewPOCExecutor(client *http.Client) *POCExecutor {
 
 func (pe *POCExecutor) ExecutePOC(poc *POC, target string) *POCResult {
 	result := &POCResult{
+		CVEID:    poc.CVEID,
 		Severity: poc.Severity,
+		Type:     poc.Type,
 	}
 
 	ctx := &POCContext{
@@ -79,6 +82,9 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) *POCResult {
 			ctx.Variables[k] = evaluateSetExpression(v)
 		}
 	}
+
+	// 添加一个计数器，记录成功匹配的规则数
+	successRules := 0
 
 	for _, rule := range poc.Rules {
 		path := replaceVariables(rule.Path, ctx)
@@ -151,8 +157,6 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) *POCResult {
 				continue
 			}
 			if re.Match(respBody) {
-				result.CVEID = poc.CVEID
-				result.Type = poc.Type
 				fmt.Printf("\033[31m[POC] %s: Vulnerability found! Target: %s\033[0m\n", poc.CVEID, target)
 				return result
 			}
@@ -161,22 +165,25 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) *POCResult {
 		// 处理 expression 匹配
 		if rule.Expression != "" {
 			fmt.Printf("[DEBUG] Evaluating expression: %s\n", rule.Expression)
-			isVulnerable := evaluateExpression(rule.Expression, &ExprContext{
-				StatusCode: resp.StatusCode,
-				Body:       string(respBody),
-				Headers:    resp.Header,
-			})
+			isMatch := evaluateExpression(rule.Expression, &ExprContext{
+				StatusCode:  resp.StatusCode,
+				Body:        string(respBody),
+				ContentType: resp.Header.Get("Content-Type"),
+				Headers:     resp.Header,
+			}, ctx)
 
-			fmt.Printf("[DEBUG] Expression result: %v\n", isVulnerable)
-
-			if isVulnerable {
-				result.CVEID = poc.CVEID
-				result.Type = poc.Type
-
-				fmt.Printf("\033[31m[POC] %s: Vulnerability found! Target: %s\033[0m\n", poc.CVEID, target)
-				return result
+			if isMatch {
+				successRules++
+			} else {
+				return nil
 			}
 		}
+	}
+
+	// 只有当所有规则都匹配时才返回结果
+	if successRules == len(poc.Rules) {
+		fmt.Printf("\033[31m[POC] %s: Vulnerability found! Target: %s\033[0m\n", poc.CVEID, target)
+		return result
 	}
 
 	// 没有发现漏洞时返回 nil
@@ -216,6 +223,17 @@ func replaceVariables(input string, ctx *POCContext) string {
 		return input
 	}
 
+	// 首先处理 bytes() 函数
+	bytesRe := regexp.MustCompile(`bytes\(([^)]+)\)`)
+	input = bytesRe.ReplaceAllStringFunc(input, func(match string) string {
+		varName := match[6 : len(match)-1] // 提取 bytes() 中的变量名
+		if val, ok := ctx.Variables[varName]; ok {
+			return fmt.Sprintf(`b"%s"`, val) // 将 bytes(varName) 替换为 b"actual_value"
+		}
+		return match
+	})
+
+	// 然后处理其他变量
 	re := regexp.MustCompile(`\{\{([^}]+)\}\}`)
 	return re.ReplaceAllStringFunc(input, func(match string) string {
 		varName := match[2 : len(match)-2] // 去掉 {{ 和 }}
@@ -359,17 +377,21 @@ func evaluateSetExpression(expr string) string {
 	return expr
 }
 
-func evaluateExpression(expr string, ctx *ExprContext) bool {
+func evaluateExpression(expr string, ctx *ExprContext, pocCtx *POCContext) bool {
 	fmt.Printf("\n[DEBUG] ====== Starting Expression Evaluation ======\n")
 	fmt.Printf("[DEBUG] Expression: %q\n", expr)
 	fmt.Printf("[DEBUG] Context - StatusCode: %d, Body length: %d\n", ctx.StatusCode, len(ctx.Body))
+
+	// 在评估表达式之前，先替换变量
+	expr = replaceVariables(expr, pocCtx)
+	fmt.Printf("[DEBUG] Expression after variable replacement: %q\n", expr)
 
 	// 处理 AND 操作
 	if strings.Contains(expr, "&&") {
 		parts := strings.Split(expr, "&&")
 		for _, part := range parts {
 			subExpr := strings.TrimSpace(part)
-			if !evaluateExpression(subExpr, ctx) {
+			if !evaluateExpression(subExpr, ctx, pocCtx) {
 				fmt.Printf("[DEBUG] %s AND chain failed at: %q\n", formatHitMark(false), subExpr)
 				return false
 			}
@@ -383,7 +405,7 @@ func evaluateExpression(expr string, ctx *ExprContext) bool {
 		parts := strings.Split(expr, "||")
 		for _, part := range parts {
 			subExpr := strings.TrimSpace(part)
-			if evaluateExpression(subExpr, ctx) {
+			if evaluateExpression(subExpr, ctx, pocCtx) {
 				fmt.Printf("[DEBUG] %s OR chain succeeded at: %q\n", formatHitMark(true), subExpr)
 				return true
 			}
@@ -418,6 +440,7 @@ func evaluateExpression(expr string, ctx *ExprContext) bool {
 		fmt.Printf("[DEBUG] bcontains operation detected\n")
 		prefix := "response.body.bcontains(b\""
 		suffix := "\")"
+		fmt.Printf("[DEBUG] prefix: %s, suffix: %s\n", prefix, suffix)
 		if strings.HasPrefix(expr, prefix) && strings.HasSuffix(expr, suffix) {
 			searchStr := expr[len(prefix) : len(expr)-len(suffix)]
 			fmt.Printf("[DEBUG] Original searchStr: %q\n", searchStr)
@@ -475,6 +498,22 @@ func evaluateExpression(expr string, ctx *ExprContext) bool {
 		fmt.Printf("[DEBUG] %s Header check %q: %q: %v\n",
 			formatHitMark(result), headerKey, headerValue, result)
 		return result
+	}
+
+	// 处理 content_type.contains
+	if strings.Contains(expr, "response.content_type.contains(") {
+		fmt.Printf("[DEBUG] content_type.contains operation detected\n")
+		prefix := "response.content_type.contains(\""
+		suffix := "\")"
+		if strings.HasPrefix(expr, prefix) && strings.HasSuffix(expr, suffix) {
+			searchStr := expr[len(prefix) : len(expr)-len(suffix)]
+			// 处理转义字符
+			searchStr = strings.ReplaceAll(searchStr, `\"`, `"`)
+			result := strings.Contains(strings.ToLower(ctx.ContentType), strings.ToLower(searchStr))
+			fmt.Printf("[DEBUG] %s content_type.contains search for %q in %q: %v\n",
+				formatHitMark(result), searchStr, ctx.ContentType, result)
+			return result
+		}
 	}
 
 	fmt.Printf("[DEBUG] ❌ No matching expression found for: %s\n", expr)
