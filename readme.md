@@ -135,23 +135,6 @@ func main() {
 }
 ```
 
-## Our Mission
-Traditional asset or vulnerability scanners were built decades ago. They are closed-source, incredibly slow, and vendor-driven. Today's attackers are mass exploiting newly released CVEs across the internet within days, unlike the years it used to take. This shift requires a completely different approach to tackling trending exploits on the internet.
-
-We built ZScan to solve this challenge. We made the entire scanning engine framework open and customizable—allowing the global security community to collaborate and tackle the trending attack vectors and vulnerabilities on the internet. ZScan is now used and contributed by lots of enterprises, government agencies, universities.
-
-You can participate by contributing to our code, templates library, or joining our team.
-
-
-## Contributors
-Thanks to all the amazing community contributors for sending PRs and keeping this project updated. ❤️
-<a href="https://github.com/zcyberseclab/zscan/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=zcyberseclab/zscan" />
-</a>
-
-## License
-ZScan is distributed under MIT License.
-
 ## 🔍 Writing POCs
 
 ZScan supports custom POC development in YAML format. For detailed information about POC writing, please refer to our [POC Writing Guide](https://github.com/zcyberseclab/zscan/wiki/ZScan-POC-Writing-Guide).
@@ -168,3 +151,21 @@ rules:
 ```
 
 For more examples and detailed syntax, check our [POC Writing Guide](https://github.com/zcyberseclab/zscan/wiki/ZScan-POC-Writing-Guide).
+
+
+## Our Mission
+Traditional asset or vulnerability scanners were built decades ago. They are closed-source, incredibly slow, and vendor-driven. Today's attackers are mass exploiting newly released CVEs across the internet within days, unlike the years it used to take. This shift requires a completely different approach to tackling trending exploits on the internet.
+
+We built ZScan to solve this challenge. We made the entire scanning engine framework open and customizable—allowing the global security community to collaborate and tackle the trending attack vectors and vulnerabilities on the internet. ZScan is now used and contributed by lots of enterprises, government agencies, universities.
+
+You can participate by contributing to our code, templates library, or joining our team.
+
+
+## Contributors
+Thanks to all the amazing community contributors for sending PRs and keeping this project updated. ❤️
+<a href="https://github.com/zcyberseclab/zscan/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=zcyberseclab/zscan" />
+</a>
+
+## License
+ZScan is distributed under MIT License.
