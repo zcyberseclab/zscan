@@ -134,7 +134,64 @@ func main() {
 	log.Printf("\nScan completed in: %v\n", duration)
 }
 ```
+### Build Docker with Dockerfile
+```bash
+docker build -t zscan .
+[+] Building 10.4s (21/21) FINISHED                                           docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                          0.0s
+ => => transferring dockerfile: 1.01kB                                                        0.0s
+ => [internal] load metadata for docker.io/library/alpine:latest                              0.3s
+ => [internal] load metadata for docker.io/library/golang:1.23.2-alpine                       0.5s
+ => [internal] load .dockerignore                                                             0.0s
+ => => transferring context: 2B                                                               0.0s
+ => [builder 1/7] FROM docker.io/library/golang:1.23.2-alpine@sha256:9dd2625a1ff2859b8d8b01d  2.7s
+ => => resolve docker.io/library/golang:1.23.2-alpine@sha256:9dd2625a1ff2859b8d8b01d8f7822c0  0.0s
+ => => sha256:50b3750afda1ed5c34a5153357a453f4928aa99e9f60005309772f320263a9ea 127B / 127B    0.1s
+ => => sha256:a37a00ec5f007d0ae73647c82b7d81d98a44fb7d073d06e633d656bca79d 70.64MB / 70.64MB  1.6s
+ => => sha256:55b35a11ae5eab5f9885f480b702f14893ab21d2d29f58cd678d35d2fd 293.52kB / 293.52kB  0.2s
+ => => sha256:cf04c63912e16506c4413937c7f4579018e4bb25c272d989789cfba77b12f9 4.09MB / 4.09MB  0.4s
+ => => extracting sha256:cf04c63912e16506c4413937c7f4579018e4bb25c272d989789cfba77b12f951     0.0s
+ => => extracting sha256:55b35a11ae5eab5f9885f480b702f14893ab21d2d29f58cd678d35d2fde98e27     0.0s
+ => => extracting sha256:a37a00ec5f007d0ae73647c82b7d81d98a44fb7d073d06e633d656bca79db62a     1.1s
+ => => extracting sha256:50b3750afda1ed5c34a5153357a453f4928aa99e9f60005309772f320263a9ea     0.0s
+ => => extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1     0.0s
+ => [stage-1 1/8] FROM docker.io/library/alpine:latest@sha256:1e42bbe2508154c9126d48c2b8a754  0.0s
+ => => resolve docker.io/library/alpine:latest@sha256:1e42bbe2508154c9126d48c2b8a75420c35443  0.0s
+ => [internal] load build context                                                             0.0s
+ => => transferring context: 13.51kB                                                          0.0s
+ => CACHED [stage-1 2/8] WORKDIR /app                                                         0.0s
+ => CACHED [stage-1 3/8] RUN apk --no-cache add ca-certificates                               0.0s
+ => CACHED [stage-1 4/8] RUN adduser -D -H -h /app zscan                                      0.0s
+ => [builder 2/7] WORKDIR /app                                                                0.2s
+ => [builder 3/7] RUN apk add --no-cache git                                                  0.9s
+ => [builder 4/7] COPY go.mod go.sum ./                                                       0.0s
+ => [builder 5/7] RUN go mod tidy &&     go mod verify &&     go mod download -x              0.1s
+ => [builder 6/7] COPY . .                                                                    0.2s
+ => [builder 7/7] RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -o zscan cmd/main.g  5.0s
+ => [stage-1 5/8] COPY --from=builder /app/zscan /app/                                        0.0s
+ => [stage-1 6/8] COPY --from=builder /app/config /app/config                                 0.0s
+ => [stage-1 7/8] COPY --from=builder /app/templates /app/templates                           0.0s
+ => [stage-1 8/8] RUN chown -R zscan:zscan /app                                               0.1s
+ => exporting to image                                                                        0.3s
+ => => exporting layers                                                                       0.2s
+ => => exporting manifest sha256:675fb195763f885dc931729b760e25f9e70006783d9b8a4927b3e55fa55  0.0s
+ => => exporting config sha256:006928800eb99cef59cb5425a5395e053c5e18cc3f5d19acead96b3c1e9b3  0.0s
+ => => exporting attestation manifest sha256:1b899b8aa9cb30999895716721e5aa78a24081d4e985e76  0.0s
+ => => exporting manifest list sha256:6ea2ef625b0a0a9a0339cc01223a6319e544f8ad6776fe07588e28  0.0s
+ => => naming to docker.io/library/zscan:latest                                               0.0s
+ => => unpacking to docker.io/library/zscan:latest                                            0.1s
+ ```
+ ```bash
+ docker run --rm zscan --target 127.0.0.1 --config /app/config/config.yaml
 
+[*] Processing target: 127.0.0.1
+[+] Detected IP address format
+{
+  "nodes": null
+}
+2024/11/22 18:00:50 
+Scan completed in: 4.66675ms
+ ```
 ## 🔍 Writing POCs
 
 ZScan supports custom POC development in YAML format. For detailed information about POC writing, please refer to our [POC Writing Guide](https://github.com/zcyberseclab/zscan/wiki/ZScan-POC-Writing-Guide).
