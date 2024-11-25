@@ -135,6 +135,9 @@ func main() {
 }
 ```
 ### Build Docker with Dockerfile
+Run `docker build -t zscan .` to build the image.
+
+Run `docker run zscan --target 127.0.0.1 --config /app/config/config.yaml` to start a container.
 ```bash
 docker build -t zscan .
 [+] Building 10.4s (21/21) FINISHED                                           docker:desktop-linux
@@ -182,7 +185,7 @@ docker build -t zscan .
  => => unpacking to docker.io/library/zscan:latest                                            0.1s
  ```
  ```bash
- docker run --rm zscan --target 127.0.0.1 --config /app/config/config.yaml
+ docker run zscan --target 127.0.0.1 --config /app/config/config.yaml
 
 [*] Processing target: 127.0.0.1
 [+] Detected IP address format
