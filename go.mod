@@ -1,6 +1,8 @@
 module github.com/zcyberseclab/zscan
 
-go 1.23.2
+go 1.21
+
+toolchain go1.23.2
 
 require (
 	github.com/oschwald/geoip2-golang v1.11.0
