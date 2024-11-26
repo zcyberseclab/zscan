@@ -2,9 +2,11 @@ package stage
 
 import (
 	"crypto/md5"
+	cryptorand "crypto/rand"
 	"encoding/base64"
 	"fmt"
 	"io"
+	"log"
 	"math/rand"
 	"net/http"
 	"net/url"
@@ -337,7 +339,9 @@ func evaluateSetExpression(expr string) string {
 	// Random MD5
 	if expr == "randomMD5" {
 		randomBytes := make([]byte, 16)
-		rand.Read(randomBytes)
+		if _, err := cryptorand.Read(randomBytes); err != nil {
+			log.Printf("Error generating random bytes: %v", err)
+		}
 		result := fmt.Sprintf("%x", md5.Sum(randomBytes))
 		return result
 	}
@@ -382,11 +386,9 @@ func evaluateExpression(expr string, ctx *ExprContext, pocCtx *POCContext) bool 
 	fmt.Printf("[DEBUG] Expression: %q\n", expr)
 	fmt.Printf("[DEBUG] Context - StatusCode: %d, Body length: %d\n", ctx.StatusCode, len(ctx.Body))
 
-	// 在评估表达式之前，先替换变量
 	expr = replaceVariables(expr, pocCtx)
 	fmt.Printf("[DEBUG] Expression after variable replacement: %q\n", expr)
 
-	// 处理 AND 操作
 	if strings.Contains(expr, "&&") {
 		parts := strings.Split(expr, "&&")
 		for _, part := range parts {
@@ -445,7 +447,6 @@ func evaluateExpression(expr string, ctx *ExprContext, pocCtx *POCContext) bool 
 			searchStr := expr[len(prefix) : len(expr)-len(suffix)]
 			fmt.Printf("[DEBUG] Original searchStr: %q\n", searchStr)
 
-			// 处理转义字符
 			searchStr = strings.ReplaceAll(searchStr, `\\`, `\`)
 			searchStr = strings.ReplaceAll(searchStr, `\"`, `"`)
 			fmt.Printf("[DEBUG] After unescape searchStr: %q\n", searchStr)
@@ -507,7 +508,7 @@ func evaluateExpression(expr string, ctx *ExprContext, pocCtx *POCContext) bool 
 		suffix := "\")"
 		if strings.HasPrefix(expr, prefix) && strings.HasSuffix(expr, suffix) {
 			searchStr := expr[len(prefix) : len(expr)-len(suffix)]
-			// 处理转义字符
+
 			searchStr = strings.ReplaceAll(searchStr, `\"`, `"`)
 			result := strings.Contains(strings.ToLower(ctx.ContentType), strings.ToLower(searchStr))
 			fmt.Printf("[DEBUG] %s content_type.contains search for %q in %q: %v\n",
@@ -520,7 +521,6 @@ func evaluateExpression(expr string, ctx *ExprContext, pocCtx *POCContext) bool 
 	return false
 }
 
-// 添加一个辅助函数来格式化命中标记
 func formatHitMark(hit bool) string {
 	if hit {
 		return "✅ HIT!"

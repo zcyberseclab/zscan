@@ -2,10 +2,10 @@ package stage
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net"
 	"net/url"
+	"os"
 	"strings"
 	"sync"
 	"time"
@@ -317,7 +317,7 @@ func (s *Scanner) scanHost(target string) *Node {
 
 // Helper functions moved from main.go
 func loadConfig(configPath string) Config {
-	data, err := ioutil.ReadFile(configPath)
+	data, err := os.ReadFile(configPath)
 	if err != nil {
 		log.Fatalf("Error reading config file: %v", err)
 	}

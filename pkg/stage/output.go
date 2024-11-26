@@ -12,7 +12,7 @@ func PrintResults(nodes []Node) error {
 	if err != nil {
 		return fmt.Errorf("error marshaling results to JSON: %v", err)
 	}
- 
+
 	fmt.Println(string(jsonData))
 
 	return nil

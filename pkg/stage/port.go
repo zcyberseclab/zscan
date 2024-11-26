@@ -6,7 +6,6 @@ import (
 	"time"
 )
 
- 
 func ScanTCPPort(ip string, port int) bool {
 	target := fmt.Sprintf("%s:%d", ip, port)
 	conn, err := net.DialTimeout("tcp", target, 2*time.Second)
@@ -17,7 +16,6 @@ func ScanTCPPort(ip string, port int) bool {
 	return true
 }
 
- 
 func ScanUDPPort(ip string, port int) bool {
 	target := fmt.Sprintf("%s:%d", ip, port)
 	conn, err := net.DialTimeout("udp", target, 2*time.Second)

@@ -9,7 +9,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"net"
 	"net/http"
@@ -98,18 +97,23 @@ func NewServiceDetector(templatesDir string) *ServiceDetector {
 		log.Printf("Error reading fingerprints.json: %v", err)
 		fingerprints = make(map[string]Fingerprint)
 	} else {
-		json.Unmarshal(fingerprintsData, &fingerprints)
+		if err := json.Unmarshal(fingerprintsData, &fingerprints); err != nil {
+			log.Printf("Error unmarshaling fingerprints: %v", err)
+		}
 	}
 
 	rawFingerprintsData, _ := configFiles.ReadFile("assets/raw_fingerprints.json")
 	rawFingerprints := make(map[string]RawFingerprint)
-	json.Unmarshal(rawFingerprintsData, &rawFingerprints)
+	if err := json.Unmarshal(rawFingerprintsData, &rawFingerprints); err != nil {
+		log.Printf("Error unmarshaling raw fingerprints: %v", err)
+	}
 
 	portFingerprintsData, _ := configFiles.ReadFile("assets/port_fingerprints.json")
 	portFingerprints := make(map[int]PortFingerprint)
-	json.Unmarshal(portFingerprintsData, &portFingerprints)
+	if err := json.Unmarshal(portFingerprintsData, &portFingerprints); err != nil {
+		log.Printf("Error unmarshaling port fingerprints: %v", err)
+	}
 
-	// 默认客户端配置
 	clientConfig := ClientConfig{
 		Timeout:           5 * time.Second,
 		MaxIdleConns:      100,
@@ -267,7 +271,7 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 	}
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(io.LimitReader(resp.Body, 1024*1024)) // Read up to 1MB
+	body, err := io.ReadAll(io.LimitReader(resp.Body, 1024*1024)) // Read up to 1MB
 	if err != nil {
 		return nil
 	}
@@ -295,7 +299,7 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 		info.Title = extractTitle(body)
 	}
 
-	if info.Types == nil || len(info.Types) == 0 {
+	if len(info.Types) == 0 {
 		if portFp, exists := sd.PortFingerprints[port]; exists {
 			info.Types = []string{portFp.Type}
 			if portFp.Devicetype != "" {
@@ -452,14 +456,11 @@ func (sd *ServiceDetector) matchFingerprint(ctx *detectionContext) *ServiceInfo 
 
 func (sd *ServiceDetector) matchHeaders(headers http.Header, patterns []string) bool {
 	headerStr := headerToString(headers)
-
 	for _, pattern := range patterns {
-
 		re, err := sd.getRegexp(pattern)
 		if err != nil {
 			continue
 		}
-
 		if re.MatchString(headerStr) {
 			return true
 		}
@@ -519,18 +520,18 @@ func getIconMD5(client *http.Client, url string) string {
 	hash := md5.Sum(data)
 	return hex.EncodeToString(hash[:])
 }
-
 func (sd *ServiceDetector) detectTCP(ip string, port int) []ServiceInfo {
-
 	var results []ServiceInfo
-
 	conn, err := net.DialTimeout("tcp", fmt.Sprintf("%s:%d", ip, port), 5*time.Second)
 	if err != nil {
 		return results
 	}
 	defer conn.Close()
 
-	conn.SetReadDeadline(time.Now().Add(3 * time.Second))
+	if err := conn.SetReadDeadline(time.Now().Add(3 * time.Second)); err != nil {
+		log.Printf("Error setting read deadline: %v", err)
+		return results
+	}
 
 	buffer := make([]byte, 4096)
 	n, err := conn.Read(buffer)
@@ -628,7 +629,9 @@ func (sd *ServiceDetector) detectUDP(ip string, port int) []ServiceInfo {
 	}
 
 	// Set read deadline
-	conn.SetReadDeadline(time.Now().Add(2 * time.Second))
+	if err := conn.SetReadDeadline(time.Now().Add(2 * time.Second)); err != nil {
+		log.Printf("Error setting read deadline: %v", err)
+	}
 
 	// Read response
 	buffer := make([]byte, 4096)
@@ -710,7 +713,6 @@ func headerToString(h http.Header) string {
 }
 
 func (sd *ServiceDetector) detectOS(info ServiceInfo) string {
-
 	hasSSH := false
 	hasTelnet := false
 	for _, t := range info.Types {
@@ -721,7 +723,6 @@ func (sd *ServiceDetector) detectOS(info ServiceInfo) string {
 			hasTelnet = true
 		}
 	}
-
 	switch {
 	case hasSSH || hasTelnet:
 		return sd.detectOSFromBanner(info.Banner)
@@ -791,10 +792,8 @@ func (sd *ServiceDetector) runAnalyzer(info *ServiceInfo) {
 				//log.Printf("Error getting analyze function for %s: %v", sType, err)
 				return
 			}
-
 			analyzeFunc(info)
 			results <- struct{}{}
-
 		}(serviceType)
 	}
 
@@ -844,7 +843,7 @@ func (sd *ServiceDetector) getAnalyzeFunc(serviceType string) (func(*ServiceInfo
 	analyzeFunc := L.GetGlobal("Analyze")
 	if analyzeFunc.Type() != lua.LTFunction {
 		L.Close()
-		return nil, fmt.Errorf("Analyze function not found in Lua plugin for %s", serviceType)
+		return nil, fmt.Errorf("analyze function not found in Lua plugin for %s", serviceType)
 	}
 
 	sd.pluginCache[serviceType] = L
@@ -909,7 +908,6 @@ func (sd *ServiceDetector) serviceInfoToLua(L *lua.LState, info *ServiceInfo) *l
 }
 
 func (sd *ServiceDetector) updateServiceInfoFromLua(info *ServiceInfo, tbl *lua.LTable) {
-
 	if v := tbl.RawGetString("Version"); v != lua.LNil {
 		info.Version = v.String()
 	}
@@ -1009,9 +1007,7 @@ func extractTitle(body []byte) string {
 	titleRegex := regexp.MustCompile(`(?i)<title[^>]*>([^<]+)</title>`)
 	matches := titleRegex.FindSubmatch(body)
 	if len(matches) > 1 {
-
 		title := strings.TrimSpace(string(matches[1]))
-
 		title = regexp.MustCompile(`\s+`).ReplaceAllString(title, " ")
 		return title
 	}
@@ -1019,29 +1015,23 @@ func extractTitle(body []byte) string {
 }
 
 func (sd *ServiceDetector) loadServicePOCs(serviceType string) (map[string]*POC, error) {
-
 	sd.pocMux.RLock()
 	if pocs, exists := sd.pocCache[serviceType]; exists {
 		sd.pocMux.RUnlock()
 		return pocs, nil
 	}
 	sd.pocMux.RUnlock()
-
 	sd.pocMux.Lock()
 	defer sd.pocMux.Unlock()
-
 	pocs := make(map[string]*POC)
-
 	pocPath := filepath.Join(sd.pocDirs, serviceType)
 	if _, err := os.Stat(pocPath); os.IsNotExist(err) {
-
 		sd.pocCache[serviceType] = pocs
 		return pocs, nil
 	}
 
 	files, err := os.ReadDir(pocPath)
 	if err != nil {
-
 		sd.pocCache[serviceType] = pocs
 		return pocs, nil
 	}
@@ -1050,26 +1040,20 @@ func (sd *ServiceDetector) loadServicePOCs(serviceType string) (map[string]*POC,
 		if !strings.HasSuffix(file.Name(), ".yml") {
 			continue
 		}
-
 		data, err := os.ReadFile(filepath.Join(pocPath, file.Name()))
 		if err != nil {
-
 			continue
 		}
-
 		var poc POC
 		if err := yaml.Unmarshal(data, &poc); err != nil {
-
 			continue
 		}
 
 		if poc.CVEID == "" {
 			poc.CVEID = strings.TrimSuffix(file.Name(), ".yml")
 		}
-
 		pocs[poc.CVEID] = &poc
 	}
-
 	sd.pocCache[serviceType] = pocs
 
 	return pocs, nil

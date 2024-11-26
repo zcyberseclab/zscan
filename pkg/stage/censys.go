@@ -58,7 +58,6 @@ func NewCensysClient(apiKey, apiSecret string) *CensysClient {
 
 // GetHostInfo retrieves host information from Censys API
 func (c *CensysClient) GetHostInfo(ip string) (*CensysHostResult, error) {
-
 	url := fmt.Sprintf("%s/hosts/%s", c.baseURL, ip)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
