@@ -7,6 +7,7 @@ import (
 	"html/template"
 	"log"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 
@@ -29,6 +30,7 @@ func main() {
 	censysSecret := flag.String("censys-secret", "", "Censys API Secret")
 	versionFlag := flag.Bool("version", false, "Show version information")
 	outputFormat := flag.String("output", "", "Output format: json, html, or md")
+	portList := flag.String("port", "", "Custom ports to scan (comma-separated, e.g., '80,443,8080')")
 	flag.Parse()
 
 	if *versionFlag {
@@ -54,31 +56,42 @@ func main() {
 		}
 	}
 
-	// Create scanner
-	scanner, err := stage.NewScanner(*configPath, *templatesDir, *enableGeo, *enableCensys, *censysAPIKey, *censysSecret)
+	var customPorts []int
+	if *portList != "" {
+		ports := strings.Split(*portList, ",")
+		for _, p := range ports {
+			port, err := strconv.Atoi(strings.TrimSpace(p))
+			if err != nil {
+				log.Fatalf("Invalid port number: %s", p)
+			}
+			if port < 1 || port > 65535 {
+				log.Fatalf("Port number out of range (1-65535): %d", port)
+			}
+			customPorts = append(customPorts, port)
+		}
+	}
+
+	scanner, err := stage.NewScanner(*configPath, *templatesDir, *enableGeo, *enableCensys, *censysAPIKey, *censysSecret, customPorts)
 	if err != nil {
 		log.Fatalf("Failed to create scanner: %v", err)
 	}
 	defer scanner.Close()
 
-	// Perform scan
 	startTime := time.Now()
 	results, err := scanner.Scan(*target)
 	if err != nil {
 		log.Fatalf("Scan failed: %v", err)
 	}
 
-	// Print results
-	if err := stage.PrintResults(results); err != nil {
-		log.Printf("Error printing results: %v", err)
-	}
-
-	// 处理输出格式
 	if *outputFormat != "" {
 		if err := saveResults(results, *outputFormat); err != nil {
 			log.Printf("Error saving results: %v", err)
 		} else {
 			log.Printf("Results saved in %s format", *outputFormat)
+		}
+	} else {
+		if err := stage.PrintResults(results); err != nil {
+			log.Printf("Error printing results: %v", err)
 		}
 	}
 

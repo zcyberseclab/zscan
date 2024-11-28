@@ -26,30 +26,7 @@ type Scanner struct {
 	enableGeo    bool
 	enableCensys bool
 	semaphore    chan struct{}
-}
-
-var (
-	globalScanner *Scanner
-	scannerOnce   sync.Once
-	scannerMux    sync.RWMutex
-)
-
-func InitGlobalScanner(configPath, pluginsDir string, enableGeo, enableCensys bool, censysAPIKey, censysSecret string) error {
-	var initErr error
-	scannerOnce.Do(func() {
-		var scanner *Scanner
-		scanner, initErr = NewScanner(configPath, pluginsDir, enableGeo, enableCensys, censysAPIKey, censysSecret)
-		if initErr == nil {
-			globalScanner = scanner
-		}
-	})
-	return initErr
-}
-
-func GetGlobalScanner() *Scanner {
-	scannerMux.RLock()
-	defer scannerMux.RUnlock()
-	return globalScanner
+	customPorts  []int
 }
 
 func NewScanner(
@@ -59,8 +36,13 @@ func NewScanner(
 	enableCensys bool,
 	censysAPIKey string,
 	censysSecret string,
+	customPorts []int,
 ) (*Scanner, error) {
 	config := loadConfig(configPath)
+
+	if len(customPorts) > 0 {
+		config.TCPPorts = customPorts
+	}
 
 	detector := NewServiceDetector(templatesDir)
 
@@ -86,6 +68,7 @@ func NewScanner(
 		enableGeo:    enableGeo,
 		enableCensys: enableCensys,
 		semaphore:    make(chan struct{}, 10),
+		customPorts:  customPorts,
 	}, nil
 }
 
