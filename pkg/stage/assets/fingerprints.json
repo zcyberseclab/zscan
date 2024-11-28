@@ -351,6 +351,9 @@
   "elasticsearch": {
     "headers": [
       "X-Elastic-Product: Elasticsearch"
+    ],
+    "body": [
+      "You Know, for Search"
     ]
   },
   "django": {
