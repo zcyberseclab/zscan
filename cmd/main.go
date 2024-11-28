@@ -22,6 +22,7 @@ var (
 
 func main() {
 	target := flag.String("target", "", "IP address or CIDR range to scan")
+	targetFile := flag.String("targetfile", "", "Path to target file (one target per line)")
 	configPath := flag.String("config", "config/config.yaml", "Path to config file")
 	templatesDir := flag.String("templates", "templates", "Path to templates directory")
 	enableGeo := flag.Bool("geo", false, "Enable geolocation and IP info lookup")
@@ -40,20 +41,8 @@ func main() {
 		return
 	}
 
-	if *target == "" {
-		log.Fatal("Target IP or CIDR range is required")
-	}
-
-	// Handle Censys credentials from environment if not provided
-	if *enableCensys {
-		if *censysAPIKey == "" || *censysSecret == "" {
-			*censysAPIKey = os.Getenv("CENSYS_API_KEY")
-			*censysSecret = os.Getenv("CENSYS_SECRET")
-		}
-		if *censysAPIKey == "" || *censysSecret == "" {
-			log.Printf("Warning: Censys integration enabled but credentials not provided. Skipping Censys data enrichment.")
-			*enableCensys = false
-		}
+	if *target == "" && *targetFile == "" {
+		log.Fatal("Either -target or -targetfile is required")
 	}
 
 	var customPorts []int
@@ -71,26 +60,100 @@ func main() {
 		}
 	}
 
-	scanner, err := stage.NewScanner(*configPath, *templatesDir, *enableGeo, *enableCensys, *censysAPIKey, *censysSecret, customPorts)
-	if err != nil {
-		log.Fatalf("Failed to create scanner: %v", err)
+	if *enableCensys {
+		if *censysAPIKey == "" || *censysSecret == "" {
+			*censysAPIKey = os.Getenv("CENSYS_API_KEY")
+			*censysSecret = os.Getenv("CENSYS_SECRET")
+		}
+		if *censysAPIKey == "" || *censysSecret == "" {
+			log.Printf("Warning: Censys integration enabled but credentials not provided. Skipping Censys data enrichment.")
+			*enableCensys = false
+		}
 	}
-	defer scanner.Close()
+
+	var targets []string
+	if *targetFile != "" {
+		data, err := os.ReadFile(*targetFile)
+		if err != nil {
+			log.Fatalf("Failed to read target file: %v", err)
+		}
+
+		lines := strings.Split(string(data), "\n")
+		for _, line := range lines {
+			line = strings.TrimSpace(line)
+			if line == "" || strings.HasPrefix(line, "#") {
+				continue
+			}
+			targets = append(targets, line)
+		}
+		if len(targets) == 0 {
+			log.Fatal("No valid targets found in target file")
+		}
+	} else {
+		targets = []string{*target}
+	}
 
 	startTime := time.Now()
-	results, err := scanner.Scan(*target)
-	if err != nil {
-		log.Fatalf("Scan failed: %v", err)
+	var allResults []stage.Node
+
+	for _, t := range targets {
+		target := t
+		var targetPorts []int
+
+		if strings.Contains(t, ":") {
+			parts := strings.Split(t, ":")
+			target = parts[0]
+
+			portStrings := strings.Split(parts[1], ",")
+			for _, portStr := range portStrings {
+				if port, err := strconv.Atoi(strings.TrimSpace(portStr)); err == nil {
+					if port > 0 && port <= 65535 {
+						targetPorts = append(targetPorts, port)
+					} else {
+						log.Printf("Warning: Invalid port number %d for target %s (must be 1-65535)", port, target)
+					}
+				} else {
+					log.Printf("Warning: Invalid port format for target %s: %s", target, portStr)
+				}
+			}
+		}
+
+		portsToUse := customPorts
+		if len(targetPorts) > 0 {
+			portsToUse = targetPorts
+		}
+
+		scanner, err := stage.NewScanner(
+			*configPath,
+			*templatesDir,
+			*enableGeo,
+			*enableCensys,
+			*censysAPIKey,
+			*censysSecret,
+			portsToUse,
+		)
+		if err != nil {
+			log.Printf("Failed to create scanner for target %s: %v", target, err)
+			continue
+		}
+
+		results, err := scanner.Scan(target)
+		if err != nil {
+			log.Printf("Scan failed for target %s: %v", target, err)
+			continue
+		}
+		scanner.Close()
+		allResults = append(allResults, results...)
 	}
 
 	if *outputFormat != "" {
-		if err := saveResults(results, *outputFormat); err != nil {
+		if err := saveResults(allResults, *outputFormat); err != nil {
 			log.Printf("Error saving results: %v", err)
 		} else {
 			log.Printf("Results saved in %s format", *outputFormat)
 		}
 	} else {
-		if err := stage.PrintResults(results); err != nil {
+		if err := stage.PrintResults(allResults); err != nil {
 			log.Printf("Error printing results: %v", err)
 		}
 	}
