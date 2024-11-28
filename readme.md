@@ -46,30 +46,40 @@ Download the latest version from [Releases](https://github.com/zcyberseclab/zsca
 
 ## 🚀 Usage
 
-### Command Line Usage
+Basic usage:
 
 ```bash
-# Scan a single target
-zscan --target 192.168.1.1
-
-# Scan a CIDR range
-zscan --target 192.168.1.0/24
-
-# Use custom config file
-zscan --target 192.168.1.1 --config /path/to/config.yaml
-
-# Use custom templates directory
-zscan --target 192.168.1.1 --templates-dir /path/to/templates
-
-# Enable geolocation lookup
-zscan --target 192.168.1.1 --geo
-
-# Use Censys integration
-zscan --target 192.168.1.1 --censys --censys-api-key <your-key> --censys-secret <your-secret>
-
-# Show version information
-zscan --version
+zscan -target 192.168.1.1
+zscan -target 192.168.1.0/24
 ```
+
+With options:
+```bash
+# Enable geolocation lookup
+zscan -target 192.168.1.1 -geo
+
+# Enable Censys integration
+zscan -target 192.168.1.1 -censys -censys-api-key YOUR_KEY -censys-secret YOUR_SECRET
+
+# Custom config and templates
+zscan -target 192.168.1.1 -config custom_config.yaml -templates /path/to/templates
+
+# Save results in different formats
+zscan -target 192.168.1.1 -output json   # Save as JSON
+zscan -target 192.168.1.1 -output html   # Save as HTML
+zscan -target 192.168.1.1 -output md     # Save as Markdown
+```
+
+Available options:
+- `-target`: IP address or CIDR range to scan (required)
+- `-config`: Path to config file (default: config/config.yaml)
+- `-templates`: Path to templates directory (default: templates)
+- `-geo`: Enable geolocation and IP info lookup
+- `-censys`: Enable Censys data enrichment
+- `-censys-api-key`: Censys API Key
+- `-censys-secret`: Censys API Secret
+- `-output`: Output format (json, html, or md)
+- `-version`: Show version information
 
 ### Using as a Go Library
 
