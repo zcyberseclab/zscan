@@ -15,8 +15,8 @@
       "(?i)nginx"
     ]
   },
-  "wordpress":{
-    "body":[
+  "wordpress": {
+    "body": [
       "(?i)WordPress"
     ]
   },
@@ -529,14 +529,14 @@
   "vigor-router": {
     "type": "router",
     "manufacturer": "vigor",
-    "body":[
+    "body": [
       "Vigor"
     ]
   },
   "ct-router": {
     "type": "router",
     "manufacturer": "comtime",
-    "body":[
+    "body": [
       "CT-Router"
     ]
   },
@@ -613,7 +613,7 @@
     ]
   },
   "cups": {
-    "type" : "printer",
+    "type": "printer",
     "headers": [
       "Server: CUPS"
     ]
@@ -643,7 +643,7 @@
   "brother-printer": {
     "type": "printer",
     "manufacturer": "brother",
-    "body":[
+    "body": [
       "Brother"
     ]
   },
@@ -704,91 +704,91 @@
       "Server: WVS"
     ]
   },
-  "amtt":{
-    "body":[
+  "amtt": {
+    "body": [
       "http://www.amttgroup.com"
     ]
   },
-  "fortra":{
-    "body":[
+  "fortra": {
+    "body": [
       "(?i)GoAnywhere"
     ]
   },
-  "wordpress-ultimate":{
-    "body":[
+  "wordpress-ultimate": {
+    "body": [
       "/wp-content/plugins/ultimate-member",
       "/wp-content/plugins/email-subscribers/"
     ]
   },
-  "hikvision-camera":{
+  "hikvision-camera": {
     "type": "ipcamera",
     "manufacturer": "hikvision",
-    "body":[
+    "body": [
       "(updatetips|doc/page/login.asp|/ui/css/ui.css?version=\\\" + new date().gettime|ng-bind=\\\"olan.anonymous\\\" ng-click=\\\"login('anonymous')\\\"|css/login.css?version=\\\" + new date()|var syslanguage= navigator.browserlanguage.tolowercase()|var szlanguage = syslanguage.substring(0,2)|ng-bind=\\\"olan.anonymous\\\" ng-click=\\\"login('anonymous')\\\">|class=\\\"btn btn-primary login-btn\\\"|id=\\\"divanonymous\\\"|id=\\\"divpswstrength\\\"|<form action=\\\"/goform/formcobralogin|\u53bb\u9664edge\u4e0b\u5c06\u6570\u5b57\u5904\u7406\u6210\u7535\u8bdd\u7684\u9519\u8bef)"
     ],
-    "headers":[
+    "headers": [
       "(realm=\\\"hikvision)"
     ]
   },
-  "seeyon-oa":{
-    "body":[
+  "seeyon-oa": {
+    "body": [
       "(?i)seeyon"
     ],
-    "headers":[
+    "headers": [
       "(path=/yyoa)"
     ]
   },
-  "drupal":{
-    "body":[
+  "drupal": {
+    "body": [
       "(?i)drupal"
     ],
-    "headers":[
+    "headers": [
       "(?i)drupal"
     ]
   },
-  "apache-struts":{
-    "body":[
+  "apache-struts": {
+    "body": [
       "(?i)Powered by Struts",
       "(?i)Apache Struts"
     ]
   },
-  "apache-tomcat":{
-    "body":[
+  "apache-tomcat": {
+    "body": [
       "(?i)tomcat"
     ]
   },
-  "apache-activemq":{
-    "body":[
-      "(?i)ActiveMQ"  
+  "apache-activemq": {
+    "body": [
+      "(?i)ActiveMQ"
     ]
   },
-  "qnap-nas":{
+  "qnap-nas": {
     "type": "nas",
     "manufacturer": "qnap",
-    "body":[
+    "body": [
       "redirect_suffix",
       "/css/qnap-default.css",
       "/redirect.html?count=\\\"+math.random()",
       "/indexnas.cgi?counter="
     ]
   },
-  "thinkphp":{
-    "headers":[
+  "thinkphp": {
+    "headers": [
       "X-Powered-By:ThinkPHP"
     ]
   },
-  "couchdb":{
-    "headers":[
+  "couchdb": {
+    "headers": [
       "Server: CouchDB"
-    ] 
+    ]
   },
-  "couchbase":{
-    "headers":[
+  "couchbase": {
+    "headers": [
       "Server: couchbase"
     ]
   },
   "jenkins": {
-    "headers":[
+    "headers": [
       "X-Jenkins"
     ]
   },
@@ -1104,287 +1104,359 @@
       "Expedition Project"
     ]
   },
-  "74cms":{
-    "body":[
+  "74cms": {
+    "body": [
       "www.74cms.com"
     ]
   },
-  "alibaba-canal":{
-    "body":[
+  "alibaba-canal": {
+    "body": [
       "(?i)Canal Admin"
     ]
   },
-  "alibaba-nacos":{
-    "body":[
+  "alibaba-nacos": {
+    "body": [
       "(?i)nacos"
     ]
   },
-  "apache-airflow":{
-    "body":[
+  "apache-airflow": {
+    "body": [
       "(?i)airflow"
     ]
   },
-  "apache-ambari":{
-    "body":[
+  "apache-ambari": {
+    "body": [
       "(?i)ambari"
     ]
   },
-  "apache-axis":{
-    "body":[
+  "apache-axis": {
+    "body": [
       "(?i)axis"
     ]
   },
-  "apache-druid":{
-    "body":[
+  "apache-druid": {
+    "body": [
       "(?i)druid"
     ]
   },
-  "apache-flink":{
-    "body":[
+  "apache-flink": {
+    "body": [
       "(?i)flink"
     ]
   },
-  "apache-nifi":{
-    "body":[
+  "apache-nifi": {
+    "body": [
       "(?i)nifi"
     ]
   },
-  "apache-ofbiz":{
-    "headers":[
+  "apache-ofbiz": {
+    "headers": [
       "Server: (?i)Apache-Coyote"
     ],
-    "body":[
+    "body": [
       "(?i)ofbiz"
     ]
   },
-  "aspcms":{
-    "body":[
+  "aspcms": {
+    "body": [
       "(?i)aspcms"
     ]
   },
-  "atlassian-confluence":{
-    "body":[
+  "atlassian-confluence": {
+    "body": [
       "(?i)atlassian-confluence"
     ]
   },
-  "cacti":{
-    "body":[
+  "cacti": {
+    "body": [
       "(?i)cacti"
     ]
   },
-  "citrix":{
-    "body":[
+  "citrix": {
+    "body": [
       "(?i)citrix"
     ]
   },
-  "citrix-xenmobile":{
-    "body":[
+  "citrix-xenmobile": {
+    "body": [
       "(?i)XenMobile"
     ]
   },
-  "dlink-nas":{
+  "dlink-nas": {
     "type": "nas",
     "manufacturer": "dlink",
-    "body":[
+    "body": [
       "(?i)In order to access the ShareCenter"
     ],
     "headers": [
       "P3P: CP"
     ]
   },
-  "coldfusion":{
-    "body":[
+  "coldfusion": {
+    "body": [
       "(?i)coldfusion"
     ]
   },
-  "consul-service":{
-    "body":[
+  "consul-service": {
+    "body": [
       "(?)consul service"
     ]
   },
-  "h5s-video":{
-    "body":[
+  "h5s-video": {
+    "body": [
       "(?i)H5S CONSOLE"
     ]
   },
-  "coremail":{
-    "body":[
+  "coremail": {
+    "body": [
       "(?i)coremail"
     ]
   },
-  "couchcms":{
-    "body":[
+  "couchcms": {
+    "body": [
       "(?i)couchcms"
     ]
   },
-  "craftcms":{
-    "headers":[
+  "craftcms": {
+    "headers": [
       "X-Powered-By: Craft CMS"
     ]
   },
-  "swagger-ui":{
-    "body":[
+  "swagger-ui": {
+    "body": [
       "(?i)swagger ui"
     ]
   },
-  "dedecms":{
-    "body":[
+  "dedecms": {
+    "body": [
       "www.dedecms.com"
     ]
   },
-  "dotnetcms":{
-    "body":[
+  "dotnetcms": {
+    "body": [
       "(?i)Created by DotNetCMS"
     ]
   },
-  "dubbo":{
-    "body":[
+  "dubbo": {
+    "body": [
       "(?i)Dubbo Admin"
     ]
   },
-  "duomicms":{
-    "body":[
+  "duomicms": {
+    "body": [
       "(?i)duomicms"
     ]
   },
-  "eoffice":{
-    "body":[
+  "eoffice": {
+    "body": [
       "(?i)eoffice"
     ]
   },
-  "ecology":{
-    "body":[
+  "ecology": {
+    "body": [
       "(?i)ecology"
     ]
   },
-  "ecshop":{
-    "body":[
+  "ecshop": {
+    "body": [
       "(?i)ecshop"
     ]
   },
-  "eea":{
-    "body":[
+  "eea": {
+    "body": [
       "(?i)messagesolution"
     ]
   },
-  "eyou":{
-    "body":[
+  "eyou": {
+    "body": [
       "(?i)eyou.net"
-    ]  
+    ]
   },
-  "ezoffice":{
-    "body":[
+  "ezoffice": {
+    "body": [
       "(?i)ezOFFICE"
     ]
   },
-  "f5":{
-    "body":[
+  "f5": {
+    "body": [
       "(?i)F5-BIG"
     ]
   },
-  "fckeditor":{
-    "body":[
+  "fckeditor": {
+    "body": [
       "(?i)FCKeditor"
     ]
   },
-  "feifeicms":{
-    "body":[
+  "feifeicms": {
+    "body": [
       "(?i)FeiFeiCms"
     ]
   },
-  "finecms":{
-    "body":[
+  "finecms": {
+    "body": [
       "(?i)finecms"
     ]
   },
-  "finereport":{
-    "body":[
+  "finereport": {
+    "body": [
       "(?i)ReportServer",
       "(?i)finereport"
     ]
   },
-  "flexpaper":{
-    "body":[
+  "flexpaper": {
+    "body": [
       "(?i)flexpaper"
     ]
   },
-  "gateone":{
-    "body":[
+  "gateone": {
+    "body": [
       "(?i)gateone.hitoma.com"
     ]
   },
-  "gilacms":{
-    "body":[
+  "gilacms": {
+    "body": [
       "(?i)gilacms"
     ]
   },
-  "gitlist":{
-    "body":[
+  "gitlist": {
+    "body": [
       "(?i)gitlist"
     ]
   },
-  "glassfish":{
-    "body":[
+  "glassfish": {
+    "body": [
       "(?i)glassfish"
     ]
   },
-  "pprof":{
-    "body":[
+  "pprof": {
+    "body": [
       "(?i)pprof"
     ]
   },
-  "gocd":{
-    "body":[
+  "gocd": {
+    "body": [
       "(?i)GoCD"
     ]
   },
-  "h3c-imc":{
-    "body":[
+  "h3c-imc": {
+    "body": [
       "(?i)H3C IMC"
     ]
   },
-  "h3c-secpath":{
-    "body":[
+  "h3c-secpath": {
+    "body": [
       "(?i)H3C SecPath"
     ]
   },
-  "apache-hadoop":{
-    "body":[
+  "apache-hadoop": {
+    "body": [
       "(?i)Hadoop"
     ]
   },
-  "harbor":{
-    "body":[
+  "harbor": {
+    "body": [
       "(?i)Harbor"
     ]
   },
-  "hikvision-server":{
-    "body":[
+  "hikvision-server": {
+    "body": [
       "流媒体管理服务器"
     ]
   },
-  "hikvision-intercom":{
-    "body":[
+  "hikvision-intercom": {
+    "body": [
       "群组对讲服务配置"
     ]
   },
-  "hikvision-gateway":{
-    "body":[
+  "hikvision-gateway": {
+    "body": [
       "视频编码设备接入网关"
     ]
   },
-  "ifw8-router":{
+  "ifw8-router": {
     "type": "ipcamera",
     "manufacturer": "ifw8",
     "body": [
       "(?i)www.ifw8.cn"
     ]
   },
-  "apache-apisix":{
-    "headers":[
+  "apache-apisix": {
+    "headers": [
       "(?i)APISIX"
+    ]
+  },
+  "huawei-gateway": {
+    "body": [
+      "(?i)HUAWEI Home Gateway"
+    ]
+  },
+  "influxdb": {
+    "body": [
+      "(?i)influxdb"
+    ]
+  },
+  "inspur": {
+    "body": [
+      "(?i)TSCEV4.0"
+    ]
+  },
+  "jboss": {
+    "body": [
+      "(?i)Welcome to JBoss"
+    ]
+  },
+  "jellyfin": {
+    "body": [
+      "(?i)Jellyfin"
+    ]
+  },
+  "jira": {
+    "body": [
+      "(?i)jira"
+    ]
+  },
+  "joomla": {
+    "body": [
+      "(?i)Joomla"
+    ]
+  },
+  "acmailer": {
+    "body": [
+      "(?i)acmailer"
+    ]
+  },
+  "comfyui": {
+    "body": [
+      "(?i)ComfyUI"
+    ]
+  },
+  "anhen": {
+    "body": [
+      "明御安全网关"
+    ]
+  },
+  "aodun": {
+    "body": [
+      "(?i)aodun"
+    ]
+  },
+  "aoweiya": {
+    "body": [
+      "ava.com.cn"
+    ]
+  },
+  "arris-router": {
+    "type": "router",
+    "manufacturer": "arris",
+    "body": [
+      "SBR-AC1750"
+    ]
+  },
+  "asus-router": {
+    "type": "router",
+    "manufacturer": "asus",
+    "body": [
+      "(?i)ASUS Login"
     ]
   }
 }
-  
- 
