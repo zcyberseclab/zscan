@@ -51,6 +51,7 @@ Basic usage:
 ```bash
 zscan -target 192.168.1.1
 zscan -target 192.168.1.0/24
+zscan -targetfile targets.txt    # Scan multiple targets from file
 ```
 
 With options:
@@ -65,13 +66,21 @@ zscan -target 192.168.1.1 -censys -censys-api-key YOUR_KEY -censys-secret YOUR_S
 zscan -target 192.168.1.1 -config custom_config.yaml -templates /path/to/templates
 
 # Save results in different formats
-zscan -target 192.168.1.1 -output json   # Save as JSON
-zscan -target 192.168.1.1 -output html   # Save as HTML
-zscan -target 192.168.1.1 -output md     # Save as Markdown
+zscan -target 192.168.1.1 -output json   # Save as zscan_results.json
+zscan -target 192.168.1.1 -output html   # Save as zscan_results.html
+zscan -target 192.168.1.1 -output md     # Save as zscan_results.md
+
+# Scan specific ports
+zscan -target 192.168.1.1 -port 80,443,8080,8443
+
+# Scan with target-specific ports
+zscan -target "192.168.1.1:80,443"       # Scan specific ports for this target
+zscan -targetfile targets.txt            # Can also specify ports in file: 192.168.1.1:80,443
 ```
 
 Available options:
-- `-target`: IP address or CIDR range to scan (required)
+- `-target`: IP address or CIDR range to scan
+- `-targetfile`: Path to file containing targets (one per line)
 - `-config`: Path to config file (default: config/config.yaml)
 - `-templates`: Path to templates directory (default: templates)
 - `-geo`: Enable geolocation and IP info lookup
@@ -80,6 +89,7 @@ Available options:
 - `-censys-secret`: Censys API Secret
 - `-output`: Output format (json, html, or md)
 - `-version`: Show version information
+- `-port`: Custom ports to scan (comma-separated, e.g., '80,443,8080')
 
 ### Using as a Go Library
 
