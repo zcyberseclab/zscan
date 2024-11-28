@@ -194,29 +194,23 @@ func (s *Scanner) mergeResults(zscanResults, censysResults []Node) []Node {
 }
 
 func (s *Scanner) parseTarget(target string) (string, error) {
-	fmt.Printf("\n[*] Processing target: %s\n", target)
-
 	if strings.HasPrefix(target, "http://") || strings.HasPrefix(target, "https://") {
 		u, err := url.Parse(target)
 		if err != nil {
 			return "", fmt.Errorf("invalid URL: %v", err)
 		}
 		target = u.Host
-		fmt.Printf("[+] Extracted host from URL: %s\n", target)
 
 		if strings.Contains(target, ":") {
 			target = strings.Split(target, ":")[0]
-			fmt.Printf("[+] Removed port, using: %s\n", target)
 		}
 	}
 
 	if strings.Contains(target, "/") {
-		fmt.Printf("[+] Detected CIDR format\n")
 		return target, nil
 	}
 
 	if ip := net.ParseIP(target); ip != nil {
-		fmt.Printf("[+] Detected IP address format\n")
 		return target, nil
 	}
 

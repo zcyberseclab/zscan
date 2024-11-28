@@ -236,7 +236,7 @@ func (sd *ServiceDetector) DetectService(ip string, port int, protocol string) [
 }
 
 func (sd *ServiceDetector) detectHTTP(ip string, port int) []ServiceInfo {
-	if port < 79 {
+	if port < 70 {
 		return []ServiceInfo{}
 	}
 

@@ -3,6 +3,7 @@ tcp_ports:
   - 22    # SSH
   - 23    # Telnet
   - 25    # SMTP
+  - 70
   - 80    # HTTP
   - 81    # HTTP Alternate
   - 82    # HTTP Alternate
