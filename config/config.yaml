@@ -3,6 +3,7 @@ tcp_ports:
   - 22    # SSH
   - 23    # Telnet
   - 25    # SMTP
+  - 70
   - 80    # HTTP
   - 81    # HTTP Alternate
   - 82    # HTTP Alternate
@@ -64,6 +65,7 @@ tcp_ports:
   - 5672  # RabbitMQ
   - 5900  # VNC
   - 6002
+  - 6070
   - 6379  # Redis
   - 6443  # Kubernetes API
   - 7001  # WebLogic
@@ -71,6 +73,7 @@ tcp_ports:
   - 7080  # Generic
   - 7680  # Windows Update Delivery Optimization
   - 7788
+  - 7799
   - 8000
   - 8001  # HTTP Alternate
   - 8002  # HTTP Alternate
@@ -87,17 +90,20 @@ tcp_ports:
   - 8111
   - 8123
   - 8127
+  - 8189
   - 8443  # HTTPS Alternate
   - 8447
   - 8887
   - 8888  # HTTP Alternate
   - 8889  # HTTP Alternate
+  - 8899
   - 9000  # Jenkins
   - 9005  
   - 9006 
   - 9007 
   - 9008 
   - 9020
+  - 9050
   - 9088
   - 9090  # Generic
   - 9100  # Raw Printer Port / HP JetDirect
@@ -112,6 +118,8 @@ tcp_ports:
   - 15672 # RabbitMQ Management
   - 16379 # Redis Cluster
   - 18080
+  - 18090
+  - 20107
   - 25022 
   - 25251 
   - 27017 # MongoDB
@@ -121,6 +129,7 @@ tcp_ports:
   - 49664 # Windows Remote Management
   - 50000 # Generic
   - 53002 # Generic
+  - 55555
   - 60001 # Generic
   - 60774 # Generic
   - 62443
