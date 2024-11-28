@@ -351,6 +351,9 @@
   "elasticsearch": {
     "headers": [
       "X-Elastic-Product: Elasticsearch"
+    ],
+    "body": [
+      "You Know, for Search"
     ]
   },
   "django": {
@@ -1376,7 +1379,12 @@
     "body": [
       "(?i)www.ifw8.cn"
     ]
-}
+  },
+  "apache-apisix":{
+    "headers":[
+      "(?i)APISIX"
+    ]
+  }
 }
   
  
