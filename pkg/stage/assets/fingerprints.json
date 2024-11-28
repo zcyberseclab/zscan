@@ -1376,7 +1376,12 @@
     "body": [
       "(?i)www.ifw8.cn"
     ]
-}
+  },
+  "apache-apisix":{
+    "headers":[
+      "(?i)APISIX"
+    ]
+  }
 }
   
  
