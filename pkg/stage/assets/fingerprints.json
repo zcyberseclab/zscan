@@ -1384,6 +1384,95 @@
     "headers":[
       "(?i)APISIX"
     ]
+  },
+  "huawei-gateway": {
+    "body": [
+      "(?i)HUAWEI Home Gateway"
+    ]
+  },
+  "influxdb": {
+    "body": [
+      "(?i)influxdb"
+    ]
+  },
+  "inspur": {
+    "body": [
+      "(?i)TSCEV4.0"
+    ]
+  },
+  "jboss": {
+    "body": [
+      "(?i)Welcome to JBoss"
+    ]
+  },
+  "jellyfin": {
+    "body": [
+      "(?i)Jellyfin"
+    ]
+  },
+  "jira": {
+    "body": [
+      "(?i)jira"
+    ]
+  },
+  "joomla": {
+    "body": [
+      "(?i)Joomla"
+    ]
+  },
+  "acmailer": {
+    "body": [
+      "(?i)acmailer"
+    ]
+  },
+  "comfyui": {
+    "body": [
+      "(?i)ComfyUI"
+    ]
+  },
+  "anhen": {
+    "body": [
+      "明御安全网关"
+    ]
+  },
+  "aodun": {
+    "body": [
+      "(?i)aodun"
+    ]
+  },
+  "aoweiya": {
+    "body": [
+      "ava.com.cn"
+    ]
+  },
+  "arris-router": {
+    "type": "router",
+    "manufacturer": "arris",
+    "body": [
+      "SBR-AC1750"
+    ]
+  },
+  "asus-router": {
+    "type": "router",
+    "manufacturer": "asus",
+    "body": [
+      "(?i)ASUS Login"
+    ]
+  },
+  "bgk": {
+    "headers": [
+      "Set-Cookie: bgk_"
+    ]
+  },
+  "casdoor": {
+    "body": [
+      "(?i)casdoor"
+    ]
+  },
+  "baizhuo": {
+    "body": [
+      "(?i)smart"
+    ]
   }
 }
   
