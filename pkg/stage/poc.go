@@ -92,7 +92,7 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) *POCResult {
 		path := replaceVariables(rule.Path, ctx)
 		url := fmt.Sprintf("%s%s", target, path)
 
-		fmt.Printf("[DEBUG] Trying URL: %s\n", url)
+		fmt.Printf("[DEBUG] [%s] Trying URL: %s\n", poc.CVEID, url)
 
 		body := replaceVariables(rule.Body, ctx)
 		req, err := http.NewRequest(rule.Method, url, strings.NewReader(body))
@@ -167,7 +167,7 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) *POCResult {
 		// 处理 expression 匹配
 		if rule.Expression != "" {
 			fmt.Printf("[DEBUG] Evaluating expression: %s\n", rule.Expression)
-			isMatch := evaluateExpression(rule.Expression, &ExprContext{
+			isMatch := evaluateExpression(poc, rule.Expression, &ExprContext{
 				StatusCode:  resp.StatusCode,
 				Body:        string(respBody),
 				ContentType: resp.Header.Get("Content-Type"),
@@ -381,10 +381,12 @@ func evaluateSetExpression(expr string) string {
 	return expr
 }
 
-func evaluateExpression(expr string, ctx *ExprContext, pocCtx *POCContext) bool {
-	fmt.Printf("\n[DEBUG] ====== Starting Expression Evaluation ======\n")
+func evaluateExpression(poc *POC, expr string, ctx *ExprContext, pocCtx *POCContext) bool {
+	fmt.Printf("\n[DEBUG] ====== Starting Expression Evaluation [%s] ======\n", poc.CVEID)
 	fmt.Printf("[DEBUG] Expression: %q\n", expr)
-	fmt.Printf("[DEBUG] Context - StatusCode: %d, Body length: %d\n", ctx.StatusCode, len(ctx.Body))
+	fmt.Printf("[DEBUG] Context - StatusCode: %d\n", ctx.StatusCode)
+	fmt.Printf("[DEBUG] Context - Body: %s\n", ctx.Body)
+	fmt.Printf("[DEBUG] Context - Body length: %d\n", len(ctx.Body))
 
 	expr = replaceVariables(expr, pocCtx)
 	fmt.Printf("[DEBUG] Expression after variable replacement: %q\n", expr)
@@ -393,7 +395,7 @@ func evaluateExpression(expr string, ctx *ExprContext, pocCtx *POCContext) bool 
 		parts := strings.Split(expr, "&&")
 		for _, part := range parts {
 			subExpr := strings.TrimSpace(part)
-			if !evaluateExpression(subExpr, ctx, pocCtx) {
+			if !evaluateExpression(poc, subExpr, ctx, pocCtx) {
 				fmt.Printf("[DEBUG] %s AND chain failed at: %q\n", formatHitMark(false), subExpr)
 				return false
 			}
@@ -407,7 +409,7 @@ func evaluateExpression(expr string, ctx *ExprContext, pocCtx *POCContext) bool 
 		parts := strings.Split(expr, "||")
 		for _, part := range parts {
 			subExpr := strings.TrimSpace(part)
-			if evaluateExpression(subExpr, ctx, pocCtx) {
+			if evaluateExpression(poc, subExpr, ctx, pocCtx) {
 				fmt.Printf("[DEBUG] %s OR chain succeeded at: %q\n", formatHitMark(true), subExpr)
 				return true
 			}
@@ -442,7 +444,17 @@ func evaluateExpression(expr string, ctx *ExprContext, pocCtx *POCContext) bool 
 		fmt.Printf("[DEBUG] bcontains operation detected\n")
 		prefix := "response.body.bcontains(b\""
 		suffix := "\")"
+
+		// Clean the expression by trimming whitespace and newlines
+		expr = strings.TrimSpace(expr)
+		fmt.Printf("[DEBUG] Cleaned expression: %q\n", expr)
+
 		fmt.Printf("[DEBUG] prefix: %s, suffix: %s\n", prefix, suffix)
+		fmt.Printf("[DEBUG] Expression length: %d\n", len(expr))
+		fmt.Printf("[DEBUG] Expression bytes: %v\n", []byte(expr))
+		fmt.Printf("[DEBUG] Prefix check: %v\n", strings.HasPrefix(expr, prefix))
+		fmt.Printf("[DEBUG] Suffix check: %v\n", strings.HasSuffix(expr, suffix))
+
 		if strings.HasPrefix(expr, prefix) && strings.HasSuffix(expr, suffix) {
 			searchStr := expr[len(prefix) : len(expr)-len(suffix)]
 			fmt.Printf("[DEBUG] Original searchStr: %q\n", searchStr)

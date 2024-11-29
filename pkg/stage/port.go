@@ -10,6 +10,7 @@ func ScanTCPPort(ip string, port int) bool {
 	target := fmt.Sprintf("%s:%d", ip, port)
 	conn, err := net.DialTimeout("tcp", target, 2*time.Second)
 	if err != nil {
+		fmt.Println(err)
 		return false
 	}
 	defer conn.Close()

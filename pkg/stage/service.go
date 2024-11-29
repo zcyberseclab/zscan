@@ -66,7 +66,7 @@ type PortFingerprint struct {
 // ServiceDetector struct and methods remain unchanged
 type ServiceDetector struct {
 	Fingerprints     map[string]Fingerprint
-	RawFingerprints  map[string]RawFingerprint // 改为新的类型
+	RawFingerprints  map[string]RawFingerprint
 	PortFingerprints map[int]PortFingerprint
 	client           *http.Client
 	regexCache       map[string]*regexp.Regexp
@@ -75,8 +75,8 @@ type ServiceDetector struct {
 	pluginCacheMux   sync.RWMutex
 	clientConfig     ClientConfig
 	pocExecutor      *POCExecutor
-	pocDirs          string                     // POC 文件目录
-	pocCache         map[string]map[string]*POC // POC 缓存
+	pocDirs          string
+	pocCache         map[string]map[string]*POC
 	pocMux           sync.RWMutex
 }
 
@@ -321,18 +321,21 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 	sd.extractSensitiveInfo(info)
 
 	if len(info.Types) > 0 {
+		fmt.Printf("[DEBUG] Starting POC execution for Types: %v\n", info.Types)
 		var wg sync.WaitGroup
-		var vulnMux sync.Mutex // Mutex to protect concurrent access to Vulnerabilities
+		var vulnMux sync.Mutex
 
 		for _, serviceType := range info.Types {
+			fmt.Printf("[DEBUG] Loading POCs for service type: %s\n", serviceType)
 			pocs, err := sd.loadServicePOCs(serviceType)
 			if err != nil {
 				log.Printf("Error loading POCs for service %s: %v", serviceType, err)
 				continue
 			}
+			fmt.Printf("[DEBUG] Found %d POCs for service type %s\n", len(pocs), serviceType)
 
 			// Create worker pool for POC execution
-			workerCount := 10 // Adjust this number based on your needs
+			workerCount := 10
 			pocChan := make(chan *POC, len(pocs))
 
 			// Start workers
@@ -341,6 +344,7 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 				go func() {
 					defer wg.Done()
 					for poc := range pocChan {
+						fmt.Printf("[DEBUG] Executing POC %s for service type %s\n", poc.CVEID, serviceType)
 						result := sd.pocExecutor.ExecutePOC(poc, url)
 						if result != nil {
 							vulnMux.Lock()
@@ -601,7 +605,7 @@ func (sd *ServiceDetector) detectTCP(ip string, port int) []ServiceInfo {
 func cleanBanner(banner string) string {
 	var cleaned strings.Builder
 	for _, r := range []byte(banner) {
-		if r >= 32 && r <= 126 { // 可打印ASCII字符
+		if r >= 32 && r <= 126 {
 			cleaned.WriteByte(r)
 		} else {
 			cleaned.WriteString(fmt.Sprintf("\\x%02x", r))
@@ -778,6 +782,8 @@ func (sd *ServiceDetector) runAnalyzer(info *ServiceInfo) {
 		return
 	}
 
+	fmt.Printf("[DEBUG] Running analyzers for types: %v\n", info.Types)
+
 	var wg sync.WaitGroup
 	results := make(chan struct{}, len(info.Types))
 
@@ -786,14 +792,16 @@ func (sd *ServiceDetector) runAnalyzer(info *ServiceInfo) {
 		wg.Add(1)
 		go func(sType string) {
 			defer wg.Done()
+			fmt.Printf("[DEBUG] Starting analyzer for type: %s\n", sType)
 
 			analyzeFunc, err := sd.getAnalyzeFunc(sType)
 			if err != nil {
-				//log.Printf("Error getting analyze function for %s: %v", sType, err)
+				fmt.Printf("[DEBUG] Error getting analyze function for %s: %v\n", sType, err)
 				return
 			}
 			analyzeFunc(info)
 			results <- struct{}{}
+			fmt.Printf("[DEBUG] Completed analyzer for type: %s\n", sType)
 		}(serviceType)
 	}
 
@@ -942,7 +950,6 @@ func (sd *ServiceDetector) updateServiceInfoFromLua(info *ServiceInfo, tbl *lua.
 	}
 }
 
-// 添加关闭方法
 func (sd *ServiceDetector) Close() {
 	sd.pluginCacheMux.Lock()
 	defer sd.pluginCacheMux.Unlock()
@@ -1018,23 +1025,31 @@ func (sd *ServiceDetector) loadServicePOCs(serviceType string) (map[string]*POC,
 	sd.pocMux.RLock()
 	if pocs, exists := sd.pocCache[serviceType]; exists {
 		sd.pocMux.RUnlock()
+		fmt.Printf("[DEBUG] Found cached POCs for %s: %d POCs\n", serviceType, len(pocs))
 		return pocs, nil
 	}
 	sd.pocMux.RUnlock()
 	sd.pocMux.Lock()
 	defer sd.pocMux.Unlock()
+
 	pocs := make(map[string]*POC)
 	pocPath := filepath.Join(sd.pocDirs, serviceType)
+	fmt.Printf("[DEBUG] Looking for POCs in directory: %s\n", pocPath)
+
 	if _, err := os.Stat(pocPath); os.IsNotExist(err) {
+		fmt.Printf("[DEBUG] POC directory does not exist: %s\n", pocPath)
 		sd.pocCache[serviceType] = pocs
 		return pocs, nil
 	}
 
 	files, err := os.ReadDir(pocPath)
 	if err != nil {
+		fmt.Printf("[DEBUG] Error reading POC directory %s: %v\n", pocPath, err)
 		sd.pocCache[serviceType] = pocs
 		return pocs, nil
 	}
+
+	fmt.Printf("[DEBUG] Found %d files in POC directory %s\n", len(files), pocPath)
 
 	for _, file := range files {
 		if !strings.HasSuffix(file.Name(), ".yml") {
@@ -1042,10 +1057,12 @@ func (sd *ServiceDetector) loadServicePOCs(serviceType string) (map[string]*POC,
 		}
 		data, err := os.ReadFile(filepath.Join(pocPath, file.Name()))
 		if err != nil {
+			fmt.Printf("[DEBUG] Error reading POC %s: %v\n", file.Name(), err)
 			continue
 		}
 		var poc POC
 		if err := yaml.Unmarshal(data, &poc); err != nil {
+			fmt.Printf("[DEBUG] Error unmarshalling POC %s: %v\n", file.Name(), err)
 			continue
 		}
 
