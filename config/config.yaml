@@ -83,6 +83,7 @@ tcp_ports:
   - 8082  # HTTP Alternate
   - 8083  # HTTP Alternate
   - 8084  # HTTP Alternate
+  - 8088
   - 8089
   - 8090  # HTTP Alternate
   - 8111
@@ -105,6 +106,7 @@ tcp_ports:
   - 9200  # Elasticsearch HTTP
   - 9300  # Elasticsearch Transport
   - 9666
+  - 9999
   - 10000 # Network Data Management
   - 10080 # TiDB
   - 11211 # Memcached

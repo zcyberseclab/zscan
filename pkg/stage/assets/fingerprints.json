@@ -1473,5 +1473,20 @@
     "body": [
       "(?i)smart"
     ]
+  },
+  "bytevalue": {
+    "body": [
+      "(?i)BYTEVALUE"
+    ]
+  },
+  "chanjet": {
+    "body": [
+      "(?i)chanjet.com"
+    ]
+  },
+  "cdg": {
+    "body": [
+      "(?i)CDGServer"
+    ]
   }
 }
