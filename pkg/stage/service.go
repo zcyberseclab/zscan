@@ -151,6 +151,17 @@ func NewServiceDetector(templatesDir string) *ServiceDetector {
 	client := &http.Client{
 		Transport: transport,
 		Timeout:   clientConfig.Timeout,
+		CheckRedirect: func(req *http.Request, via []*http.Request) error {
+			// Allow up to 3 redirects
+			if len(via) >= 3 {
+				return fmt.Errorf("stopped after 3 redirects")
+			}
+			// Copy original headers to redirected request
+			for key, val := range via[0].Header {
+				req.Header[key] = val
+			}
+			return nil
+		},
 	}
 
 	sd := &ServiceDetector{
@@ -265,15 +276,53 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 		return nil
 	}
 
+	req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+
 	resp, err := sd.client.Do(req)
 	if err != nil {
 		return nil
 	}
 	defer resp.Body.Close()
 
-	body, err := io.ReadAll(io.LimitReader(resp.Body, 1024*1024)) // Read up to 1MB
+	body, err := io.ReadAll(io.LimitReader(resp.Body, 1024*1024))
 	if err != nil {
 		return nil
+	}
+
+	// Check for JavaScript redirect
+	jsRedirectRegex := regexp.MustCompile(`(?i)<script>\s*location\s*=\s*['"]([^'"]+)['"]`)
+	if matches := jsRedirectRegex.FindSubmatch(body); matches != nil {
+		redirectPath := string(matches[1])
+		// Handle both absolute and relative URLs
+		var redirectURL string
+		if strings.HasPrefix(redirectPath, "http") {
+			redirectURL = redirectPath
+		} else {
+			baseURL := url
+			if !strings.HasSuffix(baseURL, "/") {
+				baseURL += "/"
+			}
+			redirectURL = baseURL + strings.TrimPrefix(redirectPath, "/")
+		}
+
+		// Follow the JavaScript redirect
+		redirectReq, err := http.NewRequestWithContext(ctx, "GET", redirectURL, nil)
+		if err != nil {
+			return nil
+		}
+		redirectReq.Header = req.Header
+
+		redirectResp, err := sd.client.Do(redirectReq)
+		if err != nil {
+			return nil
+		}
+		defer redirectResp.Body.Close()
+
+		body, err = io.ReadAll(io.LimitReader(redirectResp.Body, 1024*1024))
+		if err != nil {
+			return nil
+		}
+		resp = redirectResp
 	}
 
 	detCtx := &detectionContext{
@@ -326,13 +375,11 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 		var vulnMux sync.Mutex
 
 		for _, serviceType := range info.Types {
-			fmt.Printf("[DEBUG] Loading POCs for service type: %s\n", serviceType)
 			pocs, err := sd.loadServicePOCs(serviceType)
 			if err != nil {
 				log.Printf("Error loading POCs for service %s: %v", serviceType, err)
 				continue
 			}
-			fmt.Printf("[DEBUG] Found %d POCs for service type %s\n", len(pocs), serviceType)
 
 			// Create worker pool for POC execution
 			workerCount := 10
@@ -782,8 +829,6 @@ func (sd *ServiceDetector) runAnalyzer(info *ServiceInfo) {
 		return
 	}
 
-	fmt.Printf("[DEBUG] Running analyzers for types: %v\n", info.Types)
-
 	var wg sync.WaitGroup
 	results := make(chan struct{}, len(info.Types))
 
@@ -792,16 +837,13 @@ func (sd *ServiceDetector) runAnalyzer(info *ServiceInfo) {
 		wg.Add(1)
 		go func(sType string) {
 			defer wg.Done()
-			fmt.Printf("[DEBUG] Starting analyzer for type: %s\n", sType)
 
 			analyzeFunc, err := sd.getAnalyzeFunc(sType)
 			if err != nil {
-				fmt.Printf("[DEBUG] Error getting analyze function for %s: %v\n", sType, err)
 				return
 			}
 			analyzeFunc(info)
 			results <- struct{}{}
-			fmt.Printf("[DEBUG] Completed analyzer for type: %s\n", sType)
 		}(serviceType)
 	}
 
