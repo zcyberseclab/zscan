@@ -882,9 +882,9 @@
       "(?i)SuperWebMailer"
     ]
   },
-  "kelixin-communication": {
+  "kirisun": {
     "body": [
-      "app/structure/departments.php"
+      "(?i)structure/departments.php"
     ]
   },
   "teamcity": {
@@ -1487,6 +1487,16 @@
   "cdg": {
     "body": [
       "(?i)CDGServer"
+    ]
+  },
+  "faciallovecloud": {
+    "body": [
+      "欢迎使用脸爱云"
+    ]
+  },
+  "jsherp": {
+    "body": [
+      "(?i)jshERP"
     ]
   }
 }
