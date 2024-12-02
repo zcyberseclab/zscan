@@ -94,6 +94,7 @@ tcp_ports:
   - 8887
   - 8888  # HTTP Alternate
   - 8889  # HTTP Alternate
+  - 8899
   - 9000  # Jenkins
   - 9005  
   - 9006 
@@ -105,6 +106,7 @@ tcp_ports:
   - 9100  # Raw Printer Port / HP JetDirect
   - 9200  # Elasticsearch HTTP
   - 9300  # Elasticsearch Transport
+  - 9050  # aoweiya
   - 9666
   - 9999
   - 10000 # Network Data Management

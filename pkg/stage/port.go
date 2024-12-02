@@ -15,8 +15,7 @@ func ScanTCPPort(ip string, port int) bool {
 		return true
 	}
 
-	// 检查是否是常见的 HTTP 端口
-	commonHTTPPorts := []int{80, 443, 8080, 8443, 4000, 8000, 8888}
+	commonHTTPPorts := []int{80, 443, 8080, 8443, 8000, 8888}
 	for _, httpPort := range commonHTTPPorts {
 		if port == httpPort {
 			return ScanHTTPPort(ip, port)
@@ -43,7 +42,6 @@ func ScanHTTPPort(ip string, port int) bool {
 func ScanUDPPort(ip string, port int) bool {
 	target := fmt.Sprintf("%s:%d", ip, port)
 	conn, err := net.DialTimeout("udp", target, 2*time.Second)
-
 	if err != nil {
 		return false
 	}

@@ -14,6 +14,5 @@ func PrintResults(nodes []Node) error {
 	}
 
 	fmt.Println(string(jsonData))
-
 	return nil
 }
