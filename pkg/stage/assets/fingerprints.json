@@ -102,7 +102,8 @@
     "manufacturer": "dahua",
     "body": [
       "id=\"b_preview\".*?data-pagename=\"Preview\".*?Live</a>",
-      "id=\"mobile_VideoEncode\""
+      "id=\"mobile_VideoEncode\"",
+      "To change this template use File"
     ]
   },
   "dlink-camera": {
@@ -1374,7 +1375,7 @@
     ]
   },
   "ifw8-router": {
-    "type": "ipcamera",
+    "type": "router",
     "manufacturer": "ifw8",
     "body": [
       "(?i)www.ifw8.cn"
