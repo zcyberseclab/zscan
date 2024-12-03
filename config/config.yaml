@@ -90,6 +90,7 @@ tcp_ports:
   - 8123
   - 8127
   - 8443  # HTTPS Alternate
+  - 8444
   - 8447
   - 8887
   - 8888  # HTTP Alternate
@@ -102,9 +103,11 @@ tcp_ports:
   - 9020
   - 9088
   - 9090  # Generic
+  - 9095
   - 9100  # Raw Printer Port / HP JetDirect
   - 9200  # Elasticsearch HTTP
   - 9300  # Elasticsearch Transport
+  - 9443
   - 9666
   - 9999
   - 10000 # Network Data Management

@@ -1488,5 +1488,25 @@
     "body": [
       "(?i)CDGServer"
     ]
+  },
+  "ajreport": {
+    "body": [
+      "(?i)AJ-Report"
+    ]
+  },
+  "dahua-dss": {
+    "body": [
+      "DSS"
+    ]
+  },
+  "dahua-icc": {
+    "body": [
+      "客户端会小于800"
+    ]
+  },
+  "dahua-ipms": {
+    "body": [
+      "智慧园区综合管理平台"
+    ]
   }
 }
