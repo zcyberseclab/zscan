@@ -1504,5 +1504,40 @@
     "body": [
       "文件索引"
     ]
+  },
+  "ajreport": {
+    "body": [
+      "(?i)AJ-Report"
+    ]
+  },
+  "dahua-icc": {
+    "body": [
+      "客户端会小于800"
+    ]
+  },
+  "doccms": {
+    "body": [
+      "(?i)doccms"
+    ]
+  },
+  "dongsheng": {
+    "body": [
+      "东胜伟业软件"
+    ]
+  },
+  "easycvr": {
+    "body": [
+      "(?i)EasyCVR"
+    ]
+  },
+  "dptech": {
+    "body": [
+      "dptech"
+    ]
+  },
+  "edushow": {
+    "body": [
+      "(?i)EduSoho"
+    ]
   }
 }
