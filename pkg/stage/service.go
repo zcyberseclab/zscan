@@ -119,7 +119,7 @@ func NewServiceDetector(templatesDir string) *ServiceDetector {
 		MaxIdleConns:      100,
 		IdleConnTimeout:   90 * time.Second,
 		MaxConnsPerHost:   10,
-		DisableKeepAlives: false,
+		DisableKeepAlives: true,
 	}
 
 	transport := &http.Transport{
@@ -268,6 +268,7 @@ func (sd *ServiceDetector) detectHTTP(ip string, port int) []ServiceInfo {
 }
 
 func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
+	fmt.Println("checkURL", url)
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
@@ -283,7 +284,15 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 		return nil
 	}
 	defer resp.Body.Close()
-
+	if resp.StatusCode == 400 {
+		resp.Body.Close()
+		httpsURL := strings.Replace(url, "http://", "https://", 1)
+		req.URL, _ = req.URL.Parse(httpsURL)
+		resp, err = sd.client.Do(req)
+		if err != nil {
+			return nil
+		}
+	}
 	body, err := io.ReadAll(io.LimitReader(resp.Body, 1024*1024))
 	if err != nil {
 		return nil

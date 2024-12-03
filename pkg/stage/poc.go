@@ -85,7 +85,6 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) *POCResult {
 		}
 	}
 
-	// 添加一个计数器，记录成功匹配的规则数
 	successRules := 0
 
 	for _, rule := range poc.Rules {
@@ -101,17 +100,14 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) *POCResult {
 			continue
 		}
 
-		// 设置默认 Content-Type
 		if req.Header.Get("Content-Type") == "" {
 			req.Header.Set("Content-Type", "application/json")
 		}
 
-		// 设置自定义 Headers
 		for k, v := range rule.Headers {
 			req.Header.Set(k, replaceVariables(v, ctx))
 		}
 
-		// 设置默认 User-Agent
 		if req.Header.Get("User-Agent") == "" {
 			req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
 		}
@@ -121,6 +117,16 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) *POCResult {
 			fmt.Printf("[ERROR] Request failed: %v\n", err)
 			continue
 		}
+		if resp.StatusCode == 400 {
+			resp.Body.Close()
+			httpsURL := strings.Replace(url, "http://", "https://", 1)
+			req.URL, _ = req.URL.Parse(httpsURL)
+			resp, err = pe.client.Do(req)
+			if err != nil {
+				return nil
+			}
+		}
+
 		defer resp.Body.Close()
 
 		fmt.Printf("[DEBUG] Response Status: %d\n", resp.StatusCode)
@@ -152,7 +158,6 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) *POCResult {
 			}
 		}
 
-		// 处理 search_regex 匹配
 		if rule.SearchRegex != "" {
 			re, err := pe.getRegexp(rule.SearchRegex)
 			if err != nil {
@@ -164,7 +169,6 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) *POCResult {
 			}
 		}
 
-		// 处理 expression 匹配
 		if rule.Expression != "" {
 			fmt.Printf("[DEBUG] Evaluating expression: %s\n", rule.Expression)
 			isMatch := evaluateExpression(poc, rule.Expression, &ExprContext{
@@ -182,13 +186,11 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) *POCResult {
 		}
 	}
 
-	// 只有当所有规则都匹配时才返回结果
 	if successRules == len(poc.Rules) {
 		fmt.Printf("\033[31m[POC] %s: Vulnerability found! Target: %s\033[0m\n", poc.CVEID, target)
 		return result
 	}
 
-	// 没有发现漏洞时返回 nil
 	return nil
 }
 
@@ -225,17 +227,15 @@ func replaceVariables(input string, ctx *POCContext) string {
 		return input
 	}
 
-	// 首先处理 bytes() 函数
 	bytesRe := regexp.MustCompile(`bytes\(([^)]+)\)`)
 	input = bytesRe.ReplaceAllStringFunc(input, func(match string) string {
-		varName := match[6 : len(match)-1] // 提取 bytes() 中的变量名
+		varName := match[6 : len(match)-1]
 		if val, ok := ctx.Variables[varName]; ok {
 			return fmt.Sprintf(`b"%s"`, val) // 将 bytes(varName) 替换为 b"actual_value"
 		}
 		return match
 	})
 
-	// 然后处理其他变量
 	re := regexp.MustCompile(`\{\{([^}]+)\}\}`)
 	return re.ReplaceAllStringFunc(input, func(match string) string {
 		varName := match[2 : len(match)-2] // 去掉 {{ 和 }}
