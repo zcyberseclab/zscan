@@ -1250,12 +1250,16 @@
   },
   "eoffice": {
     "body": [
-      "(?i)eoffice"
+      "(?i)eoffice",
+      "海泰key验证"
     ]
   },
   "ecology": {
     "body": [
       "(?i)ecology"
+    ],
+    "headers": [
+      "Set-Cookie: ecology"
     ]
   },
   "ecshop": {
@@ -1538,6 +1542,26 @@
   "edushow": {
     "body": [
       "(?i)EduSoho"
+    ]
+  },
+  "datacube3": {
+    "body": [
+      "(?i)DataCube3"
+    ]
+  },
+  "ebridge": {
+    "body": [
+      "泛微云桥e-Bridge"
+    ]
+  },
+  "emessage": {
+    "body": [
+      "emessage"
+    ]
+  },
+  "emobile": {
+    "body": [
+      "移动管理平台"
     ]
   }
 }
