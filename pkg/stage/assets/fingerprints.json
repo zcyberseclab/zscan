@@ -1563,5 +1563,37 @@
     "body": [
       "移动管理平台"
     ]
+  },
+  "feiyuxing-router": {
+    "type": "router",
+    "manufacturer": "avm",
+    "body": [
+      "飞鱼星路由器"
+    ]
+  },
+  "flirax8": {
+    "body": [
+      "(?i)FLIR AX8"
+    ]
+  },
+  "flyrise": {
+    "body": [
+      "(?i)flyrise"
+    ]
+  },
+  "guanjiapo": {
+    "body": [
+      "管家婆"
+    ]
+  },
+  "guns": {
+    "body": [
+      "(?i)Guns"
+    ]
+  },
+  "haixiangyun": {
+    "body": [
+      "成都海翔软件"
+    ]
   }
 }
