@@ -1,4 +1,0 @@
-import requests
-
-r = requests.get("http://202.111.183.234:6443")
-print(r.status_code)
