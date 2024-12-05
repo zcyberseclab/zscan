@@ -1250,12 +1250,16 @@
   },
   "eoffice": {
     "body": [
-      "(?i)eoffice"
+      "(?i)eoffice",
+      "海泰key验证"
     ]
   },
   "ecology": {
     "body": [
       "(?i)ecology"
+    ],
+    "headers": [
+      "Set-Cookie: ecology"
     ]
   },
   "ecshop": {
@@ -1503,6 +1507,61 @@
   "zlmediakit": {
     "body": [
       "文件索引"
+    ]
+  },
+  "ajreport": {
+    "body": [
+      "(?i)AJ-Report"
+    ]
+  },
+  "dahua-icc": {
+    "body": [
+      "客户端会小于800"
+    ]
+  },
+  "doccms": {
+    "body": [
+      "(?i)doccms"
+    ]
+  },
+  "dongsheng": {
+    "body": [
+      "东胜伟业软件"
+    ]
+  },
+  "easycvr": {
+    "body": [
+      "(?i)EasyCVR"
+    ]
+  },
+  "dptech": {
+    "body": [
+      "dptech"
+    ]
+  },
+  "edushow": {
+    "body": [
+      "(?i)EduSoho"
+    ]
+  },
+  "datacube3": {
+    "body": [
+      "(?i)DataCube3"
+    ]
+  },
+  "ebridge": {
+    "body": [
+      "泛微云桥e-Bridge"
+    ]
+  },
+  "emessage": {
+    "body": [
+      "emessage"
+    ]
+  },
+  "emobile": {
+    "body": [
+      "移动管理平台"
     ]
   }
 }
