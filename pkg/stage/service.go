@@ -298,40 +298,67 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 		return nil
 	}
 
-	// Check for JavaScript redirect
-	jsRedirectRegex := regexp.MustCompile(`(?i)<script>\s*location\s*=\s*['"]([^'"]+)['"]`)
-	if matches := jsRedirectRegex.FindSubmatch(body); matches != nil {
-		redirectPath := string(matches[1])
-		// Handle both absolute and relative URLs
-		var redirectURL string
-		if strings.HasPrefix(redirectPath, "http") {
-			redirectURL = redirectPath
-		} else {
-			baseURL := url
-			if !strings.HasSuffix(baseURL, "/") {
-				baseURL += "/"
+	// Check for meta refresh redirect
+	metaRefreshRegex := regexp.MustCompile(`(?i)<meta\s+http-equiv=['"]refresh['"][^>]*content=['"]([^'"]+)['"]`)
+	if matches := metaRefreshRegex.FindSubmatch(body); matches != nil {
+		content := string(matches[1])
+		fmt.Printf("[DEBUG] Found meta refresh content: %s\n", content)
+
+		// 解析 content 属性
+		var redirectPath string
+		if strings.Contains(strings.ToLower(content), "url=") {
+			// 处理 content="0;URL=example.jsp" 格式
+			parts := strings.SplitN(content, "URL=", 2)
+			if len(parts) == 2 {
+				redirectPath = parts[1]
 			}
-			redirectURL = baseURL + strings.TrimPrefix(redirectPath, "/")
+		} else {
+			// 处理 content="0;example.jsp" 格式
+			parts := strings.SplitN(content, ";", 2)
+			if len(parts) == 2 {
+				redirectPath = strings.TrimSpace(parts[1])
+			}
 		}
 
-		// Follow the JavaScript redirect
-		redirectReq, err := http.NewRequestWithContext(ctx, "GET", redirectURL, nil)
-		if err != nil {
-			return nil
-		}
-		redirectReq.Header = req.Header
+		if redirectPath != "" {
+			fmt.Printf("[DEBUG] Extracted redirect path: %s\n", redirectPath)
 
-		redirectResp, err := sd.client.Do(redirectReq)
-		if err != nil {
-			return nil
-		}
-		defer redirectResp.Body.Close()
+			// Handle both absolute and relative URLs
+			var redirectURL string
+			if strings.HasPrefix(redirectPath, "http") {
+				redirectURL = redirectPath
+			} else {
+				baseURL := url
+				if !strings.HasSuffix(baseURL, "/") {
+					baseURL += "/"
+				}
+				redirectURL = baseURL + strings.TrimPrefix(redirectPath, "/")
+			}
+			fmt.Printf("[DEBUG] Following meta refresh redirect to: %s\n", redirectURL)
 
-		body, err = io.ReadAll(io.LimitReader(redirectResp.Body, 1024*1024))
-		if err != nil {
-			return nil
+			// Follow the meta refresh redirect
+			redirectReq, err := http.NewRequestWithContext(ctx, "GET", redirectURL, nil)
+			if err != nil {
+				fmt.Printf("[DEBUG] Failed to create meta refresh redirect request: %v\n", err)
+				return nil
+			}
+			redirectReq.Header = req.Header
+
+			redirectResp, err := sd.client.Do(redirectReq)
+			if err != nil {
+				fmt.Printf("[DEBUG] Failed to follow meta refresh redirect: %v\n", err)
+				return nil
+			}
+			defer redirectResp.Body.Close()
+			fmt.Printf("[DEBUG] Meta refresh redirect response status: %d\n", redirectResp.StatusCode)
+
+			body, err = io.ReadAll(io.LimitReader(redirectResp.Body, 1024*1024))
+			if err != nil {
+				fmt.Printf("[DEBUG] Failed to read meta refresh redirect response body: %v\n", err)
+				return nil
+			}
+			resp = redirectResp
 		}
-		resp = redirectResp
 	}
 
 	detCtx := &detectionContext{
@@ -1042,7 +1069,7 @@ func (sd *ServiceDetector) extractSensitiveInfo(info *ServiceInfo) {
 	//nameRegex := regexp.MustCompile(`[\p{Han}]{2,4}`)
 	//allSensitiveInfo = append(allSensitiveInfo, nameRegex.FindAllString(info.Banner, -1)...)
 
-	addressRegex := regexp.MustCompile(`(?:[\p{Han}]{2,}(?:省|市|区|县|路|街道|号|楼|室))`)
+	addressRegex := regexp.MustCompile(`(?:[\p{Han}]{2,}(?:省|市|���|县|路|街道|号|楼|室))`)
 	allSensitiveInfo = append(allSensitiveInfo, addressRegex.FindAllString(info.Banner, -1)...)
 
 	info.SensitiveInfo = removeDuplicates(allSensitiveInfo)
