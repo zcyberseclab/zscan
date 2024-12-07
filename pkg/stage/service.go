@@ -284,6 +284,8 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 		return nil
 	}
 	defer resp.Body.Close()
+
+	// Handle HTTP 400 by trying HTTPS
 	if resp.StatusCode == 400 {
 		resp.Body.Close()
 		httpsURL := strings.Replace(url, "http://", "https://", 1)
@@ -292,72 +294,69 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 		if err != nil {
 			return nil
 		}
+		defer resp.Body.Close()
 	}
+
 	body, err := io.ReadAll(io.LimitReader(resp.Body, 1024*1024))
 	if err != nil {
 		return nil
 	}
 
-	// Check for meta refresh redirect
-	metaRefreshRegex := regexp.MustCompile(`(?i)<meta\s+http-equiv=['"]refresh['"][^>]*content=['"]([^'"]+)['"]`)
+	// Improved meta refresh handling
+	metaRefreshRegex := regexp.MustCompile(`(?i)<meta\s+http-equiv=["']refresh["'][^>]*content=["']([^"']+)["']`)
 	if matches := metaRefreshRegex.FindSubmatch(body); matches != nil {
 		content := string(matches[1])
 		fmt.Printf("[DEBUG] Found meta refresh content: %s\n", content)
 
-		// 解析 content 属性
-		var redirectPath string
+		var redirectURL string
+		// Handle different meta refresh formats
 		if strings.Contains(strings.ToLower(content), "url=") {
-			// 处理 content="0;URL=example.jsp" 格式
-			parts := strings.SplitN(content, "URL=", 2)
+			parts := strings.SplitN(strings.ToLower(content), "url=", 2)
 			if len(parts) == 2 {
-				redirectPath = parts[1]
+				redirectURL = strings.TrimSpace(parts[1])
 			}
 		} else {
-			// 处理 content="0;example.jsp" 格式
 			parts := strings.SplitN(content, ";", 2)
 			if len(parts) == 2 {
-				redirectPath = strings.TrimSpace(parts[1])
+				redirectURL = strings.TrimSpace(parts[1])
 			}
 		}
 
-		if redirectPath != "" {
-			fmt.Printf("[DEBUG] Extracted redirect path: %s\n", redirectPath)
+		if redirectURL != "" {
+			fmt.Printf("[DEBUG] Extracted redirect URL: %s\n", redirectURL)
 
 			// Handle both absolute and relative URLs
-			var redirectURL string
-			if strings.HasPrefix(redirectPath, "http") {
-				redirectURL = redirectPath
-			} else {
+			if !strings.HasPrefix(strings.ToLower(redirectURL), "http") {
 				baseURL := url
 				if !strings.HasSuffix(baseURL, "/") {
 					baseURL += "/"
 				}
-				redirectURL = baseURL + strings.TrimPrefix(redirectPath, "/")
+				redirectURL = baseURL + strings.TrimPrefix(redirectURL, "/")
 			}
-			fmt.Printf("[DEBUG] Following meta refresh redirect to: %s\n", redirectURL)
 
-			// Follow the meta refresh redirect
+			// Create new request for redirect
 			redirectReq, err := http.NewRequestWithContext(ctx, "GET", redirectURL, nil)
 			if err != nil {
-				fmt.Printf("[DEBUG] Failed to create meta refresh redirect request: %v\n", err)
+				fmt.Printf("[DEBUG] Failed to create redirect request: %v\n", err)
 				return nil
 			}
 			redirectReq.Header = req.Header
 
+			fmt.Printf("[DEBUG] Following redirect to: %s\n", redirectURL)
 			redirectResp, err := sd.client.Do(redirectReq)
 			if err != nil {
-				fmt.Printf("[DEBUG] Failed to follow meta refresh redirect: %v\n", err)
+				fmt.Printf("[DEBUG] Failed to follow redirect: %v\n", err)
 				return nil
 			}
 			defer redirectResp.Body.Close()
-			fmt.Printf("[DEBUG] Meta refresh redirect response status: %d\n", redirectResp.StatusCode)
 
+			// Update response and body with redirected content
+			resp = redirectResp
 			body, err = io.ReadAll(io.LimitReader(redirectResp.Body, 1024*1024))
 			if err != nil {
-				fmt.Printf("[DEBUG] Failed to read meta refresh redirect response body: %v\n", err)
+				fmt.Printf("[DEBUG] Failed to read redirect response body: %v\n", err)
 				return nil
 			}
-			resp = redirectResp
 		}
 	}
 
