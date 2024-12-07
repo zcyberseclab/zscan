@@ -110,6 +110,7 @@ tcp_ports:
   - 9200  # Elasticsearch HTTP
   - 9300  # Elasticsearch Transport
   - 9050  # aoweiya
+  - 9095
   - 9666
   - 9999
   - 10000 # Network Data Management

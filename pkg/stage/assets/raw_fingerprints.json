@@ -4,7 +4,7 @@
       "(?i)SSH"
     ]
   },
-  "netgear": {
+  "netgear-router": {
     "type": "router",
     "manufacturer": "netgear",
     "patterns": [

@@ -179,7 +179,6 @@ func main() {
 }
 
 func saveResults(results []stage.Node, format string) error {
-
 	outputDir := "output"
 	if err := os.MkdirAll(outputDir, 0755); err != nil {
 		return fmt.Errorf("failed to create output directory: %v", err)
