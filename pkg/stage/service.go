@@ -268,7 +268,6 @@ func (sd *ServiceDetector) detectHTTP(ip string, port int) []ServiceInfo {
 }
 
 func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
-	fmt.Println("checkURL", url)
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
@@ -306,9 +305,8 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 	metaRefreshRegex := regexp.MustCompile(`(?i)<meta\s+http-equiv=["']refresh["'][^>]*content=["']([^"']+)["']`)
 	if matches := metaRefreshRegex.FindSubmatch(body); matches != nil {
 		content := string(matches[1])
-		fmt.Printf("[DEBUG] Found meta refresh content: %s\n", content)
-
 		var redirectURL string
+
 		// Handle different meta refresh formats
 		if strings.Contains(strings.ToLower(content), "url=") {
 			parts := strings.SplitN(strings.ToLower(content), "url=", 2)
@@ -323,8 +321,6 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 		}
 
 		if redirectURL != "" {
-			fmt.Printf("[DEBUG] Extracted redirect URL: %s\n", redirectURL)
-
 			// Handle both absolute and relative URLs
 			if !strings.HasPrefix(strings.ToLower(redirectURL), "http") {
 				baseURL := url
@@ -337,15 +333,14 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 			// Create new request for redirect
 			redirectReq, err := http.NewRequestWithContext(ctx, "GET", redirectURL, nil)
 			if err != nil {
-				fmt.Printf("[DEBUG] Failed to create redirect request: %v\n", err)
+				log.Printf("Failed to create redirect request: %v", err)
 				return nil
 			}
 			redirectReq.Header = req.Header
 
-			fmt.Printf("[DEBUG] Following redirect to: %s\n", redirectURL)
 			redirectResp, err := sd.client.Do(redirectReq)
 			if err != nil {
-				fmt.Printf("[DEBUG] Failed to follow redirect: %v\n", err)
+				log.Printf("Failed to follow redirect: %v", err)
 				return nil
 			}
 			defer redirectResp.Body.Close()
@@ -354,7 +349,7 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 			resp = redirectResp
 			body, err = io.ReadAll(io.LimitReader(redirectResp.Body, 1024*1024))
 			if err != nil {
-				fmt.Printf("[DEBUG] Failed to read redirect response body: %v\n", err)
+				log.Printf("Failed to read redirect response body: %v", err)
 				return nil
 			}
 		}
@@ -405,7 +400,6 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 	sd.extractSensitiveInfo(info)
 
 	if len(info.Types) > 0 {
-		fmt.Printf("[DEBUG] Starting POC execution for Types: %v\n", info.Types)
 		var wg sync.WaitGroup
 		var vulnMux sync.Mutex
 
@@ -426,7 +420,6 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 				go func() {
 					defer wg.Done()
 					for poc := range pocChan {
-						fmt.Printf("[DEBUG] Executing POC %s for service type %s\n", poc.CVEID, serviceType)
 						result := sd.pocExecutor.ExecutePOC(poc, url)
 						if result != nil {
 							vulnMux.Lock()
@@ -697,16 +690,13 @@ func cleanBanner(banner string) string {
 }
 
 func (sd *ServiceDetector) detectUDP(ip string, port int) []ServiceInfo {
-	log.Printf("[UDP] Detecting port %d on %s", port, ip)
 	var results []ServiceInfo
 
 	conn, err := net.DialTimeout("udp", fmt.Sprintf("%s:%d", ip, port), 5*time.Second)
 	if err != nil {
-		log.Printf("[UDP] Failed to connect to %s:%d - %v", ip, port, err)
 		return results
 	}
 	defer conn.Close()
-	log.Printf("[UDP] Successfully connected to %s:%d", ip, port)
 
 	// Send a probe packet (empty or with common probe data)
 	_, err = conn.Write([]byte("\x00"))
@@ -764,14 +754,12 @@ func (sd *ServiceDetector) detectUDP(ip string, port int) []ServiceInfo {
 	}
 
 	if !matched && banner != "" {
-		log.Printf("udp Port: %d", port)
 		info := ServiceInfo{
 			Types:  []string{}, // Initialize empty Types slice
 			Banner: banner,
 		}
 
 		if portFp, exists := sd.PortFingerprints[port]; exists {
-			log.Printf("Port fingerprint found for port %d: %+v", port, portFp)
 			if portFp.Type != "" {
 				info.Types = append(info.Types, portFp.Type)
 			}
@@ -865,7 +853,7 @@ func (sd *ServiceDetector) runAnalyzer(info *ServiceInfo) {
 	}
 
 	var wg sync.WaitGroup
-	results := make(chan struct{}, len(info.Types))
+	var mu sync.Mutex // Add mutex to protect concurrent access
 
 	// Run analyzer for each type concurrently
 	for _, serviceType := range info.Types {
@@ -877,86 +865,69 @@ func (sd *ServiceDetector) runAnalyzer(info *ServiceInfo) {
 			if err != nil {
 				return
 			}
+
+			// Use mutex to protect the ServiceInfo modification
+			mu.Lock()
 			analyzeFunc(info)
-			results <- struct{}{}
+			mu.Unlock()
 		}(serviceType)
 	}
 
-	// Wait for all analyzers to complete
-	go func() {
-		wg.Wait()
-		close(results)
-	}()
-
-	// Wait for results
-	for range results {
-		// Continue receiving until channel is closed
-	}
+	wg.Wait()
 }
 
 func (sd *ServiceDetector) getAnalyzeFunc(serviceType string) (func(*ServiceInfo), error) {
-	sd.pluginCacheMux.RLock()
-	if L, ok := sd.pluginCache[serviceType]; ok {
-		sd.pluginCacheMux.RUnlock()
-		return sd.createAnalyzeFunc(L, serviceType), nil
-	}
-	sd.pluginCacheMux.RUnlock()
-
-	sd.pluginCacheMux.Lock()
-	defer sd.pluginCacheMux.Unlock()
-
-	// Double check after acquiring write lock
-	if L, ok := sd.pluginCache[serviceType]; ok {
-		return sd.createAnalyzeFunc(L, serviceType), nil
-	}
-
-	L := lua.NewState()
-
+	// Just check if the plugin file exists
 	scriptPath := fmt.Sprintf("plugins/%s.lua", serviceType)
-	scriptBytes, err := pluginFiles.ReadFile(scriptPath)
+	_, err := pluginFiles.ReadFile(scriptPath)
 	if err != nil {
-		L.Close()
 		return nil, fmt.Errorf("error reading Lua plugin %s: %v", serviceType, err)
 	}
 
-	if err := L.DoString(string(scriptBytes)); err != nil {
-		L.Close()
-		return nil, fmt.Errorf("error loading Lua plugin %s: %v", serviceType, err)
-	}
-
-	// Check if Analyze function exists
-	analyzeFunc := L.GetGlobal("Analyze")
-	if analyzeFunc.Type() != lua.LTFunction {
-		L.Close()
-		return nil, fmt.Errorf("analyze function not found in Lua plugin for %s", serviceType)
-	}
-
-	sd.pluginCache[serviceType] = L
-
-	return sd.createAnalyzeFunc(L, serviceType), nil
+	return sd.createAnalyzeFunc(nil, serviceType), nil
 }
 
 func (sd *ServiceDetector) createAnalyzeFunc(L *lua.LState, serviceType string) func(*ServiceInfo) {
 	return func(info *ServiceInfo) {
+		// Create a new Lua state for each goroutine
+		newL := lua.NewState()
+		defer newL.Close()
+
+		// Load the plugin script
+		scriptPath := fmt.Sprintf("plugins/%s.lua", serviceType)
+		scriptBytes, err := pluginFiles.ReadFile(scriptPath)
+		if err != nil {
+			log.Printf("Error reading Lua plugin %s: %v", serviceType, err)
+			return
+		}
+
+		if err := newL.DoString(string(scriptBytes)); err != nil {
+			log.Printf("Error loading Lua plugin %s: %v", serviceType, err)
+			return
+		}
+
 		// Check if Analyze function exists and is a function
-		analyzeFunc := L.GetGlobal("Analyze")
+		analyzeFunc := newL.GetGlobal("Analyze")
 		if analyzeFunc.Type() != lua.LTFunction {
 			log.Printf("Error: Analyze is not a function in Lua plugin for %s", serviceType)
 			return
 		}
 
-		if err := L.CallByParam(lua.P{
+		// Protected call with error handling
+		err = newL.CallByParam(lua.P{
 			Fn:      analyzeFunc,
 			NRet:    1,
 			Protect: true,
-		}, sd.serviceInfoToLua(L, info)); err != nil {
+		}, sd.serviceInfoToLua(newL, info))
+
+		if err != nil {
 			log.Printf("Error executing Lua plugin for %s: %v", serviceType, err)
 			return
 		}
 
 		// Get the result from Lua and update the ServiceInfo
-		ret := L.Get(-1)
-		L.Pop(1)
+		ret := newL.Get(-1)
+		newL.Pop(1)
 		if tbl, ok := ret.(*lua.LTable); ok {
 			sd.updateServiceInfoFromLua(info, tbl)
 		}
@@ -1102,7 +1073,6 @@ func (sd *ServiceDetector) loadServicePOCs(serviceType string) (map[string]*POC,
 	sd.pocMux.RLock()
 	if pocs, exists := sd.pocCache[serviceType]; exists {
 		sd.pocMux.RUnlock()
-		fmt.Printf("[DEBUG] Found cached POCs for %s: %d POCs\n", serviceType, len(pocs))
 		return pocs, nil
 	}
 	sd.pocMux.RUnlock()
@@ -1111,22 +1081,19 @@ func (sd *ServiceDetector) loadServicePOCs(serviceType string) (map[string]*POC,
 
 	pocs := make(map[string]*POC)
 	pocPath := filepath.Join(sd.pocDirs, serviceType)
-	fmt.Printf("[DEBUG] Looking for POCs in directory: %s\n", pocPath)
 
 	if _, err := os.Stat(pocPath); os.IsNotExist(err) {
-		fmt.Printf("[DEBUG] POC directory does not exist: %s\n", pocPath)
+		log.Printf("POC directory does not exist: %s", pocPath)
 		sd.pocCache[serviceType] = pocs
 		return pocs, nil
 	}
 
 	files, err := os.ReadDir(pocPath)
 	if err != nil {
-		fmt.Printf("[DEBUG] Error reading POC directory %s: %v\n", pocPath, err)
+		log.Printf("Error reading POC directory %s: %v", pocPath, err)
 		sd.pocCache[serviceType] = pocs
 		return pocs, nil
 	}
-
-	fmt.Printf("[DEBUG] Found %d files in POC directory %s\n", len(files), pocPath)
 
 	for _, file := range files {
 		if !strings.HasSuffix(file.Name(), ".yml") {
@@ -1134,12 +1101,12 @@ func (sd *ServiceDetector) loadServicePOCs(serviceType string) (map[string]*POC,
 		}
 		data, err := os.ReadFile(filepath.Join(pocPath, file.Name()))
 		if err != nil {
-			fmt.Printf("[DEBUG] Error reading POC %s: %v\n", file.Name(), err)
+			log.Printf("Error reading POC %s: %v", file.Name(), err)
 			continue
 		}
 		var poc POC
 		if err := yaml.Unmarshal(data, &poc); err != nil {
-			fmt.Printf("[DEBUG] Error unmarshalling POC %s: %v\n", file.Name(), err)
+			log.Printf("Error unmarshalling POC %s: %v", file.Name(), err)
 			continue
 		}
 

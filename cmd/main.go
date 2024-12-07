@@ -4,9 +4,10 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"html/template"
+	"html"
 	"log"
 	"os"
+	"path/filepath"
 	"strconv"
 	"strings"
 	"time"
@@ -19,6 +20,23 @@ var (
 	BuildTime = "unknown"
 	CommitSHA = "unknown"
 )
+
+func normalizeTarget(input string) string {
+	// 移除空格
+	input = strings.TrimSpace(input)
+
+	if input == "" {
+		return ""
+	}
+
+	input = strings.TrimPrefix(input, "http://")
+	input = strings.TrimPrefix(input, "https://")
+	input = strings.TrimPrefix(input, "://")
+
+	input = strings.TrimRight(input, "/")
+
+	return input
+}
 
 func main() {
 	target := flag.String("target", "", "IP address or CIDR range to scan")
@@ -84,13 +102,13 @@ func main() {
 			if line == "" || strings.HasPrefix(line, "#") {
 				continue
 			}
-			targets = append(targets, line)
+			targets = append(targets, normalizeTarget(line))
 		}
 		if len(targets) == 0 {
 			log.Fatal("No valid targets found in target file")
 		}
 	} else {
-		targets = []string{*target}
+		targets = []string{normalizeTarget(*target)}
 	}
 
 	startTime := time.Now()
@@ -149,8 +167,6 @@ func main() {
 	if *outputFormat != "" {
 		if err := saveResults(allResults, *outputFormat); err != nil {
 			log.Printf("Error saving results: %v", err)
-		} else {
-			log.Printf("Results saved in %s format", *outputFormat)
 		}
 	} else {
 		if err := stage.PrintResults(allResults); err != nil {
@@ -163,124 +179,91 @@ func main() {
 }
 
 func saveResults(results []stage.Node, format string) error {
-	switch strings.ToLower(format) {
-	case "json":
-		return saveJSON(results)
-	case "html":
-		return saveHTML(results)
-	case "md":
-		return saveMarkdown(results)
-	default:
-		return fmt.Errorf("unsupported output format: %s", format)
+
+	outputDir := "output"
+	if err := os.MkdirAll(outputDir, 0755); err != nil {
+		return fmt.Errorf("failed to create output directory: %v", err)
 	}
+
+	timestamp := time.Now().Format("20060102_150405")
+	baseFilename := filepath.Join(outputDir, fmt.Sprintf("%s_%s", results[0].IP, timestamp))
+	fmt.Printf("Saving results to:\n- %s.json\n- %s.html\n- %s.md\n", baseFilename, baseFilename, baseFilename)
+	jsonData, err := json.MarshalIndent(results, "", "  ")
+	if err != nil {
+		return fmt.Errorf("failed to marshal results to JSON: %v", err)
+	}
+
+	if err := os.WriteFile(baseFilename+".json", jsonData, 0644); err != nil {
+		log.Printf("Error saving JSON: %v", err)
+	}
+
+	if err := jsonToHTML(jsonData, baseFilename+".html"); err != nil {
+		log.Printf("Error saving HTML: %v", err)
+	}
+
+	if err := jsonToMarkdown(jsonData, baseFilename+".md"); err != nil {
+		log.Printf("Error saving Markdown: %v", err)
+	}
+
+	return nil
 }
 
-func saveJSON(results []stage.Node) error {
-	data, err := json.MarshalIndent(results, "", "  ")
-	if err != nil {
+func jsonToHTML(jsonData []byte, filename string) error {
+	var results []stage.Node
+	if err := json.Unmarshal(jsonData, &results); err != nil {
 		return err
 	}
-	return os.WriteFile("zscan_results.json", data, 0644)
-}
 
-func saveHTML(results []stage.Node) error {
-	tmpl := `<!DOCTYPE html>
+	var builder strings.Builder
+	builder.WriteString(`<!DOCTYPE html>
 <html>
 <head>
-    <title>ZScan Results</title>
+    <meta charset="UTF-8">
+    <title>Scan Results</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; }
-        .node { margin-bottom: 20px; border: 1px solid #ccc; padding: 10px; }
-        .port { margin-left: 20px; }
-        .vuln { color: red; }
+        .result { border: 1px solid #ddd; margin: 10px 0; padding: 15px; border-radius: 5px; }
+        .vulnerability { color: #d63031; }
+        .sensitive { color: #e17055; }
+        .header-info { color: #0984e3; }
+        .geo-info { color: #00b894; }
+        pre { white-space: pre-wrap; word-wrap: break-word; }
+        table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f5f6fa; }
     </style>
 </head>
 <body>
-    <h1>ZScan Results</h1>
-    {{range .}}
-    <div class="node">
-        <h2>IP: {{.IP}}</h2>
-        {{if .OS}}<p>OS: {{.OS}}</p>{{end}}
-        {{if .Tags}}<p>Tags: {{join .Tags ", "}}</p>{{end}}
-        <h3>Ports:</h3>
-        {{range .Ports}}
-        <div class="port">
-            <p>Port: {{.Port}} ({{.Protocol}})</p>
-            {{if .Banner}}<p>Banner: {{.Banner}}</p>{{end}}
-            {{if .Version}}<p>Version: {{.Version}}</p>{{end}}
-        </div>
-        {{end}}
-        {{if .Vulnerabilities}}
-        <h3 class="vuln">Vulnerabilities:</h3>
-        {{range .Vulnerabilities}}
-        <div class="vuln">
-            <p>CVE: {{.CVEID}}</p>
-            <p>Severity: {{.Severity}}</p>
-        </div>
-        {{end}}
-        {{end}}
-    </div>
-    {{end}}
-</body>
-</html>`
+    <h1>Scan Results</h1>
+    <p>Generated at: ` + time.Now().Format("2006-01-02 15:04:05") + `</p>`)
 
-	funcMap := template.FuncMap{
-		"join": strings.Join,
+	for _, result := range results {
+		builder.WriteString("<div class='result'>")
+		resultJSON, _ := json.MarshalIndent(result, "", "  ")
+		builder.WriteString(fmt.Sprintf("<pre>%s</pre>", html.EscapeString(string(resultJSON))))
+		builder.WriteString("</div>")
 	}
 
-	t, err := template.New("results").Funcs(funcMap).Parse(tmpl)
-	if err != nil {
-		return err
-	}
-
-	file, err := os.Create("zscan_results.html")
-	if err != nil {
-		return err
-	}
-	defer file.Close()
-
-	return t.Execute(file, results)
+	builder.WriteString("</body></html>")
+	return os.WriteFile(filename, []byte(builder.String()), 0644)
 }
 
-func saveMarkdown(results []stage.Node) error {
-	var md strings.Builder
-
-	md.WriteString("# ZScan Results\n\n")
-
-	for _, node := range results {
-		md.WriteString(fmt.Sprintf("## IP: %s\n\n", node.IP))
-
-		if node.OS != "" {
-			md.WriteString(fmt.Sprintf("**OS:** %s\n\n", node.OS))
-		}
-
-		if len(node.Tags) > 0 {
-			md.WriteString(fmt.Sprintf("**Tags:** %s\n\n", strings.Join(node.Tags, ", ")))
-		}
-
-		md.WriteString("### Ports\n\n")
-		for _, port := range node.Ports {
-			md.WriteString(fmt.Sprintf("#### Port %d (%s)\n\n", port.Port, port.Protocol))
-			if port.Banner != "" {
-				md.WriteString(fmt.Sprintf("- Banner: `%s`\n", port.Banner))
-			}
-			if port.Version != "" {
-				md.WriteString(fmt.Sprintf("- Version: %s\n", port.Version))
-			}
-			md.WriteString("\n")
-		}
-
-		if len(node.Vulnerabilities) > 0 {
-			md.WriteString("### ⚠️ Vulnerabilities\n\n")
-			for _, vuln := range node.Vulnerabilities {
-				md.WriteString(fmt.Sprintf("- **%s** (Severity: %s)\n",
-					vuln.CVEID, vuln.Severity))
-			}
-			md.WriteString("\n")
-		}
-
-		md.WriteString("---\n\n")
+func jsonToMarkdown(jsonData []byte, filename string) error {
+	var results []stage.Node
+	if err := json.Unmarshal(jsonData, &results); err != nil {
+		return err
 	}
 
-	return os.WriteFile("zscan_results.md", []byte(md.String()), 0644)
+	var md strings.Builder
+	md.WriteString(fmt.Sprintf("Generated at: %s\n\n", time.Now().Format("2006-01-02 15:04:05")))
+
+	for i, result := range results {
+		md.WriteString(fmt.Sprintf("## Result %d\n\n", i+1))
+		md.WriteString("```json\n")
+		resultJSON, _ := json.MarshalIndent(result, "", "  ")
+		md.WriteString(string(resultJSON))
+		md.WriteString("\n```\n\n")
+	}
+
+	return os.WriteFile(filename, []byte(md.String()), 0644)
 }

@@ -78,7 +78,6 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) *POCResult {
 		Matches:   make(map[string]string),
 	}
 
-	// 处理 set 部分定义的变量
 	if poc.Set != nil {
 		for k, v := range poc.Set {
 			ctx.Variables[k] = evaluateSetExpression(v)
@@ -91,12 +90,10 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) *POCResult {
 		path := replaceVariables(rule.Path, ctx)
 		url := fmt.Sprintf("%s%s", target, path)
 
-		fmt.Printf("[DEBUG] [%s] Trying URL: %s\n", poc.CVEID, url)
-
 		body := replaceVariables(rule.Body, ctx)
 		req, err := http.NewRequest(rule.Method, url, strings.NewReader(body))
 		if err != nil {
-			fmt.Printf("[ERROR] Failed to create request: %v\n", err)
+			log.Printf("Failed to create request: %v", err)
 			continue
 		}
 
@@ -114,7 +111,7 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) *POCResult {
 
 		resp, err := pe.client.Do(req)
 		if err != nil {
-			fmt.Printf("[ERROR] Request failed: %v\n", err)
+			log.Printf("Request failed: %v", err)
 			continue
 		}
 		if resp.StatusCode == 400 {
@@ -129,17 +126,12 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) *POCResult {
 
 		defer resp.Body.Close()
 
-		fmt.Printf("[DEBUG] Response Status: %d\n", resp.StatusCode)
-
 		respBody, err := io.ReadAll(resp.Body)
 		if err != nil {
-			fmt.Printf("[ERROR] Failed to read response body: %v\n", err)
+			log.Printf("Failed to read response body: %v", err)
 			continue
 		}
 
-		fmt.Printf("[DEBUG] Response Body (first 200 chars): %s\n", string(respBody)[:min(200, len(string(respBody)))])
-
-		// 处理 search 匹配
 		if rule.Search != "" {
 			re, err := pe.getRegexp(rule.Search)
 			if err != nil {
@@ -164,13 +156,12 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) *POCResult {
 				continue
 			}
 			if re.Match(respBody) {
-				fmt.Printf("\033[31m[POC] %s: Vulnerability found! Target: %s\033[0m\n", poc.CVEID, target)
+				log.Printf("[POC] %s: Vulnerability found! Target: %s", poc.CVEID, target)
 				return result
 			}
 		}
 
 		if rule.Expression != "" {
-			fmt.Printf("[DEBUG] Evaluating expression: %s\n", rule.Expression)
 			isMatch := evaluateExpression(poc, rule.Expression, &ExprContext{
 				StatusCode:  resp.StatusCode,
 				Body:        string(respBody),
@@ -187,7 +178,7 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) *POCResult {
 	}
 
 	if successRules == len(poc.Rules) {
-		fmt.Printf("\033[31m[POC] %s: Vulnerability found! Target: %s\033[0m\n", poc.CVEID, target)
+		log.Printf("[POC] %s: Vulnerability found! Target: %s", poc.CVEID, target)
 		return result
 	}
 
@@ -382,14 +373,7 @@ func evaluateSetExpression(expr string) string {
 }
 
 func evaluateExpression(poc *POC, expr string, ctx *ExprContext, pocCtx *POCContext) bool {
-	fmt.Printf("\n[DEBUG] ====== Starting Expression Evaluation [%s] ======\n", poc.CVEID)
-	fmt.Printf("[DEBUG] Expression: %q\n", expr)
-	fmt.Printf("[DEBUG] Context - StatusCode: %d\n", ctx.StatusCode)
-	fmt.Printf("[DEBUG] Context - Body: %s\n", ctx.Body)
-	fmt.Printf("[DEBUG] Context - Body length: %d\n", len(ctx.Body))
-
 	expr = replaceVariables(expr, pocCtx)
-	fmt.Printf("[DEBUG] Expression after variable replacement: %q\n", expr)
 
 	if strings.Contains(expr, "&&") {
 		parts := strings.Split(expr, "&&")
@@ -400,11 +384,9 @@ func evaluateExpression(poc *POC, expr string, ctx *ExprContext, pocCtx *POCCont
 				return false
 			}
 		}
-		fmt.Printf("[DEBUG] %s All AND conditions met\n", formatHitMark(true))
 		return true
 	}
 
-	// 处理 OR 操作
 	if strings.Contains(expr, "||") {
 		parts := strings.Split(expr, "||")
 		for _, part := range parts {
@@ -414,7 +396,6 @@ func evaluateExpression(poc *POC, expr string, ctx *ExprContext, pocCtx *POCCont
 				return true
 			}
 		}
-		fmt.Printf("[DEBUG] %s No OR conditions met\n", formatHitMark(false))
 		return false
 	}
 
@@ -447,26 +428,15 @@ func evaluateExpression(poc *POC, expr string, ctx *ExprContext, pocCtx *POCCont
 
 		// Clean the expression by trimming whitespace and newlines
 		expr = strings.TrimSpace(expr)
-		fmt.Printf("[DEBUG] Cleaned expression: %q\n", expr)
-
-		fmt.Printf("[DEBUG] prefix: %s, suffix: %s\n", prefix, suffix)
-		fmt.Printf("[DEBUG] Expression length: %d\n", len(expr))
-		fmt.Printf("[DEBUG] Expression bytes: %v\n", []byte(expr))
-		fmt.Printf("[DEBUG] Prefix check: %v\n", strings.HasPrefix(expr, prefix))
-		fmt.Printf("[DEBUG] Suffix check: %v\n", strings.HasSuffix(expr, suffix))
 
 		if strings.HasPrefix(expr, prefix) && strings.HasSuffix(expr, suffix) {
 			searchStr := expr[len(prefix) : len(expr)-len(suffix)]
-			fmt.Printf("[DEBUG] Original searchStr: %q\n", searchStr)
 
 			searchStr = strings.ReplaceAll(searchStr, `\\`, `\`)
 			searchStr = strings.ReplaceAll(searchStr, `\"`, `"`)
-			fmt.Printf("[DEBUG] After unescape searchStr: %q\n", searchStr)
-			fmt.Printf("[DEBUG] Response body: %q\n", ctx.Body)
 
 			result := strings.Contains(ctx.Body, searchStr)
-			fmt.Printf("[DEBUG] %s bcontains search for %q: %v\n",
-				formatHitMark(result), searchStr, result)
+
 			return result
 		}
 	}

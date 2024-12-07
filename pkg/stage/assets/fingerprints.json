@@ -1042,6 +1042,9 @@
   "netgear-router": {
     "type": "router",
     "manufacturer": "netgear",
+    "headers": [
+      "NETGEAR"
+    ],
     "body": [
       "(?i)netgear"
     ]
@@ -1595,5 +1598,13 @@
     "body": [
       "成都海翔软件"
     ]
+  },
+  "zimbra": {
+    "body": [
+      "(?i)Zimbra"
+    ],
+    "headers": [
+      "(?i)Zimbra"
+    ]
   }
-}
+} 
