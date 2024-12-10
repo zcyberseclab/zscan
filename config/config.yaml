@@ -80,6 +80,7 @@ tcp_ports:
   - 8002  # HTTP Alternate
   - 8008
   - 8012
+  - 8022
   - 8056
   - 8080  # HTTP Alternate
   - 8081  # HTTP Alternate
