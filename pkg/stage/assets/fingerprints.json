@@ -106,20 +106,20 @@
       "To change this template use File"
     ]
   },
-  "dlink-camera": {
+  "d-link-camera": {
     "type": "ipcamera",
-    "manufacturer": "dlink",
+    "manufacturer": "d-link",
     "headers": [
       "Server: dcs-lig-httpd"
     ],
     "body": [
       "dcs-lig-httpd",
-      "(?i)DlinkWhite"
+      "(?i)d-linkWhite"
     ]
   },
-  "dlink-dcs932-camera": {
+  "d-link-dcs932-camera": {
     "type": "ipcamera",
-    "manufacturer": "dlink",
+    "manufacturer": "d-link",
     "headers": [
       "alphapd"
     ],
@@ -128,9 +128,9 @@
       "DCS-932L"
     ]
   },
-  "dlink-router": {
+  "d-link-router": {
     "type": "router",
-    "manufacturer": "dlink",
+    "manufacturer": "d-link",
     "body": [
       "<title>D-LINK SYSTEMS, INC"
     ]
@@ -270,7 +270,7 @@
     "manufacturer": "toshiba",
     "body": [
       "TOSHIBA Network Camera - User Login",
-      "\u003cimg src=\"toshiba.gif\".*Network Camera"
+      "toshiba.gif"
     ]
   },
   "thttpd": {
@@ -1186,9 +1186,9 @@
       "(?i)XenMobile"
     ]
   },
-  "dlink-nas": {
+  "d-link-nas": {
     "type": "nas",
-    "manufacturer": "dlink",
+    "manufacturer": "d-link",
     "body": [
       "(?i)In order to access the ShareCenter"
     ],
@@ -1477,11 +1477,6 @@
       "(?i)casdoor"
     ]
   },
-  "baizhuo": {
-    "body": [
-      "(?i)smart"
-    ]
-  },
   "bytevalue": {
     "body": [
       "(?i)BYTEVALUE"
@@ -1610,6 +1605,5162 @@
   "ziguang": {
     "body": [
       "紫光档案管理系统"
+    ]
+  },
+  "extreme-management-center": {
+    "body": [
+      "(?i)extreme-management-center"
+    ]
+  },
+  "import-legacy-media": {
+    "body": [
+      "(?i)import-legacy-media"
+    ]
+  },
+  "acme": {
+    "body": [
+      "(?i)acme"
+    ]
+  },
+  "episerver": {
+    "body": [
+      "(?i)episerver"
+    ]
+  },
+  "solarwinds": {
+    "body": [
+      "(?i)solarwinds"
+    ]
+  },
+  "ansible": {
+    "body": [
+      "(?i)ansible"
+    ]
+  },
+  "appcms": {
+    "body": [
+      "(?i)appcms"
+    ]
+  },
+  "secnet": {
+    "body": [
+      "(?i)secnet"
+    ]
+  },
+  "homeautomation": {
+    "body": [
+      "(?i)homeautomation"
+    ]
+  },
+  "stripe": {
+    "body": [
+      "(?i)stripe"
+    ]
+  },
+  "loqate": {
+    "body": [
+      "(?i)loqate"
+    ]
+  },
+  "ems": {
+    "body": [
+      "(?i)Employee Management System"
+    ]
+  },
+  "blogenginenet": {
+    "body": [
+      "(?i)blogenginenet"
+    ]
+  },
+  "pcdn": {
+    "body": [
+      "(?i)pcdn"
+    ]
+  },
+  "asgaros-forum": {
+    "body": [
+      "(?i)asgaros-forum"
+    ]
+  },
+  "alquistmanager": {
+    "body": [
+      "(?i)alquistmanager"
+    ]
+  },
+  "moodle": {
+    "body": [
+      "(?i)moodle"
+    ]
+  },
+  "qsan-storage-manager": {
+    "body": [
+      "(?i)qsan-storage-manager"
+    ]
+  },
+  "phpinfo": {
+    "body": [
+      "(?i)phpinfo"
+    ]
+  },
+  "zmanda": {
+    "body": [
+      "(?i)zmanda"
+    ]
+  },
+  "domainmod": {
+    "body": [
+      "(?i)domainmod"
+    ]
+  },
+  "eyelock": {
+    "body": [
+      "(?i)eyelock"
+    ]
+  },
+  "saltstack": {
+    "body": [
+      "(?i)saltstack"
+    ]
+  },
+  "wso2": {
+    "body": [
+      "(?i)wso2"
+    ]
+  },
+  "dbeaver": {
+    "body": [
+      "(?i)dbeaver"
+    ]
+  },
+  "cloudinary": {
+    "body": [
+      "(?i)cloudinary"
+    ]
+  },
+  "pacsone": {
+    "body": [
+      "(?i)pacsone"
+    ]
+  },
+  "tarantella": {
+    "body": [
+      "(?i)tarantella"
+    ]
+  },
+  "pghero": {
+    "body": [
+      "(?i)pghero"
+    ]
+  },
+  "maxsite-cms-cross": {
+    "body": [
+      "(?i)maxsite-cms-cross"
+    ]
+  },
+  "xsuite": {
+    "body": [
+      "(?i)xsuite"
+    ]
+  },
+  "fudforum": {
+    "body": [
+      "(?i)fudforum"
+    ]
+  },
+  "free5gc": {
+    "body": [
+      "(?i)free5gc"
+    ]
+  },
+  "nova-lite": {
+    "body": [
+      "(?i)nova-lite"
+    ]
+  },
+  "pagewiz": {
+    "body": [
+      "(?i)pagewiz"
+    ]
+  },
+  "wgetrc": {
+    "body": [
+      "(?i)wgetrc"
+    ]
+  },
+  "rubedo-cms": {
+    "body": [
+      "(?i)rubedo-cms"
+    ]
+  },
+  "tpshop": {
+    "body": [
+      "(?i)tpshop"
+    ]
+  },
+  "getsimple": {
+    "body": [
+      "(?i)getsimple"
+    ]
+  },
+  "argus-surveillance-dvr": {
+    "body": [
+      "(?i)argus-surveillance-dvr"
+    ]
+  },
+  "eibiz": {
+    "body": [
+      "(?i)eibiz"
+    ]
+  },
+  "wpcargo": {
+    "body": [
+      "(?i)wpcargo"
+    ]
+  },
+  "sqlite": {
+    "body": [
+      "(?i)sqlite"
+    ]
+  },
+  "vsftpd": {
+    "body": [
+      "(?i)vsftpd"
+    ]
+  },
+  "cobbler": {
+    "body": [
+      "(?i)cobbler"
+    ]
+  },
+  "wpmudev": {
+    "body": [
+      "(?i)wpmudev"
+    ]
+  },
+  "sap-netweaver-as-java": {
+    "body": [
+      "(?i)sap-netweaver-as-java"
+    ]
+  },
+  "ganglia": {
+    "body": [
+      "(?i)ganglia"
+    ]
+  },
+  "docmosis": {
+    "body": [
+      "(?i)docmosis"
+    ]
+  },
+  "microweber": {
+    "body": [
+      "(?i)microweber"
+    ]
+  },
+  "r-seenet": {
+    "body": [
+      "(?i)r-seenet"
+    ]
+  },
+  "activehelper": {
+    "body": [
+      "(?i)activehelper"
+    ]
+  },
+  "dockerfile": {
+    "body": [
+      "(?i)dockerfile"
+    ]
+  },
+  "reddittop": {
+    "body": [
+      "(?i)reddittop"
+    ]
+  },
+  "advanced-comment-system": {
+    "body": [
+      "(?i)advanced-comment-system"
+    ]
+  },
+  "clamav": {
+    "body": [
+      "(?i)clamav"
+    ]
+  },
+  "memcached": {
+    "body": [
+      "(?i)memcached"
+    ]
+  },
+  "sar2html": {
+    "body": [
+      "(?i)sar2html"
+    ]
+  },
+  "saia": {
+    "body": [
+      "(?i)saia"
+    ]
+  },
+  "lanproxy": {
+    "body": [
+      "(?i)lanproxy"
+    ]
+  },
+  "majordomo2": {
+    "body": [
+      "(?i)majordomo2"
+    ]
+  },
+  "websphere": {
+    "body": [
+      "(?i)websphere"
+    ]
+  },
+  "visionhub": {
+    "body": [
+      "(?i)visionhub"
+    ]
+  },
+  "syncthru": {
+    "body": [
+      "(?i)syncthru"
+    ]
+  },
+  "yeswiki": {
+    "body": [
+      "(?i)yeswiki"
+    ]
+  },
+  "ha-proxy": {
+    "body": [
+      "(?i)ha-proxy"
+    ]
+  },
+  "trendnet": {
+    "body": [
+      "(?i)trendnet"
+    ]
+  },
+  "shellscripts": {
+    "body": [
+      "(?i)shellscripts"
+    ]
+  },
+  "cyber-cafe-management-system": {
+    "body": [
+      "(?i)cyber-cafe-management-system"
+    ]
+  },
+  "labstack-echo": {
+    "body": [
+      "(?i)labstack-echo"
+    ]
+  },
+  "kong-admin": {
+    "body": [
+      "(?i)kong-admin"
+    ]
+  },
+  "sophos-utm-preauth": {
+    "body": [
+      "(?i)sophos-utm-preauth"
+    ]
+  },
+  "jexboss": {
+    "body": [
+      "(?i)jexboss"
+    ]
+  },
+  "filezilla": {
+    "body": [
+      "(?i)filezilla"
+    ]
+  },
+  "espeasy": {
+    "body": [
+      "(?i)espeasy"
+    ]
+  },
+  "ckan": {
+    "body": [
+      "(?i)ckan"
+    ]
+  },
+  "tidb": {
+    "body": [
+      "(?i)tidb"
+    ]
+  },
+  "icewarp": {
+    "body": [
+      "(?i)icewarp"
+    ]
+  },
+  "magento": {
+    "body": [
+      "(?i)magento"
+    ]
+  },
+  "movable": {
+    "body": [
+      "(?i)movable"
+    ]
+  },
+  "mcafee": {
+    "body": [
+      "(?i)mcafee"
+    ]
+  },
+  "yaws": {
+    "body": [
+      "(?i)yaws"
+    ]
+  },
+  "golang": {
+    "body": [
+      "(?i)golang"
+    ]
+  },
+  "noptin": {
+    "body": [
+      "(?i)noptin"
+    ]
+  },
+  "rstudio": {
+    "body": [
+      "(?i)rstudio"
+    ]
+  },
+  "xiaomi": {
+    "body": [
+      "(?i)xiaomi"
+    ]
+  },
+  "nordex-nc2": {
+    "body": [
+      "(?i)nordex-nc2"
+    ]
+  },
+  "graphql": {
+    "body": [
+      "(?i)graphql"
+    ]
+  },
+  "browserless": {
+    "body": [
+      "(?i)browserless"
+    ]
+  },
+  "appspec": {
+    "body": [
+      "(?i)appspec"
+    ]
+  },
+  "testrail": {
+    "body": [
+      "(?i)testrail"
+    ]
+  },
+  "database": {
+    "body": [
+      "(?i)database"
+    ]
+  },
+  "opsview": {
+    "body": [
+      "(?i)opsview"
+    ]
+  },
+  "clansphere-cms": {
+    "body": [
+      "(?i)clansphere-cms"
+    ]
+  },
+  "gridx": {
+    "body": [
+      "(?i)gridx"
+    ]
+  },
+  "justwriting": {
+    "body": [
+      "(?i)justwriting"
+    ]
+  },
+  "sourcecodester": {
+    "body": [
+      "(?i)sourcecodester"
+    ]
+  },
+  "maian": {
+    "body": [
+      "(?i)maian"
+    ]
+  },
+  "opencpu": {
+    "body": [
+      "(?i)opencpu"
+    ]
+  },
+  "prtg": {
+    "body": [
+      "(?i)prtg"
+    ]
+  },
+  "fortinet": {
+    "body": [
+      "(?i)fortinet"
+    ]
+  },
+  "sick": {
+    "body": [
+      "(?i)sick"
+    ]
+  },
+  "schools-alert-management-script": {
+    "body": [
+      "(?i)schools-alert-management-script"
+    ]
+  },
+  "tbk": {
+    "body": [
+      "(?i)tbk"
+    ]
+  },
+  "atlassian": {
+    "body": [
+      "(?i)atlassian"
+    ]
+  },
+  "terramaster": {
+    "body": [
+      "(?i)terramaster"
+    ]
+  },
+  "clink-office": {
+    "body": [
+      "(?i)clink-office"
+    ]
+  },
+  "plus-addons-for-elementor-page-builder": {
+    "body": [
+      "(?i)plus-addons-for-elementor-page-builder"
+    ]
+  },
+  "nortek-linear-emerge-e3": {
+    "body": [
+      "(?i)nortek-linear-emerge-e3"
+    ]
+  },
+  "nette-framework": {
+    "body": [
+      "(?i)nette-framework"
+    ]
+  },
+  "sensitive": {
+    "body": [
+      "(?i)sensitive"
+    ]
+  },
+  "gitea": {
+    "body": [
+      "(?i)gitea"
+    ]
+  },
+  "ignite-realtime-openfire": {
+    "body": [
+      "(?i)ignite-realtime-openfire"
+    ]
+  },
+  "omnia-mpxr1": {
+    "body": [
+      "(?i)omnia-mpxr1"
+    ]
+  },
+  "eyou-e": {
+    "body": [
+      "(?i)eyou-e"
+    ]
+  },
+  "roundcube": {
+    "body": [
+      "(?i)roundcube"
+    ]
+  },
+  "concrete5": {
+    "body": [
+      "(?i)concrete5"
+    ]
+  },
+  "qihang": {
+    "body": [
+      "(?i)qihang"
+    ]
+  },
+  "nodebb": {
+    "body": [
+      "(?i)nodebb"
+    ]
+  },
+  "scoreme-theme": {
+    "body": [
+      "(?i)scoreme-theme"
+    ]
+  },
+  "shirne-cms": {
+    "body": [
+      "(?i)shirne-cms"
+    ]
+  },
+  "opendreambox": {
+    "body": [
+      "(?i)opendreambox"
+    ]
+  },
+  "frontpage": {
+    "body": [
+      "(?i)frontpage"
+    ]
+  },
+  "sofneta": {
+    "body": [
+      "(?i)sofneta"
+    ]
+  },
+  "webedition": {
+    "body": [
+      "(?i)webedition"
+    ]
+  },
+  "badarg": {
+    "body": [
+      "(?i)badarg"
+    ]
+  },
+  "diagnostic": {
+    "body": [
+      "(?i)diagnostic"
+    ]
+  },
+  "bomgar": {
+    "body": [
+      "(?i)bomgar"
+    ]
+  },
+  "mautic": {
+    "body": [
+      "(?i)mautic"
+    ]
+  },
+  "ldap": {
+    "body": [
+      "(?i)ldap"
+    ]
+  },
+  "brasileiro": {
+    "body": [
+      "(?i)brasileiro"
+    ]
+  },
+  "gcp": {
+    "body": [
+      "(?i)gcp"
+    ]
+  },
+  "seowon": {
+    "body": [
+      "(?i)seowon"
+    ]
+  },
+  "qianxin": {
+    "body": [
+      "(?i)qianxin"
+    ]
+  },
+  "binom": {
+    "body": [
+      "(?i)binom"
+    ]
+  },
+  "dotnetnuke": {
+    "body": [
+      "(?i)dotnetnuke"
+    ]
+  },
+  "jfrog": {
+    "body": [
+      "(?i)jfrog"
+    ]
+  },
+  "simple-online-planning-tool": {
+    "body": [
+      "(?i)simple-online-planning-tool"
+    ]
+  },
+  "nodejs-squirrelly": {
+    "body": [
+      "(?i)nodejs-squirrelly"
+    ]
+  },
+  "mkdocs": {
+    "body": [
+      "(?i)mkdocs"
+    ]
+  },
+  "draytek-vigorconnect": {
+    "body": [
+      "(?i)draytek-vigorconnect"
+    ]
+  },
+  "cvms": {
+    "body": [
+      "(?i)cvms"
+    ]
+  },
+  "optergy-protonenterprise-building-management-system": {
+    "body": [
+      "(?i)optergy-protonenterprise-building-management-system"
+    ]
+  },
+  "3cx": {
+    "body": [
+      "(?i)3CX Management Console"
+    ]
+  },
+  "pascom-cps-server": {
+    "body": [
+      "(?i)pascom-cps-server"
+    ]
+  },
+  "tileserver-gl": {
+    "body": [
+      "(?i)tileserver-gl"
+    ]
+  },
+  "fortilogger": {
+    "body": [
+      "(?i)fortilogger"
+    ]
+  },
+  "rosario": {
+    "body": [
+      "(?i)rosario"
+    ]
+  },
+  "itop": {
+    "body": [
+      "(?i)itop"
+    ]
+  },
+  "ispy": {
+    "body": [
+      "(?i)ispy"
+    ]
+  },
+  "2-click-socialmedia-buttons": {
+    "body": [
+      "(?i)2-click-socialmedia-buttons"
+    ]
+  },
+  "lansweeper": {
+    "body": [
+      "(?i)lansweeper"
+    ]
+  },
+  "loytec-lgate": {
+    "body": [
+      "(?i)loytec-lgate"
+    ]
+  },
+  "microfocus": {
+    "body": [
+      "(?i)microfocus"
+    ]
+  },
+  "nette": {
+    "body": [
+      "(?i)nette"
+    ]
+  },
+  "ssrf": {
+    "body": [
+      "(?i)ssrf"
+    ]
+  },
+  "audiocodehd": {
+    "body": [
+      "(?i)audiocodehd"
+    ]
+  },
+  "cliniccases-cross": {
+    "body": [
+      "(?i)cliniccases-cross"
+    ]
+  },
+  "pubspec": {
+    "body": [
+      "(?i)pubspec"
+    ]
+  },
+  "primetek-primefacesx": {
+    "body": [
+      "(?i)primetek-primefacesx"
+    ]
+  },
+  "citrix-adc": {
+    "body": [
+      "(?i)citrix-adc"
+    ]
+  },
+  "questdb": {
+    "body": [
+      "(?i)questdb"
+    ]
+  },
+  "rockmongo": {
+    "body": [
+      "(?i)rockmongo"
+    ]
+  },
+  "tasmota": {
+    "body": [
+      "(?i)tasmota"
+    ]
+  },
+  "wildfly": {
+    "body": [
+      "(?i)wildfly"
+    ]
+  },
+  "limesurvey": {
+    "body": [
+      "(?i)limesurvey"
+    ]
+  },
+  "netgear": {
+    "body": [
+      "(?i)netgear"
+    ]
+  },
+  "apache-httpd": {
+    "body": [
+      "(?i)apache-httpd"
+    ]
+  },
+  "clockwork": {
+    "body": [
+      "(?i)clockwork"
+    ]
+  },
+  "apache-karaf": {
+    "body": [
+      "(?i)apache-karaf"
+    ]
+  },
+  "axiom": {
+    "body": [
+      "(?i)axiom"
+    ]
+  },
+  "clockwatch": {
+    "body": [
+      "(?i)clockwatch"
+    ]
+  },
+  "rainloop": {
+    "body": [
+      "(?i)rainloop"
+    ]
+  },
+  "vpms": {
+    "body": [
+      "(?i)vpms"
+    ]
+  },
+  "xxljob": {
+    "body": [
+      "(?i)xxljob"
+    ]
+  },
+  "alfresco-share": {
+    "body": [
+      "(?i)alfresco-share"
+    ]
+  },
+  "wuzhicms": {
+    "body": [
+      "(?i)wuzhicms"
+    ]
+  },
+  "tekton": {
+    "body": [
+      "(?i)tekton"
+    ]
+  },
+  "microsoft-exchange-server-pre": {
+    "body": [
+      "(?i)microsoft-exchange-server-pre"
+    ]
+  },
+  "centos": {
+    "body": [
+      "(?i)centos"
+    ]
+  },
+  "tongda": {
+    "body": [
+      "(?i)tongda"
+    ]
+  },
+  "thinkcmf": {
+    "body": [
+      "(?i)thinkcmf"
+    ]
+  },
+  "zaver": {
+    "body": [
+      "(?i)zaver"
+    ]
+  },
+  "packagist": {
+    "body": [
+      "(?i)packagist"
+    ]
+  },
+  "shibboleth-oidc-op": {
+    "body": [
+      "(?i)shibboleth-oidc-op"
+    ]
+  },
+  "11in1-cms": {
+    "body": [
+      "(?i)11in1-cms"
+    ]
+  },
+  "vmware": {
+    "body": [
+      "(?i)vmware"
+    ]
+  },
+  "kingdee": {
+    "body": [
+      "(?i)kingdee"
+    ]
+  },
+  "ricoh": {
+    "body": [
+      "(?i)ricoh"
+    ]
+  },
+  "pagekit": {
+    "body": [
+      "(?i)pagekit"
+    ]
+  },
+  "xceedium-xsuite": {
+    "body": [
+      "(?i)xceedium-xsuite"
+    ]
+  },
+  "accessally": {
+    "body": [
+      "(?i)accessally"
+    ]
+  },
+  "resin": {
+    "body": [
+      "(?i)resin"
+    ]
+  },
+  "apereo-cas": {
+    "body": [
+      "(?i)apereo-cas"
+    ]
+  },
+  "horde": {
+    "body": [
+      "(?i)horde"
+    ]
+  },
+  "academy-learning-management-system": {
+    "body": [
+      "(?i)academy-learning-management-system"
+    ]
+  },
+  "dokuwiki": {
+    "body": [
+      "(?i)dokuwiki"
+    ]
+  },
+  "huijietong": {
+    "body": [
+      "(?i)huijietong"
+    ]
+  },
+  "kettle": {
+    "body": [
+      "(?i)kettle"
+    ]
+  },
+  "symfony": {
+    "body": [
+      "(?i)symfony"
+    ]
+  },
+  "postgres": {
+    "body": [
+      "(?i)postgres"
+    ]
+  },
+  "velotismart": {
+    "body": [
+      "(?i)velotismart"
+    ]
+  },
+  "solar": {
+    "body": [
+      "(?i)solar"
+    ]
+  },
+  "iceflow": {
+    "body": [
+      "(?i)iceflow"
+    ]
+  },
+  "laravel": {
+    "body": [
+      "(?i)laravel"
+    ]
+  },
+  "xerox7": {
+    "body": [
+      "(?i)xerox7"
+    ]
+  },
+  "alert-before-your-post": {
+    "body": [
+      "(?i)alert-before-your-post"
+    ]
+  },
+  "brother": {
+    "body": [
+      "(?i)brother"
+    ]
+  },
+  "phpbb": {
+    "body": [
+      "(?i)phpbb"
+    ]
+  },
+  "sponip": {
+    "body": [
+      "(?i)sponip"
+    ]
+  },
+  "onlinefarm": {
+    "body": [
+      "(?i)onlinefarm"
+    ]
+  },
+  "portainer": {
+    "body": [
+      "(?i)portainer"
+    ]
+  },
+  "the-school-management": {
+    "body": [
+      "(?i)the-school-management"
+    ]
+  },
+  "amazon": {
+    "body": [
+      "(?i)amazon"
+    ]
+  },
+  "cisco-firepower": {
+    "body": [
+      "(?i)cisco-firepower"
+    ]
+  },
+  "luftguitar": {
+    "body": [
+      "(?i)luftguitar"
+    ]
+  },
+  "shellshock": {
+    "body": [
+      "(?i)shellshock"
+    ]
+  },
+  "xdcms": {
+    "body": [
+      "(?i)xdcms"
+    ]
+  },
+  "yishaadmin": {
+    "body": [
+      "(?i)yishaadmin"
+    ]
+  },
+  "lucee": {
+    "body": [
+      "(?i)lucee"
+    ]
+  },
+  "misconfigured": {
+    "body": [
+      "(?i)misconfigured"
+    ]
+  },
+  "tp-link": {
+    "body": [
+      "(?i)tp-link"
+    ]
+  },
+  "spectracom": {
+    "body": [
+      "(?i)spectracom"
+    ]
+  },
+  "lutron": {
+    "body": [
+      "(?i)lutron"
+    ]
+  },
+  "sap-knowledge-warehouse": {
+    "body": [
+      "(?i)sap-knowledge-warehouse"
+    ]
+  },
+  "vernemq": {
+    "body": [
+      "(?i)vernemq"
+    ]
+  },
+  "ewebs": {
+    "body": [
+      "(?i)ewebs"
+    ]
+  },
+  "flyte-console": {
+    "body": [
+      "(?i)flyte-console"
+    ]
+  },
+  "aveva": {
+    "body": [
+      "(?i)aveva"
+    ]
+  },
+  "paloalto": {
+    "body": [
+      "(?i)paloalto"
+    ]
+  },
+  "shareaholic": {
+    "body": [
+      "(?i)shareaholic"
+    ]
+  },
+  "eprints": {
+    "body": [
+      "(?i)eprints"
+    ]
+  },
+  "sony": {
+    "body": [
+      "(?i)sony"
+    ]
+  },
+  "tyto-sahi": {
+    "body": [
+      "(?i)tyto-sahi"
+    ]
+  },
+  "bonita-bpm-portal": {
+    "body": [
+      "(?i)bonita-bpm-portal"
+    ]
+  },
+  "titi-wiki": {
+    "body": [
+      "(?i)titi-wiki"
+    ]
+  },
+  "kubeflow": {
+    "body": [
+      "(?i)kubeflow"
+    ]
+  },
+  "pypiserver": {
+    "body": [
+      "(?i)pypiserver"
+    ]
+  },
+  "permissions": {
+    "body": [
+      "(?i)permissions"
+    ]
+  },
+  "natshell": {
+    "body": [
+      "(?i)natshell"
+    ]
+  },
+  "confluence": {
+    "body": [
+      "(?i)confluence"
+    ]
+  },
+  "suitecrm": {
+    "body": [
+      "(?i)suitecrm"
+    ]
+  },
+  "artifactory": {
+    "body": [
+      "(?i)artifactory"
+    ]
+  },
+  "diary-management-system": {
+    "body": [
+      "(?i)diary-management-system"
+    ]
+  },
+  "healthchecks": {
+    "body": [
+      "(?i)healthchecks"
+    ]
+  },
+  "adminer": {
+    "body": [
+      "(?i)adminer"
+    ]
+  },
+  "putty": {
+    "body": [
+      "(?i)putty"
+    ]
+  },
+  "kingsoft": {
+    "body": [
+      "(?i)kingsoft"
+    ]
+  },
+  "osclass-security-advisory": {
+    "body": [
+      "(?i)osclass-security-advisory"
+    ]
+  },
+  "seagate-nas-os": {
+    "body": [
+      "(?i)seagate-nas-os"
+    ]
+  },
+  "pfsense": {
+    "body": [
+      "(?i)pfsense"
+    ]
+  },
+  "selenoid": {
+    "body": [
+      "(?i)selenoid"
+    ]
+  },
+  "franklin-fueling-systems-colibri-controller-module": {
+    "body": [
+      "(?i)franklin-fueling-systems-colibri-controller-module"
+    ]
+  },
+  "popup-by-supsystic": {
+    "body": [
+      "(?i)popup-by-supsystic"
+    ]
+  },
+  "cse-bookstore": {
+    "body": [
+      "(?i)cse-bookstore"
+    ]
+  },
+  "sftp": {
+    "body": [
+      "(?i)sftp"
+    ]
+  },
+  "formalms": {
+    "body": [
+      "(?i)formalms"
+    ]
+  },
+  "kevinlab": {
+    "body": [
+      "(?i)kevinlab"
+    ]
+  },
+  "yapi": {
+    "body": [
+      "(?i)yapi"
+    ]
+  },
+  "phpmychat": {
+    "body": [
+      "(?i)phpmychat"
+    ]
+  },
+  "candidats": {
+    "body": [
+      "(?i)candidats"
+    ]
+  },
+  "nweb2fax": {
+    "body": [
+      "(?i)nweb2fax"
+    ]
+  },
+  "vr-calendar": {
+    "body": [
+      "(?i)vr-calendar"
+    ]
+  },
+  "xui": {
+    "body": [
+      "(?i)xui"
+    ]
+  },
+  "biqs-it-biqs": {
+    "body": [
+      "(?i)biqs-it-biqs"
+    ]
+  },
+  "phppgadmin": {
+    "body": [
+      "(?i)phppgadmin"
+    ]
+  },
+  "roxy-fileman": {
+    "body": [
+      "(?i)roxy-fileman"
+    ]
+  },
+  "yonyou": {
+    "body": [
+      "(?i)yonyou"
+    ]
+  },
+  "dgraph": {
+    "body": [
+      "(?i)dgraph"
+    ]
+  },
+  "metabase": {
+    "body": [
+      "(?i)metabase"
+    ]
+  },
+  "nsasg": {
+    "body": [
+      "(?i)nsasg"
+    ]
+  },
+  "qcubed": {
+    "body": [
+      "(?i)qcubed"
+    ]
+  },
+  "tiny": {
+    "body": [
+      "(?i)tiny"
+    ]
+  },
+  "cherokee": {
+    "body": [
+      "(?i)cherokee"
+    ]
+  },
+  "winxp": {
+    "body": [
+      "(?i)winxp"
+    ]
+  },
+  "lychee": {
+    "body": [
+      "(?i)lychee"
+    ]
+  },
+  "pascom-cps": {
+    "body": [
+      "(?i)pascom-cps"
+    ]
+  },
+  "qvisdvr": {
+    "body": [
+      "(?i)qvisdvr"
+    ]
+  },
+  "smartstore": {
+    "body": [
+      "(?i)smartstore"
+    ]
+  },
+  "oscommerce": {
+    "body": [
+      "(?i)oscommerce"
+    ]
+  },
+  "msmtp": {
+    "body": [
+      "(?i)msmtp"
+    ]
+  },
+  "supermicro": {
+    "body": [
+      "(?i)supermicro"
+    ]
+  },
+  "b2evolution": {
+    "body": [
+      "(?i)b2evolution"
+    ]
+  },
+  "reflected-xss": {
+    "body": [
+      "(?i)reflected-xss"
+    ]
+  },
+  "bems": {
+    "body": [
+      "(?i)bems"
+    ]
+  },
+  "turbocrm": {
+    "body": [
+      "(?i)turbocrm"
+    ]
+  },
+  "phpwind": {
+    "body": [
+      "(?i)phpwind"
+    ]
+  },
+  "codeigniter": {
+    "body": [
+      "(?i)codeigniter"
+    ]
+  },
+  "oecms": {
+    "body": [
+      "(?i)oecms"
+    ]
+  },
+  "netis": {
+    "body": [
+      "(?i)netis"
+    ]
+  },
+  "xibo141": {
+    "body": [
+      "(?i)xibo141"
+    ]
+  },
+  "mysqldumper": {
+    "body": [
+      "(?i)mysqldumper"
+    ]
+  },
+  "nsicg": {
+    "body": [
+      "(?i)nsicg"
+    ]
+  },
+  "alerta": {
+    "body": [
+      "(?i)alerta"
+    ]
+  },
+  "linktap": {
+    "body": [
+      "(?i)linktap"
+    ]
+  },
+  "worksite": {
+    "body": [
+      "(?i)worksite"
+    ]
+  },
+  "elmah": {
+    "body": [
+      "(?i)elmah"
+    ]
+  },
+  "phpcoll": {
+    "body": [
+      "(?i)phpcoll"
+    ]
+  },
+  "eyoucms": {
+    "body": [
+      "(?i)eyoucms"
+    ]
+  },
+  "college-management-system": {
+    "body": [
+      "(?i)college-management-system"
+    ]
+  },
+  "microsoft-sql-server": {
+    "body": [
+      "(?i)microsoft-sql-server-reporting-services"
+    ]
+  },
+  "eaton-intelligent-power-manager": {
+    "body": [
+      "(?i)eaton-intelligent-power-manager"
+    ]
+  },
+  "eshop": {
+    "body": [
+      "(?i)eshop"
+    ]
+  },
+  "zzzcms": {
+    "body": [
+      "(?i)zzzcms"
+    ]
+  },
+  "nodejs": {
+    "body": [
+      "(?i)nodejs"
+    ]
+  },
+  "ametys": {
+    "body": [
+      "(?i)ametys"
+    ]
+  },
+  "dreambox-webcontrol": {
+    "body": [
+      "(?i)dreambox-webcontrol"
+    ]
+  },
+  "szhe": {
+    "body": [
+      "(?i)szhe"
+    ]
+  },
+  "yii": {
+    "body": [
+      "(?i)yii"
+    ]
+  },
+  "phpshowtime": {
+    "body": [
+      "(?i)phpshowtime"
+    ]
+  },
+  "jenkin-audit-trail": {
+    "body": [
+      "(?i)jenkin-audit-trail"
+    ]
+  },
+  "improper": {
+    "body": [
+      "(?i)improper"
+    ]
+  },
+  "metinfo": {
+    "body": [
+      "(?i)metinfo"
+    ]
+  },
+  "prometheus": {
+    "body": [
+      "(?i)prometheus"
+    ]
+  },
+  "vagrantfile": {
+    "body": [
+      "(?i)vagrantfile"
+    ]
+  },
+  "sendgrid": {
+    "body": [
+      "(?i)sendgrid"
+    ]
+  },
+  "rancher": {
+    "body": [
+      "(?i)rancher"
+    ]
+  },
+  "qibocms": {
+    "body": [
+      "(?i)qibocms"
+    ]
+  },
+  "seacms": {
+    "body": [
+      "(?i)seacms"
+    ]
+  },
+  "prototype": {
+    "body": [
+      "(?i)prototype"
+    ]
+  },
+  "apache-superset": {
+    "body": [
+      "(?i)apache-superset"
+    ]
+  },
+  "frontend-uploader": {
+    "body": [
+      "(?i)frontend-uploader"
+    ]
+  },
+  "proftpd": {
+    "body": [
+      "(?i)proftpd"
+    ]
+  },
+  "mastodon": {
+    "body": [
+      "(?i)mastodon"
+    ]
+  },
+  "solarview": {
+    "body": [
+      "(?i)solarview"
+    ]
+  },
+  "hybris": {
+    "body": [
+      "(?i)hybris"
+    ]
+  },
+  "caddy": {
+    "body": [
+      "(?i)caddy"
+    ]
+  },
+  "opentsdb": {
+    "body": [
+      "(?i)opentsdb"
+    ]
+  },
+  "rconfig": {
+    "body": [
+      "(?i)rconfig"
+    ]
+  },
+  "sonarqube": {
+    "body": [
+      "(?i)sonarqube"
+    ]
+  },
+  "surrealtodo": {
+    "body": [
+      "(?i)surrealtodo"
+    ]
+  },
+  "selenium": {
+    "body": [
+      "(?i)selenium"
+    ]
+  },
+  "ericsson-drutt-msdp": {
+    "body": [
+      "(?i)ericsson-drutt-msdp"
+    ]
+  },
+  "sympa-version": {
+    "body": [
+      "(?i)sympa-version"
+    ]
+  },
+  "commax": {
+    "body": [
+      "(?i)commax"
+    ]
+  },
+  "online-event-booking-and-reservation-system": {
+    "body": [
+      "(?i)online-event-booking-and-reservation-system"
+    ]
+  },
+  "centos-web-panel": {
+    "body": [
+      "(?i)centos-web-panel"
+    ]
+  },
+  "mobotix": {
+    "body": [
+      "(?i)mobotix"
+    ]
+  },
+  "appserv": {
+    "body": [
+      "(?i)appserv"
+    ]
+  },
+  "opensns": {
+    "body": [
+      "(?i)opensns"
+    ]
+  },
+  "termtalk-server": {
+    "body": [
+      "(?i)termtalk-server"
+    ]
+  },
+  "allied-telesis-at": {
+    "body": [
+      "(?i)allied-telesis-at"
+    ]
+  },
+  "netbiblio-webopac": {
+    "body": [
+      "(?i)netbiblio-webopac"
+    ]
+  },
+  "seo-panel": {
+    "body": [
+      "(?i)seo-panel"
+    ]
+  },
+  "microsoft-exchange-server": {
+    "body": [
+      "(?i)microsoft-exchange-server"
+    ]
+  },
+  "owncloud": {
+    "body": [
+      "(?i)owncloud"
+    ]
+  },
+  "twig": {
+    "body": [
+      "(?i)twig"
+    ]
+  },
+  "rails": {
+    "body": [
+      "(?i)rails"
+    ]
+  },
+  "thinkadmin": {
+    "body": [
+      "(?i)thinkadmin"
+    ]
+  },
+  "xoops": {
+    "body": [
+      "(?i)xoops"
+    ]
+  },
+  "zarafa-webapp": {
+    "body": [
+      "(?i)zarafa-webapp"
+    ]
+  },
+  "graphite": {
+    "body": [
+      "(?i)graphite"
+    ]
+  },
+  "jeesns": {
+    "body": [
+      "(?i)jeesns"
+    ]
+  },
+  "mantisbt": {
+    "body": [
+      "(?i)mantisbt"
+    ]
+  },
+  "nuuo": {
+    "body": [
+      "(?i)nuuo"
+    ]
+  },
+  "exchange-server": {
+    "body": [
+      "(?i)exchange-server"
+    ]
+  },
+  "zerof-web-server": {
+    "body": [
+      "(?i)zerof-web-server"
+    ]
+  },
+  "commvault-commcell": {
+    "body": [
+      "(?i)commvault-commcell"
+    ]
+  },
+  "jwt": {
+    "body": [
+      "(?i)jwt"
+    ]
+  },
+  "codis": {
+    "body": [
+      "(?i)codis"
+    ]
+  },
+  "crystal": {
+    "body": [
+      "(?i)crystal"
+    ]
+  },
+  "geniusocean": {
+    "body": [
+      "(?i)geniusocean"
+    ]
+  },
+  "guacamole": {
+    "body": [
+      "(?i)guacamole"
+    ]
+  },
+  "turbo": {
+    "body": [
+      "(?i)turbo"
+    ]
+  },
+  "knowage-suite": {
+    "body": [
+      "(?i)knowage-suite"
+    ]
+  },
+  "chamilo": {
+    "body": [
+      "(?i)chamilo"
+    ]
+  },
+  "formcraft3": {
+    "body": [
+      "(?i)formcraft3"
+    ]
+  },
+  "directory-management-system": {
+    "body": [
+      "(?i)directory-management-system"
+    ]
+  },
+  "ecoa-building-automation-system": {
+    "body": [
+      "(?i)ecoa-building-automation-system"
+    ]
+  },
+  "rudloff-alltube-prior-to": {
+    "body": [
+      "(?i)rudloff-alltube-prior-to"
+    ]
+  },
+  "aem": {
+    "body": [
+      "(?i)aem"
+    ]
+  },
+  "cadvisor": {
+    "body": [
+      "(?i)cadvisor"
+    ]
+  },
+  "sprintful": {
+    "body": [
+      "(?i)sprintful"
+    ]
+  },
+  "zyxel": {
+    "body": [
+      "(?i)zyxel"
+    ]
+  },
+  "nova-novnc": {
+    "body": [
+      "(?i)nova-novnc"
+    ]
+  },
+  "webui": {
+    "body": [
+      "(?i)webui"
+    ]
+  },
+  "eventum": {
+    "body": [
+      "(?i)eventum"
+    ]
+  },
+  "cuppacms": {
+    "body": [
+      "(?i)cuppacms"
+    ]
+  },
+  "trend": {
+    "body": [
+      "(?i)trend"
+    ]
+  },
+  "zipkin": {
+    "body": [
+      "(?i)zipkin"
+    ]
+  },
+  "adobe": {
+    "body": [
+      "(?i)adobe"
+    ]
+  },
+  "vrealize-operations-manager-api": {
+    "body": [
+      "(?i)vrealize-operations-manager-api"
+    ]
+  },
+  "easy-social-feed": {
+    "body": [
+      "(?i)easy-social-feed"
+    ]
+  },
+  "jamf": {
+    "body": [
+      "(?i)jamf"
+    ]
+  },
+  "tcexam": {
+    "body": [
+      "(?i)tcexam"
+    ]
+  },
+  "ghost-cms": {
+    "body": [
+      "(?i)ghost-cms"
+    ]
+  },
+  "zeta-producer-desktop-cms": {
+    "body": [
+      "(?i)zeta-producer-desktop-cms"
+    ]
+  },
+  "cisco-nexus": {
+    "body": [
+      "(?i)cisco-nexus"
+    ]
+  },
+  "acrolinx-server": {
+    "body": [
+      "(?i)acrolinx-server"
+    ]
+  },
+  "kavita": {
+    "body": [
+      "(?i)kavita"
+    ]
+  },
+  "piluscart": {
+    "body": [
+      "(?i)piluscart"
+    ]
+  },
+  "cmsimple": {
+    "body": [
+      "(?i)cmsimple"
+    ]
+  },
+  "d-link": {
+    "body": [
+      "(?i)d-link"
+    ]
+  },
+  "aws-rds": {
+    "body": [
+      "(?i)aws-rds"
+    ]
+  },
+  "deltek-maconomy": {
+    "body": [
+      "(?i)deltek-maconomy"
+    ]
+  },
+  "ampache": {
+    "body": [
+      "(?i)ampache"
+    ]
+  },
+  "gophish": {
+    "body": [
+      "(?i)gophish"
+    ]
+  },
+  "siemens-simatic-s7": {
+    "body": [
+      "(?i)siemens-simatic-s7"
+    ]
+  },
+  "tieline-ip-audio-gateway": {
+    "body": [
+      "(?i)tieline-ip-audio-gateway"
+    ]
+  },
+  "sitemap-by-click5": {
+    "body": [
+      "(?i)sitemap-by-click5"
+    ]
+  },
+  "responsive-filemanager": {
+    "body": [
+      "(?i)responsive-filemanager"
+    ]
+  },
+  "shoppable": {
+    "body": [
+      "(?i)shoppable"
+    ]
+  },
+  "glowroot": {
+    "body": [
+      "(?i)glowroot"
+    ]
+  },
+  "hospital": {
+    "body": [
+      "(?i)hospital"
+    ]
+  },
+  "appsettings": {
+    "body": [
+      "(?i)appsettings"
+    ]
+  },
+  "ilias-elearning-platform": {
+    "body": [
+      "(?i)ilias-elearning-platform"
+    ]
+  },
+  "kivicare": {
+    "body": [
+      "(?i)kivicare"
+    ]
+  },
+  "u5cms": {
+    "body": [
+      "(?i)u5cms"
+    ]
+  },
+  "jkstatus": {
+    "body": [
+      "(?i)jkstatus"
+    ]
+  },
+  "ivanti-avalanche": {
+    "body": [
+      "(?i)ivanti-avalanche"
+    ]
+  },
+  "cisco-ios": {
+    "body": [
+      "(?i)cisco-ios"
+    ]
+  },
+  "fonality-trixbox": {
+    "body": [
+      "(?i)fonality-trixbox"
+    ]
+  },
+  "emerge-e3": {
+    "body": [
+      "(?i)emerge-e3"
+    ]
+  },
+  "kaes-file-manager": {
+    "body": [
+      "(?i)kaes-file-manager"
+    ]
+  },
+  "comtrend": {
+    "body": [
+      "(?i)comtrend"
+    ]
+  },
+  "emqx": {
+    "body": [
+      "(?i)emqx"
+    ]
+  },
+  "ambari": {
+    "body": [
+      "(?i)ambari"
+    ]
+  },
+  "carel-pcoweb-b124": {
+    "body": [
+      "(?i)carel-pcoweb-b124"
+    ]
+  },
+  "socomec": {
+    "body": [
+      "(?i)socomec"
+    ]
+  },
+  "twilio": {
+    "body": [
+      "(?i)twilio"
+    ]
+  },
+  "idemia": {
+    "body": [
+      "(?i)idemia"
+    ]
+  },
+  "panasonic": {
+    "body": [
+      "(?i)panasonic"
+    ]
+  },
+  "hashicorp": {
+    "body": [
+      "(?i)hashicorp"
+    ]
+  },
+  "sms": {
+    "body": [
+      "(?i)sms"
+    ]
+  },
+  "bullwark": {
+    "body": [
+      "(?i)bullwark"
+    ]
+  },
+  "sap-netweaver-application-server-java": {
+    "body": [
+      "(?i)sap-netweaver-application-server-java"
+    ]
+  },
+  "eris": {
+    "body": [
+      "(?i)eris"
+    ]
+  },
+  "liferay": {
+    "body": [
+      "(?i)liferay"
+    ]
+  },
+  "embedthis-goahead": {
+    "body": [
+      "(?i)embedthis-goahead"
+    ]
+  },
+  "opencti": {
+    "body": [
+      "(?i)opencti"
+    ]
+  },
+  "ruby-dragonfly": {
+    "body": [
+      "(?i)ruby-dragonfly"
+    ]
+  },
+  "akkadian-provisioning-manager": {
+    "body": [
+      "(?i)akkadian-provisioning-manager"
+    ]
+  },
+  "rsvp-and-event-management": {
+    "body": [
+      "(?i)rsvp-and-event-management"
+    ]
+  },
+  "wpad-proxy": {
+    "body": [
+      "(?i)wpad-proxy"
+    ]
+  },
+  "combodo-itop": {
+    "body": [
+      "(?i)combodo-itop"
+    ]
+  },
+  "cloudron-cross": {
+    "body": [
+      "(?i)cloudron-cross"
+    ]
+  },
+  "alphaweb": {
+    "body": [
+      "(?i)alphaweb"
+    ]
+  },
+  "dolibarr": {
+    "body": [
+      "(?i)dolibarr"
+    ]
+  },
+  "webuzo": {
+    "body": [
+      "(?i)webuzo"
+    ]
+  },
+  "artica": {
+    "body": [
+      "(?i)artica"
+    ]
+  },
+  "flywheel": {
+    "body": [
+      "(?i)flywheel"
+    ]
+  },
+  "avtech": {
+    "body": [
+      "(?i)avtech"
+    ]
+  },
+  "zoho": {
+    "body": [
+      "(?i)zoho"
+    ]
+  },
+  "fastvue": {
+    "body": [
+      "(?i)fastvue"
+    ]
+  },
+  "member-hero": {
+    "body": [
+      "(?i)member-hero"
+    ]
+  },
+  "citrix-gateway": {
+    "body": [
+      "(?i)citrix-gateway"
+    ]
+  },
+  "mercury-router": {
+    "body": [
+      "(?i)mercury-router"
+    ],
+    "type": "router",
+    "manufacturer": "mercury"
+  },
+  "duplicator": {
+    "body": [
+      "(?i)duplicator"
+    ]
+  },
+  "asanhamayesh": {
+    "body": [
+      "(?i)asanhamayesh"
+    ]
+  },
+  "aws-s3": {
+    "body": [
+      "(?i)aws-s3"
+    ]
+  },
+  "apache-dubbo": {
+    "body": [
+      "(?i)apache-dubbo"
+    ]
+  },
+  "samsung": {
+    "body": [
+      "(?i)samsung"
+    ]
+  },
+  "grand-flagallery": {
+    "body": [
+      "(?i)grand-flagallery"
+    ]
+  },
+  "circarlife": {
+    "body": [
+      "(?i)circarlife"
+    ]
+  },
+  "cybrotech-cybrohttpserver": {
+    "body": [
+      "(?i)cybrotech-cybrohttpserver"
+    ]
+  },
+  "maian-cart": {
+    "body": [
+      "(?i)maian-cart"
+    ]
+  },
+  "sangfor": {
+    "body": [
+      "(?i)sangfor"
+    ]
+  },
+  "webmin": {
+    "body": [
+      "(?i)webmin"
+    ]
+  },
+  "prestashop": {
+    "body": [
+      "(?i)prestashop"
+    ]
+  },
+  "hikvision": {
+    "body": [
+      "(?i)hikvision"
+    ]
+  },
+  "sharepoint": {
+    "body": [
+      "(?i)sharepoint"
+    ]
+  },
+  "l-soft": {
+    "body": [
+      "(?i)l-soft"
+    ]
+  },
+  "nostromo": {
+    "body": [
+      "(?i)nostromo"
+    ]
+  },
+  "fortigate-ssl-vpn-web-portal": {
+    "body": [
+      "(?i)fortigate-ssl-vpn-web-portal"
+    ]
+  },
+  "auerswald": {
+    "body": [
+      "(?i)auerswald"
+    ]
+  },
+  "digitalrebar": {
+    "body": [
+      "(?i)digitalrebar"
+    ]
+  },
+  "jiangnan-online-judge": {
+    "body": [
+      "(?i)jiangnan-online-judge"
+    ]
+  },
+  "kibana": {
+    "body": [
+      "(?i)kibana"
+    ]
+  },
+  "scimono": {
+    "body": [
+      "(?i)scimono"
+    ]
+  },
+  "ind780": {
+    "body": [
+      "(?i)ind780"
+    ]
+  },
+  "ueditor": {
+    "body": [
+      "(?i)ueditor"
+    ]
+  },
+  "oracle": {
+    "body": [
+      "(?i)oracle"
+    ]
+  },
+  "modx-manager": {
+    "body": [
+      "(?i)modx-manager"
+    ]
+  },
+  "sv3c": {
+    "body": [
+      "(?i)sv3c"
+    ]
+  },
+  "myucms": {
+    "body": [
+      "(?i)myucms"
+    ]
+  },
+  "ntop": {
+    "body": [
+      "(?i)ntop"
+    ]
+  },
+  "apache-spark": {
+    "body": [
+      "(?i)apache-spark"
+    ]
+  },
+  "redmine": {
+    "body": [
+      "(?i)redmine"
+    ]
+  },
+  "totaljs": {
+    "body": [
+      "(?i)totaljs"
+    ]
+  },
+  "webalizer": {
+    "body": [
+      "(?i)webalizer"
+    ]
+  },
+  "openmage": {
+    "body": [
+      "(?i)openmage"
+    ]
+  },
+  "tamronos": {
+    "body": [
+      "(?i)tamronos"
+    ]
+  },
+  "cloudcenter": {
+    "body": [
+      "(?i)cloudcenter"
+    ]
+  },
+  "webport": {
+    "body": [
+      "(?i)webport"
+    ]
+  },
+  "goip": {
+    "body": [
+      "(?i)goip"
+    ]
+  },
+  "docker": {
+    "body": [
+      "(?i)docker"
+    ]
+  },
+  "karel": {
+    "body": [
+      "(?i)karel"
+    ]
+  },
+  "checkpoint": {
+    "body": [
+      "(?i)checkpoint"
+    ]
+  },
+  "locust": {
+    "body": [
+      "(?i)locust"
+    ]
+  },
+  "openbmcs": {
+    "body": [
+      "(?i)openbmcs"
+    ]
+  },
+  "openstack": {
+    "body": [
+      "(?i)openstack"
+    ]
+  },
+  "ulterius": {
+    "body": [
+      "(?i)ulterius"
+    ]
+  },
+  "shadoweb-wdja": {
+    "body": [
+      "(?i)shadoweb-wdja"
+    ]
+  },
+  "shopify": {
+    "body": [
+      "(?i)shopify"
+    ]
+  },
+  "buffalo-wsr": {
+    "body": [
+      "(?i)buffalo-wsr"
+    ]
+  },
+  "shopxo": {
+    "body": [
+      "(?i)shopxo"
+    ]
+  },
+  "mobileiron": {
+    "body": [
+      "(?i)mobileiron"
+    ]
+  },
+  "adiscon-loganalyzer": {
+    "body": [
+      "(?i)adiscon-loganalyzer"
+    ]
+  },
+  "unraid": {
+    "body": [
+      "(?i)unraid"
+    ]
+  },
+  "dynatrace": {
+    "body": [
+      "(?i)dynatrace"
+    ]
+  },
+  "glances": {
+    "body": [
+      "(?i)glances"
+    ]
+  },
+  "grafana": {
+    "body": [
+      "(?i)grafana"
+    ]
+  },
+  "mara-cms": {
+    "body": [
+      "(?i)mara-cms"
+    ]
+  },
+  "javafaces": {
+    "body": [
+      "(?i)javafaces"
+    ]
+  },
+  "open-proxy": {
+    "body": [
+      "(?i)open-proxy"
+    ]
+  },
+  "avantfax": {
+    "body": [
+      "(?i)avantfax"
+    ]
+  },
+  "orange-forum": {
+    "body": [
+      "(?i)orange-forum"
+    ]
+  },
+  "superwebmailer": {
+    "body": [
+      "(?i)superwebmailer"
+    ]
+  },
+  "esmtprc": {
+    "body": [
+      "(?i)esmtprc"
+    ]
+  },
+  "deos": {
+    "body": [
+      "(?i)deos"
+    ]
+  },
+  "gespage": {
+    "body": [
+      "(?i)gespage"
+    ]
+  },
+  "emlog": {
+    "body": [
+      "(?i)emlog"
+    ]
+  },
+  "exacqvision": {
+    "body": [
+      "(?i)exacqvision"
+    ]
+  },
+  "ifw8-router-rom": {
+    "body": [
+      "(?i)ifw8-router-rom"
+    ]
+  },
+  "mindpalette-natemail": {
+    "body": [
+      "(?i)mindpalette-natemail"
+    ]
+  },
+  "viewlinc": {
+    "body": [
+      "(?i)viewlinc"
+    ]
+  },
+  "kmcis-caseaware": {
+    "body": [
+      "(?i)kmcis-caseaware"
+    ]
+  },
+  "draytek": {
+    "body": [
+      "(?i)draytek"
+    ]
+  },
+  "thruk": {
+    "body": [
+      "(?i)thruk"
+    ]
+  },
+  "opencats": {
+    "body": [
+      "(?i)opencats"
+    ]
+  },
+  "puppetdb": {
+    "body": [
+      "(?i)puppetdb"
+    ]
+  },
+  "quixplorer": {
+    "body": [
+      "(?i)quixplorer"
+    ]
+  },
+  "otobo": {
+    "body": [
+      "(?i)otobo"
+    ]
+  },
+  "sap-xmii-for-sap-netweaver": {
+    "body": [
+      "(?i)sap-xmii-for-sap-netweaver"
+    ]
+  },
+  "webview": {
+    "body": [
+      "(?i)webview"
+    ]
+  },
+  "keycloak": {
+    "body": [
+      "(?i)keycloak"
+    ]
+  },
+  "squirrelmail": {
+    "body": [
+      "(?i)squirrelmail"
+    ]
+  },
+  "cs141": {
+    "body": [
+      "(?i)cs141"
+    ]
+  },
+  "sidekiq": {
+    "body": [
+      "(?i)sidekiq"
+    ]
+  },
+  "slack": {
+    "body": [
+      "(?i)slack"
+    ]
+  },
+  "spip": {
+    "body": [
+      "(?i)spip"
+    ]
+  },
+  "tensorboard": {
+    "body": [
+      "(?i)tensorboard"
+    ]
+  },
+  "mysql": {
+    "body": [
+      "(?i)mysql"
+    ]
+  },
+  "opencart": {
+    "body": [
+      "(?i)opencart"
+    ]
+  },
+  "trilithic": {
+    "body": [
+      "(?i)trilithic"
+    ]
+  },
+  "wiren": {
+    "body": [
+      "(?i)wiren"
+    ]
+  },
+  "xnat": {
+    "body": [
+      "(?i)xnat"
+    ]
+  },
+  "jolokia": {
+    "body": [
+      "(?i)jolokia"
+    ]
+  },
+  "microsoft-sharepoint": {
+    "body": [
+      "(?i)microsoft-sharepoint"
+    ]
+  },
+  "symantec": {
+    "body": [
+      "(?i)symantec"
+    ]
+  },
+  "dropbear": {
+    "body": [
+      "(?i)dropbear"
+    ]
+  },
+  "onair2-kentharadio": {
+    "body": [
+      "(?i)onair2-kentharadio"
+    ]
+  },
+  "novnc": {
+    "body": [
+      "(?i)novnc"
+    ]
+  },
+  "uvdesk": {
+    "body": [
+      "(?i)uvdesk"
+    ]
+  },
+  "axxonsoft-axxon-next": {
+    "body": [
+      "(?i)axxonsoft-axxon-next"
+    ]
+  },
+  "dixell": {
+    "body": [
+      "(?i)dixell"
+    ]
+  },
+  "zte": {
+    "body": [
+      "(?i)zte"
+    ]
+  },
+  "easync": {
+    "body": [
+      "(?i)easync"
+    ]
+  },
+  "jsmol2wp": {
+    "body": [
+      "(?i)jsmol2wp"
+    ]
+  },
+  "razer": {
+    "body": [
+      "(?i)razer"
+    ]
+  },
+  "camtron-cmnc": {
+    "body": [
+      "(?i)camtron-cmnc"
+    ]
+  },
+  "parameters": {
+    "body": [
+      "(?i)parameters"
+    ]
+  },
+  "juniper-web-device-manager": {
+    "body": [
+      "(?i)juniper-web-device-manager"
+    ]
+  },
+  "etherpad": {
+    "body": [
+      "(?i)etherpad"
+    ]
+  },
+  "contentify": {
+    "body": [
+      "(?i)contentify"
+    ]
+  },
+  "elfinder": {
+    "body": [
+      "(?i)elfinder"
+    ]
+  },
+  "mirai": {
+    "body": [
+      "(?i)mirai"
+    ]
+  },
+  "revealjs": {
+    "body": [
+      "(?i)revealjs"
+    ]
+  },
+  "pagespeed": {
+    "body": [
+      "(?i)Pagespeed Global Admin "
+    ]
+  },
+  "complete-online-job-search-system": {
+    "body": [
+      "(?i)complete-online-job-search-system"
+    ]
+  },
+  "bitrix24": {
+    "body": [
+      "(?i)bitrix24"
+    ]
+  },
+  "command": {
+    "body": [
+      "(?i)command"
+    ]
+  },
+  "easy-student-results": {
+    "body": [
+      "(?i)easy-student-results"
+    ]
+  },
+  "ruijie": {
+    "body": [
+      "(?i)ruijie"
+    ]
+  },
+  "gnuboard": {
+    "body": [
+      "(?i)gnuboard"
+    ]
+  },
+  "clustering": {
+    "body": [
+      "(?i)clustering"
+    ]
+  },
+  "gloo": {
+    "body": [
+      "(?i)gloo"
+    ]
+  },
+  "sitecore": {
+    "body": [
+      "(?i)sitecore"
+    ]
+  },
+  "dairy-farm-shop-management-system": {
+    "body": [
+      "(?i)dairy-farm-shop-management-system"
+    ]
+  },
+  "pandora": {
+    "body": [
+      "(?i)pandora"
+    ]
+  },
+  "woocommerce": {
+    "body": [
+      "(?i)woocommerce"
+    ]
+  },
+  "watchguard": {
+    "body": [
+      "(?i)watchguard"
+    ]
+  },
+  "chiyu": {
+    "body": [
+      "(?i)chiyu"
+    ]
+  },
+  "html-email-template-designer": {
+    "body": [
+      "(?i)html-email-template-designer"
+    ]
+  },
+  "mpsec": {
+    "body": [
+      "(?i)mpsec"
+    ]
+  },
+  "netsweeper": {
+    "body": [
+      "(?i)netsweeper"
+    ]
+  },
+  "pollbot": {
+    "body": [
+      "(?i)pollbot"
+    ]
+  },
+  "pyspider": {
+    "body": [
+      "(?i)pyspider"
+    ]
+  },
+  "netsus": {
+    "body": [
+      "(?i)netsus"
+    ]
+  },
+  "simple-crm": {
+    "body": [
+      "(?i)Simple CRM"
+    ]
+  },
+  "dotcms": {
+    "body": [
+      "(?i)dotcms"
+    ]
+  },
+  "dahua": {
+    "body": [
+      "(?i)dahua"
+    ]
+  },
+  "infusionsoft-gravity-forms-add": {
+    "body": [
+      "(?i)infusionsoft-gravity-forms-add"
+    ]
+  },
+  "linear-emerge-e3": {
+    "body": [
+      "(?i)linear-emerge-e3"
+    ]
+  },
+  "learnpress": {
+    "body": [
+      "(?i)learnpress"
+    ]
+  },
+  "wamp": {
+    "body": [
+      "(?i)wamp"
+    ]
+  },
+  "python": {
+    "body": [
+      "(?i)python"
+    ]
+  },
+  "appweb": {
+    "body": [
+      "(?i)appweb"
+    ]
+  },
+  "incomcms": {
+    "body": [
+      "(?i)incomcms"
+    ]
+  },
+  "pega-infinity": {
+    "body": [
+      "(?i)pega-infinity"
+    ]
+  },
+  "odoo": {
+    "body": [
+      "(?i)odoo"
+    ]
+  },
+  "ruckus": {
+    "body": [
+      "(?i)ruckus"
+    ]
+  },
+  "3com": {
+    "body": [
+      "(?i)3com"
+    ]
+  },
+  "openvpn": {
+    "body": [
+      "(?i)openvpn"
+    ]
+  },
+  "haraj": {
+    "body": [
+      "(?i)haraj"
+    ]
+  },
+  "cockpit": {
+    "body": [
+      "(?i)cockpit"
+    ]
+  },
+  "hanming": {
+    "body": [
+      "(?i)hanming"
+    ]
+  },
+  "orbiteam": {
+    "body": [
+      "(?i)orbiteam"
+    ]
+  },
+  "sarg": {
+    "body": [
+      "(?i)sarg"
+    ]
+  },
+  "webctrl-oem": {
+    "body": [
+      "(?i)webctrl-oem"
+    ]
+  },
+  "jinfornet": {
+    "body": [
+      "(?i)jinfornet"
+    ]
+  },
+  "jupyterhub": {
+    "body": [
+      "(?i)jupyterhub"
+    ]
+  },
+  "lvmeng": {
+    "body": [
+      "(?i)lvmeng"
+    ]
+  },
+  "gogs": {
+    "body": [
+      "(?i)gogs"
+    ]
+  },
+  "jdbc": {
+    "body": [
+      "(?i)jdbc"
+    ]
+  },
+  "microfinance-management-system": {
+    "body": [
+      "(?i)microfinance-management-system"
+    ]
+  },
+  "nopcommerce": {
+    "body": [
+      "(?i)nopcommerce"
+    ]
+  },
+  "zenphoto": {
+    "body": [
+      "(?i)zenphoto"
+    ]
+  },
+  "zzcms": {
+    "body": [
+      "(?i)zzcms"
+    ]
+  },
+  "phpstan": {
+    "body": [
+      "(?i)phpstan"
+    ]
+  },
+  "admidio": {
+    "body": [
+      "(?i)admidio"
+    ]
+  },
+  "karma": {
+    "body": [
+      "(?i)karma"
+    ]
+  },
+  "timesheet-next-gen": {
+    "body": [
+      "(?i)timesheet-next-gen"
+    ]
+  },
+  "codeception": {
+    "body": [
+      "(?i)codeception"
+    ]
+  },
+  "credentials": {
+    "body": [
+      "(?i)credentials"
+    ]
+  },
+  "groupoffice": {
+    "body": [
+      "(?i)groupoffice"
+    ]
+  },
+  "wpconfig": {
+    "body": [
+      "(?i)wpconfig"
+    ]
+  },
+  "zhiyuan": {
+    "body": [
+      "(?i)zhiyuan"
+    ]
+  },
+  "roxyfileman": {
+    "body": [
+      "(?i)roxyfileman"
+    ]
+  },
+  "atmail": {
+    "body": [
+      "(?i)atmail"
+    ]
+  },
+  "lvm": {
+    "body": [
+      "(?i)lvm"
+    ]
+  },
+  "pinpoint": {
+    "body": [
+      "(?i)pinpoint"
+    ]
+  },
+  "versa": {
+    "body": [
+      "(?i)versa"
+    ]
+  },
+  "flightpath": {
+    "body": [
+      "(?i)flightpath"
+    ]
+  },
+  "piwik": {
+    "body": [
+      "(?i)piwik"
+    ]
+  },
+  "billquick": {
+    "body": [
+      "(?i)billquick"
+    ]
+  },
+  "websheets": {
+    "body": [
+      "(?i)websheets"
+    ]
+  },
+  "easyappointments": {
+    "body": [
+      "(?i)easyappointments"
+    ]
+  },
+  "wems": {
+    "body": [
+      "(?i)wems"
+    ]
+  },
+  "placeos": {
+    "body": [
+      "(?i)placeos"
+    ]
+  },
+  "ultimate-weather-plugin": {
+    "body": [
+      "(?i)ultimate-weather-plugin"
+    ]
+  },
+  "zcms": {
+    "body": [
+      "(?i)zcms"
+    ]
+  },
+  "authentication": {
+    "body": [
+      "(?i)authentication"
+    ]
+  },
+  "apache-log4j": {
+    "body": [
+      "(?i)apache-log4j"
+    ]
+  },
+  "citrix-content-collaboration": {
+    "body": [
+      "(?i)citrix-content-collaboration"
+    ]
+  },
+  "kanboard": {
+    "body": [
+      "(?i)kanboard"
+    ]
+  },
+  "beward": {
+    "body": [
+      "(?i)beward"
+    ]
+  },
+  "flir": {
+    "body": [
+      "(?i)flir"
+    ]
+  },
+  "faust-iserver": {
+    "body": [
+      "(?i)faust-iserver"
+    ]
+  },
+  "redux-framework": {
+    "body": [
+      "(?i)redux-framework"
+    ]
+  },
+  "smartsense": {
+    "body": [
+      "(?i)smartsense"
+    ]
+  },
+  "bibliosoft-bibliopac": {
+    "body": [
+      "(?i)bibliosoft-bibliopac"
+    ]
+  },
+  "fanruanoa2012": {
+    "body": [
+      "(?i)fanruanoa2012"
+    ]
+  },
+  "gryphon-tower": {
+    "body": [
+      "(?i)gryphon-tower"
+    ]
+  },
+  "pega": {
+    "body": [
+      "(?i)pega"
+    ]
+  },
+  "simply-schedule-appointments": {
+    "body": [
+      "(?i)simply-schedule-appointments"
+    ]
+  },
+  "bigant-server": {
+    "body": [
+      "(?i)bigant-server"
+    ]
+  },
+  "kafdrop": {
+    "body": [
+      "(?i)kafdrop"
+    ]
+  },
+  "opensis": {
+    "body": [
+      "(?i)opensis"
+    ]
+  },
+  "umbraco": {
+    "body": [
+      "(?i)umbraco"
+    ]
+  },
+  "fiberhome-routers": {
+    "body": [
+      "(?i)fiberhome-routers"
+    ]
+  },
+  "appveyor": {
+    "body": [
+      "(?i)appveyor"
+    ]
+  },
+  "acrolinx": {
+    "body": [
+      "(?i)acrolinx"
+    ]
+  },
+  "kirona-dynamic-resource-scheduling": {
+    "body": [
+      "(?i)kirona-dynamic-resource-scheduling"
+    ]
+  },
+  "alt-n": {
+    "body": [
+      "(?i)alt-n"
+    ]
+  },
+  "kubernetes": {
+    "body": [
+      "(?i)kubernetes"
+    ]
+  },
+  "hjtcloud": {
+    "body": [
+      "(?i)hjtcloud"
+    ]
+  },
+  "cartadis-gespage": {
+    "body": [
+      "(?i)cartadis-gespage"
+    ]
+  },
+  "cakephp": {
+    "body": [
+      "(?i)cakephp"
+    ]
+  },
+  "submitty": {
+    "body": [
+      "(?i)submitty"
+    ]
+  },
+  "apache-zookeeper": {
+    "body": [
+      "(?i)apache-zookeeper"
+    ]
+  },
+  "dicoogle": {
+    "body": [
+      "(?i)dicoogle"
+    ]
+  },
+  "metersphere": {
+    "body": [
+      "(?i)metersphere"
+    ]
+  },
+  "phpwiki": {
+    "body": [
+      "(?i)phpwiki"
+    ]
+  },
+  "wwbn-avideo": {
+    "body": [
+      "(?i)wwbn-avideo"
+    ]
+  },
+  "canal": {
+    "body": [
+      "(?i)canal"
+    ]
+  },
+  "huawei": {
+    "body": [
+      "(?i)huawei"
+    ]
+  },
+  "pulse": {
+    "body": [
+      "(?i)pulse"
+    ]
+  },
+  "spidercontrol": {
+    "body": [
+      "(?i)spidercontrol"
+    ]
+  },
+  "tugboat": {
+    "body": [
+      "(?i)tugboat"
+    ]
+  },
+  "oliver": {
+    "body": [
+      "(?i)oliver"
+    ]
+  },
+  "rosariosis": {
+    "body": [
+      "(?i)rosariosis"
+    ]
+  },
+  "domos": {
+    "body": [
+      "(?i)domos"
+    ]
+  },
+  "aruba-airwave": {
+    "body": [
+      "(?i)aruba-airwave"
+    ]
+  },
+  "emby": {
+    "body": [
+      "(?i)emby"
+    ]
+  },
+  "erxes": {
+    "body": [
+      "(?i)erxes"
+    ]
+  },
+  "flatpress": {
+    "body": [
+      "(?i)flatpress"
+    ]
+  },
+  "sysaid": {
+    "body": [
+      "(?i)sysaid"
+    ]
+  },
+  "school-dormitory-management-system": {
+    "body": [
+      "(?i)school-dormitory-management-system"
+    ]
+  },
+  "mofi4500": {
+    "body": [
+      "(?i)mofi4500"
+    ]
+  },
+  "phpgurukul-dairy-farm-shop-management-system": {
+    "body": [
+      "(?i)phpgurukul-dairy-farm-shop-management-system"
+    ]
+  },
+  "flask": {
+    "body": [
+      "(?i)flask"
+    ]
+  },
+  "fhem": {
+    "body": [
+      "(?i)fhem"
+    ]
+  },
+  "t24-web-server": {
+    "body": [
+      "(?i)t24-web-server"
+    ]
+  },
+  "concrete": {
+    "body": [
+      "(?i)concrete"
+    ]
+  },
+  "sequoiadb": {
+    "body": [
+      "(?i)sequoiadb"
+    ]
+  },
+  "vbulletin": {
+    "body": [
+      "(?i)vbulletin"
+    ]
+  },
+  "pa11y": {
+    "body": [
+      "(?i)pa11y"
+    ]
+  },
+  "voipmonitor": {
+    "body": [
+      "(?i)voipmonitor"
+    ]
+  },
+  "wbce-cms": {
+    "body": [
+      "(?i)wbce-cms"
+    ]
+  },
+  "agentejo-cockpit": {
+    "body": [
+      "(?i)agentejo-cockpit"
+    ]
+  },
+  "joomsport": {
+    "body": [
+      "(?i)joomsport"
+    ]
+  },
+  "pkp-open-journal-systems": {
+    "body": [
+      "(?i)pkp-open-journal-systems"
+    ]
+  },
+  "vehicle-service-management-system": {
+    "body": [
+      "(?i)vehicle-service-management-system"
+    ]
+  },
+  "kyocera": {
+    "body": [
+      "(?i)kyocera"
+    ]
+  },
+  "fastjson": {
+    "body": [
+      "(?i)fastjson"
+    ]
+  },
+  "panabit": {
+    "body": [
+      "(?i)panabit"
+    ]
+  },
+  "dvwa": {
+    "body": [
+      "(?i)dvwa"
+    ]
+  },
+  "subrion": {
+    "body": [
+      "(?i)subrion"
+    ]
+  },
+  "teampass": {
+    "body": [
+      "(?i)teampass"
+    ]
+  },
+  "vtiger": {
+    "body": [
+      "(?i)vtiger"
+    ]
+  },
+  "acexy": {
+    "body": [
+      "(?i)acexy"
+    ]
+  },
+  "dotnetnuke-dnn-imagehandler": {
+    "body": [
+      "(?i)dotnetnuke-dnn-imagehandler"
+    ]
+  },
+  "netdata": {
+    "body": [
+      "(?i)netdata"
+    ]
+  },
+  "rocketchat": {
+    "body": [
+      "(?i)rocketchat"
+    ]
+  },
+  "xerox": {
+    "body": [
+      "(?i)xerox"
+    ]
+  },
+  "zte-mf971r": {
+    "body": [
+      "(?i)zte-mf971r"
+    ]
+  },
+  "smartping": {
+    "body": [
+      "(?i)smartping"
+    ]
+  },
+  "shortcode-ninja": {
+    "body": [
+      "(?i)shortcode-ninja"
+    ]
+  },
+  "ehicle-service-management-system": {
+    "body": [
+      "(?i)ehicle-service-management-system"
+    ]
+  },
+  "cgi": {
+    "body": [
+      "(?i)cgi"
+    ]
+  },
+  "magmi": {
+    "body": [
+      "(?i)magmi"
+    ]
+  },
+  "netrc": {
+    "body": [
+      "(?i)netrc"
+    ]
+  },
+  "babel": {
+    "body": [
+      "(?i)babel"
+    ]
+  },
+  "geoserver": {
+    "body": [
+      "(?i)geoserver"
+    ]
+  },
+  "searchblox": {
+    "body": [
+      "(?i)searchblox"
+    ]
+  },
+  "azkaban": {
+    "body": [
+      "(?i)azkaban"
+    ]
+  },
+  "emby-server-server": {
+    "body": [
+      "(?i)emby-server-server"
+    ]
+  },
+  "cisco-asa": {
+    "body": [
+      "(?i)cisco-asa"
+    ]
+  },
+  "fcm": {
+    "body": [
+      "(?i)fcm"
+    ]
+  },
+  "hivequeue": {
+    "body": [
+      "(?i)hivequeue"
+    ]
+  },
+  "advanced-text-widget": {
+    "body": [
+      "(?i)advanced-text-widget"
+    ]
+  },
+  "httpbin": {
+    "body": [
+      "(?i)httpbin"
+    ]
+  },
+  "myfactory-fms": {
+    "body": [
+      "(?i)myfactory-fms"
+    ]
+  },
+  "glpi": {
+    "body": [
+      "(?i)glpi"
+    ]
+  },
+  "flatnux-cms": {
+    "body": [
+      "(?i)flatnux-cms"
+    ]
+  },
+  "hrsale": {
+    "body": [
+      "(?i)hrsale"
+    ]
+  },
+  "apache-storm": {
+    "body": [
+      "(?i)apache-storm"
+    ]
+  },
+  "maccmsv10": {
+    "body": [
+      "(?i)maccmsv10"
+    ]
+  },
+  "october-cms": {
+    "body": [
+      "(?i)october-cms"
+    ]
+  },
+  "labkey-server-community-edition": {
+    "body": [
+      "(?i)labkey-server-community-edition"
+    ]
+  },
+  "aptana-jaxer": {
+    "body": [
+      "(?i)aptana-jaxer"
+    ]
+  },
+  "intel-active-management-technology": {
+    "body": [
+      "(?i)intel-active-management-technology"
+    ]
+  },
+  "yousaytoo": {
+    "body": [
+      "(?i)yousaytoo"
+    ]
+  },
+  "wooyun": {
+    "body": [
+      "(?i)wooyun"
+    ]
+  },
+  "skysa-app-bar": {
+    "body": [
+      "(?i)skysa-app-bar"
+    ]
+  },
+  "apache-skywalking": {
+    "body": [
+      "(?i)apache-skywalking"
+    ]
+  },
+  "phpmyadmin": {
+    "body": [
+      "(?i)phpmyadmin"
+    ]
+  },
+  "linux": {
+    "body": [
+      "(?i)linux"
+    ]
+  },
+  "svn": {
+    "body": [
+      "(?i)svn"
+    ]
+  },
+  "netmask-npm-package": {
+    "body": [
+      "(?i)netmask-npm-package"
+    ]
+  },
+  "seeddms": {
+    "body": [
+      "(?i)seeddms"
+    ]
+  },
+  "hasura": {
+    "body": [
+      "(?i)hasura"
+    ]
+  },
+  "impresscms": {
+    "body": [
+      "(?i)impresscms"
+    ]
+  },
+  "phpok": {
+    "body": [
+      "(?i)phpok"
+    ]
+  },
+  "lotus": {
+    "body": [
+      "(?i)lotus"
+    ]
+  },
+  "magicflow": {
+    "body": [
+      "(?i)magicflow"
+    ]
+  },
+  "sumowebtools": {
+    "body": [
+      "(?i)sumowebtools"
+    ]
+  },
+  "sugarcrm": {
+    "body": [
+      "(?i)sugarcrm"
+    ]
+  },
+  "azure": {
+    "body": [
+      "(?i)azure"
+    ]
+  },
+  "trilium": {
+    "body": [
+      "(?i)trilium"
+    ]
+  },
+  "meteor": {
+    "body": [
+      "(?i)meteor"
+    ]
+  },
+  "wapples": {
+    "body": [
+      "(?i)wapples"
+    ]
+  },
+  "gsoap": {
+    "body": [
+      "(?i)gsoap"
+    ]
+  },
+  "kubeview": {
+    "body": [
+      "(?i)kubeview"
+    ]
+  },
+  "galera": {
+    "body": [
+      "(?i)galera"
+    ]
+  },
+  "backdoored": {
+    "body": [
+      "(?i)backdoored"
+    ]
+  },
+  "splunk": {
+    "body": [
+      "(?i)splunk"
+    ]
+  },
+  "revive-adserver": {
+    "body": [
+      "(?i)revive-adserver"
+    ]
+  },
+  "contao": {
+    "body": [
+      "(?i)contao"
+    ]
+  },
+  "jinher": {
+    "body": [
+      "(?i)jinher"
+    ]
+  },
+  "emerge": {
+    "body": [
+      "(?i)emerge"
+    ]
+  },
+  "nextcloud": {
+    "body": [
+      "(?i)nextcloud"
+    ]
+  },
+  "novius-os": {
+    "body": [
+      "(?i)novius-os"
+    ]
+  },
+  "devalcmsa": {
+    "body": [
+      "(?i)devalcmsa"
+    ]
+  },
+  "firebase": {
+    "body": [
+      "(?i)firebase"
+    ]
+  },
+  "honeywell": {
+    "body": [
+      "(?i)honeywell"
+    ]
+  },
+  "jaeger": {
+    "body": [
+      "(?i)jaeger"
+    ]
+  },
+  "parentlink": {
+    "body": [
+      "(?i)parentlink"
+    ]
+  },
+  "planon-live-build": {
+    "body": [
+      "(?i)planon-live-build"
+    ]
+  },
+  "viewpoint": {
+    "body": [
+      "(?i)viewpoint"
+    ]
+  },
+  "lionwiki": {
+    "body": [
+      "(?i)lionwiki"
+    ]
+  },
+  "give": {
+    "body": [
+      "(?i)give"
+    ]
+  },
+  "microstrategy": {
+    "body": [
+      "(?i)microstrategy"
+    ]
+  },
+  "blesta": {
+    "body": [
+      "(?i)blesta"
+    ]
+  },
+  "ffay": {
+    "body": [
+      "(?i)ffay"
+    ]
+  },
+  "smf": {
+    "body": [
+      "(?i)smf"
+    ]
+  },
+  "ssh": {
+    "body": [
+      "(?i)ssh"
+    ]
+  },
+  "cyberoam": {
+    "body": [
+      "(?i)cyberoam"
+    ]
+  },
+  "redwood": {
+    "body": [
+      "(?i)redwood"
+    ]
+  },
+  "certain-linear-emerge-e3": {
+    "body": [
+      "(?i)certain-linear-emerge-e3"
+    ]
+  },
+  "nacos": {
+    "body": [
+      "(?i)nacos"
+    ]
+  },
+  "asus-gt": {
+    "body": [
+      "(?i)asus-gt"
+    ]
+  },
+  "audiocodes": {
+    "body": [
+      "(?i)audiocodes"
+    ]
+  },
+  "payara": {
+    "body": [
+      "(?i)payara"
+    ]
+  },
+  "mida": {
+    "body": [
+      "(?i)mida"
+    ]
+  },
+  "terraboard": {
+    "body": [
+      "(?i)terraboard"
+    ]
+  },
+  "loancms": {
+    "body": [
+      "(?i)loancms"
+    ]
+  },
+  "processwire": {
+    "body": [
+      "(?i)processwire"
+    ]
+  },
+  "tvt-nvms": {
+    "body": [
+      "(?i)tvt-nvms"
+    ]
+  },
+  "aerocms": {
+    "body": [
+      "(?i)aerocms"
+    ]
+  },
+  "wifisky": {
+    "body": [
+      "(?i)wifisky"
+    ]
+  },
+  "reprise-license-manager": {
+    "body": [
+      "(?i)reprise-license-manager"
+    ]
+  },
+  "accela-civic-platform": {
+    "body": [
+      "(?i)accela-civic-platform"
+    ]
+  },
+  "kiwitcms": {
+    "body": [
+      "(?i)kiwitcms"
+    ]
+  },
+  "bitrix": {
+    "body": [
+      "(?i)bitrix"
+    ]
+  },
+  "powertek-firmware": {
+    "body": [
+      "(?i)powertek-firmware"
+    ]
+  },
+  "xiuno": {
+    "body": [
+      "(?i)xiuno"
+    ]
+  },
+  "zend": {
+    "body": [
+      "(?i)zend"
+    ]
+  },
+  "phpunit": {
+    "body": [
+      "(?i)phpunit"
+    ]
+  },
+  "etouch": {
+    "body": [
+      "(?i)etouch"
+    ]
+  },
+  "neo4j": {
+    "body": [
+      "(?i)neo4j"
+    ]
+  },
+  "zoho-manageengine": {
+    "body": [
+      "(?i)zoho-manageengine"
+    ]
+  },
+  "dynamicweb": {
+    "body": [
+      "(?i)dynamicweb"
+    ]
+  },
+  "mailgun": {
+    "body": [
+      "(?i)mailgun"
+    ]
+  },
+  "qizhi": {
+    "body": [
+      "(?i)qizhi"
+    ]
+  },
+  "kramer-viaware": {
+    "body": [
+      "(?i)kramer-viaware"
+    ]
+  },
+  "fatpipe": {
+    "body": [
+      "(?i)fatpipe"
+    ]
+  },
+  "hongdian": {
+    "body": [
+      "(?i)hongdian"
+    ]
+  },
+  "cisco-prime": {
+    "body": [
+      "(?i)cisco-prime"
+    ]
+  },
+  "grav": {
+    "body": [
+      "(?i)grav"
+    ]
+  },
+  "layer5-meshery": {
+    "body": [
+      "(?i)layer5-meshery"
+    ]
+  },
+  "online-birth-certificate-system": {
+    "body": [
+      "(?i)online-birth-certificate-system"
+    ]
+  },
+  "opnsense": {
+    "body": [
+      "(?i)opnsense"
+    ]
+  },
+  "s3cfg": {
+    "body": [
+      "(?i)s3cfg"
+    ]
+  },
+  "suprema-biostar": {
+    "body": [
+      "(?i)suprema-biostar"
+    ]
+  },
+  "chyrpx": {
+    "body": [
+      "(?i)chyrpx"
+    ]
+  },
+  "fortiweb": {
+    "body": [
+      "(?i)fortiweb"
+    ]
+  },
+  "vidyo": {
+    "body": [
+      "(?i)vidyo"
+    ]
+  },
+  "aws-ec2": {
+    "body": [
+      "(?i)aws-ec2"
+    ]
+  },
+  "homematic-ccu3": {
+    "body": [
+      "(?i)homematic-ccu3"
+    ]
+  },
+  "nextjs": {
+    "body": [
+      "(?i)nextjs"
+    ]
+  },
+  "podcast-channels": {
+    "body": [
+      "(?i)podcast-channels"
+    ]
+  },
+  "skycaiji": {
+    "body": [
+      "(?i)skycaiji"
+    ]
+  },
+  "drawio": {
+    "body": [
+      "(?i)drawio"
+    ]
+  },
+  "totolink": {
+    "body": [
+      "(?i)totolink"
+    ]
+  },
+  "udraw": {
+    "body": [
+      "(?i)udraw"
+    ]
+  },
+  "webglimpse": {
+    "body": [
+      "(?i)webglimpse"
+    ]
+  },
+  "pentaho": {
+    "body": [
+      "(?i)pentaho"
+    ]
+  },
+  "cobranca": {
+    "body": [
+      "(?i)cobranca"
+    ]
+  },
+  "dahua-ipcvthvto": {
+    "body": [
+      "(?i)dahua-ipcvthvto"
+    ]
+  },
+  "chinaunicom": {
+    "body": [
+      "(?i)chinaunicom"
+    ]
+  },
+  "tianqing": {
+    "body": [
+      "(?i)tianqing"
+    ]
+  },
+  "traefik": {
+    "body": [
+      "(?i)traefik"
+    ]
+  },
+  "garage-management-system": {
+    "body": [
+      "(?i)garage-management-system"
+    ]
+  },
+  "kodi": {
+    "body": [
+      "(?i)kodi"
+    ]
+  },
+  "siteminder": {
+    "body": [
+      "(?i)siteminder"
+    ]
+  },
+  "adminimize": {
+    "body": [
+      "(?i)adminimize"
+    ]
+  },
+  "buddypress-rest-api": {
+    "body": [
+      "(?i)buddypress-rest-api"
+    ]
+  },
+  "cisco-hyperflex": {
+    "body": [
+      "(?i)cisco-hyperflex"
+    ]
+  },
+  "opcache": {
+    "body": [
+      "(?i)opcache"
+    ]
+  },
+  "cofax": {
+    "body": [
+      "(?i)cofax"
+    ]
+  },
+  "qvidium": {
+    "body": [
+      "(?i)qvidium"
+    ]
+  },
+  "sourcebans": {
+    "body": [
+      "(?i)sourcebans"
+    ]
+  },
+  "nexusdb": {
+    "body": [
+      "(?i)nexusdb"
+    ]
+  },
+  "showdoc": {
+    "body": [
+      "(?i)showdoc"
+    ]
+  },
+  "shell": {
+    "body": [
+      "(?i)shell"
+    ]
+  },
+  "alumni": {
+    "body": [
+      "(?i)alumni"
+    ]
+  },
+  "qcube": {
+    "body": [
+      "(?i)qcube"
+    ]
+  },
+  "lmszai": {
+    "body": [
+      "(?i)lmszai"
+    ]
+  },
+  "gitblit": {
+    "body": [
+      "(?i)gitblit"
+    ]
+  },
+  "spring": {
+    "body": [
+      "(?i)spring"
+    ]
+  },
+  "tooljet": {
+    "body": [
+      "(?i)tooljet"
+    ]
+  },
+  "travis": {
+    "body": [
+      "(?i)travis"
+    ]
+  },
+  "kubecost": {
+    "body": [
+      "(?i)kubecost"
+    ]
+  },
+  "pulsesecure": {
+    "body": [
+      "(?i)pulsesecure"
+    ]
+  },
+  "kentico": {
+    "body": [
+      "(?i)kentico"
+    ]
+  },
+  "micro-focus-operations-bridge-manager": {
+    "body": [
+      "(?i)micro-focus-operations-bridge-manager"
+    ]
+  },
+  "wavemaker-studio": {
+    "body": [
+      "(?i)wavemaker-studio"
+    ]
+  },
+  "parallels": {
+    "body": [
+      "(?i)parallels"
+    ]
+  },
+  "axigen": {
+    "body": [
+      "(?i)axigen"
+    ]
+  },
+  "ioncube": {
+    "body": [
+      "(?i)ioncube"
+    ]
+  },
+  "accent": {
+    "body": [
+      "(?i)accent"
+    ]
+  },
+  "genie-access-wip3bvaf-ip-camera": {
+    "body": [
+      "(?i)genie-access-wip3bvaf-ip-camera"
+    ],
+    "type": "ipcamera",
+    "manufacturer": "genie-access-wip3bvaf-ip"
+  },
+  "zms": {
+    "body": [
+      "(?i)zms"
+    ]
+  },
+  "octobercms": {
+    "body": [
+      "(?i)octobercms"
+    ]
+  },
+  "minimouse": {
+    "body": [
+      "(?i)minimouse"
+    ]
+  },
+  "circleci": {
+    "body": [
+      "(?i)circleci"
+    ]
+  },
+  "dataiku": {
+    "body": [
+      "(?i)dataiku"
+    ]
+  },
+  "kentico-cms": {
+    "body": [
+      "(?i)kentico-cms"
+    ]
+  },
+  "monitorr": {
+    "body": [
+      "(?i)monitorr"
+    ]
+  },
+  "dvdfab-playerplayerfab": {
+    "body": [
+      "(?i)dvdfab-playerplayerfab"
+    ]
+  },
+  "pallets-werkzeug": {
+    "body": [
+      "(?i)pallets-werkzeug"
+    ]
+  },
+  "optilink": {
+    "body": [
+      "(?i)optilink"
+    ]
+  },
+  "bagisto": {
+    "body": [
+      "(?i)bagisto"
+    ]
+  },
+  "cobub": {
+    "body": [
+      "(?i)cobub"
+    ]
+  },
+  "dzzoffice": {
+    "body": [
+      "(?i)dzzoffice"
+    ]
+  },
+  "flexbe": {
+    "body": [
+      "(?i)flexbe"
+    ]
+  },
+  "forgerock-openam": {
+    "body": [
+      "(?i)forgerock-openam"
+    ]
+  },
+  "dompdf": {
+    "body": [
+      "(?i)dompdf"
+    ]
+  },
+  "thinkific": {
+    "body": [
+      "(?i)thinkific"
+    ]
+  },
+  "webasyst": {
+    "body": [
+      "(?i)webasyst"
+    ]
+  },
+  "clickdesk": {
+    "body": [
+      "(?i)clickdesk"
+    ]
+  },
+  "facturascripts": {
+    "body": [
+      "(?i)facturascripts"
+    ]
+  },
+  "xinuo": {
+    "body": [
+      "(?i)xinuo"
+    ]
+  },
+  "fuel-cms": {
+    "body": [
+      "(?i)fuel-cms"
+    ]
+  },
+  "dasan-gpon-devices": {
+    "body": [
+      "(?i)dasan-gpon-devices"
+    ]
+  },
+  "fuelcms": {
+    "body": [
+      "(?i)fuelcms"
+    ]
+  },
+  "wpsmartcontracts": {
+    "body": [
+      "(?i)wpsmartcontracts"
+    ]
+  },
+  "ace": {
+    "body": [
+      "(?i)Ace Admin"
+    ]
+  },
+  "libvirt": {
+    "body": [
+      "(?i)libvirt"
+    ]
+  },
+  "nuxeo": {
+    "body": [
+      "(?i)nuxeo"
+    ]
+  },
+  "nimble-streamer": {
+    "body": [
+      "(?i)nimble-streamer"
+    ]
+  },
+  "belkin-router": {
+    "body": [
+      "(?i)belkin-router"
+    ],
+    "type": "router",
+    "manufacturer": "belkin"
+  },
+  "apache-couchdb": {
+    "body": [
+      "(?i)apache-couchdb"
+    ]
+  },
+  "secret": {
+    "body": [
+      "(?i)secret"
+    ]
+  },
+  "zeroshell": {
+    "body": [
+      "(?i)zeroshell"
+    ]
+  },
+  "apcu": {
+    "body": [
+      "(?i)apcu"
+    ]
+  },
+  "subrion-cms": {
+    "body": [
+      "(?i)subrion-cms"
+    ]
+  },
+  "openwrt": {
+    "body": [
+      "(?i)openwrt"
+    ]
+  },
+  "codemeter": {
+    "body": [
+      "(?i)codemeter"
+    ]
+  },
+  "apache-cassandra": {
+    "body": [
+      "(?i)apache-cassandra"
+    ]
+  },
+  "motorola": {
+    "body": [
+      "(?i)motorola"
+    ]
+  },
+  "eyesofnetwork": {
+    "body": [
+      "(?i)eyesofnetwork"
+    ]
+  },
+  "open-edx": {
+    "body": [
+      "(?i)open-edx"
+    ]
+  },
+  "geowebserver": {
+    "body": [
+      "(?i)geowebserver"
+    ]
+  },
+  "aspnuke": {
+    "body": [
+      "(?i)aspnuke"
+    ]
+  },
+  "microsoft-open-management-infrastructure": {
+    "body": [
+      "(?i)microsoft-open-management-infrastructure"
+    ]
+  },
+  "sis-informatik": {
+    "body": [
+      "(?i)sis-informatik"
+    ]
+  },
+  "office365": {
+    "body": [
+      "(?i)office365"
+    ]
+  },
+  "namedprocess": {
+    "body": [
+      "(?i)namedprocess"
+    ]
+  },
+  "phalcon": {
+    "body": [
+      "(?i)phalcon"
+    ]
+  },
+  "servicenow": {
+    "body": [
+      "(?i)servicenow"
+    ]
+  },
+  "movies": {
+    "body": [
+      "(?i)movies"
+    ]
+  },
+  "ncbi-toolbox": {
+    "body": [
+      "(?i)ncbi-toolbox"
+    ]
+  },
+  "ibm": {
+    "body": [
+      "(?i)ibm"
+    ]
+  },
+  "iptime": {
+    "body": [
+      "(?i)iptime"
+    ]
+  },
+  "masterstudy-lms-plugin": {
+    "body": [
+      "(?i)masterstudy-lms-plugin"
+    ]
+  },
+  "vscode": {
+    "body": [
+      "(?i)vscode"
+    ]
+  },
+  "grandnode": {
+    "body": [
+      "(?i)grandnode"
+    ]
+  },
+  "episerver-find": {
+    "body": [
+      "(?i)episerver-find"
+    ]
+  },
+  "piano-led-visualizer": {
+    "body": [
+      "(?i)piano-led-visualizer"
+    ]
+  },
+  "processmaker": {
+    "body": [
+      "(?i)processmaker"
+    ]
+  },
+  "redash": {
+    "body": [
+      "(?i)redash"
+    ]
+  },
+  "aryanic-highMail": {
+    "body": [
+      "(?i)aryanic-highMail"
+    ]
+  },
+  "redis": {
+    "body": [
+      "(?i)redis"
+    ]
+  },
+  "telecom": {
+    "body": [
+      "(?i)telecom"
+    ]
+  },
+  "seeyon": {
+    "body": [
+      "(?i)seeyon"
+    ]
+  },
+  "tox": {
+    "body": [
+      "(?i)tox"
+    ]
+  },
+  "kr-web": {
+    "body": [
+      "(?i)KR-Web"
+    ]
+  },
+  "carrental": {
+    "body": [
+      "(?i)carrental"
+    ]
+  },
+  "mitel-shoretel-devices": {
+    "body": [
+      "(?i)mitel-shoretel-devices"
+    ]
+  },
+  "citrix-workspace": {
+    "body": [
+      "(?i)citrix-workspace"
+    ]
+  },
+  "elastic": {
+    "body": [
+      "(?i)elastic"
+    ]
+  },
+  "citrix-endpoint-management": {
+    "body": [
+      "(?i)citrix-endpoint-management"
+    ]
+  },
+  "svnserve": {
+    "body": [
+      "(?i)svnserve"
+    ]
+  },
+  "directorist": {
+    "body": [
+      "(?i)directorist"
+    ]
+  },
+  "h3c": {
+    "body": [
+      "(?i)h3c"
+    ]
+  },
+  "trixbox": {
+    "body": [
+      "(?i)trixbox"
+    ]
+  },
+  "ventrilo": {
+    "body": [
+      "(?i)ventrilo"
+    ]
+  },
+  "pqube": {
+    "body": [
+      "(?i)pqube"
+    ]
+  },
+  "paypal": {
+    "body": [
+      "(?i)paypal"
+    ]
+  },
+  "alibaba-metadata-service": {
+    "body": [
+      "(?i)alibaba-metadata-service"
+    ]
+  },
+  "plastic": {
+    "body": [
+      "(?i)plastic"
+    ]
+  },
+  "hpe": {
+    "body": [
+      "(?i)hpe"
+    ]
+  },
+  "saltstack-salt": {
+    "body": [
+      "(?i)saltstack-salt"
+    ]
+  },
+  "comodo": {
+    "body": [
+      "(?i)comodo"
+    ]
+  },
+  "collectd": {
+    "body": [
+      "(?i)collectd"
+    ]
+  },
+  "z-blog": {
+    "body": [
+      "(?i)z-blog"
+    ]
+  },
+  "geddy": {
+    "body": [
+      "(?i)geddy"
+    ]
+  },
+  "pmb": {
+    "body": [
+      "(?i)pmb"
+    ]
+  },
+  "alert-manager": {
+    "body": [
+      "(?i)alert-manager"
+    ]
+  },
+  "apache-kafka": {
+    "body": [
+      "(?i)apache-kafka"
+    ]
+  },
+  "empirecms": {
+    "body": [
+      "(?i)empirecms"
+    ]
+  },
+  "lg-nas-devices": {
+    "body": [
+      "(?i)lg-nas-devices"
+    ]
+  },
+  "terramaster-tos-129": {
+    "body": [
+      "(?i)terramaster-tos-129"
+    ]
+  },
+  "welcart-ecommerce": {
+    "body": [
+      "(?i)welcart-ecommerce"
+    ]
+  },
+  "thinfinity": {
+    "body": [
+      "(?i)thinfinity"
+    ]
+  },
+  "beyondtrust": {
+    "body": [
+      "(?i)beyondtrust"
+    ]
+  },
+  "wirelesshart": {
+    "body": [
+      "(?i)wirelesshart"
+    ]
+  },
+  "datahub": {
+    "body": [
+      "(?i)datahub"
+    ]
+  },
+  "oxid": {
+    "body": [
+      "(?i)oxid"
+    ]
+  },
+  "awstats": {
+    "body": [
+      "(?i)awstats"
+    ]
+  },
+  "powercreator": {
+    "body": [
+      "(?i)powercreator"
+    ]
+  },
+  "mirasys": {
+    "body": [
+      "(?i)mirasys"
+    ]
+  },
+  "royalevent": {
+    "body": [
+      "(?i)royalevent"
+    ]
+  },
+  "rstudio-shiny-server": {
+    "body": [
+      "(?i)rstudio-shiny-server"
+    ]
+  },
+  "jupyter": {
+    "body": [
+      "(?i)jupyter"
+    ]
+  },
+  "konga": {
+    "body": [
+      "(?i)konga"
+    ]
+  },
+  "opensmtpd": {
+    "body": [
+      "(?i)opensmtpd"
+    ]
+  },
+  "strapi-cms": {
+    "body": [
+      "(?i)strapi-cms"
+    ]
+  },
+  "wavlink": {
+    "body": [
+      "(?i)wavlink"
+    ]
+  },
+  "qnap": {
+    "body": [
+      "(?i)qnap"
+    ]
+  },
+  "wowza-streaming-engine-manager": {
+    "body": [
+      "(?i)wowza-streaming-engine-manager"
+    ]
+  },
+  "contentful": {
+    "body": [
+      "(?i)contentful"
+    ]
+  },
+  "contacam": {
+    "body": [
+      "(?i)contacam"
+    ]
+  },
+  "easyscripts": {
+    "body": [
+      "(?i)easyscripts"
+    ]
+  },
+  "rpcms": {
+    "body": [
+      "(?i)rpcms"
+    ]
+  },
+  "mismatched": {
+    "body": [
+      "(?i)mismatched"
+    ]
+  },
+  "npm-ansiup": {
+    "body": [
+      "(?i)npm-ansiup"
+    ]
+  },
+  "royal-event": {
+    "body": [
+      "(?i)royal-event"
+    ]
+  },
+  "lg-supersign-ez-cms": {
+    "body": [
+      "(?i)lg-supersign-ez-cms"
+    ]
+  },
+  "apache-solr": {
+    "body": [
+      "(?i)apache-solr"
+    ]
+  },
+  "ntopng": {
+    "body": [
+      "(?i)ntopng"
+    ]
+  },
+  "openam": {
+    "body": [
+      "(?i)openam"
+    ]
+  },
+  "hiboss": {
+    "body": [
+      "(?i)hiboss"
+    ]
+  },
+  "hue-magic": {
+    "body": [
+      "(?i)hue-magic"
+    ]
+  },
+  "koha": {
+    "body": [
+      "(?i)koha"
+    ]
+  },
+  "openemr": {
+    "body": [
+      "(?i)openemr"
+    ]
+  },
+  "phpcollab": {
+    "body": [
+      "(?i)phpcollab"
+    ]
+  },
+  "dell": {
+    "body": [
+      "(?i)dell"
+    ]
+  },
+  "behat": {
+    "body": [
+      "(?i)behat"
+    ]
+  },
+  "qdpm": {
+    "body": [
+      "(?i)qdpm"
+    ]
+  },
+  "ftp": {
+    "body": [
+      "(?i)ftp"
+    ]
+  },
+  "apollo": {
+    "body": [
+      "(?i)apollo"
+    ]
+  },
+  "pyramid": {
+    "body": [
+      "(?i)pyramid"
+    ]
+  },
+  "grav-cms": {
+    "body": [
+      "(?i)grav-cms"
+    ]
+  },
+  "nps": {
+    "body": [
+      "(?i)nps"
+    ]
+  },
+  "ninja-job-board": {
+    "body": [
+      "(?i)ninja-job-board"
+    ]
+  },
+  "pantheon": {
+    "body": [
+      "(?i)pantheon"
+    ]
+  },
+  "triconsole-datepicker-calendar": {
+    "body": [
+      "(?i)triconsole-datepicker-calendar"
+    ]
+  },
+  "nedic": {
+    "body": [
+      "(?i)nedic"
+    ]
+  },
+  "typo3": {
+    "body": [
+      "(?i)typo3"
+    ]
+  },
+  "iotawatt": {
+    "body": [
+      "(?i)iotawatt"
+    ]
+  },
+  "kong": {
+    "body": [
+      "(?i)kong"
+    ]
+  },
+  "dapr-dashboard": {
+    "body": [
+      "(?i)dapr-dashboard"
+    ]
+  },
+  "sophos-firewall-mr3": {
+    "body": [
+      "(?i)sophos-firewall-mr3"
+    ]
+  },
+  "swim-team": {
+    "body": [
+      "(?i)swim-team"
+    ]
+  },
+  "pictatic": {
+    "body": [
+      "(?i)pictatic"
+    ]
+  },
+  "zabbix": {
+    "body": [
+      "(?i)zabbix"
+    ]
+  },
+  "steve": {
+    "body": [
+      "(?i)steve"
+    ]
+  },
+  "smarterstats": {
+    "body": [
+      "(?i)smarterstats"
+    ]
+  },
+  "visualizer": {
+    "body": [
+      "(?i)visualizer"
+    ]
+  },
+  "vsphere": {
+    "body": [
+      "(?i)vsphere"
+    ]
+  },
+  "backupbuddy": {
+    "body": [
+      "(?i)backupbuddy"
+    ]
+  },
+  "tcpconfig": {
+    "body": [
+      "(?i)tcpconfig"
+    ]
+  },
+  "aviatrix": {
+    "body": [
+      "(?i)aviatrix"
+    ]
+  },
+  "car-rental-management-system": {
+    "body": [
+      "(?i)car-rental-management-system"
+    ]
+  },
+  "cisco": {
+    "body": [
+      "(?i)cisco"
+    ]
+  },
+  "jenzabarx": {
+    "body": [
+      "(?i)jenzabarx"
+    ]
+  },
+  "xprober": {
+    "body": [
+      "(?i)xprober"
+    ]
+  },
+  "barco": {
+    "body": [
+      "(?i)barco"
+    ]
+  },
+  "jeewms": {
+    "body": [
+      "(?i)jeewms"
+    ]
+  },
+  "sercomm-vd625-smart-modems": {
+    "body": [
+      "(?i)sercomm-vd625-smart-modems"
+    ]
+  },
+  "kyan": {
+    "body": [
+      "(?i)kyan"
+    ]
+  },
+  "liferay-portal-unauthenticated-ce-ga2": {
+    "body": [
+      "(?i)liferay-portal-unauthenticated-ce-ga2"
+    ]
+  },
+  "xmlrpc": {
+    "body": [
+      "(?i)xmlrpc"
+    ]
+  },
+  "zwave": {
+    "body": [
+      "(?i)zwave"
+    ]
+  },
+  "livezilla-server": {
+    "body": [
+      "(?i)livezilla-server"
+    ]
+  },
+  "node-red-dashboard": {
+    "body": [
+      "(?i)node-red-dashboard"
     ]
   }
 }
