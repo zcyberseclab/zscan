@@ -1172,9 +1172,7 @@ func (sd *ServiceDetector) createAnalyzeFunc(L *lua.LState, serviceType string) 
 	}
 }
 
-// Update serviceInfoToLua to handle Types array and add IP
 func (sd *ServiceDetector) serviceInfoToLua(L *lua.LState, info *ServiceInfo) *lua.LTable {
-
 	tbl := L.NewTable()
 
 	// Convert Types array to Lua table

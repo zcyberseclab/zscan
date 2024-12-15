@@ -756,6 +756,9 @@
   "apache-tomcat": {
     "body": [
       "(?i)tomcat"
+    ],
+    "headers": [
+      "(?i)tomcat"
     ]
   },
   "apache-activemq": {
@@ -1410,7 +1413,10 @@
   },
   "jboss": {
     "body": [
-      "(?i)Welcome to JBoss"
+      "(?i)JBoss"
+    ],
+    "headers": [
+      "(?i)JBoss"
     ]
   },
   "jellyfin": {
@@ -1632,7 +1638,12 @@
       "(?i)PA-VM"
     ]
   },
-  "ziguang": {
+  "致远互联": {
+    "body": [
+      "openDownloadWin"
+    ]
+  },
+  "紫光档案管理系统": {
     "body": [
       "紫光档案管理系统"
     ]
