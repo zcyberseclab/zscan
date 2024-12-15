@@ -1,6 +1,7 @@
 package stage
 
 import (
+	"crypto/tls"
 	"fmt"
 	"net"
 	"net/http"
@@ -27,13 +28,39 @@ func ScanTCPPort(ip string, port int) bool {
 
 func ScanHTTPPort(ip string, port int) bool {
 	target := fmt.Sprintf("http://%s:%d", ip, port)
+
+	transport := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true,
+			MinVersion:         tls.VersionTLS10,
+			MaxVersion:         tls.VersionTLS13,
+		},
+		DisableKeepAlives: true,
+		DialContext: (&net.Dialer{
+			Timeout:   10 * time.Second,
+			KeepAlive: 10 * time.Second,
+		}).DialContext,
+		TLSHandshakeTimeout:   10 * time.Second,
+		ResponseHeaderTimeout: 10 * time.Second,
+		ExpectContinueTimeout: 10 * time.Second,
+	}
+
 	client := &http.Client{
-		Timeout: 2 * time.Second,
+		Transport: transport,
+		Timeout:   10 * time.Second,
 	}
 
 	resp, err := client.Head(target)
 	if err != nil {
-		return false
+		if port == 80 || port == 443 {
+			httpsTarget := fmt.Sprintf("https://%s:%d", ip, port)
+			resp, err = client.Head(httpsTarget)
+			if err != nil {
+				return false
+			}
+		} else {
+			return false
+		}
 	}
 	defer resp.Body.Close()
 	return true
@@ -46,6 +73,5 @@ func ScanUDPPort(ip string, port int) bool {
 		return false
 	}
 	defer conn.Close()
-
 	return true
 }
