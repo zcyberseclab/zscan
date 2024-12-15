@@ -106,7 +106,7 @@
       "To change this template use File"
     ]
   },
-  "d-link-camera": {
+  "dlink-camera": {
     "type": "ipcamera",
     "manufacturer": "d-link",
     "headers": [
@@ -117,7 +117,7 @@
       "(?i)d-linkWhite"
     ]
   },
-  "d-link-dcs932-camera": {
+  "dlink-dcs932-camera": {
     "type": "ipcamera",
     "manufacturer": "d-link",
     "headers": [
@@ -128,7 +128,7 @@
       "DCS-932L"
     ]
   },
-  "d-link-router": {
+  "dlink-router": {
     "type": "router",
     "manufacturer": "d-link",
     "body": [
@@ -1186,7 +1186,7 @@
       "(?i)XenMobile"
     ]
   },
-  "d-link-nas": {
+  "dlink-nas": {
     "type": "nas",
     "manufacturer": "d-link",
     "body": [
@@ -1584,11 +1584,6 @@
       "管家婆"
     ]
   },
-  "guns": {
-    "body": [
-      "(?i)Guns"
-    ]
-  },
   "haixiangyun": {
     "body": [
       "成都海翔软件"
@@ -1600,6 +1595,41 @@
     ],
     "headers": [
       "(?i)Zimbra"
+    ]
+  },
+  "crushftp": {
+    "body": [
+      "(?i)CrushFTP"
+    ],
+    "headers": [
+      "(?i)CrushFTP"
+    ]
+  },
+  "gradio": {
+    "body": [
+      "(?i)gradio"
+    ],
+    "headers": [
+      "(?i)gradio"
+    ]
+  },
+  "cleo": {
+    "headers": [
+      "Server: VLTrader/[\\d.]+"
+    ],
+    "body": [
+      "(?i)cleo",
+      "(?i)VLTrader"
+    ]
+  },
+  "paloalto": {
+    "body": [
+      "(?i)paloalto",
+      "(?i)panos",
+      "(?i)Pan Access"
+    ],
+    "headers": [
+      "(?i)PA-VM"
     ]
   },
   "ziguang": {
@@ -1865,11 +1895,6 @@
   "activehelper": {
     "body": [
       "(?i)activehelper"
-    ]
-  },
-  "dockerfile": {
-    "body": [
-      "(?i)dockerfile"
     ]
   },
   "reddittop": {
@@ -2662,11 +2687,6 @@
       "(?i)onlinefarm"
     ]
   },
-  "portainer": {
-    "body": [
-      "(?i)portainer"
-    ]
-  },
   "the-school-management": {
     "body": [
       "(?i)the-school-management"
@@ -2750,11 +2770,6 @@
   "aveva": {
     "body": [
       "(?i)aveva"
-    ]
-  },
-  "paloalto": {
-    "body": [
-      "(?i)paloalto"
     ]
   },
   "shareaholic": {
@@ -2965,11 +2980,6 @@
   "qcubed": {
     "body": [
       "(?i)qcubed"
-    ]
-  },
-  "tiny": {
-    "body": [
-      "(?i)tiny"
     ]
   },
   "cherokee": {
@@ -3482,11 +3492,6 @@
       "(?i)nova-novnc"
     ]
   },
-  "webui": {
-    "body": [
-      "(?i)webui"
-    ]
-  },
   "eventum": {
     "body": [
       "(?i)eventum"
@@ -3567,7 +3572,7 @@
       "(?i)cmsimple"
     ]
   },
-  "d-link": {
+  "dlink": {
     "body": [
       "(?i)d-link"
     ]
@@ -4034,11 +4039,6 @@
       "(?i)goip"
     ]
   },
-  "docker": {
-    "body": [
-      "(?i)docker"
-    ]
-  },
   "karel": {
     "body": [
       "(?i)karel"
@@ -4152,11 +4152,6 @@
   "esmtprc": {
     "body": [
       "(?i)esmtprc"
-    ]
-  },
-  "deos": {
-    "body": [
-      "(?i)deos"
     ]
   },
   "gespage": {
@@ -4364,11 +4359,6 @@
       "(?i)camtron-cmnc"
     ]
   },
-  "parameters": {
-    "body": [
-      "(?i)parameters"
-    ]
-  },
   "juniper-web-device-manager": {
     "body": [
       "(?i)juniper-web-device-manager"
@@ -4412,11 +4402,6 @@
   "bitrix24": {
     "body": [
       "(?i)bitrix24"
-    ]
-  },
-  "command": {
-    "body": [
-      "(?i)command"
     ]
   },
   "easy-student-results": {
@@ -4537,11 +4522,6 @@
   "wamp": {
     "body": [
       "(?i)wamp"
-    ]
-  },
-  "python": {
-    "body": [
-      "(?i)python"
     ]
   },
   "appweb": {
@@ -4677,11 +4657,6 @@
   "codeception": {
     "body": [
       "(?i)codeception"
-    ]
-  },
-  "credentials": {
-    "body": [
-      "(?i)credentials"
     ]
   },
   "groupoffice": {
@@ -5159,11 +5134,6 @@
       "(?i)ehicle-service-management-system"
     ]
   },
-  "cgi": {
-    "body": [
-      "(?i)cgi"
-    ]
-  },
   "magmi": {
     "body": [
       "(?i)magmi"
@@ -5172,11 +5142,6 @@
   "netrc": {
     "body": [
       "(?i)netrc"
-    ]
-  },
-  "babel": {
-    "body": [
-      "(?i)babel"
     ]
   },
   "geoserver": {
@@ -5302,11 +5267,6 @@
   "linux": {
     "body": [
       "(?i)linux"
-    ]
-  },
-  "svn": {
-    "body": [
-      "(?i)svn"
     ]
   },
   "netmask-npm-package": {
@@ -5931,11 +5891,6 @@
     "type": "ipcamera",
     "manufacturer": "genie-access-wip3bvaf-ip"
   },
-  "zms": {
-    "body": [
-      "(?i)zms"
-    ]
-  },
   "octobercms": {
     "body": [
       "(?i)octobercms"
@@ -6186,11 +6141,6 @@
   "ncbi-toolbox": {
     "body": [
       "(?i)ncbi-toolbox"
-    ]
-  },
-  "ibm": {
-    "body": [
-      "(?i)ibm"
     ]
   },
   "iptime": {
@@ -6578,11 +6528,6 @@
       "(?i)qdpm"
     ]
   },
-  "ftp": {
-    "body": [
-      "(?i)ftp"
-    ]
-  },
   "apollo": {
     "body": [
       "(?i)apollo"
@@ -6761,6 +6706,25 @@
   "node-red-dashboard": {
     "body": [
       "(?i)node-red-dashboard"
+    ]
+  },
+  "cleo": {
+    "headers": [
+      "Server: VLTrader/[\\d.]+"
+    ],
+    "body": [
+      "(?i)cleo",
+      "(?i)VLTrader"
+    ]
+  },
+  "ziguang": {
+    "body": [
+      "紫光档案管理系统"
+    ]
+  },
+  "extreme-management-center": {
+    "body": [
+      "(?i)extreme-management-center"
     ]
   }
 }

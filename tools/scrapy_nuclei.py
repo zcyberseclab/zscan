@@ -29,8 +29,7 @@ class NucleiTemplateClassifier:
             
             # A
             "alert-manager": r"Alert Manager",
-            "activemq": r"activemq[_-]|activemq\b|/activemq/",
-            "apisix": r"apisix[_-]|apisix\b|/apisix/",
+            "anchor-cms": r"Anchor CMS",
             "acexy": r"acexy[_-]|acexy\b|/acexy/",
             "artica": r"artica[_-]|artica\b|/artica/",
             "alibaba-metadata-service": r"Metadata Service",

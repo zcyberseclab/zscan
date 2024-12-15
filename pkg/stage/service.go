@@ -1,6 +1,7 @@
 package stage
 
 import (
+	"bufio"
 	"context"
 	"crypto/md5"
 	"crypto/tls"
@@ -78,6 +79,7 @@ type ServiceDetector struct {
 	pocDirs          string
 	pocCache         map[string]map[string]*POC
 	pocMux           sync.RWMutex
+	currentIP        string // 添加当前扫描的 IP
 }
 
 type ClientConfig struct {
@@ -206,6 +208,8 @@ func (sd *ServiceDetector) getRegexp(pattern string) (*regexp.Regexp, error) {
 }
 
 func (sd *ServiceDetector) DetectService(ip string, port int, protocol string) []ServiceInfo {
+	sd.currentIP = ip // 设置当前扫描的 IP
+
 	switch protocol {
 	case "tcp":
 		if httpResults := sd.detectHTTP(ip, port); len(httpResults) > 0 {
@@ -367,11 +371,13 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 		info = &ServiceInfo{
 			Banner:  string(body),
 			Headers: convertHeaders(resp.Header),
+			Port:    port,
 		}
 	} else {
 		// Set banner and headers for matched fingerprint
 		info.Banner = string(body)
 		info.Headers = convertHeaders(resp.Header)
+		info.Port = port
 	}
 
 	if strings.Contains(resp.Header.Get("Content-Type"), "text/html") {
@@ -893,6 +899,238 @@ func (sd *ServiceDetector) createAnalyzeFunc(L *lua.LState, serviceType string) 
 		newL := lua.NewState()
 		defer newL.Close()
 
+		// 注册 print 函数
+		newL.SetGlobal("print", newL.NewFunction(func(L *lua.LState) int {
+			args := make([]interface{}, L.GetTop())
+			for i := 1; i <= L.GetTop(); i++ {
+				args[i-1] = luaValueToGo(L.Get(i))
+			}
+			log.Print(args...)
+			return 0
+		}))
+
+		// 注册 log 模块
+		logModule := newL.NewTable()
+		newL.SetFuncs(logModule, map[string]lua.LGFunction{
+			"Printf": func(L *lua.LState) int {
+				format := L.CheckString(1)
+				args := make([]interface{}, L.GetTop()-1)
+				for i := 2; i <= L.GetTop(); i++ {
+					args[i-2] = luaValueToGo(L.Get(i))
+				}
+				log.Printf(format, args...)
+				return 0
+			},
+		})
+		newL.SetGlobal("log", logModule)
+
+		// 注册 http 模块
+		httpModule := newL.NewTable()
+		newL.SetFuncs(httpModule, map[string]lua.LGFunction{
+			"get": func(L *lua.LState) int {
+				url := L.CheckString(1)
+				options := L.CheckTable(2)
+
+				// 创建请求
+				req, err := http.NewRequest("GET", url, nil)
+				if err != nil {
+					L.Push(lua.LNil)
+					return 1
+				}
+
+				// 设置超时
+				timeout := 5 * time.Second
+				if timeoutValue := options.RawGetString("timeout"); timeoutValue != lua.LNil {
+					timeout = time.Duration(timeoutValue.(lua.LNumber)) * time.Second
+				}
+
+				// 设置请求头
+				if headers := options.RawGetString("headers"); headers != lua.LNil {
+					headersTable := headers.(*lua.LTable)
+					headersTable.ForEach(func(k lua.LValue, v lua.LValue) {
+						req.Header.Set(k.String(), v.String())
+					})
+				}
+
+				// 发送请求
+				client := &http.Client{Timeout: timeout}
+				resp, err := client.Do(req)
+				if err != nil {
+					L.Push(lua.LNil)
+					return 1
+				}
+				defer resp.Body.Close()
+
+				// 读取响应
+				body, err := io.ReadAll(resp.Body)
+				if err != nil {
+					L.Push(lua.LNil)
+					return 1
+				}
+
+				// 创建响应表
+				responseTable := L.NewTable()
+				responseTable.RawSetString("status", lua.LNumber(resp.StatusCode))
+				responseTable.RawSetString("body", lua.LString(string(body)))
+
+				// 设置响应头
+				headers := L.NewTable()
+				for k, v := range resp.Header {
+					headers.RawSetString(k, lua.LString(strings.Join(v, ",")))
+				}
+				responseTable.RawSetString("headers", headers)
+
+				L.Push(responseTable)
+				return 1
+			},
+			"post": func(L *lua.LState) int {
+				url := L.CheckString(1)
+				options := L.CheckTable(2)
+
+				// 获取 POST 数据
+				var body io.Reader
+				if data := options.RawGetString("data"); data != lua.LNil {
+					body = strings.NewReader(data.String())
+				}
+
+				// 创建请求
+				req, err := http.NewRequest("POST", url, body)
+				if err != nil {
+					L.Push(lua.LNil)
+					return 1
+				}
+
+				// 设置超时
+				timeout := 5 * time.Second
+				if timeoutValue := options.RawGetString("timeout"); timeoutValue != lua.LNil {
+					timeout = time.Duration(timeoutValue.(lua.LNumber)) * time.Second
+				}
+
+				// 设置请求头
+				if headers := options.RawGetString("headers"); headers != lua.LNil {
+					headersTable := headers.(*lua.LTable)
+					headersTable.ForEach(func(k lua.LValue, v lua.LValue) {
+						req.Header.Set(k.String(), v.String())
+					})
+				}
+
+				// 如果没有设置 Content-Type，默认设置为 application/x-www-form-urlencoded
+				if req.Header.Get("Content-Type") == "" {
+					req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+				}
+
+				// 发送请求
+				client := &http.Client{
+					Timeout: timeout,
+					Transport: &http.Transport{
+						TLSClientConfig: &tls.Config{
+							InsecureSkipVerify: true,
+						},
+						DisableKeepAlives: true,
+					},
+					CheckRedirect: func(req *http.Request, via []*http.Request) error {
+						return http.ErrUseLastResponse
+					},
+				}
+
+				resp, err := client.Do(req)
+				if err != nil {
+					log.Printf("HTTP POST error: %v", err)
+					L.Push(lua.LNil)
+					return 1
+				}
+				defer resp.Body.Close()
+
+				// 读取响应
+				respBody, err := io.ReadAll(resp.Body)
+				if err != nil {
+					log.Printf("Error reading response body: %v", err)
+					L.Push(lua.LNil)
+					return 1
+				}
+
+				// 创建响应表
+				responseTable := L.NewTable()
+				responseTable.RawSetString("status", lua.LNumber(resp.StatusCode))
+				responseTable.RawSetString("body", lua.LString(string(respBody)))
+
+				// 设置响应头
+				headers := L.NewTable()
+				for k, v := range resp.Header {
+					headers.RawSetString(k, lua.LString(strings.Join(v, ",")))
+				}
+				responseTable.RawSetString("headers", headers)
+
+				// 添加调试日志
+				log.Printf("POST request to %s", url)
+				log.Printf("Request headers: %v", req.Header)
+				log.Printf("Response status: %d", resp.StatusCode)
+				log.Printf("Response body: %s", string(respBody[:min(len(respBody), 200)]))
+
+				L.Push(responseTable)
+				return 1
+			},
+		})
+		newL.SetGlobal("http", httpModule)
+
+		// 注册 tcp 模块
+		tcpModule := newL.NewTable()
+		newL.SetFuncs(tcpModule, map[string]lua.LGFunction{
+			"connect": func(L *lua.LState) int {
+				host := L.CheckString(1)
+				port := L.CheckInt(2)
+				timeout := L.CheckInt(3)
+
+				// 创建连接
+				conn, err := net.DialTimeout("tcp",
+					fmt.Sprintf("%s:%d", host, port),
+					time.Duration(timeout)*time.Second)
+				if err != nil {
+					L.Push(lua.LNil)
+					return 1
+				}
+
+				// 创建连接对象
+				connTable := L.NewTable()
+				L.SetFuncs(connTable, map[string]lua.LGFunction{
+					"send": func(L *lua.LState) int {
+						data := L.CheckString(1)
+						_, err := conn.Write([]byte(data))
+						if err != nil {
+							L.Push(lua.LBool(false))
+							return 1
+						}
+						L.Push(lua.LBool(true))
+						return 1
+					},
+					"receive": func(L *lua.LState) int {
+						pattern := L.CheckString(1)
+						if pattern == "*l" {
+							// 读取一行
+							reader := bufio.NewReader(conn)
+							line, err := reader.ReadString('\n')
+							if err != nil {
+								L.Push(lua.LNil)
+								return 1
+							}
+							L.Push(lua.LString(strings.TrimRight(line, "\r\n")))
+							return 1
+						}
+						// 可以添加其他模式的支持
+						return 0
+					},
+					"close": func(L *lua.LState) int {
+						conn.Close()
+						return 0
+					},
+				})
+
+				L.Push(connTable)
+				return 1
+			},
+		})
+		newL.SetGlobal("tcp", tcpModule)
+
 		// Load the plugin script
 		scriptPath := fmt.Sprintf("plugins/%s.lua", serviceType)
 		scriptBytes, err := pluginFiles.ReadFile(scriptPath)
@@ -934,8 +1172,9 @@ func (sd *ServiceDetector) createAnalyzeFunc(L *lua.LState, serviceType string) 
 	}
 }
 
-// Update serviceInfoToLua to handle Types array
+// Update serviceInfoToLua to handle Types array and add IP
 func (sd *ServiceDetector) serviceInfoToLua(L *lua.LState, info *ServiceInfo) *lua.LTable {
+
 	tbl := L.NewTable()
 
 	// Convert Types array to Lua table
@@ -945,10 +1184,14 @@ func (sd *ServiceDetector) serviceInfoToLua(L *lua.LState, info *ServiceInfo) *l
 	}
 	tbl.RawSetString("Types", types)
 
+	// Add target IP from scanner context
+	tbl.RawSetString("IP", lua.LString(sd.currentIP)) // 添加当前扫描的 IP
+
 	// Convert all ServiceInfo fields
 	tbl.RawSetString("Version", lua.LString(info.Version))
 	tbl.RawSetString("Banner", lua.LString(info.Banner))
 	tbl.RawSetString("Protocol", lua.LString(info.Protocol))
+	tbl.RawSetString("Port", lua.LNumber(info.Port))
 	tbl.RawSetString("OS", lua.LString(info.OS))
 
 	// Convert Headers map - use lowercase "headers" to match Lua expectations
@@ -1039,7 +1282,7 @@ func (sd *ServiceDetector) extractSensitiveInfo(info *ServiceInfo) {
 	//nameRegex := regexp.MustCompile(`[\p{Han}]{2,4}`)
 	//allSensitiveInfo = append(allSensitiveInfo, nameRegex.FindAllString(info.Banner, -1)...)
 
-	addressRegex := regexp.MustCompile(`(?:[\p{Han}]{2,}(?:省|市|���|县|路|街道|号|楼|室))`)
+	addressRegex := regexp.MustCompile(`(?:[\p{Han}]{2,}(?:省|市|县|路|街道|号|楼|室))`)
 	allSensitiveInfo = append(allSensitiveInfo, addressRegex.FindAllString(info.Banner, -1)...)
 
 	info.SensitiveInfo = removeDuplicates(allSensitiveInfo)
@@ -1118,4 +1361,28 @@ func (sd *ServiceDetector) loadServicePOCs(serviceType string) (map[string]*POC,
 	sd.pocCache[serviceType] = pocs
 
 	return pocs, nil
+}
+
+// luaValueToGo 将 Lua 值转换为 Go 值
+func luaValueToGo(v lua.LValue) interface{} {
+	switch v.Type() {
+	case lua.LTNil:
+		return nil
+	case lua.LTBool:
+		return lua.LVAsBool(v)
+	case lua.LTNumber:
+		return float64(v.(lua.LNumber))
+	case lua.LTString:
+		return string(v.(lua.LString))
+	case lua.LTTable:
+		table := make(map[string]interface{})
+		v.(*lua.LTable).ForEach(func(key, value lua.LValue) {
+			if str, ok := key.(lua.LString); ok {
+				table[string(str)] = luaValueToGo(value)
+			}
+		})
+		return table
+	default:
+		return fmt.Sprintf("%v", v)
+	}
 }
