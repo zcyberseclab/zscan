@@ -79,7 +79,7 @@ type ServiceDetector struct {
 	pocDirs          string
 	pocCache         map[string]map[string]*POC
 	pocMux           sync.RWMutex
-	currentIP        string // 添加当前扫描的 IP
+	currentIP        string // Current scanning IP
 }
 
 type ClientConfig struct {
@@ -132,7 +132,7 @@ func NewServiceDetector(templatesDir string) *ServiceDetector {
 		DisableKeepAlives:  clientConfig.DisableKeepAlives,
 		TLSClientConfig: &tls.Config{
 			InsecureSkipVerify: true,
-			MinVersion:         tls.VersionTLS10,
+			MinVersion:         tls.VersionTLS12,
 			MaxVersion:         tls.VersionTLS13,
 			Renegotiation:      tls.RenegotiateOnceAsClient,
 			CipherSuites: []uint16{
@@ -148,20 +148,22 @@ func NewServiceDetector(templatesDir string) *ServiceDetector {
 			PreferServerCipherSuites: true,
 			SessionTicketsDisabled:   false,
 		},
+		ForceAttemptHTTP2: false,
 	}
 
 	client := &http.Client{
 		Transport: transport,
 		Timeout:   clientConfig.Timeout,
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
-			// Allow up to 3 redirects
 			if len(via) >= 3 {
 				return fmt.Errorf("stopped after 3 redirects")
 			}
-			// Copy original headers to redirected request
+
 			for key, val := range via[0].Header {
 				req.Header[key] = val
 			}
+
+			req.Host = req.URL.Host
 			return nil
 		},
 	}
@@ -208,7 +210,7 @@ func (sd *ServiceDetector) getRegexp(pattern string) (*regexp.Regexp, error) {
 }
 
 func (sd *ServiceDetector) DetectService(ip string, port int, protocol string) []ServiceInfo {
-	sd.currentIP = ip // 设置当前扫描的 IP
+	sd.currentIP = ip // Set current scanning IP
 
 	switch protocol {
 	case "tcp":
@@ -255,13 +257,22 @@ func (sd *ServiceDetector) detectHTTP(ip string, port int) []ServiceInfo {
 		return []ServiceInfo{}
 	}
 
-	var results []ServiceInfo
+	isIP := net.ParseIP(ip) != nil
 	var url string
+	var results []ServiceInfo
 
-	if strings.Contains(fmt.Sprint(port), "443") {
-		url = fmt.Sprintf("https://%s:%d", ip, port)
+	if isIP {
+		if strings.Contains(fmt.Sprint(port), "443") {
+			url = fmt.Sprintf("https://%s:%d", ip, port)
+		} else {
+			url = fmt.Sprintf("http://%s:%d", ip, port)
+		}
 	} else {
-		url = fmt.Sprintf("http://%s:%d", ip, port)
+		if strings.Contains(fmt.Sprint(port), "443") {
+			url = fmt.Sprintf("https://%s", ip)
+		} else {
+			url = fmt.Sprintf("http://%s", ip)
+		}
 	}
 
 	if info := sd.checkURL(url, port); info != nil && len(info.Banner) > 0 {
@@ -280,7 +291,15 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 		return nil
 	}
 
-	req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+	req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+	req.Header.Set("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7")
+	req.Header.Set("Accept-Language", "en-US,en;q=0.9")
+	req.Header.Set("Accept-Encoding", "gzip, deflate, br")
+	req.Header.Set("Connection", "keep-alive")
+	req.Header.Set("Upgrade-Insecure-Requests", "1")
+
+	host := req.URL.Hostname()
+	req.Header.Set("Host", host)
 
 	resp, err := sd.client.Do(req)
 	if err != nil {
