@@ -1707,5 +1707,10 @@
     "headers": [
       "Set-Cookie: mybb"
     ]
+  },
+  "zhiban-erp": {
+    "body": [
+      "zbintelsng.png"
+    ]
   }
 }

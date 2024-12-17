@@ -2,6 +2,7 @@ package stage
 
 import (
 	"bufio"
+	"compress/gzip"
 	"context"
 	"crypto/md5"
 	"crypto/tls"
@@ -319,8 +320,26 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 		defer resp.Body.Close()
 	}
 
-	body, err := io.ReadAll(io.LimitReader(resp.Body, 1024*1024))
+	var bodyReader io.Reader
+
+	// Check for gzip encoding
+	switch resp.Header.Get("Content-Encoding") {
+	case "gzip":
+		gzReader, err := gzip.NewReader(resp.Body)
+		if err != nil {
+			log.Printf("Error creating gzip reader: %v", err)
+			return nil
+		}
+		defer gzReader.Close()
+		bodyReader = gzReader
+	default:
+		bodyReader = resp.Body
+	}
+
+	// Read the response body
+	body, err := io.ReadAll(io.LimitReader(bodyReader, 1024*1024))
 	if err != nil {
+		log.Printf("Error reading response body: %v", err)
 		return nil
 	}
 
