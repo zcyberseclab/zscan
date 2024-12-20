@@ -90,6 +90,27 @@ Available options:
 - `-output`: Output format (json, html, or md)
 - `-version`: Show version information
 - `-port`: Custom ports to scan (comma-separated, e.g., '80,443,8080')
+- `-dirbrute`: Enable directory bruteforce scanning for web services
+- `-concurrent`: Number of concurrent requests for directory bruteforce (default: 20)
+
+### Examples
+
+```bash
+# Basic scan
+zscan -target 192.168.1.1
+
+# Scan with custom ports
+zscan -target example.com -port 80,443,8080
+
+# Directory bruteforce scan
+zscan -target example.com -dirbrute
+
+# Directory bruteforce with custom concurrency
+zscan -target example.com -dirbrute -concurrent 30
+
+# Full scan with all features
+zscan -target example.com -geo -dirbrute -concurrent 30 -port 80,443,8080 -output json
+```
 
 ### Using as a Go Library
 
