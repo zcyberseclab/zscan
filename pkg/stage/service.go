@@ -2,6 +2,7 @@ package stage
 
 import (
 	"bufio"
+	"bytes"
 	"compress/gzip"
 	"context"
 	"crypto/md5"
@@ -12,13 +13,16 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"math"
 	"net"
 	"net/http"
 	"os"
 	"path/filepath"
 	"regexp"
+	"strconv"
 	"strings"
 	"sync"
+	"sync/atomic"
 	"time"
 
 	"embed"
@@ -32,6 +36,9 @@ var configFiles embed.FS
 
 //go:embed plugins/*.lua
 var pluginFiles embed.FS
+
+//go:embed assets/dirwordlist.txt
+var dirwordlist string
 
 // Fingerprint represents a service fingerprint
 type Fingerprint struct {
@@ -80,15 +87,19 @@ type ServiceDetector struct {
 	pocDirs          string
 	pocCache         map[string]map[string]*POC
 	pocMux           sync.RWMutex
-	currentIP        string // Current scanning IP
+	currentIP        string
+	dirBruteWordlist []string // Directory bruteforce wordlist (lazy loaded)
+	dirBruteInit     sync.Once
 }
 
 type ClientConfig struct {
-	Timeout           time.Duration
-	MaxIdleConns      int
-	IdleConnTimeout   time.Duration
-	MaxConnsPerHost   int
-	DisableKeepAlives bool
+	Timeout            time.Duration
+	MaxIdleConns       int
+	IdleConnTimeout    time.Duration
+	MaxConnsPerHost    int
+	DisableKeepAlives  bool
+	EnableDirBrute     bool // Enable directory bruteforce
+	DirBruteConcurrent int  // Directory bruteforce concurrency, default 20
 }
 
 func NewServiceDetector(templatesDir string) *ServiceDetector {
@@ -118,11 +129,13 @@ func NewServiceDetector(templatesDir string) *ServiceDetector {
 	}
 
 	clientConfig := ClientConfig{
-		Timeout:           5 * time.Second,
-		MaxIdleConns:      100,
-		IdleConnTimeout:   90 * time.Second,
-		MaxConnsPerHost:   10,
-		DisableKeepAlives: true,
+		Timeout:            5 * time.Second,
+		MaxIdleConns:       100,
+		IdleConnTimeout:    90 * time.Second,
+		MaxConnsPerHost:    10,
+		DisableKeepAlives:  true,
+		EnableDirBrute:     false,
+		DirBruteConcurrent: 20,
 	}
 
 	transport := &http.Transport{
@@ -405,14 +418,12 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 
 	info := sd.matchFingerprint(detCtx)
 	if info == nil {
-		// Create ServiceInfo when no fingerprint matched
 		info = &ServiceInfo{
 			Banner:  string(body),
 			Headers: convertHeaders(resp.Header),
 			Port:    port,
 		}
 	} else {
-		// Set banner and headers for matched fingerprint
 		info.Banner = string(body)
 		info.Headers = convertHeaders(resp.Header)
 		info.Port = port
@@ -485,6 +496,16 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 
 			// Wait for all POCs to complete
 			wg.Wait()
+		}
+	}
+
+	// 添加目录爆破调用
+	if sd.clientConfig.EnableDirBrute {
+		if dirs := sd.bruteDirs(url); len(dirs) > 0 {
+			if info.Extra == nil {
+				info.Extra = make(map[string]string)
+			}
+			info.Extra["directories"] = strings.Join(dirs, "\n")
 		}
 	}
 
@@ -1111,7 +1132,6 @@ func (sd *ServiceDetector) createAnalyzeFunc(L *lua.LState, serviceType string) 
 		})
 		newL.SetGlobal("http", httpModule)
 
-		// 注册 tcp 模块
 		tcpModule := newL.NewTable()
 		newL.SetFuncs(tcpModule, map[string]lua.LGFunction{
 			"connect": func(L *lua.LState) int {
@@ -1119,7 +1139,6 @@ func (sd *ServiceDetector) createAnalyzeFunc(L *lua.LState, serviceType string) 
 				port := L.CheckInt(2)
 				timeout := L.CheckInt(3)
 
-				// 创建连接
 				conn, err := net.DialTimeout("tcp",
 					fmt.Sprintf("%s:%d", host, port),
 					time.Duration(timeout)*time.Second)
@@ -1399,7 +1418,7 @@ func (sd *ServiceDetector) loadServicePOCs(serviceType string) (map[string]*POC,
 	return pocs, nil
 }
 
-// luaValueToGo 将 Lua 值转换为 Go 值
+// luaValueToGo converts Lua value to Go value
 func luaValueToGo(v lua.LValue) interface{} {
 	switch v.Type() {
 	case lua.LTNil:
@@ -1421,4 +1440,237 @@ func luaValueToGo(v lua.LValue) interface{} {
 	default:
 		return fmt.Sprintf("%v", v)
 	}
+}
+
+func (sd *ServiceDetector) bruteDirs(baseURL string) []string {
+	// Load wordlist if needed
+	sd.loadWordlist()
+
+	if len(sd.dirBruteWordlist) == 0 {
+		log.Printf("[DirBrute] No wordlist loaded, skipping directory bruteforce")
+		return nil
+	}
+
+	// Preprocess wordlist, remove comments and empty lines
+	var cleanWordlist []string
+	for _, path := range sd.dirBruteWordlist {
+		path = strings.TrimSpace(path)
+		if path == "" || strings.HasPrefix(path, "#") {
+			continue
+		}
+		cleanWordlist = append(cleanWordlist, path)
+	}
+
+	log.Printf("[DirBrute] Starting directory bruteforce for %s with %d words", baseURL, len(cleanWordlist))
+	startTime := time.Now()
+
+	var foundDirs []string
+	var foundMux sync.Mutex
+	var wg sync.WaitGroup
+	concurrent := sd.clientConfig.DirBruteConcurrent
+	if concurrent <= 0 {
+		concurrent = 20
+	}
+	log.Printf("[DirBrute] Using concurrent workers: %d", concurrent)
+
+	semaphore := make(chan struct{}, concurrent)
+	var stopBrute atomic.Bool
+	var totalRequests atomic.Int32
+	var successRequests atomic.Int32
+
+	bruteClient := &http.Client{
+		Timeout: 3 * time.Second,
+		Transport: &http.Transport{
+			TLSClientConfig: &tls.Config{
+				InsecureSkipVerify: true,
+			},
+			MaxIdleConns:       100,
+			IdleConnTimeout:    3 * time.Second,
+			DisableCompression: true,
+			DisableKeepAlives:  false,
+			MaxConnsPerHost:    20,
+		},
+		CheckRedirect: func(req *http.Request, via []*http.Request) error {
+			return http.ErrUseLastResponse
+		},
+	}
+
+	// 先发送一个随机路径请求，用于后续对比
+	randomPath := fmt.Sprintf("not_exist_%d", time.Now().UnixNano())
+	baseReq, _ := http.NewRequest("GET", fmt.Sprintf("%s/%s", baseURL, randomPath), nil)
+	baseReq.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0")
+	baseResp, err := bruteClient.Do(baseReq)
+	var baseBody []byte
+	var baseStatusCode int
+	if err == nil {
+		defer baseResp.Body.Close()
+		baseStatusCode = baseResp.StatusCode
+		baseBody, _ = io.ReadAll(baseResp.Body)
+	}
+
+	for _, path := range cleanWordlist {
+		if stopBrute.Load() {
+			log.Printf("[DirBrute] Bruteforce stopped due to error")
+			break
+		}
+
+		wg.Add(1)
+		semaphore <- struct{}{}
+
+		go func(path string) {
+			defer wg.Done()
+			defer func() { <-semaphore }()
+
+			url := fmt.Sprintf("%s/%s", baseURL, path)
+			req, err := http.NewRequest("GET", url, nil)
+			if err != nil {
+				return
+			}
+
+			req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0")
+
+			totalRequests.Add(1)
+			resp, err := bruteClient.Do(req)
+			if err != nil {
+				if !strings.Contains(err.Error(), "context deadline exceeded") {
+					log.Printf("[DirBrute] Error scanning %s: %v", url, err)
+					stopBrute.Store(true)
+				}
+				return
+			}
+			defer resp.Body.Close()
+
+			// 读取响应内容
+			body, err := io.ReadAll(resp.Body)
+			if err != nil {
+				return
+			}
+
+			// 验证是否为真实目录
+			isReal := false
+			switch resp.StatusCode {
+			case http.StatusOK: // 200
+				// 如果是200，进行更严格的验证
+				if len(baseBody) > 0 && !bytes.Equal(body, baseBody) {
+					// 检查内容长度
+					if len(body) > 0 {
+						// 检查是否包含常见的404页面特征
+						if !strings.Contains(strings.ToLower(string(body)), "404") &&
+							!strings.Contains(strings.ToLower(string(body)), "not found") &&
+							!strings.Contains(strings.ToLower(string(body)), "error") {
+							isReal = true
+						}
+					}
+				}
+
+			case http.StatusMovedPermanently, http.StatusFound: // 301, 302
+				// 对于重定向，验证Location头
+				location := resp.Header.Get("Location")
+				if location != "" {
+					// 检查重定向是否是相对路径或绝对路径
+					if strings.HasPrefix(location, "/") || strings.HasPrefix(location, "http") {
+						// 确保重定向不是到错误页面
+						if !strings.Contains(strings.ToLower(location), "error") &&
+							!strings.Contains(strings.ToLower(location), "404") {
+							isReal = true
+						}
+					}
+				}
+
+			case http.StatusForbidden: // 403
+				// 只有当基准请求不是403时，才认为这个403是有效的
+				if baseStatusCode != http.StatusForbidden {
+					// 进一步验证响应内容是否不同
+					if len(baseBody) > 0 && !bytes.Equal(body, baseBody) {
+						// 检查响应大小是否明显不同
+						if math.Abs(float64(len(body)-len(baseBody))) > 100 {
+							isReal = true
+						}
+					}
+				} else {
+					// 如果基准请求也是403，需要进行更严格的验证
+					contentLength := resp.Header.Get("Content-Length")
+					baseContentLength := baseResp.Header.Get("Content-Length")
+					// 内容长度差异必须超过阈值
+					cl1, _ := strconv.Atoi(contentLength)
+					cl2, _ := strconv.Atoi(baseContentLength)
+					if math.Abs(float64(cl1-cl2)) > 100 {
+						isReal = true
+					}
+				}
+			}
+
+			if isReal {
+				log.Printf("[DirBrute] Found: %s [%d] (baseStatus: %d)", path, resp.StatusCode, baseStatusCode)
+				log.Printf("[DirBrute] Response Headers: %v", resp.Header)
+				if len(body) < 200 {
+					log.Printf("[DirBrute] Response Body: %s", string(body))
+				}
+
+				successRequests.Add(1)
+				foundMux.Lock()
+				fullURL := fmt.Sprintf("%s/%s", baseURL, path)
+				info := fmt.Sprintf("%s [%d] -> %s\n  Size: %d bytes",
+					path,
+					resp.StatusCode,
+					fullURL,
+					len(body))
+
+				// 如果有重定向，添加重定向信息
+				if location := resp.Header.Get("Location"); location != "" {
+					info += fmt.Sprintf("\n  Redirect: %s", location)
+				}
+
+				// 如果是200响应，尝试提取标题
+				if resp.StatusCode == http.StatusOK {
+					title := extractTitle(body)
+					if title != "" {
+						info += fmt.Sprintf("\n  Title: %s", title)
+					}
+				}
+
+				foundDirs = append(foundDirs, info)
+				foundMux.Unlock()
+			}
+		}(path)
+	}
+
+	wg.Wait()
+	duration := time.Since(startTime)
+	log.Printf("[DirBrute] Completed directory bruteforce for %s", baseURL)
+	log.Printf("[DirBrute] Statistics:")
+	log.Printf("  - Duration: %v", duration)
+	log.Printf("  - Total Requests: %d", totalRequests.Load())
+	log.Printf("  - Successful Paths: %d", successRequests.Load())
+	log.Printf("  - Request Rate: %.2f req/s", float64(totalRequests.Load())/duration.Seconds())
+
+	return foundDirs
+}
+
+// SetDirBruteConfig sets directory bruteforce configuration
+func (sd *ServiceDetector) SetDirBruteConfig(enable bool, concurrent int) {
+	sd.clientConfig.EnableDirBrute = enable
+	sd.clientConfig.DirBruteConcurrent = concurrent
+	// Reset dirBruteInit to allow reloading wordlist if needed
+	sd.dirBruteInit = sync.Once{}
+}
+
+// loadWordlist loads the directory bruteforce wordlist if not already loaded
+func (sd *ServiceDetector) loadWordlist() {
+	sd.dirBruteInit.Do(func() {
+		if !sd.clientConfig.EnableDirBrute {
+			return
+		}
+
+		wordlist := []string{}
+		for _, line := range strings.Split(strings.TrimSpace(dirwordlist), "\n") {
+			line = strings.TrimSpace(line)
+			if line == "" || strings.HasPrefix(line, "#") {
+				continue
+			}
+			wordlist = append(wordlist, line)
+		}
+		sd.dirBruteWordlist = wordlist
+		log.Printf("[DirBrute] Loaded %d words from wordlist", len(wordlist))
+	})
 }

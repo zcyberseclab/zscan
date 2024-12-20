@@ -50,6 +50,8 @@ func main() {
 	versionFlag := flag.Bool("version", false, "Show version information")
 	outputFormat := flag.String("output", "", "Output format: json, html, or md")
 	portList := flag.String("port", "", "Custom ports to scan (comma-separated, e.g., '80,443,8080')")
+	enableDirBrute := flag.Bool("dirbrute", false, "Enable directory bruteforce")
+	dirBruteConcurrent := flag.Int("concurrent", 20, "Directory bruteforce concurrent number")
 	flag.Parse()
 
 	if *versionFlag {
@@ -154,6 +156,8 @@ func main() {
 			log.Printf("Failed to create scanner for target %s: %v", target, err)
 			continue
 		}
+
+		scanner.ServiceDetector.SetDirBruteConfig(*enableDirBrute, *dirBruteConcurrent)
 
 		results, err := scanner.Scan(target)
 		if err != nil {

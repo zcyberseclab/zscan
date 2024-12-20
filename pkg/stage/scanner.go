@@ -19,14 +19,14 @@ type Config struct {
 }
 
 type Scanner struct {
-	config       Config
-	detector     *ServiceDetector
-	ipInfo       *IPInfo
-	censysClient *CensysClient
-	enableGeo    bool
-	enableCensys bool
-	semaphore    chan struct{}
-	customPorts  []int
+	config          Config
+	ServiceDetector *ServiceDetector
+	ipInfo          *IPInfo
+	censysClient    *CensysClient
+	enableGeo       bool
+	enableCensys    bool
+	semaphore       chan struct{}
+	customPorts     []int
 }
 
 func NewScanner(
@@ -61,14 +61,14 @@ func NewScanner(
 	}
 
 	return &Scanner{
-		config:       config,
-		detector:     detector,
-		ipInfo:       ipInfo,
-		censysClient: censysClient,
-		enableGeo:    enableGeo,
-		enableCensys: enableCensys,
-		semaphore:    make(chan struct{}, 10),
-		customPorts:  customPorts,
+		config:          config,
+		ServiceDetector: detector,
+		ipInfo:          ipInfo,
+		censysClient:    censysClient,
+		enableGeo:       enableGeo,
+		enableCensys:    enableCensys,
+		semaphore:       make(chan struct{}, 10),
+		customPorts:     customPorts,
 	}, nil
 }
 
@@ -76,8 +76,8 @@ func (s *Scanner) Close() {
 	if s.ipInfo != nil {
 		s.ipInfo.Close()
 	}
-	if s.detector != nil {
-		s.detector.Close()
+	if s.ServiceDetector != nil {
+		s.ServiceDetector.Close()
 	}
 }
 
@@ -315,7 +315,7 @@ func (s *Scanner) scanTCPPort(target string, port int, wg *sync.WaitGroup, semap
 	defer func() { <-semaphore }()
 
 	if ScanTCPPort(target, port) {
-		services := s.detector.DetectService(target, port, "tcp")
+		services := s.ServiceDetector.DetectService(target, port, "tcp")
 		for _, service := range services {
 			resultsChan <- service
 		}
@@ -328,7 +328,7 @@ func (s *Scanner) scanUDPPort(target string, port int, wg *sync.WaitGroup, semap
 	defer func() { <-semaphore }()
 
 	if ScanUDPPort(target, port) {
-		services := s.detector.DetectService(target, port, "udp")
+		services := s.ServiceDetector.DetectService(target, port, "udp")
 		for _, service := range services {
 			resultsChan <- service
 		}
