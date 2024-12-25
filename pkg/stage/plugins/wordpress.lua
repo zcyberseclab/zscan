@@ -1,23 +1,5 @@
 function Analyze(info)
     info.Extra = info.Extra or {}
-
-    -- 尝试从 banner获取版本
-    local banner_info = info.Banner
-    if banner_info then
-        info.Version = string.match(banner_info, "min%.css%?ver=([0-9.]+)")
-        if info.Version then
-            return info
-        end
-        info.Version = string.match(banner_info, "min%.css%?ver=([0-9.]+)")
-        if info.Version then
-            return info
-        end
-    end
-    
-end
-
-function Analyze(info)
-    info.Extra = info.Extra or {}
     
     -- 尝试从 banner获取版本
     local banner_info = info.Banner
