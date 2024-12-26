@@ -11,7 +11,7 @@ function Analyze(info)
   if serverHeader then
  
     local apacheversion = string.match(serverHeader, "Apache/([%d%.]+)")
-    info.version = apacheversion
+    info.Version = apacheversion
     info.Extra["Apache"] = apacheversion
 
     local opensslVer = string.match(serverHeader, "OpenSSL/([%d%.]+)")
