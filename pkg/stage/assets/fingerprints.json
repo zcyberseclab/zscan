@@ -1712,5 +1712,10 @@
     "body": [
       "zbintelsng.png"
     ]
+  },
+  "pingcode": {
+    "body": [
+      "(?i)PingCode"
+    ]
   }
 }
