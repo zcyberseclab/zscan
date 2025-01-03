@@ -1,11 +1,13 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"flag"
 	"fmt"
 	"html"
 	"log"
+	"net/http"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -52,6 +54,7 @@ func main() {
 	portList := flag.String("port", "", "Custom ports to scan (comma-separated, e.g., '80,443,8080')")
 	enableDirBrute := flag.Bool("dirbrute", false, "Enable directory bruteforce")
 	dirBruteConcurrent := flag.Int("concurrent", 20, "Directory bruteforce concurrent number")
+	reportURL := flag.String("report-url", "", "URL to report scan results")
 	flag.Parse()
 
 	if *versionFlag {
@@ -116,66 +119,54 @@ func main() {
 	startTime := time.Now()
 	var allResults []stage.Node
 
+	scanner, err := stage.NewScanner(
+		*configPath,
+		*templatesDir,
+		*enableGeo,
+		*enableCensys,
+		*censysAPIKey,
+		*censysSecret,
+		customPorts,
+	)
+	if err != nil {
+		log.Fatalf("Failed to create scanner: %v", err)
+	}
+	defer scanner.Close()
+
+	scanner.ServiceDetector.SetDirBruteConfig(*enableDirBrute, *dirBruteConcurrent)
+
 	for _, t := range targets {
 		target := t
-		var targetPorts []int
-
 		if strings.Contains(t, ":") {
 			parts := strings.Split(t, ":")
 			target = parts[0]
-
-			portStrings := strings.Split(parts[1], ",")
-			for _, portStr := range portStrings {
-				if port, err := strconv.Atoi(strings.TrimSpace(portStr)); err == nil {
-					if port > 0 && port <= 65535 {
-						targetPorts = append(targetPorts, port)
-					} else {
-						log.Printf("Warning: Invalid port number %d for target %s (must be 1-65535)", port, target)
-					}
-				} else {
-					log.Printf("Warning: Invalid port format for target %s: %s", target, portStr)
-				}
-			}
 		}
-
-		portsToUse := customPorts
-		if len(targetPorts) > 0 {
-			portsToUse = targetPorts
-		}
-
-		scanner, err := stage.NewScanner(
-			*configPath,
-			*templatesDir,
-			*enableGeo,
-			*enableCensys,
-			*censysAPIKey,
-			*censysSecret,
-			portsToUse,
-		)
-		if err != nil {
-			log.Printf("Failed to create scanner for target %s: %v", target, err)
-			continue
-		}
-
-		scanner.ServiceDetector.SetDirBruteConfig(*enableDirBrute, *dirBruteConcurrent)
 
 		results, err := scanner.Scan(target)
 		if err != nil {
 			log.Printf("Scan failed for target %s: %v", target, err)
 			continue
 		}
-		scanner.Close()
-		allResults = append(allResults, results...)
-	}
 
-	if *outputFormat != "" {
-		if err := saveResults(allResults, *outputFormat); err != nil {
-			log.Printf("Error saving results: %v", err)
+		if *outputFormat != "" {
+			if err := saveResults(results, *outputFormat); err != nil {
+				log.Printf("Error saving results for target %s: %v", target, err)
+			}
+		} else {
+			if err := stage.PrintResults(results); err != nil {
+				log.Printf("Error printing results for target %s: %v", target, err)
+			}
 		}
-	} else {
-		if err := stage.PrintResults(allResults); err != nil {
-			log.Printf("Error printing results: %v", err)
+
+		if *reportURL != "" {
+			if err := reportResults(results, *reportURL); err != nil {
+				log.Printf("Error reporting results for target %s: %v", target, err)
+			} else {
+				log.Printf("Successfully reported results for target %s", target)
+			}
 		}
+
+		allResults = append(allResults, results...)
 	}
 
 	duration := time.Since(startTime)
@@ -183,6 +174,10 @@ func main() {
 }
 
 func saveResults(results []stage.Node, format string) error {
+	if len(results) == 0 {
+		return fmt.Errorf("no results to save")
+	}
+
 	outputDir := "output"
 	if err := os.MkdirAll(outputDir, 0755); err != nil {
 		return fmt.Errorf("failed to create output directory: %v", err)
@@ -269,4 +264,27 @@ func jsonToMarkdown(jsonData []byte, filename string) error {
 	}
 
 	return os.WriteFile(filename, []byte(md.String()), 0644)
+}
+
+func reportResults(results []stage.Node, reportURL string) error {
+	if reportURL == "" {
+		return nil
+	}
+
+	jsonData, err := json.Marshal(results)
+	if err != nil {
+		return fmt.Errorf("failed to marshal results for reporting: %v", err)
+	}
+
+	resp, err := http.Post(reportURL, "application/json", bytes.NewBuffer(jsonData))
+	if err != nil {
+		return fmt.Errorf("failed to send report: %v", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("report server returned non-200 status code: %d", resp.StatusCode)
+	}
+
+	return nil
 }
