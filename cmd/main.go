@@ -117,7 +117,6 @@ func main() {
 	}
 
 	startTime := time.Now()
-	var allResults []stage.Node
 
 	scanner, err := stage.NewScanner(
 		*configPath,
@@ -165,8 +164,6 @@ func main() {
 				log.Printf("Successfully reported results for target %s", target)
 			}
 		}
-
-		allResults = append(allResults, results...)
 	}
 
 	duration := time.Since(startTime)
