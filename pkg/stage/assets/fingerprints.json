@@ -1174,7 +1174,7 @@
       "(?i)confluence"
     ],
     "body": [
-      "(?i)confluence"
+      "(?i)confluence-"
     ]
   },
   "cacti": {
@@ -1429,7 +1429,8 @@
   },
   "jira": {
     "body": [
-      "(?i)jira"
+      "(?i)atlassian.jira",
+      "(?i)Jira had problems starting up"
     ]
   },
   "joomla": {
