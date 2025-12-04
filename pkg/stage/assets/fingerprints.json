@@ -2838,7 +2838,12 @@
   },
   "gatsby": {
     "body": [
-      "Gatsby"
+      "Gatsby",
+      "gatsby-",
+      "___gatsby"
+    ],
+    "headers": [
+      "x-gatsby-"
     ]
   },
   "magento": {
@@ -10310,6 +10315,71 @@
     ],
     "tags": [
       "tunnel"
+    ]
+  },
+  "nextjs": {
+    "body": [
+      "_next/static",
+      "__NEXT_DATA__",
+      "/_next/",
+      "next/dist"
+    ],
+    "headers": [
+      "x-nextjs-",
+      "x-powered-by: Next.js"
+    ]
+  },
+  "react": {
+    "body": [
+      "react-root",
+      "__REACT_DEVTOOLS_GLOBAL_HOOK__",
+      "data-reactroot",
+      "react.development.js",
+      "react.production.min.js"
+    ]
+  },
+  "vue": {
+    "body": [
+      "__VUE__",
+      "data-v-",
+      "vue.runtime",
+      "vue.global"
+    ]
+  },
+  "angular": {
+    "body": [
+      "ng-version",
+      "ng-app",
+      "angular.js",
+      "angular.min.js"
+    ]
+  },
+  "nuxtjs": {
+    "body": [
+      "__NUXT__",
+      "_nuxt/",
+      "nuxt.config"
+    ]
+  },
+  "remix": {
+    "body": [
+      "__remixContext",
+      "remix.run"
+    ]
+  },
+  "svelte": {
+    "body": [
+      "svelte-",
+      "__svelte"
+    ]
+  },
+  "astro": {
+    "body": [
+      "astro-",
+      "data-astro"
+    ],
+    "headers": [
+      "x-astro-"
     ]
   }
 }

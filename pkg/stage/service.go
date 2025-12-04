@@ -1014,7 +1014,7 @@ func (sd *ServiceDetector) detectOS(info ServiceInfo) string {
 func (sd *ServiceDetector) detectOSFromBanner(banner string) string {
 	lowerBanner := strings.ToLower(banner)
 
-	// Linux 发行版
+ 
 	if strings.Contains(lowerBanner, "ubuntu") {
 		return "ubuntu"
 	}
@@ -1046,7 +1046,7 @@ func (sd *ServiceDetector) detectOSFromBanner(banner string) string {
 		return "raspbian"
 	}
 
-	// BSD
+ 
 	if strings.Contains(lowerBanner, "freebsd") {
 		return "freebsd"
 	}
@@ -1057,7 +1057,7 @@ func (sd *ServiceDetector) detectOSFromBanner(banner string) string {
 		return "netbsd"
 	}
 
-	// 网络设备 - Cisco
+ 
 	if strings.Contains(lowerBanner, "cisco") {
 		if strings.Contains(lowerBanner, "ios-xe") || strings.Contains(lowerBanner, "ios xe") {
 			return "cisco-ios-xe"
@@ -1074,42 +1074,42 @@ func (sd *ServiceDetector) detectOSFromBanner(banner string) string {
 		return "cisco-ios"
 	}
 
-	// 网络设备 - Huawei
+ 
 	if strings.Contains(lowerBanner, "huawei") || strings.Contains(lowerBanner, "vrp") {
 		return "huawei-vrp"
 	}
 
-	// 网络设备 - H3C
+ 
 	if strings.Contains(lowerBanner, "comware") || strings.Contains(lowerBanner, "h3c") {
 		return "h3c-comware"
 	}
 
-	// 网络设备 - Juniper
+ 
 	if strings.Contains(lowerBanner, "junos") || strings.Contains(lowerBanner, "juniper") {
 		return "juniper-junos"
 	}
 
-	// 网络设备 - Fortinet
+ 
 	if strings.Contains(lowerBanner, "fortigate") || strings.Contains(lowerBanner, "fortios") {
 		return "fortinet-fortios"
 	}
 
-	// 网络设备 - Palo Alto
+ 
 	if strings.Contains(lowerBanner, "pan-os") || strings.Contains(lowerBanner, "palo alto") {
 		return "paloalto-panos"
 	}
 
-	// 网络设备 - MikroTik
+ 
 	if strings.Contains(lowerBanner, "mikrotik") || strings.Contains(lowerBanner, "routeros") {
 		return "mikrotik-routeros"
 	}
 
-	// 网络设备 - Arista
+ 
 	if strings.Contains(lowerBanner, "arista") || strings.Contains(lowerBanner, "eos") {
 		return "arista-eos"
 	}
 
-	// 网络设备 - 国产
+ 
 	if strings.Contains(lowerBanner, "ruijie") || strings.Contains(lowerBanner, "锐捷") {
 		return "ruijie"
 	}
@@ -1137,9 +1137,6 @@ func (sd *ServiceDetector) detectOSFromBanner(banner string) string {
 	if strings.Contains(lowerBanner, "legendsec") || strings.Contains(lowerBanner, "网御星云") {
 		return "legendsec"
 	}
-	if strings.Contains(lowerBanner, "array") {
-		return "array"
-	}
 	if strings.Contains(lowerBanner, "radware") {
 		return "radware"
 	}
@@ -1153,7 +1150,7 @@ func (sd *ServiceDetector) detectOSFromBanner(banner string) string {
 		return "citrix-netscaler"
 	}
 
-	// 通用 Linux 标识
+ 
 	if strings.Contains(lowerBanner, "linux") {
 		return "linux"
 	}
