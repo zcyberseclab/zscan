@@ -1,0 +1,10 @@
+name: druid-monitor-unauthaccess
+rules:
+  - method: GET
+    path: /druid/index.html
+    expression: |
+      response.status == 200 && response.body.bcontains(b"Druid Stat Index") && response.body.bcontains(b"DruidVersion") && response.body.bcontains(b"DruidDrivers")
+severity:
+  medium
+type: 
+  unauthaccess

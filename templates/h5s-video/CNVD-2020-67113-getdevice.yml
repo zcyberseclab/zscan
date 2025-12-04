@@ -1,0 +1,10 @@
+cve-id: CNVD-2020-67113-GETDEVICE
+rules:
+  - method: GET
+    path: /api/v1/GetDevice
+    expression: 'response.status == 200 && response.content_type.contains("json") && response.body.bcontains(b"H5_DEV") && response.body.bcontains(b"strUser") && response.body.bcontains(b"strPasswd")'
+severity:
+  critical
+type: 
+  unauthaccess
+

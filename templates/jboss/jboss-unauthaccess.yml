@@ -1,0 +1,11 @@
+cve-id: jboss-unauthaccess
+rules:
+  - method: GET
+    path: /jmx-console/
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(b"jboss.management.local") && response.body.bcontains(b"jboss.web")
+severity:
+  critical
+type: 
+  unauthaccess

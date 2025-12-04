@@ -1,0 +1,10 @@
+cve-id: CNVD-2021-10543
+rules:
+  - method: GET
+    path: "/authenticationserverservlet"
+    expression: |
+      response.status == 200 && "<username>(.*?)</username>".bmatches(response.body) && "<password>(.*?)</password>".bmatches(response.body)
+severity:
+  high
+type: 
+  infoleak

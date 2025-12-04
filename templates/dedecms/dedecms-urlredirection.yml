@@ -1,0 +1,12 @@
+cve-id: dedecms-urlredirection
+rules:
+  - method: GET
+    path: >-
+      /plus/download.php?open=1&link=aHR0cHM6Ly93d3cuZHUxeDNyMTIuY29t
+    follow_redirects: false
+    expression: >
+      response.status == 302 && response.headers["location"] == "https://www.du1x3r12.com"
+severity:
+  critical
+type: 
+  urlredirection

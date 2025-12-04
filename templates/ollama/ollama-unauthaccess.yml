@@ -1,0 +1,8 @@
+cve-id: ollama-unauthaccess
+rules:
+- method: GET
+  path: /api/tags
+  expression: 'response.body.bcontains(b"models") && response.status == 200'
+severity: high
+type: unauthaccess
+

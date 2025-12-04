@@ -1,0 +1,8 @@
+cve-id: easycvr-userlist-infoleak
+rules:
+- method: GET
+  path: /api/v1/userlist?pageindex=0&pagesize=10
+  expression: 'response.status == 200 && response.body.bcontains(b"ID") && response.body.bcontains(b"Username")
+    && response.body.bcontains(b"Password") '
+severity: high
+type: infoleak

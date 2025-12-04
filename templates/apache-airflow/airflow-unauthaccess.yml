@@ -1,0 +1,10 @@
+cve-id: apache-airflow-unauthaccess
+rules:
+  - method: GET
+    path: /admin/
+    expression: |
+      response.status == 200 && response.body.bcontains(b"<title>Airflow - DAGs</title>") && response.body.bcontains(b"<h2>DAGs</h2>")
+severity:
+  medium
+type: 
+  unauthaccess

@@ -1,0 +1,11 @@
+cve-id: couchdb-unauthaccess
+rules:
+  - method: GET
+    path: /_config
+    follow_redirects: false
+    expression: >
+      response.status == 200 && response.body.bcontains(b"httpd_design_handlers") && response.body.bcontains(b"external_manager") && response.body.bcontains(b"replicator_manager")
+severity:
+  high
+type: 
+  unauthaccess

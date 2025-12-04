@@ -1,0 +1,7 @@
+cve-id: bytevalue-goform-webread-open-rce
+rules:
+- method: GET
+  path: /goform/webRead/open/?path=|echo+567
+  expression: 'response.status == 200 && response.body.bcontains(b"567") '
+severity: high
+type: rce

