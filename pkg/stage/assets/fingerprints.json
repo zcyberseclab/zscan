@@ -4142,14 +4142,6 @@
     "vendor": "yokogawa",
     "devicetype": "dcs"
   },
-  "ge-plc": {
-    "body": [
-      "GE",
-      "Fanuc"
-    ],
-    "vendor": "ge",
-    "devicetype": "plc"
-  },
   "ifix-scada": {
     "body": [
       "iFIX"

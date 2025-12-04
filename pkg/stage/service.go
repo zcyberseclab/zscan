@@ -1013,31 +1013,207 @@ func (sd *ServiceDetector) detectOS(info ServiceInfo) string {
 
 func (sd *ServiceDetector) detectOSFromBanner(banner string) string {
 	lowerBanner := strings.ToLower(banner)
+
+	// Linux 发行版
 	if strings.Contains(lowerBanner, "ubuntu") {
 		return "ubuntu"
-	}
-	if strings.Contains(lowerBanner, "comware") {
-		return "comware"
 	}
 	if strings.Contains(lowerBanner, "debian") {
 		return "debian"
 	}
+	if strings.Contains(lowerBanner, "centos") {
+		return "centos"
+	}
+	if strings.Contains(lowerBanner, "red hat") || strings.Contains(lowerBanner, "redhat") {
+		return "redhat"
+	}
+	if strings.Contains(lowerBanner, "fedora") {
+		return "fedora"
+	}
+	if strings.Contains(lowerBanner, "suse") {
+		return "suse"
+	}
+	if strings.Contains(lowerBanner, "alpine") {
+		return "alpine"
+	}
+	if strings.Contains(lowerBanner, "arch linux") {
+		return "arch"
+	}
+	if strings.Contains(lowerBanner, "kali") {
+		return "kali"
+	}
+	if strings.Contains(lowerBanner, "raspbian") || strings.Contains(lowerBanner, "raspberry") {
+		return "raspbian"
+	}
+
+	// BSD
+	if strings.Contains(lowerBanner, "freebsd") {
+		return "freebsd"
+	}
+	if strings.Contains(lowerBanner, "openbsd") {
+		return "openbsd"
+	}
+	if strings.Contains(lowerBanner, "netbsd") {
+		return "netbsd"
+	}
+
+	// 网络设备 - Cisco
+	if strings.Contains(lowerBanner, "cisco") {
+		if strings.Contains(lowerBanner, "ios-xe") || strings.Contains(lowerBanner, "ios xe") {
+			return "cisco-ios-xe"
+		}
+		if strings.Contains(lowerBanner, "nx-os") || strings.Contains(lowerBanner, "nexus") {
+			return "cisco-nx-os"
+		}
+		if strings.Contains(lowerBanner, "asa") {
+			return "cisco-asa"
+		}
+		if strings.Contains(lowerBanner, "ios") {
+			return "cisco-ios"
+		}
+		return "cisco-ios"
+	}
+
+	// 网络设备 - Huawei
+	if strings.Contains(lowerBanner, "huawei") || strings.Contains(lowerBanner, "vrp") {
+		return "huawei-vrp"
+	}
+
+	// 网络设备 - H3C
+	if strings.Contains(lowerBanner, "comware") || strings.Contains(lowerBanner, "h3c") {
+		return "h3c-comware"
+	}
+
+	// 网络设备 - Juniper
+	if strings.Contains(lowerBanner, "junos") || strings.Contains(lowerBanner, "juniper") {
+		return "juniper-junos"
+	}
+
+	// 网络设备 - Fortinet
+	if strings.Contains(lowerBanner, "fortigate") || strings.Contains(lowerBanner, "fortios") {
+		return "fortinet-fortios"
+	}
+
+	// 网络设备 - Palo Alto
+	if strings.Contains(lowerBanner, "pan-os") || strings.Contains(lowerBanner, "palo alto") {
+		return "paloalto-panos"
+	}
+
+	// 网络设备 - MikroTik
+	if strings.Contains(lowerBanner, "mikrotik") || strings.Contains(lowerBanner, "routeros") {
+		return "mikrotik-routeros"
+	}
+
+	// 网络设备 - Arista
+	if strings.Contains(lowerBanner, "arista") || strings.Contains(lowerBanner, "eos") {
+		return "arista-eos"
+	}
+
+	// 网络设备 - 国产
+	if strings.Contains(lowerBanner, "ruijie") || strings.Contains(lowerBanner, "锐捷") {
+		return "ruijie"
+	}
+	if strings.Contains(lowerBanner, "maipu") || strings.Contains(lowerBanner, "迈普") {
+		return "maipu"
+	}
+	if strings.Contains(lowerBanner, "sangfor") || strings.Contains(lowerBanner, "深信服") {
+		return "sangfor"
+	}
+	if strings.Contains(lowerBanner, "hillstone") || strings.Contains(lowerBanner, "山石") {
+		return "hillstone"
+	}
+	if strings.Contains(lowerBanner, "dptech") || strings.Contains(lowerBanner, "迪普") {
+		return "dptech"
+	}
+	if strings.Contains(lowerBanner, "topsec") || strings.Contains(lowerBanner, "天融信") {
+		return "topsec"
+	}
+	if strings.Contains(lowerBanner, "venustech") || strings.Contains(lowerBanner, "启明星辰") {
+		return "venustech"
+	}
+	if strings.Contains(lowerBanner, "nsfocus") || strings.Contains(lowerBanner, "绿盟") {
+		return "nsfocus"
+	}
+	if strings.Contains(lowerBanner, "legendsec") || strings.Contains(lowerBanner, "网御星云") {
+		return "legendsec"
+	}
+	if strings.Contains(lowerBanner, "array") {
+		return "array"
+	}
+	if strings.Contains(lowerBanner, "radware") {
+		return "radware"
+	}
+	if strings.Contains(lowerBanner, "a10") {
+		return "a10"
+	}
+	if strings.Contains(lowerBanner, "f5") || strings.Contains(lowerBanner, "big-ip") {
+		return "f5-bigip"
+	}
+	if strings.Contains(lowerBanner, "netscaler") || strings.Contains(lowerBanner, "citrix adc") {
+		return "citrix-netscaler"
+	}
+
+	// 通用 Linux 标识
+	if strings.Contains(lowerBanner, "linux") {
+		return "linux"
+	}
+
+	// Windows
+	if strings.Contains(lowerBanner, "windows") || strings.Contains(lowerBanner, "microsoft") {
+		return "windows"
+	}
+
 	return ""
 }
 
 func (sd *ServiceDetector) detectOSFromHTTP(info ServiceInfo) string {
 	// Check headers for OS information
 	if serverHeader, ok := info.Headers["Server"]; ok {
-		if strings.Contains(strings.ToLower(serverHeader), "ubuntu") {
+		lowerServer := strings.ToLower(serverHeader)
+
+		// Linux 发行版
+		if strings.Contains(lowerServer, "ubuntu") {
 			return "ubuntu"
 		}
-		if strings.Contains(strings.ToLower(serverHeader), "freebsd") {
-			return "freebsd"
+		if strings.Contains(lowerServer, "debian") {
+			return "debian"
 		}
-		if strings.Contains(strings.ToLower(serverHeader), "centos") {
+		if strings.Contains(lowerServer, "centos") {
 			return "centos"
 		}
+		if strings.Contains(lowerServer, "freebsd") {
+			return "freebsd"
+		}
+		if strings.Contains(lowerServer, "fedora") {
+			return "fedora"
+		}
+		if strings.Contains(lowerServer, "red hat") {
+			return "redhat"
+		}
+
+		// 网络设备
+		if strings.Contains(lowerServer, "cisco") {
+			return "cisco-ios"
+		}
+		if strings.Contains(lowerServer, "huawei") {
+			return "huawei-vrp"
+		}
+		if strings.Contains(lowerServer, "fortios") || strings.Contains(lowerServer, "fortigate") {
+			return "fortinet-fortios"
+		}
+		if strings.Contains(lowerServer, "mikrotik") {
+			return "mikrotik-routeros"
+		}
 	}
+
+	// 检查 X-Powered-By 头
+	if poweredBy, ok := info.Headers["X-Powered-By"]; ok {
+		lowerPowered := strings.ToLower(poweredBy)
+		if strings.Contains(lowerPowered, "asp.net") {
+			return "windows"
+		}
+	}
+
 	return sd.detectOSFromBanner(info.Banner)
 }
 

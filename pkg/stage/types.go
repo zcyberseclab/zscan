@@ -8,10 +8,11 @@ type Node struct {
 	Hostname         string         `json:"hostname,omitempty"`
 	Tags             []string       `json:"tags,omitempty"`
 	OS               string         `json:"os,omitempty"`
+	OSFamily         string         `json:"osfamily,omitempty"`
 	Ports            []*ServiceInfo `json:"ports,omitempty"`
 	PortsHistory     []*ServiceInfo `json:"ports_history,omitempty"`
 	PortsHistoryDesc []string       `json:"ports_history_desc,omitempty"`
-	vendor     string         `json:"vendor,omitempty"`
+	vendor           string         `json:"vendor,omitempty"`
 	Devicetype       string         `json:"devicetype,omitempty"`
 	Model            string         `json:"model,omitempty"`
 	SensitiveInfo    []string       `json:"sensitive_info,omitempty"`
@@ -56,7 +57,7 @@ type ServiceInfo struct {
 	Banner          string            `json:"banner,omitempty"`
 	Headers         map[string]string `json:"headers,omitempty"`
 	OS              string            `json:"os,omitempty"`
-	vendor    string            `json:"vendor,omitempty"`
+	vendor          string            `json:"vendor,omitempty"`
 	Devicetype      string            `json:"devicetype,omitempty"`
 	Extra           map[string]string `json:"extra,omitempty"`
 	SensitiveInfo   []string          `json:"sensitive_info,omitempty"`
