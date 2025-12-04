@@ -1,3 +1,0 @@
-[submodule "templates"]
-	path = templates
-	url = git@github.com:zcyberseclab/zscan_templates.git

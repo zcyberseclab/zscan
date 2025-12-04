@@ -1,49 +1,41 @@
 {
   "gitlab": {
-    "headers": [
-      "(?i)gitlab"
-    ],
     "body": [
-      "(?i)gitlab"
+      "GitLab"
     ]
   },
   "nginx": {
     "headers": [
-      "(?i)nginx"
-    ],
-    "body": [
-      "(?i)nginx"
+      "Server: nginx"
     ]
   },
   "wordpress": {
     "body": [
-      "(?i)WordPress"
+      "WordPress",
+      "wp-content"
     ]
   },
   "netgear-nas": {
-    "type": "nas",
-    "manufacturer": "netgear",
-    "headers": [
-      "(?i)ReadyNAS"
-    ]
+    "body": [
+      "ReadyNAS"
+    ],
+    "vendor": "netgear",
+    "devicetype": "nas"
   },
   "synology-nas": {
-    "type": "nas",
-    "manufacturer": "synology",
-    "headers": [
-      "(?i)Synology"
-    ]
+    "body": [
+      "Synology"
+    ],
+    "vendor": "synology",
+    "devicetype": "nas"
   },
   "envoy": {
     "headers": [
-      "Server: envoy"
+      "server: envoy"
     ]
   },
   "clickhouse": {
     "headers": [
-      "(?i)clickhouse"
-    ],
-    "body": [
       "(?i)clickhouse"
     ]
   },
@@ -58,135 +50,125 @@
     ]
   },
   "mobotix-camera": {
-    "type": "ipcamera",
-    "manufacturer": "mobotix",
     "body": [
-      "(?i)mobotix"
-    ]
+      "MOBOTIX"
+    ],
+    "vendor": "mobotix",
+    "devicetype": "camera"
   },
   "axis2-camera": {
-    "type": "ipcamera",
-    "manufacturer": "axis",
     "body": [
       "AXIS 2\\d{2,3} Network Camera"
-    ]
+    ],
+    "vendor": "axis",
+    "devicetype": "camera"
   },
   "axis-camera": {
-    "type": "ipcamera",
-    "manufacturer": "axis",
     "body": [
-      "URL=/view/viewer_index.shtml\\?id=\\d+",
-      "/view/view.shtml\\?id=\\d+",
-      "/view/index.shtml",
-      "/mjpg/video.mjpg\\?camera=\\d+",
-      "/mjpg/\\d+/video.mjpg"
-    ]
+      "AXIS"
+    ],
+    "vendor": "axis",
+    "devicetype": "camera"
   },
   "fritz-box": {
-    "type": "router",
-    "manufacturer": "avm",
     "body": [
       "FRITZ!Box"
-    ]
+    ],
+    "vendor": "avm",
+    "devicetype": "router"
   },
   "panasonic-camera": {
-    "type": "ipcamera",
-    "manufacturer": "panasonic",
     "body": [
-      "CgiTagMenu\\?page=Top.*Language=[01]",
-      "BarFoot\\.html.*NORESIZE"
-    ]
+      "Panasonic"
+    ],
+    "vendor": "panasonic",
+    "devicetype": "camera"
   },
   "dahua-camera": {
-    "type": "ipcamera",
-    "manufacturer": "dahua",
     "body": [
-      "id=\"b_preview\".*?data-pagename=\"Preview\".*?Live</a>",
-      "id=\"mobile_VideoEncode\"",
-      "To change this template use File"
-    ]
+      "Dahua",
+      "大华"
+    ],
+    "vendor": "dahua",
+    "devicetype": "camera"
   },
   "dlink-camera": {
-    "type": "ipcamera",
-    "manufacturer": "d-link",
-    "headers": [
-      "Server: dcs-lig-httpd"
-    ],
     "body": [
-      "dcs-lig-httpd",
-      "(?i)d-linkWhite"
-    ]
+      "D-Link"
+    ],
+    "vendor": "dlink",
+    "devicetype": "camera"
   },
   "dlink-dcs932-camera": {
-    "type": "ipcamera",
-    "manufacturer": "d-link",
     "headers": [
       "alphapd"
     ],
     "body": [
       "D-Link Corporation\\. \\| WIRELESS INTERNET CAMERA",
       "DCS-932L"
-    ]
+    ],
+    "vendor": "d-link",
+    "devicetype": "camera"
   },
   "dlink-router": {
-    "type": "router",
-    "manufacturer": "d-link",
     "body": [
-      "<title>D-LINK SYSTEMS, INC"
-    ]
+      "D-Link",
+      "D-LINK"
+    ],
+    "vendor": "dlink",
+    "devicetype": "router"
   },
   "bosch-camera": {
-    "type": "ipcamera",
-    "manufacturer": "bosch",
     "headers": [
-      "Server: VCS-VideoJet-Webserver",
-      "Set-Cookie: HcsoB="
-    ]
+      "Server: VCS-VideoJet"
+    ],
+    "vendor": "bosch",
+    "devicetype": "camera"
   },
   "canon-camera": {
-    "type": "ipcamera",
-    "manufacturer": "canon",
     "headers": [
       "Server: VB"
     ],
     "body": [
       "Network Camera VB-"
-    ]
+    ],
+    "vendor": "canon",
+    "devicetype": "camera"
   },
   "defeway-camera": {
-    "type": "ipcamera",
-    "manufacturer": "defeway",
     "headers": [
       "Server: JAWS/1\\.0"
-    ]
+    ],
+    "vendor": "defeway",
+    "devicetype": "camera"
   },
   "megapixel-camera": {
-    "type": "ipcamera",
-    "manufacturer": "megapixel",
     "headers": [
       "Server: Cam-Webs"
-    ]
+    ],
+    "vendor": "megapixel",
+    "devicetype": "camera"
   },
   "linksys-router": {
-    "type": "router",
-    "manufacturer": "linksys",
-    "headers": [
+    "body": [
       "Linksys"
-    ]
+    ],
+    "vendor": "linksys",
+    "devicetype": "router"
   },
   "walchem-watertreatment-system": {
-    "type": "router",
-    "manufacturer": "walchem",
     "headers": [
       "Server: Acadia Server"
-    ]
+    ],
+    "vendor": "walchem",
+    "devicetype": "router"
   },
   "tenda-router": {
-    "type": "router",
-    "manufacturer": "tenda",
     "body": [
-      "reasyui.css"
-    ]
+      "Tenda"
+    ],
+    "vendor": "tenda",
+    "devicetype": "router"
   },
   "httpd": {
     "headers": [
@@ -195,83 +177,76 @@
   },
   "strapi": {
     "body": [
-      "(?i)strapi"
+      "Strapi"
     ]
   },
   "apache": {
     "headers": [
-      "(?i)Apache"
-    ],
-    "body": [
-      "(?i)Apache"
+      "Server: Apache"
     ]
   },
   "realm": {
-    "type": "ipcamera",
     "headers": [
       "realm"
-    ]
+    ],
+    "devicetype": "camera"
   },
   "vivotek-camera": {
-    "type": "ipcamera",
-    "manufacturer": "vivotek",
-    "headers": [
-      "Www-Authenticate: Basic realm=\"streaming_server\""
-    ]
+    "body": [
+      "VIVOTEK"
+    ],
+    "vendor": "vivotek",
+    "devicetype": "camera"
   },
   "goahead": {
-    "type": "ipcamera",
     "headers": [
       "Server: GoAhead-Webs"
-    ]
+    ],
+    "devicetype": "camera"
   },
   "tplink-camera": {
-    "type": "ipcamera",
-    "manufacturer": "tplink",
-    "headers": [
-      "Www-Authenticate: Basic realm=\"Internet Camera\""
-    ],
     "body": [
-      "IP CAMERA Viewer"
-    ]
+      "TP-LINK"
+    ],
+    "vendor": "tplink",
+    "devicetype": "camera"
   },
   "tplink-router": {
-    "type": "router",
-    "manufacturer": "tplink",
     "body": [
-      "tplink",
-      "TP-Link",
-      "TL-XDR"
-    ]
+      "TP-LINK",
+      "TP-Link"
+    ],
+    "vendor": "tplink",
+    "devicetype": "router"
   },
   "sony-camera": {
-    "type": "ipcamera",
-    "manufacturer": "sony",
     "headers": [
       "Server: gen5th"
-    ]
+    ],
+    "vendor": "sony",
+    "devicetype": "camera"
   },
   "vije-camera": {
-    "type": "ipcamera",
-    "manufacturer": "vije",
     "body": [
       "FRAMESET id='Frameset'.*FRAME SRC='/asp/view.asp'",
       "/asp/view\\.asp"
-    ]
+    ],
+    "vendor": "vije",
+    "devicetype": "camera"
   },
   "netsurveillance": {
-    "type": "ipcamera",
     "body": [
       "NETSurveillance"
-    ]
+    ],
+    "devicetype": "camera"
   },
   "toshiba-camera": {
-    "type": "ipcamera",
-    "manufacturer": "toshiba",
     "body": [
       "TOSHIBA Network Camera - User Login",
       "toshiba.gif"
-    ]
+    ],
+    "vendor": "toshiba",
+    "devicetype": "camera"
   },
   "thttpd": {
     "headers": [
@@ -279,11 +254,11 @@
     ]
   },
   "netwave-camera": {
-    "type": "ipcamera",
-    "manufacturer": "netwave",
     "headers": [
       "Server: Netwave IP Camera"
-    ]
+    ],
+    "vendor": "netwave",
+    "devicetype": "camera"
   },
   "asp.net": {
     "headers": [
@@ -315,14 +290,14 @@
     ]
   },
   "kerio-control": {
-    "type": "firewall",
-    "manufacturer": "kerio",
     "headers": [
       "Server: Kerio Control Embedded Web Server"
     ],
     "body": [
       "(?i)Kerio Control"
-    ]
+    ],
+    "vendor": "kerio",
+    "devicetype": "firewall"
   },
   "proxmox": {
     "headers": [
@@ -345,13 +320,13 @@
     ]
   },
   "rabbitmq": {
-    "headers": [
-      "Server: MochiWeb"
+    "body": [
+      "RabbitMQ"
     ]
   },
   "elasticsearch": {
     "headers": [
-      "X-Elastic-Product: Elasticsearch"
+      "X-Elastic-Product"
     ],
     "body": [
       "You Know, for Search"
@@ -390,8 +365,11 @@
     ]
   },
   "squid": {
-    "headers": [
-      "Server: squid"
+    "body": [
+      "Squid"
+    ],
+    "tags": [
+      "proxy"
     ]
   },
   "microsoft-httpapi": {
@@ -423,11 +401,12 @@
     ]
   },
   "mikrotik-router": {
-    "type": "router",
-    "manufacturer": "mikrotik",
     "body": [
-      "(?i)mikrotik"
-    ]
+      "MikroTik",
+      "RouterOS"
+    ],
+    "vendor": "mikrotik",
+    "devicetype": "router"
   },
   "lwip": {
     "headers": [
@@ -478,12 +457,12 @@
     ]
   },
   "keenetic-router": {
-    "type": "router",
-    "manufacturer": "keenetic",
     "body": [
       "Keenetic",
       "KeeneticOS"
-    ]
+    ],
+    "vendor": "keenetic",
+    "devicetype": "router"
   },
   "rompager": {
     "headers": [
@@ -501,11 +480,11 @@
     ]
   },
   "Xfinity-router": {
-    "type": "router",
-    "manufacturer": "xfinity",
     "headers": [
       "Server: Xfinity"
-    ]
+    ],
+    "vendor": "xfinity",
+    "devicetype": "router"
   },
   "mini-httpd": {
     "headers": [
@@ -528,18 +507,18 @@
     ]
   },
   "vigor-router": {
-    "type": "router",
-    "manufacturer": "vigor",
     "body": [
       "Vigor"
-    ]
+    ],
+    "vendor": "vigor",
+    "devicetype": "router"
   },
   "ct-router": {
-    "type": "router",
-    "manufacturer": "comtime",
     "body": [
       "CT-Router"
-    ]
+    ],
+    "vendor": "comtime",
+    "devicetype": "router"
   },
   "mini-web-server": {
     "headers": [
@@ -597,27 +576,27 @@
     ]
   },
   "plesk": {
-    "headers": [
-      "Server: (?i)sw-cp-server"
+    "body": [
+      "Plesk"
     ]
   },
   "sonicwall": {
-    "type": "firewall",
-    "manufacturer": "sonicwall",
     "headers": [
       "Server: SonicWALL"
-    ]
+    ],
+    "vendor": "sonicwall",
+    "devicetype": "firewall"
   },
   "appsmith": {
     "body": [
-      "(?i)Appsmith"
+      "Appsmith"
     ]
   },
   "cups": {
-    "type": "printer",
     "headers": [
       "Server: CUPS"
-    ]
+    ],
+    "devicetype": "printer"
   },
   "uc-httpd": {
     "headers": [
@@ -625,11 +604,11 @@
     ]
   },
   "cisco-router": {
-    "type": "router",
-    "manufacturer": "cisco",
     "headers": [
-      "Server: (?i)cisco-IOS"
-    ]
+      "Server: cisco-IOS"
+    ],
+    "vendor": "cisco",
+    "devicetype": "router"
   },
   "hsguiserver": {
     "headers": [
@@ -642,23 +621,23 @@
     ]
   },
   "brother-printer": {
-    "type": "printer",
-    "manufacturer": "brother",
     "body": [
       "Brother"
-    ]
+    ],
+    "vendor": "brother",
+    "devicetype": "printer"
   },
   "dvrdvs": {
-    "type": "ipcamera",
     "headers": [
       "Server: DVRDVS-Webs"
-    ]
+    ],
+    "devicetype": "camera"
   },
   "qualvision ": {
-    "type": "ipcamera",
     "headers": [
       "Server: Qualvision"
-    ]
+    ],
+    "devicetype": "camera"
   },
   "boa": {
     "headers": [
@@ -666,11 +645,11 @@
     ]
   },
   "lorex-camera": {
-    "type": "ipcamera",
-    "manufacturer": "lorex",
     "body": [
-      "lorexcamera"
-    ]
+      "Lorex"
+    ],
+    "vendor": "lorex",
+    "devicetype": "camera"
   },
   "lua-configuration-interface": {
     "body": [
@@ -683,15 +662,12 @@
     ]
   },
   "freepbx": {
-    "headers": [
-      "FreePBX"
-    ],
     "body": [
       "FreePBX"
     ]
   },
   "minio": {
-    "headers": [
+    "body": [
       "MinIO"
     ]
   },
@@ -722,29 +698,24 @@
     ]
   },
   "hikvision-camera": {
-    "type": "ipcamera",
-    "manufacturer": "hikvision",
     "body": [
-      "(updatetips|doc/page/login.asp|/ui/css/ui.css?version=\\\" + new date().gettime|ng-bind=\\\"olan.anonymous\\\" ng-click=\\\"login('anonymous')\\\"|css/login.css?version=\\\" + new date()|var syslanguage= navigator.browserlanguage.tolowercase()|var szlanguage = syslanguage.substring(0,2)|ng-bind=\\\"olan.anonymous\\\" ng-click=\\\"login('anonymous')\\\">|class=\\\"btn btn-primary login-btn\\\"|id=\\\"divanonymous\\\"|id=\\\"divpswstrength\\\"|<form action=\\\"/goform/formcobralogin|\u53bb\u9664edge\u4e0b\u5c06\u6570\u5b57\u5904\u7406\u6210\u7535\u8bdd\u7684\u9519\u8bef)"
+      "HIKVISION",
+      "海康威视"
     ],
-    "headers": [
-      "(realm=\\\"hikvision)"
-    ]
+    "vendor": "hikvision",
+    "devicetype": "camera"
   },
   "seeyon-oa": {
-    "body": [
-      "(?i)seeyon"
-    ],
     "headers": [
       "(path=/yyoa)"
+    ],
+    "body": [
+      "(?i)seeyon"
     ]
   },
   "drupal": {
     "body": [
-      "(?i)drupal"
-    ],
-    "headers": [
-      "(?i)drupal"
+      "Drupal"
     ]
   },
   "apache-struts": {
@@ -754,10 +725,10 @@
     ]
   },
   "apache-tomcat": {
-    "body": [
+    "headers": [
       "(?i)tomcat"
     ],
-    "headers": [
+    "body": [
       "(?i)tomcat"
     ]
   },
@@ -767,14 +738,12 @@
     ]
   },
   "qnap-nas": {
-    "type": "nas",
-    "manufacturer": "qnap",
     "body": [
-      "redirect_suffix",
-      "/css/qnap-default.css",
-      "/redirect.html?count=\\\"+math.random()",
-      "/indexnas.cgi?counter="
-    ]
+      "QNAP",
+      "QTS"
+    ],
+    "vendor": "qnap",
+    "devicetype": "nas"
   },
   "thinkphp": {
     "headers": [
@@ -787,13 +756,13 @@
     ]
   },
   "couchbase": {
-    "headers": [
-      "Server: couchbase"
+    "body": [
+      "Couchbase"
     ]
   },
   "jenkins": {
-    "headers": [
-      "X-Jenkins"
+    "body": [
+      "Jenkins"
     ]
   },
   "huawei-auth-web-server": {
@@ -892,8 +861,7 @@
     ]
   },
   "teamcity": {
-    "type": "ipcamera",
-    "headers": [
+    "body": [
       "TeamCity"
     ]
   },
@@ -903,11 +871,11 @@
     ]
   },
   "telesquare-router": {
-    "type": "router",
-    "manufacturer": "telesquare",
     "body": [
       "(?i)TLR-2005KSH"
-    ]
+    ],
+    "vendor": "telesquare",
+    "devicetype": "router"
   },
   "vvvebjs": {
     "body": [
@@ -947,7 +915,8 @@
   },
   "lobe-chat": {
     "body": [
-      "(?i)Lobe Chat"
+      "LobeChat",
+      "Lobe Chat"
     ]
   },
   "rapid-logic": {
@@ -1036,21 +1005,18 @@
     ]
   },
   "dse-hub": {
-    "type": "usbhub",
-    "manufacturer": "dse",
     "body": [
       "Deep Sea Electronics"
-    ]
+    ],
+    "vendor": "dse",
+    "devicetype": "usbhub"
   },
   "netgear-router": {
-    "type": "router",
-    "manufacturer": "netgear",
-    "headers": [
+    "body": [
       "NETGEAR"
     ],
-    "body": [
-      "(?i)netgear"
-    ]
+    "vendor": "netgear",
+    "devicetype": "router"
   },
   "anythingllm": {
     "body": [
@@ -1076,13 +1042,11 @@
     ]
   },
   "raisecom-router": {
-    "type": "router",
-    "manufacturer": "raisecom",
     "body": [
-      "(?i)Raisecom",
-      "<TITLE>Web user login</TITLE>",
-      "<META content\\==MSHTML 6.00.2900.5583\\"
-    ]
+      "Raisecom"
+    ],
+    "vendor": "raisecom",
+    "devicetype": "router"
   },
   "sensei-lms": {
     "body": [
@@ -1096,15 +1060,15 @@
   },
   "vicidial": {
     "body": [
-      "(?i)VICIdial"
+      "VICIdial"
     ]
   },
   "netman-204": {
-    "type": "network-card",
-    "manufacturer": "riello-netman",
     "body": [
       "NetMan 204"
-    ]
+    ],
+    "vendor": "riello-netman",
+    "devicetype": "network-card"
   },
   "expedition": {
     "body": [
@@ -1153,7 +1117,7 @@
   },
   "apache-nifi": {
     "body": [
-      "(?i)nifi"
+      "NiFi"
     ]
   },
   "apache-ofbiz": {
@@ -1179,7 +1143,7 @@
   },
   "cacti": {
     "body": [
-      "(?i)cacti"
+      "Cacti"
     ]
   },
   "citrix": {
@@ -1193,14 +1157,11 @@
     ]
   },
   "dlink-nas": {
-    "type": "nas",
-    "manufacturer": "d-link",
     "body": [
-      "(?i)In order to access the ShareCenter"
+      "ShareCenter"
     ],
-    "headers": [
-      "P3P: CP"
-    ]
+    "vendor": "dlink",
+    "devicetype": "nas"
   },
   "coldfusion": {
     "body": [
@@ -1219,7 +1180,7 @@
   },
   "coremail": {
     "body": [
-      "(?i)coremail"
+      "Coremail"
     ]
   },
   "couchcms": {
@@ -1234,7 +1195,7 @@
   },
   "swagger-ui": {
     "body": [
-      "(?i)swagger ui"
+      "Swagger UI"
     ]
   },
   "dedecms": {
@@ -1264,11 +1225,11 @@
     ]
   },
   "ecology": {
-    "body": [
-      "(?i)ecology"
-    ],
     "headers": [
       "Set-Cookie: ecology"
+    ],
+    "body": [
+      "(?i)ecology"
     ]
   },
   "ecshop": {
@@ -1349,7 +1310,7 @@
   },
   "gocd": {
     "body": [
-      "(?i)GoCD"
+      "GoCD"
     ]
   },
   "h3c-imc": {
@@ -1369,7 +1330,7 @@
   },
   "harbor": {
     "body": [
-      "(?i)Harbor"
+      "Harbor"
     ]
   },
   "hikvision-server": {
@@ -1388,11 +1349,11 @@
     ]
   },
   "ifw8-router": {
-    "type": "router",
-    "manufacturer": "ifw8",
     "body": [
       "(?i)www.ifw8.cn"
-    ]
+    ],
+    "vendor": "ifw8",
+    "devicetype": "router"
   },
   "apache-apisix": {
     "headers": [
@@ -1406,7 +1367,7 @@
   },
   "influxdb": {
     "body": [
-      "(?i)influxdb"
+      "InfluxDB"
     ]
   },
   "inspur": {
@@ -1415,10 +1376,10 @@
     ]
   },
   "jboss": {
-    "body": [
+    "headers": [
       "(?i)JBoss"
     ],
-    "headers": [
+    "body": [
       "(?i)JBoss"
     ]
   },
@@ -1429,13 +1390,13 @@
   },
   "jira": {
     "body": [
-      "(?i)atlassian.jira",
-      "(?i)Jira had problems starting up"
+      "JIRA",
+      "Jira"
     ]
   },
   "joomla": {
     "body": [
-      "(?i)Joomla"
+      "Joomla"
     ]
   },
   "acmailer": {
@@ -1445,7 +1406,7 @@
   },
   "comfyui": {
     "body": [
-      "(?i)ComfyUI"
+      "ComfyUI"
     ]
   },
   "anhen": {
@@ -1464,18 +1425,19 @@
     ]
   },
   "arris-router": {
-    "type": "router",
-    "manufacturer": "arris",
     "body": [
-      "SBR-AC1750"
-    ]
+      "ARRIS"
+    ],
+    "vendor": "arris",
+    "devicetype": "router"
   },
   "asus-router": {
-    "type": "router",
-    "manufacturer": "asus",
     "body": [
-      "(?i)ASUS Login"
-    ]
+      "ASUS",
+      "RT-"
+    ],
+    "vendor": "asus",
+    "devicetype": "router"
   },
   "bgk": {
     "headers": [
@@ -1484,7 +1446,7 @@
   },
   "casdoor": {
     "body": [
-      "(?i)casdoor"
+      "Casdoor"
     ]
   },
   "bytevalue": {
@@ -1494,7 +1456,8 @@
   },
   "chanjet": {
     "body": [
-      "(?i)chanjet.com"
+      "畅捷通",
+      "Chanjet"
     ]
   },
   "cdg": {
@@ -1573,11 +1536,11 @@
     ]
   },
   "feiyuxing-router": {
-    "type": "router",
-    "manufacturer": "avm",
     "body": [
       "飞鱼星路由器"
-    ]
+    ],
+    "vendor": "avm",
+    "devicetype": "router"
   },
   "flirax8": {
     "body": [
@@ -1601,26 +1564,20 @@
   },
   "zimbra": {
     "body": [
-      "(?i)Zimbra"
-    ],
-    "headers": [
-      "(?i)Zimbra"
+      "Zimbra"
     ]
   },
   "crushftp": {
-    "body": [
+    "headers": [
       "(?i)CrushFTP"
     ],
-    "headers": [
+    "body": [
       "(?i)CrushFTP"
     ]
   },
   "gradio": {
     "body": [
-      "(?i)gradio"
-    ],
-    "headers": [
-      "(?i)gradio"
+      "Gradio"
     ]
   },
   "cleo": {
@@ -1633,13 +1590,13 @@
     ]
   },
   "paloalto": {
+    "headers": [
+      "(?i)PA-VM"
+    ],
     "body": [
       "(?i)paloalto",
       "(?i)panos",
       "(?i)Pan Access"
-    ],
-    "headers": [
-      "(?i)PA-VM"
     ]
   },
   "致远互联": {
@@ -1654,59 +1611,37 @@
   },
   "discourse": {
     "body": [
-      "(?i)discourse",
-      "ember-cli-discourse"
-    ],
-    "headers": [
-      "X-Discourse-Route"
+      "Discourse"
     ]
   },
   "phpbb": {
     "body": [
-      "(?i)phpBB",
-      "Powered by phpBB"
-    ],
-    "headers": [
-      "Set-Cookie: phpbb"
+      "phpBB"
     ]
   },
   "nodebb": {
     "body": [
-      "(?i)NodeBB",
-      "Powered by NodeBB"
+      "NodeBB"
     ]
   },
   "flarum": {
     "body": [
-      "(?i)flarum",
-      "Powered by Flarum"
+      "Flarum"
     ]
   },
   "vanilla": {
     "body": [
-      "(?i)vanilla forums",
-      "Powered by Vanilla"
-    ],
-    "headers": [
-      "X-Vanilla"
+      "Vanilla"
     ]
   },
   "xenforo": {
     "body": [
-      "(?i)XenForo",
-      "forum_container"
-    ],
-    "headers": [
-      "Set-Cookie: xf_"
+      "XenForo"
     ]
   },
   "mybb": {
     "body": [
-      "(?i)MyBB",
-      "Powered by MyBB"
-    ],
-    "headers": [
-      "Set-Cookie: mybb"
+      "MyBB"
     ]
   },
   "zhiban-erp": {
@@ -1717,6 +1652,8672 @@
   "pingcode": {
     "body": [
       "(?i)PingCode"
+    ]
+  },
+  "neo4j": {
+    "body": [
+      "Neo4j"
+    ]
+  },
+  "rethinkdb": {
+    "body": [
+      "RethinkDB"
+    ]
+  },
+  "orientdb": {
+    "body": [
+      "OrientDB"
+    ]
+  },
+  "h2database": {
+    "body": [
+      "H2 Console"
+    ]
+  },
+  "trino": {
+    "body": [
+      "Trino"
+    ]
+  },
+  "questdb": {
+    "body": [
+      "QuestDB"
+    ]
+  },
+  "yugabytedb": {
+    "body": [
+      "YugabyteDB"
+    ]
+  },
+  "huawei-router": {
+    "body": [
+      "HUAWEI",
+      "华为"
+    ],
+    "vendor": "huawei",
+    "devicetype": "router"
+  },
+  "ubiquiti-router": {
+    "body": [
+      "Ubiquiti",
+      "UniFi",
+      "EdgeOS"
+    ],
+    "vendor": "ubiquiti",
+    "devicetype": "router"
+  },
+  "mercury-router": {
+    "body": [
+      "Mercury",
+      "水星"
+    ],
+    "vendor": "mercury",
+    "devicetype": "router"
+  },
+  "motorola-router": {
+    "body": [
+      "Motorola"
+    ],
+    "vendor": "motorola",
+    "devicetype": "router"
+  },
+  "openwrt-router": {
+    "body": [
+      "OpenWrt",
+      "LuCI"
+    ],
+    "vendor": "openwrt",
+    "devicetype": "router"
+  },
+  "pfsense-router": {
+    "body": [
+      "pfSense"
+    ],
+    "vendor": "pfsense",
+    "devicetype": "router"
+  },
+  "fritzbox-router": {
+    "body": [
+      "FRITZ!Box"
+    ],
+    "vendor": "avm",
+    "devicetype": "router"
+  },
+  "hp-printer": {
+    "headers": [
+      "Server: HP HTTP Server"
+    ],
+    "body": [
+      "HP LaserJet",
+      "HP Color",
+      "Hewlett-Packard"
+    ],
+    "vendor": "hp",
+    "devicetype": "printer"
+  },
+  "canon-printer": {
+    "body": [
+      "Canon",
+      "imageRUNNER"
+    ],
+    "vendor": "canon",
+    "devicetype": "printer"
+  },
+  "epson-printer": {
+    "body": [
+      "EPSON",
+      "Epson"
+    ],
+    "vendor": "epson",
+    "devicetype": "printer"
+  },
+  "kyocera-printer": {
+    "body": [
+      "KYOCERA",
+      "Kyocera"
+    ],
+    "vendor": "kyocera",
+    "devicetype": "printer"
+  },
+  "dell-printer": {
+    "body": [
+      "Dell"
+    ],
+    "vendor": "dell",
+    "devicetype": "printer"
+  },
+  "cups-printer": {
+    "headers": [
+      "Server: CUPS"
+    ],
+    "devicetype": "printer"
+  },
+  "reolink-camera": {
+    "body": [
+      "Reolink"
+    ],
+    "vendor": "reolink",
+    "devicetype": "camera"
+  },
+  "avigilon-camera": {
+    "body": [
+      "Avigilon"
+    ],
+    "vendor": "avigilon",
+    "devicetype": "camera"
+  },
+  "nvr-system": {
+    "body": [
+      "NVR"
+    ],
+    "devicetype": "camera"
+  },
+  "wd-nas": {
+    "body": [
+      "My Cloud",
+      "WD"
+    ],
+    "vendor": "western-digital",
+    "devicetype": "nas"
+  },
+  "seagate-nas": {
+    "body": [
+      "Seagate"
+    ],
+    "vendor": "seagate",
+    "devicetype": "nas"
+  },
+  "thecus-nas": {
+    "body": [
+      "Thecus"
+    ],
+    "vendor": "thecus",
+    "devicetype": "nas"
+  },
+  "openmediavault": {
+    "body": [
+      "OpenMediaVault"
+    ],
+    "devicetype": "nas"
+  },
+  "freenas": {
+    "body": [
+      "FreeNAS"
+    ],
+    "devicetype": "nas"
+  },
+  "xigmanas": {
+    "body": [
+      "XigmaNAS"
+    ],
+    "devicetype": "nas"
+  },
+  "grafana": {
+    "body": [
+      "Grafana"
+    ]
+  },
+  "kibana": {
+    "body": [
+      "Kibana"
+    ]
+  },
+  "alertmanager": {
+    "body": [
+      "Alertmanager"
+    ]
+  },
+  "portainer": {
+    "body": [
+      "Portainer"
+    ]
+  },
+  "kubernetes-dashboard": {
+    "body": [
+      "Kubernetes Dashboard"
+    ]
+  },
+  "icinga": {
+    "body": [
+      "Icinga"
+    ]
+  },
+  "graylog": {
+    "body": [
+      "Graylog"
+    ]
+  },
+  "jaeger": {
+    "body": [
+      "Jaeger"
+    ]
+  },
+  "zipkin": {
+    "body": [
+      "Zipkin"
+    ]
+  },
+  "pinpoint": {
+    "body": [
+      "Pinpoint"
+    ]
+  },
+  "sonarqube": {
+    "body": [
+      "SonarQube"
+    ]
+  },
+  "nexus": {
+    "body": [
+      "Nexus Repository"
+    ]
+  },
+  "artifactory": {
+    "body": [
+      "Artifactory"
+    ]
+  },
+  "gitea": {
+    "body": [
+      "Gitea"
+    ]
+  },
+  "gogs": {
+    "body": [
+      "Gogs"
+    ]
+  },
+  "bitbucket": {
+    "body": [
+      "Bitbucket"
+    ]
+  },
+  "argocd": {
+    "body": [
+      "Argo CD"
+    ]
+  },
+  "phpmyadmin": {
+    "body": [
+      "phpMyAdmin"
+    ]
+  },
+  "adminer": {
+    "body": [
+      "Adminer"
+    ]
+  },
+  "outline": {
+    "body": [
+      "Outline"
+    ]
+  },
+  "docsify": {
+    "body": [
+      "docsify"
+    ]
+  },
+  "hugo": {
+    "body": [
+      "Hugo"
+    ]
+  },
+  "pfsense-firewall": {
+    "body": [
+      "pfSense"
+    ],
+    "vendor": "netgate",
+    "devicetype": "firewall"
+  },
+  "openai-proxy": {
+    "body": [
+      "OpenAI Proxy"
+    ]
+  },
+  "tidb": {
+    "body": [
+      "TiDB"
+    ]
+  },
+  "cockroachdb": {
+    "body": [
+      "CockroachDB"
+    ]
+  },
+  "arangodb": {
+    "body": [
+      "ArangoDB"
+    ]
+  },
+  "dgraph": {
+    "body": [
+      "Dgraph"
+    ]
+  },
+  "etcd": {
+    "body": [
+      "etcd"
+    ]
+  },
+  "consul": {
+    "body": [
+      "Consul"
+    ]
+  },
+  "hbase": {
+    "body": [
+      "HBase"
+    ]
+  },
+  "presto": {
+    "body": [
+      "Presto"
+    ]
+  },
+  "dremio": {
+    "body": [
+      "Dremio"
+    ]
+  },
+  "voltdb": {
+    "body": [
+      "VoltDB"
+    ]
+  },
+  "victoriametrics": {
+    "body": [
+      "VictoriaMetrics"
+    ]
+  },
+  "planetscale": {
+    "body": [
+      "PlanetScale"
+    ]
+  },
+  "fauna": {
+    "body": [
+      "FaunaDB"
+    ]
+  },
+  "zte-router": {
+    "body": [
+      "ZTE",
+      "中兴"
+    ],
+    "vendor": "zte",
+    "devicetype": "router"
+  },
+  "cisco-asa": {
+    "body": [
+      "Cisco ASA"
+    ],
+    "vendor": "cisco",
+    "devicetype": "router"
+  },
+  "cisco-rv": {
+    "body": [
+      "Cisco RV"
+    ],
+    "vendor": "cisco",
+    "devicetype": "router"
+  },
+  "juniper-router": {
+    "body": [
+      "Juniper"
+    ],
+    "vendor": "juniper",
+    "devicetype": "router"
+  },
+  "fast-router": {
+    "body": [
+      "FAST",
+      "迅捷"
+    ],
+    "vendor": "fast",
+    "devicetype": "router"
+  },
+  "ruijie-router": {
+    "body": [
+      "Ruijie",
+      "锐捷"
+    ],
+    "vendor": "ruijie",
+    "devicetype": "router"
+  },
+  "h3c-router": {
+    "body": [
+      "H3C",
+      "华三"
+    ],
+    "vendor": "h3c",
+    "devicetype": "router"
+  },
+  "maipu-router": {
+    "body": [
+      "Maipu",
+      "迈普"
+    ],
+    "vendor": "maipu",
+    "devicetype": "router"
+  },
+  "bdcom-router": {
+    "body": [
+      "BDCOM"
+    ],
+    "vendor": "bdcom",
+    "devicetype": "router"
+  },
+  "fiberhome-router": {
+    "body": [
+      "FiberHome",
+      "烽火"
+    ],
+    "vendor": "fiberhome",
+    "devicetype": "router"
+  },
+  "aruba-router": {
+    "body": [
+      "Aruba"
+    ],
+    "vendor": "aruba",
+    "devicetype": "router"
+  },
+  "ruckus-router": {
+    "body": [
+      "Ruckus"
+    ],
+    "vendor": "ruckus",
+    "devicetype": "router"
+  },
+  "aerohive-router": {
+    "body": [
+      "Aerohive"
+    ],
+    "vendor": "aerohive",
+    "devicetype": "router"
+  },
+  "draytek-router": {
+    "body": [
+      "DrayTek",
+      "Vigor"
+    ],
+    "vendor": "draytek",
+    "devicetype": "router"
+  },
+  "zyxel-router": {
+    "body": [
+      "ZyXEL",
+      "Zyxel"
+    ],
+    "vendor": "zyxel",
+    "devicetype": "router"
+  },
+  "belkin-router": {
+    "body": [
+      "Belkin"
+    ],
+    "vendor": "belkin",
+    "devicetype": "router"
+  },
+  "buffalo-router": {
+    "body": [
+      "Buffalo"
+    ],
+    "vendor": "buffalo",
+    "devicetype": "router"
+  },
+  "engenius-router": {
+    "body": [
+      "EnGenius"
+    ],
+    "vendor": "engenius",
+    "devicetype": "router"
+  },
+  "peplink-router": {
+    "body": [
+      "Peplink",
+      "Pepwave"
+    ],
+    "vendor": "peplink",
+    "devicetype": "router"
+  },
+  "xiaomi-router": {
+    "body": [
+      "小米路由",
+      "MiWiFi"
+    ],
+    "vendor": "xiaomi",
+    "devicetype": "router"
+  },
+  "ddwrt-router": {
+    "body": [
+      "DD-WRT"
+    ],
+    "vendor": "ddwrt",
+    "devicetype": "router"
+  },
+  "tomato-router": {
+    "body": [
+      "Tomato"
+    ],
+    "vendor": "tomato",
+    "devicetype": "router"
+  },
+  "opnsense-router": {
+    "body": [
+      "OPNsense"
+    ],
+    "vendor": "opnsense",
+    "devicetype": "router"
+  },
+  "vyos-router": {
+    "body": [
+      "VyOS"
+    ],
+    "vendor": "vyos",
+    "devicetype": "router"
+  },
+  "xerox-printer": {
+    "body": [
+      "Xerox",
+      "WorkCentre",
+      "Phaser"
+    ],
+    "vendor": "xerox",
+    "devicetype": "printer"
+  },
+  "lexmark-printer": {
+    "body": [
+      "Lexmark"
+    ],
+    "vendor": "lexmark",
+    "devicetype": "printer"
+  },
+  "konica-printer": {
+    "body": [
+      "Konica Minolta",
+      "bizhub"
+    ],
+    "vendor": "konica",
+    "devicetype": "printer"
+  },
+  "ricoh-printer": {
+    "body": [
+      "RICOH",
+      "Ricoh"
+    ],
+    "vendor": "ricoh",
+    "devicetype": "printer"
+  },
+  "samsung-printer": {
+    "body": [
+      "Samsung"
+    ],
+    "vendor": "samsung",
+    "devicetype": "printer"
+  },
+  "sharp-printer": {
+    "body": [
+      "SHARP",
+      "Sharp"
+    ],
+    "vendor": "sharp",
+    "devicetype": "printer"
+  },
+  "toshiba-printer": {
+    "body": [
+      "TOSHIBA",
+      "e-STUDIO"
+    ],
+    "vendor": "toshiba",
+    "devicetype": "printer"
+  },
+  "oki-printer": {
+    "body": [
+      "OKI"
+    ],
+    "vendor": "oki",
+    "devicetype": "printer"
+  },
+  "pantum-printer": {
+    "body": [
+      "Pantum",
+      "奔图"
+    ],
+    "vendor": "pantum",
+    "devicetype": "printer"
+  },
+  "sindoh-printer": {
+    "body": [
+      "Sindoh"
+    ],
+    "vendor": "sindoh",
+    "devicetype": "printer"
+  },
+  "zebra-printer": {
+    "body": [
+      "Zebra"
+    ],
+    "vendor": "zebra",
+    "devicetype": "printer"
+  },
+  "dymo-printer": {
+    "body": [
+      "DYMO"
+    ],
+    "vendor": "dymo",
+    "devicetype": "printer"
+  },
+  "uniview-camera": {
+    "body": [
+      "Uniview",
+      "宇视"
+    ],
+    "vendor": "uniview",
+    "devicetype": "camera"
+  },
+  "samsung-camera": {
+    "body": [
+      "Samsung"
+    ],
+    "vendor": "samsung",
+    "devicetype": "camera"
+  },
+  "foscam-camera": {
+    "body": [
+      "Foscam"
+    ],
+    "vendor": "foscam",
+    "devicetype": "camera"
+  },
+  "amcrest-camera": {
+    "body": [
+      "Amcrest"
+    ],
+    "vendor": "amcrest",
+    "devicetype": "camera"
+  },
+  "hanwha-camera": {
+    "body": [
+      "Hanwha",
+      "Wisenet"
+    ],
+    "vendor": "hanwha",
+    "devicetype": "camera"
+  },
+  "pelco-camera": {
+    "body": [
+      "Pelco"
+    ],
+    "vendor": "pelco",
+    "devicetype": "camera"
+  },
+  "honeywell-camera": {
+    "body": [
+      "Honeywell"
+    ],
+    "vendor": "honeywell",
+    "devicetype": "camera"
+  },
+  "geovision-camera": {
+    "body": [
+      "GeoVision"
+    ],
+    "vendor": "geovision",
+    "devicetype": "camera"
+  },
+  "acti-camera": {
+    "body": [
+      "ACTi"
+    ],
+    "vendor": "acti",
+    "devicetype": "camera"
+  },
+  "arecont-camera": {
+    "body": [
+      "Arecont"
+    ],
+    "vendor": "arecont",
+    "devicetype": "camera"
+  },
+  "tiandy-camera": {
+    "body": [
+      "Tiandy",
+      "天地伟业"
+    ],
+    "vendor": "tiandy",
+    "devicetype": "camera"
+  },
+  "kedacom-camera": {
+    "body": [
+      "Kedacom",
+      "科达"
+    ],
+    "vendor": "kedacom",
+    "devicetype": "camera"
+  },
+  "yushi-camera": {
+    "body": [
+      "雨石"
+    ],
+    "vendor": "yushi",
+    "devicetype": "camera"
+  },
+  "ezviz-camera": {
+    "body": [
+      "EZVIZ",
+      "萤石"
+    ],
+    "vendor": "ezviz",
+    "devicetype": "camera"
+  },
+  "imou-camera": {
+    "body": [
+      "IMOU",
+      "乐橙"
+    ],
+    "vendor": "imou",
+    "devicetype": "camera"
+  },
+  "netgear-camera": {
+    "body": [
+      "NETGEAR"
+    ],
+    "vendor": "netgear",
+    "devicetype": "camera"
+  },
+  "swann-camera": {
+    "body": [
+      "Swann"
+    ],
+    "vendor": "swann",
+    "devicetype": "camera"
+  },
+  "flir-camera": {
+    "body": [
+      "FLIR"
+    ],
+    "vendor": "flir",
+    "devicetype": "camera"
+  },
+  "ivideon-camera": {
+    "body": [
+      "Ivideon"
+    ],
+    "vendor": "ivideon",
+    "devicetype": "camera"
+  },
+  "wyze-camera": {
+    "body": [
+      "Wyze"
+    ],
+    "vendor": "wyze",
+    "devicetype": "camera"
+  },
+  "eufy-camera": {
+    "body": [
+      "Eufy"
+    ],
+    "vendor": "eufy",
+    "devicetype": "camera"
+  },
+  "ring-camera": {
+    "body": [
+      "Ring"
+    ],
+    "vendor": "ring",
+    "devicetype": "camera"
+  },
+  "nest-camera": {
+    "body": [
+      "Nest"
+    ],
+    "vendor": "nest",
+    "devicetype": "camera"
+  },
+  "arlo-camera": {
+    "body": [
+      "Arlo"
+    ],
+    "vendor": "arlo",
+    "devicetype": "camera"
+  },
+  "blink-camera": {
+    "body": [
+      "Blink Home Monitor",
+      "Blink Camera"
+    ],
+    "vendor": "blink",
+    "devicetype": "camera"
+  },
+  "dvr-system": {
+    "body": [
+      "DVR"
+    ],
+    "devicetype": "camera"
+  },
+  "buffalo-nas": {
+    "body": [
+      "Buffalo",
+      "LinkStation",
+      "TeraStation"
+    ],
+    "vendor": "buffalo",
+    "devicetype": "nas"
+  },
+  "asustor-nas": {
+    "body": [
+      "ASUSTOR",
+      "ADM"
+    ],
+    "vendor": "asustor",
+    "devicetype": "nas"
+  },
+  "drobo-nas": {
+    "body": [
+      "Drobo"
+    ],
+    "vendor": "drobo",
+    "devicetype": "nas"
+  },
+  "terramaster-nas": {
+    "body": [
+      "TerraMaster"
+    ],
+    "vendor": "terramaster",
+    "devicetype": "nas"
+  },
+  "zyxel-nas": {
+    "body": [
+      "ZyXEL"
+    ],
+    "vendor": "zyxel",
+    "devicetype": "nas"
+  },
+  "truenas": {
+    "body": [
+      "TrueNAS"
+    ],
+    "devicetype": "nas"
+  },
+  "unraid": {
+    "body": [
+      "Unraid"
+    ],
+    "devicetype": "nas"
+  },
+  "rockstor": {
+    "body": [
+      "Rockstor"
+    ],
+    "devicetype": "nas"
+  },
+  "prometheus": {
+    "body": [
+      "Prometheus"
+    ]
+  },
+  "rancher": {
+    "body": [
+      "Rancher"
+    ]
+  },
+  "zabbix": {
+    "body": [
+      "Zabbix"
+    ]
+  },
+  "nagios": {
+    "body": [
+      "Nagios"
+    ]
+  },
+  "checkmk": {
+    "body": [
+      "Check_MK",
+      "Checkmk"
+    ]
+  },
+  "prtg": {
+    "body": [
+      "PRTG"
+    ]
+  },
+  "datadog": {
+    "body": [
+      "Datadog"
+    ]
+  },
+  "newrelic": {
+    "body": [
+      "New Relic"
+    ]
+  },
+  "dynatrace": {
+    "body": [
+      "Dynatrace"
+    ]
+  },
+  "splunk": {
+    "body": [
+      "Splunk"
+    ]
+  },
+  "loki": {
+    "body": [
+      "Loki"
+    ]
+  },
+  "skywalking": {
+    "body": [
+      "SkyWalking"
+    ]
+  },
+  "bamboo": {
+    "body": [
+      "Bamboo"
+    ]
+  },
+  "drone": {
+    "body": [
+      "Drone"
+    ]
+  },
+  "concourse": {
+    "body": [
+      "Concourse"
+    ]
+  },
+  "spinnaker": {
+    "body": [
+      "Spinnaker"
+    ]
+  },
+  "pgadmin": {
+    "body": [
+      "pgAdmin"
+    ]
+  },
+  "webmin": {
+    "headers": [
+      "Server: MiniServ"
+    ],
+    "body": [
+      "Webmin"
+    ]
+  },
+  "cockpit": {
+    "body": [
+      "Cockpit"
+    ]
+  },
+  "ajenti": {
+    "body": [
+      "Ajenti"
+    ]
+  },
+  "cpanel": {
+    "body": [
+      "cPanel"
+    ]
+  },
+  "directadmin": {
+    "body": [
+      "DirectAdmin"
+    ]
+  },
+  "virtualmin": {
+    "body": [
+      "Virtualmin"
+    ]
+  },
+  "ispconfig": {
+    "body": [
+      "ISPConfig"
+    ]
+  },
+  "cwp": {
+    "body": [
+      "CentOS Web Panel",
+      "CWP"
+    ]
+  },
+  "aapanel": {
+    "body": [
+      "aaPanel"
+    ]
+  },
+  "btpanel": {
+    "body": [
+      "宝塔",
+      "BT-Panel"
+    ]
+  },
+  "1panel": {
+    "body": [
+      "1Panel"
+    ]
+  },
+  "roundcube": {
+    "body": [
+      "Roundcube"
+    ]
+  },
+  "squirrelmail": {
+    "body": [
+      "SquirrelMail"
+    ]
+  },
+  "rainloop": {
+    "body": [
+      "RainLoop"
+    ]
+  },
+  "horde": {
+    "body": [
+      "Horde"
+    ]
+  },
+  "mailcow": {
+    "body": [
+      "mailcow"
+    ]
+  },
+  "mailu": {
+    "body": [
+      "Mailu"
+    ]
+  },
+  "iredmail": {
+    "body": [
+      "iRedMail"
+    ]
+  },
+  "nextcloud": {
+    "body": [
+      "Nextcloud"
+    ]
+  },
+  "seafile": {
+    "body": [
+      "Seafile"
+    ]
+  },
+  "mattermost": {
+    "body": [
+      "Mattermost"
+    ]
+  },
+  "rocket-chat": {
+    "body": [
+      "Rocket.Chat"
+    ]
+  },
+  "zulip": {
+    "body": [
+      "Zulip"
+    ]
+  },
+  "element": {
+    "body": [
+      "Element"
+    ]
+  },
+  "bookstack": {
+    "body": [
+      "BookStack"
+    ]
+  },
+  "wiki-js": {
+    "body": [
+      "Wiki.js"
+    ]
+  },
+  "confluence": {
+    "body": [
+      "Confluence"
+    ]
+  },
+  "mediawiki": {
+    "body": [
+      "MediaWiki"
+    ]
+  },
+  "dokuwiki": {
+    "body": [
+      "DokuWiki"
+    ]
+  },
+  "tiddlywiki": {
+    "body": [
+      "TiddlyWiki"
+    ]
+  },
+  "docusaurus": {
+    "body": [
+      "Docusaurus"
+    ]
+  },
+  "vuepress": {
+    "body": [
+      "VuePress"
+    ]
+  },
+  "mkdocs": {
+    "body": [
+      "MkDocs"
+    ]
+  },
+  "sphinx": {
+    "body": [
+      "Sphinx"
+    ]
+  },
+  "ghost": {
+    "headers": [
+      "X-Ghost-"
+    ],
+    "body": [
+      "Ghost"
+    ]
+  },
+  "typo3": {
+    "body": [
+      "TYPO3"
+    ]
+  },
+  "typecho": {
+    "body": [
+      "Typecho"
+    ]
+  },
+  "hexo": {
+    "body": [
+      "Hexo"
+    ]
+  },
+  "gatsby": {
+    "body": [
+      "Gatsby"
+    ]
+  },
+  "magento": {
+    "body": [
+      "Magento"
+    ]
+  },
+  "shopify": {
+    "body": [
+      "Shopify"
+    ]
+  },
+  "prestashop": {
+    "body": [
+      "PrestaShop"
+    ]
+  },
+  "opencart": {
+    "body": [
+      "OpenCart"
+    ]
+  },
+  "woocommerce": {
+    "body": [
+      "WooCommerce"
+    ]
+  },
+  "odoo": {
+    "body": [
+      "Odoo"
+    ]
+  },
+  "erpnext": {
+    "body": [
+      "ERPNext"
+    ]
+  },
+  "dolibarr": {
+    "body": [
+      "Dolibarr"
+    ]
+  },
+  "vtiger": {
+    "body": [
+      "vTiger"
+    ]
+  },
+  "suitecrm": {
+    "body": [
+      "SuiteCRM"
+    ]
+  },
+  "sugarcrm": {
+    "body": [
+      "SugarCRM"
+    ]
+  },
+  "espocrm": {
+    "body": [
+      "EspoCRM"
+    ]
+  },
+  "mautic": {
+    "body": [
+      "Mautic"
+    ]
+  },
+  "redmine": {
+    "body": [
+      "Redmine"
+    ]
+  },
+  "youtrack": {
+    "body": [
+      "YouTrack"
+    ]
+  },
+  "taiga": {
+    "body": [
+      "Taiga"
+    ]
+  },
+  "openproject": {
+    "body": [
+      "OpenProject"
+    ]
+  },
+  "wekan": {
+    "body": [
+      "Wekan"
+    ]
+  },
+  "kanboard": {
+    "body": [
+      "Kanboard"
+    ]
+  },
+  "focalboard": {
+    "body": [
+      "Focalboard"
+    ]
+  },
+  "plane": {
+    "body": [
+      "Plane"
+    ]
+  },
+  "zentao": {
+    "body": [
+      "禅道",
+      "ZenTao"
+    ]
+  },
+  "tapd": {
+    "body": [
+      "TAPD"
+    ]
+  },
+  "teambition": {
+    "body": [
+      "Teambition"
+    ]
+  },
+  "ones": {
+    "body": [
+      "ONES"
+    ]
+  },
+  "worktile": {
+    "body": [
+      "Worktile"
+    ]
+  },
+  "phabricator": {
+    "body": [
+      "Phabricator"
+    ]
+  },
+  "trac": {
+    "body": [
+      "Trac"
+    ]
+  },
+  "mantis": {
+    "body": [
+      "MantisBT"
+    ]
+  },
+  "bugzilla": {
+    "body": [
+      "Bugzilla"
+    ]
+  },
+  "sentry": {
+    "body": [
+      "Sentry"
+    ]
+  },
+  "glitchtip": {
+    "body": [
+      "GlitchTip"
+    ]
+  },
+  "uptime-kuma": {
+    "body": [
+      "Uptime Kuma"
+    ]
+  },
+  "statping": {
+    "body": [
+      "Statping"
+    ]
+  },
+  "cachet": {
+    "body": [
+      "Cachet"
+    ]
+  },
+  "netbox": {
+    "body": [
+      "NetBox"
+    ]
+  },
+  "phpipam": {
+    "body": [
+      "phpIPAM"
+    ]
+  },
+  "racktables": {
+    "body": [
+      "RackTables"
+    ]
+  },
+  "snipe-it": {
+    "body": [
+      "Snipe-IT"
+    ]
+  },
+  "ralph": {
+    "body": [
+      "Ralph"
+    ]
+  },
+  "glpi": {
+    "body": [
+      "GLPI"
+    ]
+  },
+  "itop": {
+    "body": [
+      "iTop"
+    ]
+  },
+  "osticket": {
+    "body": [
+      "osTicket"
+    ]
+  },
+  "zammad": {
+    "body": [
+      "Zammad"
+    ]
+  },
+  "freescout": {
+    "body": [
+      "FreeScout"
+    ]
+  },
+  "uvdesk": {
+    "body": [
+      "UVdesk"
+    ]
+  },
+  "helpy": {
+    "body": [
+      "Helpy"
+    ]
+  },
+  "vbulletin": {
+    "body": [
+      "vBulletin"
+    ]
+  },
+  "discuz": {
+    "body": [
+      "Discuz"
+    ]
+  },
+  "answer": {
+    "body": [
+      "Answer"
+    ]
+  },
+  "askbot": {
+    "body": [
+      "Askbot"
+    ]
+  },
+  "question2answer": {
+    "body": [
+      "Question2Answer"
+    ]
+  },
+  "limesurvey": {
+    "body": [
+      "LimeSurvey"
+    ]
+  },
+  "surveyjs": {
+    "body": [
+      "SurveyJS"
+    ]
+  },
+  "formio": {
+    "body": [
+      "Form.io"
+    ]
+  },
+  "n8n": {
+    "body": [
+      "n8n"
+    ]
+  },
+  "huginn": {
+    "body": [
+      "Huginn"
+    ]
+  },
+  "activepieces": {
+    "body": [
+      "Activepieces"
+    ]
+  },
+  "windmill": {
+    "body": [
+      "Windmill"
+    ]
+  },
+  "temporal": {
+    "body": [
+      "Temporal"
+    ]
+  },
+  "airflow": {
+    "body": [
+      "Airflow"
+    ]
+  },
+  "prefect": {
+    "body": [
+      "Prefect"
+    ]
+  },
+  "dagster": {
+    "body": [
+      "Dagster"
+    ]
+  },
+  "luigi": {
+    "body": [
+      "Luigi"
+    ]
+  },
+  "superset": {
+    "body": [
+      "Superset"
+    ]
+  },
+  "metabase": {
+    "body": [
+      "Metabase"
+    ]
+  },
+  "redash": {
+    "body": [
+      "Redash"
+    ]
+  },
+  "lightdash": {
+    "body": [
+      "Lightdash"
+    ]
+  },
+  "evidence": {
+    "body": [
+      "Evidence"
+    ]
+  },
+  "jupyter": {
+    "body": [
+      "Jupyter"
+    ]
+  },
+  "jupyterhub": {
+    "body": [
+      "JupyterHub"
+    ]
+  },
+  "rstudio": {
+    "body": [
+      "RStudio"
+    ]
+  },
+  "zeppelin": {
+    "body": [
+      "Zeppelin"
+    ]
+  },
+  "mlflow": {
+    "body": [
+      "MLflow"
+    ]
+  },
+  "kubeflow": {
+    "body": [
+      "Kubeflow"
+    ]
+  },
+  "label-studio": {
+    "body": [
+      "Label Studio"
+    ]
+  },
+  "doccano": {
+    "body": [
+      "doccano"
+    ]
+  },
+  "cvat": {
+    "body": [
+      "CVAT"
+    ]
+  },
+  "hasura": {
+    "body": [
+      "Hasura"
+    ]
+  },
+  "directus": {
+    "body": [
+      "Directus"
+    ]
+  },
+  "nocodb": {
+    "body": [
+      "NocoDB"
+    ]
+  },
+  "baserow": {
+    "body": [
+      "Baserow"
+    ]
+  },
+  "tooljet": {
+    "body": [
+      "ToolJet"
+    ]
+  },
+  "budibase": {
+    "body": [
+      "Budibase"
+    ]
+  },
+  "retool": {
+    "body": [
+      "Retool"
+    ]
+  },
+  "lowdefy": {
+    "body": [
+      "Lowdefy"
+    ]
+  },
+  "illa": {
+    "body": [
+      "ILLA"
+    ]
+  },
+  "pocketbase": {
+    "body": [
+      "PocketBase"
+    ]
+  },
+  "supabase": {
+    "body": [
+      "Supabase"
+    ]
+  },
+  "appwrite": {
+    "body": [
+      "Appwrite"
+    ]
+  },
+  "parse": {
+    "body": [
+      "Parse"
+    ]
+  },
+  "firebase": {
+    "body": [
+      "Firebase"
+    ]
+  },
+  "keycloak": {
+    "body": [
+      "Keycloak"
+    ]
+  },
+  "authentik": {
+    "body": [
+      "authentik"
+    ]
+  },
+  "authelia": {
+    "body": [
+      "Authelia"
+    ]
+  },
+  "logto": {
+    "body": [
+      "Logto"
+    ]
+  },
+  "zitadel": {
+    "body": [
+      "ZITADEL"
+    ]
+  },
+  "ory-hydra": {
+    "body": [
+      "Ory Hydra"
+    ]
+  },
+  "dex": {
+    "body": [
+      "Dex"
+    ]
+  },
+  "vault": {
+    "body": [
+      "Vault"
+    ]
+  },
+  "bitwarden": {
+    "body": [
+      "Bitwarden"
+    ]
+  },
+  "vaultwarden": {
+    "body": [
+      "Vaultwarden"
+    ]
+  },
+  "passbolt": {
+    "body": [
+      "Passbolt"
+    ]
+  },
+  "teampass": {
+    "body": [
+      "TeamPass"
+    ]
+  },
+  "psono": {
+    "body": [
+      "Psono"
+    ]
+  },
+  "guacamole": {
+    "body": [
+      "Guacamole"
+    ]
+  },
+  "rustdesk": {
+    "body": [
+      "RustDesk"
+    ]
+  },
+  "meshcentral": {
+    "body": [
+      "MeshCentral"
+    ]
+  },
+  "teleport": {
+    "body": [
+      "Teleport"
+    ]
+  },
+  "boundary": {
+    "body": [
+      "Boundary"
+    ]
+  },
+  "jumpserver": {
+    "body": [
+      "JumpServer"
+    ]
+  },
+  "next-terminal": {
+    "body": [
+      "Next Terminal"
+    ]
+  },
+  "streamsets": {
+    "body": [
+      "StreamSets"
+    ]
+  },
+  "airbyte": {
+    "body": [
+      "Airbyte"
+    ]
+  },
+  "fivetran": {
+    "body": [
+      "Fivetran"
+    ]
+  },
+  "meltano": {
+    "body": [
+      "Meltano"
+    ]
+  },
+  "singer": {
+    "body": [
+      "Singer"
+    ]
+  },
+  "debezium": {
+    "body": [
+      "Debezium"
+    ]
+  },
+  "flink": {
+    "body": [
+      "Flink"
+    ]
+  },
+  "spark": {
+    "body": [
+      "Spark"
+    ]
+  },
+  "storm": {
+    "body": [
+      "Storm"
+    ]
+  },
+  "kafka-ui": {
+    "body": [
+      "Kafka UI"
+    ]
+  },
+  "akhq": {
+    "body": [
+      "AKHQ"
+    ]
+  },
+  "kafdrop": {
+    "body": [
+      "Kafdrop"
+    ]
+  },
+  "conduktor": {
+    "body": [
+      "Conduktor"
+    ]
+  },
+  "schema-registry": {
+    "body": [
+      "Schema Registry"
+    ]
+  },
+  "kafka-connect": {
+    "body": [
+      "Kafka Connect"
+    ]
+  },
+  "ksqldb": {
+    "body": [
+      "ksqlDB"
+    ]
+  },
+  "pulsar": {
+    "body": [
+      "Pulsar"
+    ]
+  },
+  "nats": {
+    "body": [
+      "NATS"
+    ]
+  },
+  "emqx": {
+    "body": [
+      "EMQX"
+    ]
+  },
+  "hivemq": {
+    "body": [
+      "HiveMQ"
+    ]
+  },
+  "mosquitto": {
+    "body": [
+      "Mosquitto"
+    ]
+  },
+  "vernemq": {
+    "body": [
+      "VerneMQ"
+    ]
+  },
+  "activemq": {
+    "body": [
+      "ActiveMQ"
+    ]
+  },
+  "artemis": {
+    "body": [
+      "Artemis"
+    ]
+  },
+  "zeromq": {
+    "body": [
+      "ZeroMQ"
+    ]
+  },
+  "nsq": {
+    "body": [
+      "NSQ"
+    ]
+  },
+  "beanstalkd": {
+    "body": [
+      "Beanstalkd"
+    ]
+  },
+  "celery": {
+    "body": [
+      "Celery"
+    ]
+  },
+  "flower": {
+    "body": [
+      "Flower"
+    ]
+  },
+  "bull": {
+    "body": [
+      "Bull"
+    ]
+  },
+  "sidekiq": {
+    "body": [
+      "Sidekiq"
+    ]
+  },
+  "resque": {
+    "body": [
+      "Resque"
+    ]
+  },
+  "asynq": {
+    "body": [
+      "Asynq"
+    ]
+  },
+  "ceph": {
+    "body": [
+      "Ceph"
+    ]
+  },
+  "glusterfs": {
+    "body": [
+      "GlusterFS"
+    ]
+  },
+  "seaweedfs": {
+    "body": [
+      "SeaweedFS"
+    ]
+  },
+  "juicefs": {
+    "body": [
+      "JuiceFS"
+    ]
+  },
+  "longhorn": {
+    "body": [
+      "Longhorn"
+    ]
+  },
+  "rook": {
+    "body": [
+      "Rook"
+    ]
+  },
+  "openebs": {
+    "body": [
+      "OpenEBS"
+    ]
+  },
+  "linstor": {
+    "body": [
+      "LINSTOR"
+    ]
+  },
+  "storageos": {
+    "body": [
+      "StorageOS"
+    ]
+  },
+  "portworx": {
+    "body": [
+      "Portworx"
+    ]
+  },
+  "traefik": {
+    "body": [
+      "Traefik"
+    ]
+  },
+  "caddy": {
+    "headers": [
+      "Server: Caddy"
+    ]
+  },
+  "haproxy": {
+    "body": [
+      "HAProxy"
+    ]
+  },
+  "kong": {
+    "headers": [
+      "Server: kong"
+    ]
+  },
+  "apisix": {
+    "body": [
+      "APISIX"
+    ]
+  },
+  "tyk": {
+    "body": [
+      "Tyk"
+    ]
+  },
+  "gravitee": {
+    "body": [
+      "Gravitee"
+    ]
+  },
+  "krakend": {
+    "body": [
+      "KrakenD"
+    ]
+  },
+  "express-gateway": {
+    "body": [
+      "Express Gateway"
+    ]
+  },
+  "zuul": {
+    "body": [
+      "Zuul"
+    ]
+  },
+  "spring-cloud-gateway": {
+    "body": [
+      "Spring Cloud Gateway"
+    ]
+  },
+  "istio": {
+    "body": [
+      "Istio"
+    ]
+  },
+  "linkerd": {
+    "body": [
+      "Linkerd"
+    ]
+  },
+  "consul-connect": {
+    "body": [
+      "Consul Connect"
+    ]
+  },
+  "kiali": {
+    "body": [
+      "Kiali"
+    ]
+  },
+  "meshery": {
+    "body": [
+      "Meshery"
+    ]
+  },
+  "osm": {
+    "body": [
+      "Open Service Mesh"
+    ]
+  },
+  "cilium": {
+    "body": [
+      "Cilium"
+    ]
+  },
+  "calico": {
+    "body": [
+      "Calico"
+    ]
+  },
+  "flannel": {
+    "body": [
+      "Flannel"
+    ]
+  },
+  "weave": {
+    "body": [
+      "Weave"
+    ]
+  },
+  "antrea": {
+    "body": [
+      "Antrea"
+    ]
+  },
+  "metallb": {
+    "body": [
+      "MetalLB"
+    ]
+  },
+  "cert-manager": {
+    "body": [
+      "cert-manager"
+    ]
+  },
+  "external-dns": {
+    "body": [
+      "ExternalDNS"
+    ]
+  },
+  "coredns": {
+    "body": [
+      "CoreDNS"
+    ]
+  },
+  "pihole": {
+    "body": [
+      "Pi-hole"
+    ]
+  },
+  "adguard": {
+    "body": [
+      "AdGuard"
+    ]
+  },
+  "blocky": {
+    "body": [
+      "Blocky"
+    ]
+  },
+  "technitium": {
+    "body": [
+      "Technitium"
+    ]
+  },
+  "powerdns": {
+    "body": [
+      "PowerDNS"
+    ]
+  },
+  "bind": {
+    "body": [
+      "BIND"
+    ]
+  },
+  "unbound": {
+    "body": [
+      "Unbound"
+    ]
+  },
+  "knot": {
+    "body": [
+      "Knot"
+    ]
+  },
+  "nsd": {
+    "body": [
+      "NSD"
+    ]
+  },
+  "dnsmasq": {
+    "body": [
+      "dnsmasq"
+    ]
+  },
+  "fortinet-firewall": {
+    "body": [
+      "FortiGate",
+      "Fortinet"
+    ],
+    "vendor": "fortinet",
+    "devicetype": "firewall"
+  },
+  "opnsense-firewall": {
+    "body": [
+      "OPNsense"
+    ],
+    "vendor": "deciso",
+    "devicetype": "firewall"
+  },
+  "sophos-firewall": {
+    "body": [
+      "Sophos",
+      "XG Firewall"
+    ],
+    "vendor": "sophos",
+    "devicetype": "firewall"
+  },
+  "watchguard-firewall": {
+    "body": [
+      "WatchGuard",
+      "Firebox"
+    ],
+    "vendor": "watchguard",
+    "devicetype": "firewall"
+  },
+  "paloalto-firewall": {
+    "body": [
+      "Palo Alto",
+      "PAN-OS"
+    ],
+    "vendor": "paloalto",
+    "devicetype": "firewall"
+  },
+  "checkpoint-firewall": {
+    "body": [
+      "Check Point"
+    ],
+    "vendor": "checkpoint",
+    "devicetype": "firewall"
+  },
+  "cisco-firewall": {
+    "body": [
+      "Cisco"
+    ],
+    "vendor": "cisco",
+    "devicetype": "firewall"
+  },
+  "juniper-firewall": {
+    "body": [
+      "Juniper",
+      "SRX"
+    ],
+    "vendor": "juniper",
+    "devicetype": "firewall"
+  },
+  "barracuda-firewall": {
+    "body": [
+      "Barracuda"
+    ],
+    "vendor": "barracuda",
+    "devicetype": "firewall"
+  },
+  "sonicwall-firewall": {
+    "body": [
+      "SonicWall"
+    ],
+    "vendor": "sonicwall",
+    "devicetype": "firewall"
+  },
+  "zyxel-firewall": {
+    "body": [
+      "ZyXEL",
+      "USG"
+    ],
+    "vendor": "zyxel",
+    "devicetype": "firewall"
+  },
+  "hillstone-firewall": {
+    "body": [
+      "Hillstone",
+      "山石"
+    ],
+    "vendor": "hillstone",
+    "devicetype": "firewall"
+  },
+  "sangfor-firewall": {
+    "body": [
+      "Sangfor",
+      "深信服"
+    ],
+    "vendor": "sangfor",
+    "devicetype": "firewall"
+  },
+  "huawei-firewall": {
+    "body": [
+      "HUAWEI",
+      "USG"
+    ],
+    "vendor": "huawei",
+    "devicetype": "firewall"
+  },
+  "h3c-firewall": {
+    "body": [
+      "H3C",
+      "SecPath"
+    ],
+    "vendor": "h3c",
+    "devicetype": "firewall"
+  },
+  "dptech-firewall": {
+    "body": [
+      "DPtech",
+      "迪普"
+    ],
+    "vendor": "dptech",
+    "devicetype": "firewall"
+  },
+  "venustech-firewall": {
+    "body": [
+      "Venustech",
+      "启明星辰"
+    ],
+    "vendor": "venustech",
+    "devicetype": "firewall"
+  },
+  "nsfocus-firewall": {
+    "body": [
+      "NSFOCUS",
+      "绿盟"
+    ],
+    "vendor": "nsfocus",
+    "devicetype": "firewall"
+  },
+  "topsec-firewall": {
+    "body": [
+      "TopSec",
+      "天融信"
+    ],
+    "vendor": "topsec",
+    "devicetype": "firewall"
+  },
+  "leadsec-firewall": {
+    "body": [
+      "LeadSec",
+      "网御星云"
+    ],
+    "vendor": "leadsec",
+    "devicetype": "firewall"
+  },
+  "untangle-firewall": {
+    "body": [
+      "Untangle"
+    ],
+    "vendor": "untangle",
+    "devicetype": "firewall"
+  },
+  "ipfire-firewall": {
+    "body": [
+      "IPFire"
+    ],
+    "devicetype": "firewall"
+  },
+  "smoothwall-firewall": {
+    "body": [
+      "Smoothwall"
+    ],
+    "devicetype": "firewall"
+  },
+  "clearos-firewall": {
+    "body": [
+      "ClearOS"
+    ],
+    "devicetype": "firewall"
+  },
+  "endian-firewall": {
+    "body": [
+      "Endian"
+    ],
+    "devicetype": "firewall"
+  },
+  "zeroshell-firewall": {
+    "body": [
+      "Zeroshell"
+    ],
+    "devicetype": "firewall"
+  },
+  "ipcop-firewall": {
+    "body": [
+      "IPCop"
+    ],
+    "devicetype": "firewall"
+  },
+  "shorewall-firewall": {
+    "body": [
+      "Shorewall"
+    ],
+    "devicetype": "firewall"
+  },
+  "siemens-plc": {
+    "body": [
+      "Siemens",
+      "S7-",
+      "SIMATIC"
+    ],
+    "vendor": "siemens",
+    "devicetype": "plc"
+  },
+  "siemens-hmi": {
+    "body": [
+      "Siemens",
+      "WinCC"
+    ],
+    "vendor": "siemens",
+    "devicetype": "hmi"
+  },
+  "siemens-logo": {
+    "body": [
+      "LOGO!"
+    ],
+    "vendor": "siemens",
+    "devicetype": "plc"
+  },
+  "schneider-plc": {
+    "body": [
+      "Schneider",
+      "Modicon"
+    ],
+    "vendor": "schneider",
+    "devicetype": "plc"
+  },
+  "schneider-hmi": {
+    "body": [
+      "Magelis"
+    ],
+    "vendor": "schneider",
+    "devicetype": "hmi"
+  },
+  "rockwell-plc": {
+    "body": [
+      "Rockwell",
+      "Allen-Bradley",
+      "CompactLogix"
+    ],
+    "vendor": "rockwell",
+    "devicetype": "plc"
+  },
+  "abb-plc": {
+    "body": [
+      "ABB"
+    ],
+    "vendor": "abb",
+    "devicetype": "plc"
+  },
+  "mitsubishi-plc": {
+    "body": [
+      "Mitsubishi",
+      "MELSEC"
+    ],
+    "vendor": "mitsubishi",
+    "devicetype": "plc"
+  },
+  "omron-plc": {
+    "body": [
+      "Omron",
+      "SYSMAC"
+    ],
+    "vendor": "omron",
+    "devicetype": "plc"
+  },
+  "beckhoff-plc": {
+    "body": [
+      "Beckhoff",
+      "TwinCAT"
+    ],
+    "vendor": "beckhoff",
+    "devicetype": "plc"
+  },
+  "wago-plc": {
+    "body": [
+      "WAGO"
+    ],
+    "vendor": "wago",
+    "devicetype": "plc"
+  },
+  "phoenix-plc": {
+    "body": [
+      "Phoenix Contact"
+    ],
+    "vendor": "phoenix",
+    "devicetype": "plc"
+  },
+  "delta-plc": {
+    "body": [
+      "Delta",
+      "DVP"
+    ],
+    "vendor": "delta",
+    "devicetype": "plc"
+  },
+  "keyence-plc": {
+    "body": [
+      "Keyence",
+      "KV-"
+    ],
+    "vendor": "keyence",
+    "devicetype": "plc"
+  },
+  "panasonic-plc": {
+    "body": [
+      "Panasonic",
+      "FP-"
+    ],
+    "vendor": "panasonic",
+    "devicetype": "plc"
+  },
+  "honeywell-dcs": {
+    "body": [
+      "Honeywell",
+      "Experion"
+    ],
+    "vendor": "honeywell",
+    "devicetype": "dcs"
+  },
+  "emerson-dcs": {
+    "body": [
+      "Emerson",
+      "DeltaV"
+    ],
+    "vendor": "emerson",
+    "devicetype": "dcs"
+  },
+  "yokogawa-dcs": {
+    "body": [
+      "Yokogawa",
+      "CENTUM"
+    ],
+    "vendor": "yokogawa",
+    "devicetype": "dcs"
+  },
+  "ge-plc": {
+    "body": [
+      "GE",
+      "Fanuc"
+    ],
+    "vendor": "ge",
+    "devicetype": "plc"
+  },
+  "ifix-scada": {
+    "body": [
+      "iFIX"
+    ],
+    "vendor": "ge",
+    "tags": [
+      "scada",
+      "ics"
+    ]
+  },
+  "ignition-scada": {
+    "body": [
+      "Ignition"
+    ],
+    "vendor": "inductive",
+    "tags": [
+      "scada",
+      "ics"
+    ]
+  },
+  "wonderware-scada": {
+    "body": [
+      "Wonderware",
+      "InTouch"
+    ],
+    "vendor": "aveva",
+    "tags": [
+      "scada",
+      "ics"
+    ]
+  },
+  "citect-scada": {
+    "body": [
+      "CitectSCADA"
+    ],
+    "vendor": "schneider",
+    "tags": [
+      "scada",
+      "ics"
+    ]
+  },
+  "factorytalk-scada": {
+    "body": [
+      "FactoryTalk"
+    ],
+    "vendor": "rockwell",
+    "tags": [
+      "scada",
+      "ics"
+    ]
+  },
+  "wincc-scada": {
+    "body": [
+      "WinCC"
+    ],
+    "vendor": "siemens",
+    "tags": [
+      "scada",
+      "ics"
+    ]
+  },
+  "kepware-opc": {
+    "body": [
+      "Kepware",
+      "KEPServerEX"
+    ],
+    "vendor": "kepware",
+    "tags": [
+      "opc",
+      "ics"
+    ]
+  },
+  "matrikon-opc": {
+    "body": [
+      "Matrikon"
+    ],
+    "vendor": "matrikon",
+    "tags": [
+      "opc",
+      "ics"
+    ]
+  },
+  "codesys": {
+    "body": [
+      "CODESYS"
+    ],
+    "devicetype": "plc"
+  },
+  "moxa-gateway": {
+    "body": [
+      "Moxa"
+    ],
+    "vendor": "moxa",
+    "devicetype": "gateway"
+  },
+  "advantech-gateway": {
+    "body": [
+      "Advantech"
+    ],
+    "vendor": "advantech",
+    "devicetype": "gateway"
+  },
+  "red-lion": {
+    "body": [
+      "Red Lion"
+    ],
+    "vendor": "redlion",
+    "devicetype": "gateway"
+  },
+  "ewon-gateway": {
+    "body": [
+      "eWON"
+    ],
+    "vendor": "ewon",
+    "devicetype": "gateway"
+  },
+  "weintek-hmi": {
+    "body": [
+      "Weintek"
+    ],
+    "vendor": "weintek",
+    "devicetype": "hmi"
+  },
+  "proface-hmi": {
+    "body": [
+      "Pro-face"
+    ],
+    "vendor": "proface",
+    "devicetype": "hmi"
+  },
+  "beijer-hmi": {
+    "body": [
+      "Beijer"
+    ],
+    "vendor": "beijer",
+    "devicetype": "hmi"
+  },
+  "kinco-hmi": {
+    "body": [
+      "Kinco"
+    ],
+    "vendor": "kinco",
+    "devicetype": "hmi"
+  },
+  "inovance-plc": {
+    "body": [
+      "Inovance",
+      "汇川"
+    ],
+    "vendor": "inovance",
+    "devicetype": "plc"
+  },
+  "hollysys-plc": {
+    "body": [
+      "Hollysys",
+      "和利时"
+    ],
+    "vendor": "hollysys",
+    "devicetype": "plc"
+  },
+  "supcon-dcs": {
+    "body": [
+      "Supcon",
+      "中控"
+    ],
+    "vendor": "supcon",
+    "devicetype": "dcs"
+  },
+  "xinje-plc": {
+    "body": [
+      "Xinje",
+      "信捷"
+    ],
+    "vendor": "xinje",
+    "devicetype": "plc"
+  },
+  "fatek-plc": {
+    "body": [
+      "FATEK"
+    ],
+    "vendor": "fatek",
+    "devicetype": "plc"
+  },
+  "wecon-plc": {
+    "body": [
+      "WECON"
+    ],
+    "vendor": "wecon",
+    "devicetype": "plc"
+  },
+  "cisco-anyconnect": {
+    "body": [
+      "AnyConnect"
+    ],
+    "vendor": "cisco",
+    "tags": [
+      "vpn"
+    ]
+  },
+  "cisco-vpn": {
+    "body": [
+      "Cisco VPN"
+    ],
+    "vendor": "cisco",
+    "tags": [
+      "vpn"
+    ]
+  },
+  "pulse-secure": {
+    "body": [
+      "Pulse Secure",
+      "Pulse Connect"
+    ],
+    "vendor": "pulse",
+    "tags": [
+      "vpn"
+    ]
+  },
+  "fortinet-vpn": {
+    "body": [
+      "FortiGate",
+      "SSL VPN"
+    ],
+    "vendor": "fortinet",
+    "tags": [
+      "vpn"
+    ]
+  },
+  "paloalto-vpn": {
+    "body": [
+      "GlobalProtect"
+    ],
+    "vendor": "paloalto",
+    "tags": [
+      "vpn"
+    ]
+  },
+  "sonicwall-vpn": {
+    "body": [
+      "SonicWall",
+      "NetExtender"
+    ],
+    "vendor": "sonicwall",
+    "tags": [
+      "vpn"
+    ]
+  },
+  "citrix-gateway": {
+    "body": [
+      "Citrix Gateway",
+      "NetScaler"
+    ],
+    "vendor": "citrix",
+    "tags": [
+      "vpn"
+    ]
+  },
+  "f5-vpn": {
+    "body": [
+      "BIG-IP",
+      "F5"
+    ],
+    "vendor": "f5",
+    "tags": [
+      "vpn"
+    ]
+  },
+  "openvpn": {
+    "body": [
+      "OpenVPN"
+    ],
+    "tags": [
+      "vpn"
+    ]
+  },
+  "wireguard": {
+    "body": [
+      "WireGuard"
+    ],
+    "tags": [
+      "vpn"
+    ]
+  },
+  "softether": {
+    "body": [
+      "SoftEther"
+    ],
+    "tags": [
+      "vpn"
+    ]
+  },
+  "pritunl": {
+    "body": [
+      "Pritunl"
+    ],
+    "tags": [
+      "vpn"
+    ]
+  },
+  "zerotier": {
+    "body": [
+      "ZeroTier"
+    ],
+    "tags": [
+      "vpn"
+    ]
+  },
+  "tailscale": {
+    "body": [
+      "Tailscale"
+    ],
+    "tags": [
+      "vpn"
+    ]
+  },
+  "headscale": {
+    "body": [
+      "Headscale"
+    ],
+    "tags": [
+      "vpn"
+    ]
+  },
+  "netmaker": {
+    "body": [
+      "Netmaker"
+    ],
+    "tags": [
+      "vpn"
+    ]
+  },
+  "nebula": {
+    "body": [
+      "Nebula"
+    ],
+    "tags": [
+      "vpn"
+    ]
+  },
+  "tinc": {
+    "body": [
+      "tinc"
+    ],
+    "tags": [
+      "vpn"
+    ]
+  },
+  "strongswan": {
+    "body": [
+      "strongSwan"
+    ],
+    "tags": [
+      "vpn"
+    ]
+  },
+  "libreswan": {
+    "body": [
+      "Libreswan"
+    ],
+    "tags": [
+      "vpn"
+    ]
+  },
+  "openswan": {
+    "body": [
+      "Openswan"
+    ],
+    "tags": [
+      "vpn"
+    ]
+  },
+  "sangfor-vpn": {
+    "body": [
+      "深信服",
+      "Sangfor"
+    ],
+    "vendor": "sangfor",
+    "tags": [
+      "vpn"
+    ]
+  },
+  "array-vpn": {
+    "body": [
+      "Array Networks"
+    ],
+    "vendor": "array",
+    "tags": [
+      "vpn"
+    ]
+  },
+  "hillstone-vpn": {
+    "body": [
+      "Hillstone"
+    ],
+    "vendor": "hillstone",
+    "tags": [
+      "vpn"
+    ]
+  },
+  "fanwei-oa": {
+    "body": [
+      "泛微",
+      "E-cology",
+      "e-cology",
+      "Weaver"
+    ]
+  },
+  "zhiyuan-oa": {
+    "body": [
+      "致远",
+      "Seeyon",
+      "A8",
+      "A6"
+    ]
+  },
+  "tongda-oa": {
+    "body": [
+      "通达",
+      "TONGDA",
+      "Office Anywhere"
+    ]
+  },
+  "landray-oa": {
+    "body": [
+      "蓝凌",
+      "Landray",
+      "EKP"
+    ]
+  },
+  "yonyou-nc": {
+    "body": [
+      "用友",
+      "Yonyou",
+      "NC"
+    ]
+  },
+  "yonyou-u8": {
+    "body": [
+      "用友",
+      "U8"
+    ]
+  },
+  "yonyou-yonbip": {
+    "body": [
+      "YonBIP"
+    ]
+  },
+  "kingdee-eas": {
+    "body": [
+      "金蝶",
+      "Kingdee",
+      "EAS"
+    ]
+  },
+  "kingdee-k3": {
+    "body": [
+      "金蝶",
+      "K3"
+    ]
+  },
+  "kingdee-cloud": {
+    "body": [
+      "金蝶云",
+      "Kingdee Cloud"
+    ]
+  },
+  "huawei-welink": {
+    "body": [
+      "WeLink"
+    ]
+  },
+  "dingtalk": {
+    "body": [
+      "钉钉",
+      "DingTalk"
+    ]
+  },
+  "feishu": {
+    "body": [
+      "飞书",
+      "Feishu",
+      "Lark"
+    ]
+  },
+  "wechat-work": {
+    "body": [
+      "企业微信",
+      "WeCom"
+    ]
+  },
+  "wps-office": {
+    "body": [
+      "WPS"
+    ]
+  },
+  "inspur-oa": {
+    "body": [
+      "浪潮",
+      "Inspur"
+    ]
+  },
+  "primeton": {
+    "body": [
+      "普元",
+      "Primeton"
+    ]
+  },
+  "hundsun": {
+    "body": [
+      "恒生",
+      "Hundsun"
+    ]
+  },
+  "hand-oa": {
+    "body": [
+      "汉得",
+      "HAND"
+    ]
+  },
+  "ruvar-oa": {
+    "body": [
+      "红帆",
+      "iOffice"
+    ]
+  },
+  "jinher-oa": {
+    "body": [
+      "金和",
+      "Jinher"
+    ]
+  },
+  "78oa": {
+    "body": [
+      "78OA"
+    ]
+  },
+  "huaxia-oa": {
+    "body": [
+      "华夏"
+    ]
+  },
+  "wanhu-oa": {
+    "body": [
+      "万户",
+      "ezOFFICE"
+    ]
+  },
+  "ufida-oa": {
+    "body": [
+      "用友OA"
+    ]
+  },
+  "newgrand": {
+    "body": [
+      "新中大",
+      "Newgrand"
+    ]
+  },
+  "glodon": {
+    "body": [
+      "广联达",
+      "Glodon"
+    ]
+  },
+  "yongyou-grp": {
+    "body": [
+      "GRP-U8"
+    ]
+  },
+  "seeyon-m3": {
+    "body": [
+      "Seeyon M3",
+      "致远M3",
+      "m3-server"
+    ]
+  },
+  "cisco-switch": {
+    "body": [
+      "Cisco",
+      "Catalyst"
+    ],
+    "vendor": "cisco",
+    "devicetype": "switch"
+  },
+  "huawei-switch": {
+    "body": [
+      "HUAWEI",
+      "S5700",
+      "S6700"
+    ],
+    "vendor": "huawei",
+    "devicetype": "switch"
+  },
+  "h3c-switch": {
+    "body": [
+      "H3C",
+      "S5500",
+      "S6800"
+    ],
+    "vendor": "h3c",
+    "devicetype": "switch"
+  },
+  "juniper-switch": {
+    "body": [
+      "Juniper",
+      "EX"
+    ],
+    "vendor": "juniper",
+    "devicetype": "switch"
+  },
+  "arista-switch": {
+    "body": [
+      "Arista"
+    ],
+    "vendor": "arista",
+    "devicetype": "switch"
+  },
+  "dell-switch": {
+    "body": [
+      "Dell",
+      "PowerSwitch"
+    ],
+    "vendor": "dell",
+    "devicetype": "switch"
+  },
+  "hpe-switch": {
+    "body": [
+      "HPE",
+      "Aruba",
+      "ProCurve"
+    ],
+    "vendor": "hpe",
+    "devicetype": "switch"
+  },
+  "netgear-switch": {
+    "body": [
+      "NETGEAR"
+    ],
+    "vendor": "netgear",
+    "devicetype": "switch"
+  },
+  "tplink-switch": {
+    "body": [
+      "TP-LINK"
+    ],
+    "vendor": "tplink",
+    "devicetype": "switch"
+  },
+  "dlink-switch": {
+    "body": [
+      "D-Link"
+    ],
+    "vendor": "dlink",
+    "devicetype": "switch"
+  },
+  "zyxel-switch": {
+    "body": [
+      "ZyXEL"
+    ],
+    "vendor": "zyxel",
+    "devicetype": "switch"
+  },
+  "ruijie-switch": {
+    "body": [
+      "Ruijie",
+      "锐捷"
+    ],
+    "vendor": "ruijie",
+    "devicetype": "switch"
+  },
+  "bdcom-switch": {
+    "body": [
+      "BDCOM"
+    ],
+    "vendor": "bdcom",
+    "devicetype": "switch"
+  },
+  "maipu-switch": {
+    "body": [
+      "Maipu",
+      "迈普"
+    ],
+    "vendor": "maipu",
+    "devicetype": "switch"
+  },
+  "extreme-switch": {
+    "body": [
+      "Extreme"
+    ],
+    "vendor": "extreme",
+    "devicetype": "switch"
+  },
+  "brocade-switch": {
+    "body": [
+      "Brocade"
+    ],
+    "vendor": "brocade",
+    "devicetype": "switch"
+  },
+  "mellanox-switch": {
+    "body": [
+      "Mellanox"
+    ],
+    "vendor": "mellanox",
+    "devicetype": "switch"
+  },
+  "cumulus-switch": {
+    "body": [
+      "Cumulus"
+    ],
+    "devicetype": "switch"
+  },
+  "sonic-switch": {
+    "body": [
+      "SONiC"
+    ],
+    "devicetype": "switch"
+  },
+  "f5-bigip": {
+    "body": [
+      "BIG-IP",
+      "F5"
+    ],
+    "vendor": "f5",
+    "devicetype": "loadbalancer"
+  },
+  "citrix-adc": {
+    "body": [
+      "Citrix ADC",
+      "NetScaler"
+    ],
+    "vendor": "citrix",
+    "devicetype": "loadbalancer"
+  },
+  "a10-thunder": {
+    "body": [
+      "A10",
+      "Thunder"
+    ],
+    "vendor": "a10",
+    "devicetype": "loadbalancer"
+  },
+  "radware-alteon": {
+    "body": [
+      "Radware",
+      "Alteon"
+    ],
+    "vendor": "radware",
+    "devicetype": "loadbalancer"
+  },
+  "kemp-loadmaster": {
+    "body": [
+      "KEMP",
+      "LoadMaster"
+    ],
+    "vendor": "kemp",
+    "devicetype": "loadbalancer"
+  },
+  "barracuda-lb": {
+    "body": [
+      "Barracuda"
+    ],
+    "vendor": "barracuda",
+    "devicetype": "loadbalancer"
+  },
+  "array-apv": {
+    "body": [
+      "Array",
+      "APV"
+    ],
+    "vendor": "array",
+    "devicetype": "loadbalancer"
+  },
+  "sangfor-ad": {
+    "body": [
+      "Sangfor AD",
+      "深信服AD",
+      "Sangfor Application Delivery"
+    ],
+    "vendor": "sangfor",
+    "devicetype": "loadbalancer"
+  },
+  "nginx-plus": {
+    "body": [
+      "NGINX Plus"
+    ],
+    "devicetype": "loadbalancer"
+  },
+  "haproxy-lb": {
+    "body": [
+      "HAProxy"
+    ],
+    "devicetype": "loadbalancer"
+  },
+  "aws-elb": {
+    "body": [
+      "ELB",
+      "AWS"
+    ],
+    "devicetype": "loadbalancer"
+  },
+  "azure-lb": {
+    "body": [
+      "Azure"
+    ],
+    "devicetype": "loadbalancer"
+  },
+  "gcp-lb": {
+    "body": [
+      "Google Cloud"
+    ],
+    "devicetype": "loadbalancer"
+  },
+  "vmware-vcenter": {
+    "body": [
+      "vCenter",
+      "VMware"
+    ],
+    "vendor": "vmware",
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "vmware-esxi": {
+    "body": [
+      "ESXi"
+    ],
+    "vendor": "vmware",
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "vmware-horizon": {
+    "body": [
+      "Horizon"
+    ],
+    "vendor": "vmware",
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "vmware-nsx": {
+    "body": [
+      "NSX"
+    ],
+    "vendor": "vmware",
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "vmware-vrealize": {
+    "body": [
+      "vRealize"
+    ],
+    "vendor": "vmware",
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "proxmox-ve": {
+    "body": [
+      "Proxmox"
+    ],
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "citrix-xenserver": {
+    "body": [
+      "XenServer"
+    ],
+    "vendor": "citrix",
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "citrix-hypervisor": {
+    "body": [
+      "Citrix Hypervisor"
+    ],
+    "vendor": "citrix",
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "microsoft-hyperv": {
+    "body": [
+      "Hyper-V"
+    ],
+    "vendor": "microsoft",
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "nutanix-ahv": {
+    "body": [
+      "Nutanix",
+      "Prism"
+    ],
+    "vendor": "nutanix",
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "openstack": {
+    "body": [
+      "OpenStack"
+    ],
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "openstack-horizon": {
+    "body": [
+      "Horizon",
+      "OpenStack"
+    ],
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "cloudstack": {
+    "body": [
+      "CloudStack"
+    ],
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "opennebula": {
+    "body": [
+      "OpenNebula"
+    ],
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "ovirt": {
+    "body": [
+      "oVirt"
+    ],
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "xcp-ng": {
+    "body": [
+      "XCP-ng"
+    ],
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "harvester": {
+    "body": [
+      "Harvester"
+    ],
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "scale-computing": {
+    "body": [
+      "Scale Computing"
+    ],
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "sangfor-hci": {
+    "body": [
+      "Sangfor",
+      "HCI"
+    ],
+    "vendor": "sangfor",
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "huawei-fusioncompute": {
+    "body": [
+      "FusionCompute"
+    ],
+    "vendor": "huawei",
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "h3c-cas": {
+    "body": [
+      "CAS"
+    ],
+    "vendor": "h3c",
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "zstack": {
+    "body": [
+      "ZStack"
+    ],
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "smartx": {
+    "body": [
+      "SmartX"
+    ],
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "docker": {
+    "body": [
+      "Docker"
+    ]
+  },
+  "docker-registry": {
+    "body": [
+      "Docker Registry"
+    ]
+  },
+  "kubernetes": {
+    "body": [
+      "Kubernetes"
+    ]
+  },
+  "kubernetes-api": {
+    "body": [
+      "Kubernetes Dashboard",
+      "kubernetes-dashboard",
+      "kube-apiserver"
+    ]
+  },
+  "openshift": {
+    "body": [
+      "OpenShift"
+    ]
+  },
+  "k3s": {
+    "body": [
+      "K3s"
+    ]
+  },
+  "rke": {
+    "body": [
+      "RKE"
+    ]
+  },
+  "microk8s": {
+    "body": [
+      "MicroK8s"
+    ]
+  },
+  "minikube": {
+    "body": [
+      "Minikube"
+    ]
+  },
+  "kind": {
+    "body": [
+      "kind"
+    ]
+  },
+  "k0s": {
+    "body": [
+      "k0s"
+    ]
+  },
+  "talos": {
+    "body": [
+      "Talos"
+    ]
+  },
+  "flatcar": {
+    "body": [
+      "Flatcar"
+    ]
+  },
+  "bottlerocket": {
+    "body": [
+      "Bottlerocket"
+    ]
+  },
+  "podman": {
+    "body": [
+      "Podman"
+    ]
+  },
+  "containerd": {
+    "body": [
+      "containerd"
+    ]
+  },
+  "cri-o": {
+    "body": [
+      "CRI-O"
+    ]
+  },
+  "lxc": {
+    "body": [
+      "LXC"
+    ]
+  },
+  "lxd": {
+    "body": [
+      "LXD"
+    ]
+  },
+  "incus": {
+    "body": [
+      "Incus"
+    ]
+  },
+  "nomad": {
+    "body": [
+      "Nomad"
+    ]
+  },
+  "mesos": {
+    "body": [
+      "Mesos"
+    ]
+  },
+  "marathon": {
+    "body": [
+      "Marathon"
+    ]
+  },
+  "dcos": {
+    "body": [
+      "DC/OS"
+    ]
+  },
+  "swarm": {
+    "body": [
+      "Swarm"
+    ]
+  },
+  "zkteco": {
+    "body": [
+      "ZKTeco",
+      "中控"
+    ],
+    "vendor": "zkteco"
+  },
+  "hikvision-access": {
+    "body": [
+      "HIKVISION",
+      "门禁"
+    ],
+    "vendor": "hikvision"
+  },
+  "dahua-access": {
+    "body": [
+      "Dahua",
+      "门禁"
+    ],
+    "vendor": "dahua"
+  },
+  "honeywell-access": {
+    "body": [
+      "Honeywell"
+    ],
+    "vendor": "honeywell"
+  },
+  "hid-access": {
+    "body": [
+      "HID"
+    ],
+    "vendor": "hid"
+  },
+  "suprema": {
+    "body": [
+      "Suprema"
+    ],
+    "vendor": "suprema"
+  },
+  "anviz": {
+    "body": [
+      "Anviz"
+    ],
+    "vendor": "anviz"
+  },
+  "fingertec": {
+    "body": [
+      "FingerTec"
+    ],
+    "vendor": "fingertec"
+  },
+  "biostar": {
+    "body": [
+      "BioStar"
+    ],
+    "vendor": "suprema"
+  },
+  "paxton": {
+    "body": [
+      "Paxton"
+    ],
+    "vendor": "paxton"
+  },
+  "genetec": {
+    "body": [
+      "Genetec"
+    ],
+    "vendor": "genetec"
+  },
+  "lenel": {
+    "body": [
+      "Lenel",
+      "OnGuard"
+    ],
+    "vendor": "lenel"
+  },
+  "ccure": {
+    "body": [
+      "C-CURE"
+    ],
+    "vendor": "tyco"
+  },
+  "software-house": {
+    "body": [
+      "Software House"
+    ],
+    "vendor": "tyco"
+  },
+  "gallagher": {
+    "body": [
+      "Gallagher"
+    ],
+    "vendor": "gallagher"
+  },
+  "inner-range": {
+    "body": [
+      "Inner Range"
+    ],
+    "vendor": "innerrange"
+  },
+  "keri": {
+    "body": [
+      "Keri"
+    ],
+    "vendor": "keri"
+  },
+  "brivo": {
+    "body": [
+      "Brivo"
+    ],
+    "vendor": "brivo"
+  },
+  "openpath": {
+    "body": [
+      "Openpath"
+    ],
+    "vendor": "openpath"
+  },
+  "verkada": {
+    "body": [
+      "Verkada"
+    ],
+    "vendor": "verkada"
+  },
+  "apc-ups": {
+    "body": [
+      "APC",
+      "Smart-UPS"
+    ],
+    "vendor": "apc"
+  },
+  "eaton-ups": {
+    "body": [
+      "Eaton"
+    ],
+    "vendor": "eaton"
+  },
+  "vertiv-ups": {
+    "body": [
+      "Vertiv",
+      "Liebert"
+    ],
+    "vendor": "vertiv"
+  },
+  "cyberpower-ups": {
+    "body": [
+      "CyberPower"
+    ],
+    "vendor": "cyberpower"
+  },
+  "tripplite-ups": {
+    "body": [
+      "Tripp Lite"
+    ],
+    "vendor": "tripplite"
+  },
+  "schneider-ups": {
+    "body": [
+      "Schneider"
+    ],
+    "vendor": "schneider"
+  },
+  "delta-ups": {
+    "body": [
+      "Delta"
+    ],
+    "vendor": "delta"
+  },
+  "socomec-ups": {
+    "body": [
+      "Socomec"
+    ],
+    "vendor": "socomec"
+  },
+  "riello-ups": {
+    "body": [
+      "Riello"
+    ],
+    "vendor": "riello"
+  },
+  "legrand-ups": {
+    "body": [
+      "Legrand"
+    ],
+    "vendor": "legrand"
+  },
+  "huawei-ups": {
+    "body": [
+      "HUAWEI"
+    ],
+    "vendor": "huawei"
+  },
+  "emerson-ups": {
+    "body": [
+      "Emerson"
+    ],
+    "vendor": "emerson"
+  },
+  "nut-ups": {
+    "body": [
+      "Network UPS Tools",
+      "NUT"
+    ]
+  },
+  "apcupsd": {
+    "body": [
+      "apcupsd"
+    ]
+  },
+  "zoom": {
+    "body": [
+      "Zoom"
+    ]
+  },
+  "teams": {
+    "body": [
+      "Teams"
+    ]
+  },
+  "webex": {
+    "body": [
+      "Webex"
+    ]
+  },
+  "gotomeeting": {
+    "body": [
+      "GoToMeeting"
+    ]
+  },
+  "bluejeans": {
+    "body": [
+      "BlueJeans"
+    ]
+  },
+  "ringcentral": {
+    "body": [
+      "RingCentral"
+    ]
+  },
+  "polycom": {
+    "body": [
+      "Polycom"
+    ],
+    "vendor": "polycom"
+  },
+  "cisco-telepresence": {
+    "body": [
+      "TelePresence"
+    ],
+    "vendor": "cisco"
+  },
+  "lifesize": {
+    "body": [
+      "Lifesize"
+    ],
+    "vendor": "lifesize"
+  },
+  "pexip": {
+    "body": [
+      "Pexip"
+    ]
+  },
+  "jitsi": {
+    "body": [
+      "Jitsi"
+    ]
+  },
+  "bigbluebutton": {
+    "body": [
+      "BigBlueButton"
+    ]
+  },
+  "openvidu": {
+    "body": [
+      "OpenVidu"
+    ]
+  },
+  "livekit": {
+    "body": [
+      "LiveKit"
+    ]
+  },
+  "mediasoup": {
+    "body": [
+      "mediasoup"
+    ]
+  },
+  "janus": {
+    "body": [
+      "Janus"
+    ]
+  },
+  "kurento": {
+    "body": [
+      "Kurento"
+    ]
+  },
+  "ant-media": {
+    "body": [
+      "Ant Media"
+    ]
+  },
+  "wowza": {
+    "body": [
+      "Wowza"
+    ]
+  },
+  "red5": {
+    "body": [
+      "Red5"
+    ]
+  },
+  "srs": {
+    "body": [
+      "SRS"
+    ]
+  },
+  "nginx-rtmp": {
+    "body": [
+      "nginx-rtmp"
+    ]
+  },
+  "owncast": {
+    "body": [
+      "Owncast"
+    ]
+  },
+  "peertube": {
+    "body": [
+      "PeerTube"
+    ]
+  },
+  "dicom-server": {
+    "body": [
+      "DICOM"
+    ]
+  },
+  "orthanc": {
+    "body": [
+      "Orthanc"
+    ]
+  },
+  "dcm4chee": {
+    "body": [
+      "dcm4chee"
+    ]
+  },
+  "horos": {
+    "body": [
+      "Horos"
+    ]
+  },
+  "osirix": {
+    "body": [
+      "OsiriX"
+    ]
+  },
+  "conquest": {
+    "body": [
+      "Conquest"
+    ]
+  },
+  "ge-healthcare": {
+    "body": [
+      "GE Healthcare"
+    ],
+    "vendor": "ge"
+  },
+  "philips-healthcare": {
+    "body": [
+      "Philips"
+    ],
+    "vendor": "philips"
+  },
+  "siemens-healthineers": {
+    "body": [
+      "Siemens Healthineers"
+    ],
+    "vendor": "siemens"
+  },
+  "carestream": {
+    "body": [
+      "Carestream"
+    ],
+    "vendor": "carestream"
+  },
+  "agfa-healthcare": {
+    "body": [
+      "Agfa"
+    ],
+    "vendor": "agfa"
+  },
+  "fujifilm-healthcare": {
+    "body": [
+      "Fujifilm"
+    ],
+    "vendor": "fujifilm"
+  },
+  "hologic": {
+    "body": [
+      "Hologic"
+    ],
+    "vendor": "hologic"
+  },
+  "mindray": {
+    "body": [
+      "Mindray",
+      "迈瑞"
+    ],
+    "vendor": "mindray"
+  },
+  "edan": {
+    "body": [
+      "Edan",
+      "理邦"
+    ],
+    "vendor": "edan"
+  },
+  "biolight": {
+    "body": [
+      "Biolight"
+    ],
+    "vendor": "biolight"
+  },
+  "openhis": {
+    "body": [
+      "OpenHIS"
+    ]
+  },
+  "openmrs": {
+    "body": [
+      "OpenMRS"
+    ]
+  },
+  "openemr": {
+    "body": [
+      "OpenEMR"
+    ]
+  },
+  "bahmni": {
+    "body": [
+      "Bahmni"
+    ]
+  },
+  "gnu-health": {
+    "body": [
+      "GNU Health"
+    ]
+  },
+  "home-assistant": {
+    "body": [
+      "Home Assistant"
+    ]
+  },
+  "openhab": {
+    "body": [
+      "openHAB"
+    ]
+  },
+  "domoticz": {
+    "body": [
+      "Domoticz"
+    ]
+  },
+  "homeseer": {
+    "body": [
+      "HomeSeer"
+    ]
+  },
+  "hubitat": {
+    "body": [
+      "Hubitat"
+    ]
+  },
+  "smartthings": {
+    "body": [
+      "SmartThings"
+    ]
+  },
+  "vera": {
+    "body": [
+      "Vera"
+    ]
+  },
+  "homey": {
+    "body": [
+      "Homey"
+    ]
+  },
+  "iobroker": {
+    "body": [
+      "ioBroker"
+    ]
+  },
+  "fhem": {
+    "body": [
+      "FHEM"
+    ]
+  },
+  "node-red": {
+    "body": [
+      "Node-RED"
+    ]
+  },
+  "homebridge": {
+    "body": [
+      "Homebridge"
+    ]
+  },
+  "zigbee2mqtt": {
+    "body": [
+      "Zigbee2MQTT"
+    ]
+  },
+  "zwave-js": {
+    "body": [
+      "Z-Wave JS"
+    ]
+  },
+  "esphome": {
+    "body": [
+      "ESPHome"
+    ]
+  },
+  "tasmota": {
+    "body": [
+      "Tasmota"
+    ]
+  },
+  "shelly": {
+    "body": [
+      "Shelly"
+    ]
+  },
+  "sonoff": {
+    "body": [
+      "Sonoff"
+    ]
+  },
+  "tuya": {
+    "body": [
+      "Tuya"
+    ]
+  },
+  "xiaomi-home": {
+    "body": [
+      "小米",
+      "Xiaomi"
+    ]
+  },
+  "aqara": {
+    "body": [
+      "Aqara"
+    ]
+  },
+  "yeelight": {
+    "body": [
+      "Yeelight"
+    ]
+  },
+  "philips-hue": {
+    "body": [
+      "Philips Hue"
+    ]
+  },
+  "lifx": {
+    "body": [
+      "LIFX"
+    ]
+  },
+  "nanoleaf": {
+    "body": [
+      "Nanoleaf"
+    ]
+  },
+  "wled": {
+    "body": [
+      "WLED"
+    ]
+  },
+  "hyperion": {
+    "body": [
+      "Hyperion"
+    ]
+  },
+  "ecobee": {
+    "body": [
+      "ecobee"
+    ]
+  },
+  "nest-thermostat": {
+    "body": [
+      "Nest"
+    ]
+  },
+  "tado": {
+    "body": [
+      "tado"
+    ]
+  },
+  "minecraft": {
+    "body": [
+      "Minecraft"
+    ]
+  },
+  "pterodactyl": {
+    "body": [
+      "Pterodactyl"
+    ]
+  },
+  "crafty": {
+    "body": [
+      "Crafty"
+    ]
+  },
+  "amp": {
+    "body": [
+      "AMP"
+    ]
+  },
+  "multicraft": {
+    "body": [
+      "Multicraft"
+    ]
+  },
+  "tcadmin": {
+    "body": [
+      "TCAdmin"
+    ]
+  },
+  "gamecp": {
+    "body": [
+      "GameCP"
+    ]
+  },
+  "linuxgsm": {
+    "body": [
+      "LinuxGSM"
+    ]
+  },
+  "windowsgsm": {
+    "body": [
+      "WindowsGSM"
+    ]
+  },
+  "sourcemod": {
+    "body": [
+      "SourceMod"
+    ]
+  },
+  "battlemetrics": {
+    "body": [
+      "BattleMetrics"
+    ]
+  },
+  "gametracker": {
+    "body": [
+      "GameTracker"
+    ]
+  },
+  "ollama": {
+    "body": [
+      "Ollama"
+    ]
+  },
+  "vllm": {
+    "body": [
+      "vLLM"
+    ]
+  },
+  "llama-cpp": {
+    "body": [
+      "llama.cpp",
+      "llama-cpp"
+    ]
+  },
+  "text-generation-webui": {
+    "body": [
+      "text-generation-webui",
+      "oobabooga"
+    ]
+  },
+  "koboldai": {
+    "body": [
+      "KoboldAI"
+    ]
+  },
+  "koboldcpp": {
+    "body": [
+      "KoboldCpp"
+    ]
+  },
+  "exllama": {
+    "body": [
+      "ExLlama"
+    ]
+  },
+  "localai": {
+    "body": [
+      "LocalAI"
+    ]
+  },
+  "gpt4all": {
+    "body": [
+      "GPT4All"
+    ]
+  },
+  "lmstudio": {
+    "body": [
+      "LM Studio"
+    ]
+  },
+  "jan": {
+    "body": [
+      "Jan"
+    ]
+  },
+  "llamafile": {
+    "body": [
+      "llamafile"
+    ]
+  },
+  "tabbyml": {
+    "body": [
+      "TabbyML",
+      "Tabby"
+    ]
+  },
+  "continue": {
+    "body": [
+      "Continue"
+    ]
+  },
+  "tgi": {
+    "body": [
+      "text-generation-inference",
+      "TGI"
+    ]
+  },
+  "triton": {
+    "body": [
+      "Triton Inference Server"
+    ]
+  },
+  "tensorrt-llm": {
+    "body": [
+      "TensorRT-LLM"
+    ]
+  },
+  "ray-serve": {
+    "body": [
+      "Ray Serve"
+    ]
+  },
+  "bentoml": {
+    "body": [
+      "BentoML"
+    ]
+  },
+  "mlc-llm": {
+    "body": [
+      "MLC LLM"
+    ]
+  },
+  "candle": {
+    "body": [
+      "Candle"
+    ]
+  },
+  "mistral-rs": {
+    "body": [
+      "mistral.rs"
+    ]
+  },
+  "chatgpt-next-web": {
+    "body": [
+      "ChatGPT Next Web"
+    ]
+  },
+  "chatgpt-web": {
+    "body": [
+      "ChatGPT Web"
+    ]
+  },
+  "chatbox": {
+    "body": [
+      "Chatbox"
+    ]
+  },
+  "open-webui": {
+    "body": [
+      "Open WebUI"
+    ]
+  },
+  "big-agi": {
+    "body": [
+      "big-AGI"
+    ]
+  },
+  "librechat": {
+    "body": [
+      "LibreChat"
+    ]
+  },
+  "chatgpt-midjourney": {
+    "body": [
+      "ChatGPT-Midjourney"
+    ]
+  },
+  "gpt-academic": {
+    "body": [
+      "GPT-Academic",
+      "学术优化"
+    ]
+  },
+  "fastgpt": {
+    "body": [
+      "FastGPT"
+    ]
+  },
+  "quivr": {
+    "body": [
+      "Quivr"
+    ]
+  },
+  "maxkb": {
+    "body": [
+      "MaxKB"
+    ]
+  },
+  "dify": {
+    "body": [
+      "Dify"
+    ]
+  },
+  "flowise": {
+    "body": [
+      "Flowise"
+    ]
+  },
+  "langflow": {
+    "body": [
+      "Langflow"
+    ]
+  },
+  "ragflow": {
+    "body": [
+      "RAGFlow"
+    ]
+  },
+  "anything-llm": {
+    "body": [
+      "AnythingLLM"
+    ]
+  },
+  "privateGPT": {
+    "body": [
+      "privateGPT"
+    ]
+  },
+  "chroma": {
+    "body": [
+      "Chroma"
+    ]
+  },
+  "qdrant": {
+    "body": [
+      "Qdrant"
+    ]
+  },
+  "milvus": {
+    "body": [
+      "Milvus"
+    ]
+  },
+  "weaviate": {
+    "body": [
+      "Weaviate"
+    ]
+  },
+  "pinecone": {
+    "body": [
+      "Pinecone"
+    ]
+  },
+  "pgvector": {
+    "body": [
+      "pgvector"
+    ]
+  },
+  "opensearch": {
+    "body": [
+      "OpenSearch"
+    ]
+  },
+  "vespa": {
+    "body": [
+      "Vespa"
+    ]
+  },
+  "marqo": {
+    "body": [
+      "Marqo"
+    ]
+  },
+  "typesense": {
+    "body": [
+      "Typesense"
+    ]
+  },
+  "meilisearch": {
+    "body": [
+      "Meilisearch"
+    ]
+  },
+  "huggingface": {
+    "body": [
+      "Hugging Face"
+    ]
+  },
+  "streamlit": {
+    "body": [
+      "Streamlit"
+    ]
+  },
+  "chainlit": {
+    "body": [
+      "Chainlit"
+    ]
+  },
+  "panel": {
+    "body": [
+      "Panel"
+    ]
+  },
+  "automatic1111": {
+    "body": [
+      "AUTOMATIC1111",
+      "Stable Diffusion web UI"
+    ]
+  },
+  "fooocus": {
+    "body": [
+      "Fooocus"
+    ]
+  },
+  "invokeai": {
+    "body": [
+      "InvokeAI"
+    ]
+  },
+  "stable-diffusion-webui": {
+    "body": [
+      "Stable Diffusion"
+    ]
+  },
+  "sd-next": {
+    "body": [
+      "SD.Next"
+    ]
+  },
+  "kohya-ss": {
+    "body": [
+      "Kohya"
+    ]
+  },
+  "a1111-forge": {
+    "body": [
+      "Forge"
+    ]
+  },
+  "one-api": {
+    "body": [
+      "One API"
+    ]
+  },
+  "new-api": {
+    "body": [
+      "New API"
+    ]
+  },
+  "chat-api": {
+    "body": [
+      "Chat API"
+    ]
+  },
+  "litellm": {
+    "body": [
+      "LiteLLM"
+    ]
+  },
+  "openrouter": {
+    "body": [
+      "OpenRouter"
+    ]
+  },
+  "azure-openai": {
+    "body": [
+      "Azure OpenAI"
+    ]
+  },
+  "autogpt": {
+    "body": [
+      "AutoGPT"
+    ]
+  },
+  "agentgpt": {
+    "body": [
+      "AgentGPT"
+    ]
+  },
+  "babyagi": {
+    "body": [
+      "BabyAGI"
+    ]
+  },
+  "superagi": {
+    "body": [
+      "SuperAGI"
+    ]
+  },
+  "crewai": {
+    "body": [
+      "CrewAI"
+    ]
+  },
+  "autogen": {
+    "body": [
+      "AutoGen"
+    ]
+  },
+  "langchain": {
+    "body": [
+      "LangChain"
+    ]
+  },
+  "langsmith": {
+    "body": [
+      "LangSmith"
+    ]
+  },
+  "langserve": {
+    "body": [
+      "LangServe"
+    ]
+  },
+  "chatglm": {
+    "body": [
+      "ChatGLM"
+    ]
+  },
+  "qwen": {
+    "body": [
+      "Qwen",
+      "通义千问"
+    ]
+  },
+  "baichuan": {
+    "body": [
+      "Baichuan",
+      "百川"
+    ]
+  },
+  "wenxin": {
+    "body": [
+      "文心一言",
+      "ERNIE"
+    ]
+  },
+  "xunfei-spark": {
+    "body": [
+      "讯飞星火",
+      "Spark"
+    ]
+  },
+  "minimax": {
+    "body": [
+      "MiniMax"
+    ]
+  },
+  "moonshot": {
+    "body": [
+      "Moonshot",
+      "Kimi"
+    ]
+  },
+  "deepseek": {
+    "body": [
+      "DeepSeek"
+    ]
+  },
+  "zhipu": {
+    "body": [
+      "智谱",
+      "ZhipuAI"
+    ]
+  },
+  "sensetime": {
+    "body": [
+      "商汤",
+      "SenseTime"
+    ]
+  },
+  "baidu-ai": {
+    "body": [
+      "百度AI"
+    ]
+  },
+  "aliyun-ai": {
+    "body": [
+      "阿里云AI",
+      "通义"
+    ]
+  },
+  "tencent-ai": {
+    "body": [
+      "腾讯AI",
+      "混元"
+    ]
+  },
+  "huawei-pangu": {
+    "body": [
+      "盘古",
+      "Pangu"
+    ]
+  },
+  "whisper": {
+    "body": [
+      "Whisper"
+    ]
+  },
+  "faster-whisper": {
+    "body": [
+      "faster-whisper"
+    ]
+  },
+  "whisperx": {
+    "body": [
+      "WhisperX"
+    ]
+  },
+  "coqui-tts": {
+    "body": [
+      "Coqui TTS"
+    ]
+  },
+  "bark": {
+    "body": [
+      "Bark"
+    ]
+  },
+  "tortoise-tts": {
+    "body": [
+      "Tortoise-TTS"
+    ]
+  },
+  "piper": {
+    "body": [
+      "Piper"
+    ]
+  },
+  "xtts": {
+    "body": [
+      "XTTS"
+    ]
+  },
+  "so-vits-svc": {
+    "body": [
+      "so-vits-svc"
+    ]
+  },
+  "rvc": {
+    "body": [
+      "RVC",
+      "Retrieval-based-Voice-Conversion"
+    ]
+  },
+  "openvoice": {
+    "body": [
+      "OpenVoice"
+    ]
+  },
+  "fish-speech": {
+    "body": [
+      "Fish Speech"
+    ]
+  },
+  "chattts": {
+    "body": [
+      "ChatTTS"
+    ]
+  },
+  "gpt-sovits": {
+    "body": [
+      "GPT-SoVITS"
+    ]
+  },
+  "dell-idrac": {
+    "body": [
+      "iDRAC",
+      "Dell Remote Access"
+    ],
+    "vendor": "dell"
+  },
+  "hp-ilo": {
+    "body": [
+      "iLO",
+      "Integrated Lights-Out"
+    ],
+    "vendor": "hp"
+  },
+  "lenovo-imm": {
+    "body": [
+      "IMM",
+      "Integrated Management Module"
+    ],
+    "vendor": "lenovo"
+  },
+  "lenovo-xcc": {
+    "body": [
+      "XCC",
+      "XClarity Controller"
+    ],
+    "vendor": "lenovo"
+  },
+  "supermicro-ipmi": {
+    "body": [
+      "Supermicro",
+      "IPMI"
+    ],
+    "vendor": "supermicro"
+  },
+  "huawei-ibmc": {
+    "body": [
+      "iBMC"
+    ],
+    "vendor": "huawei"
+  },
+  "cisco-cimc": {
+    "body": [
+      "CIMC",
+      "Cisco Integrated Management"
+    ],
+    "vendor": "cisco"
+  },
+  "fujitsu-irmc": {
+    "body": [
+      "iRMC"
+    ],
+    "vendor": "fujitsu"
+  },
+  "inspur-bmc": {
+    "body": [
+      "Inspur",
+      "浪潮"
+    ],
+    "vendor": "inspur"
+  },
+  "h3c-hdm": {
+    "body": [
+      "HDM"
+    ],
+    "vendor": "h3c"
+  },
+  "aten-ipmi": {
+    "body": [
+      "ATEN"
+    ],
+    "vendor": "aten"
+  },
+  "ami-megarac": {
+    "body": [
+      "MegaRAC"
+    ],
+    "vendor": "ami"
+  },
+  "aspeed-bmc": {
+    "body": [
+      "ASPEED"
+    ],
+    "vendor": "aspeed"
+  },
+  "openbmc": {
+    "body": [
+      "OpenBMC"
+    ]
+  },
+  "raritan-kvm": {
+    "body": [
+      "Raritan"
+    ],
+    "vendor": "raritan"
+  },
+  "aten-kvm": {
+    "body": [
+      "ATEN"
+    ],
+    "vendor": "aten"
+  },
+  "avocent-kvm": {
+    "body": [
+      "Avocent"
+    ],
+    "vendor": "avocent"
+  },
+  "lantronix-kvm": {
+    "body": [
+      "Lantronix"
+    ],
+    "vendor": "lantronix"
+  },
+  "pikvm": {
+    "body": [
+      "PiKVM"
+    ]
+  },
+  "tinypilot": {
+    "body": [
+      "TinyPilot"
+    ]
+  },
+  "apc-pdu": {
+    "body": [
+      "APC",
+      "PDU"
+    ],
+    "vendor": "apc"
+  },
+  "raritan-pdu": {
+    "body": [
+      "Raritan PDU",
+      "Raritan PX",
+      "Raritan Dominion"
+    ],
+    "vendor": "raritan"
+  },
+  "eaton-pdu": {
+    "body": [
+      "Eaton",
+      "ePDU"
+    ],
+    "vendor": "eaton"
+  },
+  "servertech-pdu": {
+    "body": [
+      "Server Technology"
+    ],
+    "vendor": "servertech"
+  },
+  "cyberpower-pdu": {
+    "body": [
+      "CyberPower",
+      "PDU"
+    ],
+    "vendor": "cyberpower"
+  },
+  "vertiv-pdu": {
+    "body": [
+      "Vertiv",
+      "Geist"
+    ],
+    "vendor": "vertiv"
+  },
+  "panduit-pdu": {
+    "body": [
+      "Panduit"
+    ],
+    "vendor": "panduit"
+  },
+  "apache-superset": {
+    "body": [
+      "Superset"
+    ]
+  },
+  "xshell-web": {
+    "body": [
+      "Xshell"
+    ]
+  },
+  "webssh": {
+    "body": [
+      "WebSSH"
+    ]
+  },
+  "wetty": {
+    "body": [
+      "Wetty"
+    ]
+  },
+  "ttyd": {
+    "body": [
+      "ttyd"
+    ]
+  },
+  "gotty": {
+    "body": [
+      "GoTTY"
+    ]
+  },
+  "sshwifty": {
+    "body": [
+      "Sshwifty"
+    ]
+  },
+  "qizhi-bastion": {
+    "body": [
+      "齐治",
+      "Shterm"
+    ]
+  },
+  "bindian-bastion": {
+    "body": [
+      "宾典"
+    ]
+  },
+  "huawei-bastion": {
+    "body": [
+      "华为堡垒机"
+    ]
+  },
+  "sangfor-bastion": {
+    "body": [
+      "深信服",
+      "堡垒机"
+    ]
+  },
+  "nsfocus-bastion": {
+    "body": [
+      "绿盟",
+      "堡垒机"
+    ]
+  },
+  "venustech-bastion": {
+    "body": [
+      "启明星辰",
+      "堡垒机"
+    ]
+  },
+  "anchnet-bastion": {
+    "body": [
+      "安恒",
+      "堡垒机"
+    ]
+  },
+  "h3c-bastion": {
+    "body": [
+      "H3C",
+      "SecPath"
+    ]
+  },
+  "ruijie-bastion": {
+    "body": [
+      "锐捷",
+      "堡垒机"
+    ]
+  },
+  "cootekio": {
+    "body": [
+      "Cootekio"
+    ]
+  },
+  "sealos": {
+    "body": [
+      "Sealos"
+    ]
+  },
+  "exchange": {
+    "body": [
+      "Exchange",
+      "OWA"
+    ]
+  },
+  "exchange-owa": {
+    "body": [
+      "Outlook Web App",
+      "OWA"
+    ]
+  },
+  "exchange-ecp": {
+    "body": [
+      "Exchange Admin Center",
+      "ECP"
+    ]
+  },
+  "mdaemon": {
+    "body": [
+      "MDaemon"
+    ]
+  },
+  "hmailserver": {
+    "body": [
+      "hMailServer"
+    ]
+  },
+  "kerio-connect": {
+    "body": [
+      "Kerio Connect"
+    ]
+  },
+  "icewarp": {
+    "body": [
+      "IceWarp"
+    ]
+  },
+  "axigen": {
+    "body": [
+      "Axigen"
+    ]
+  },
+  "atmail": {
+    "body": [
+      "Atmail"
+    ]
+  },
+  "afterlogic": {
+    "body": [
+      "AfterLogic"
+    ]
+  },
+  "modoboa": {
+    "body": [
+      "Modoboa"
+    ]
+  },
+  "postal": {
+    "body": [
+      "Postal"
+    ]
+  },
+  "mailpile": {
+    "body": [
+      "Mailpile"
+    ]
+  },
+  "snappymail": {
+    "body": [
+      "SnappyMail"
+    ]
+  },
+  "sogo": {
+    "body": [
+      "SOGo"
+    ]
+  },
+  "turbomail": {
+    "body": [
+      "TurboMail",
+      "拓波"
+    ]
+  },
+  "winmail": {
+    "body": [
+      "Winmail",
+      "魔方网表"
+    ]
+  },
+  "u-mail": {
+    "body": [
+      "U-Mail"
+    ]
+  },
+  "eyou-mail": {
+    "body": [
+      "亿邮",
+      "eYou"
+    ]
+  },
+  "anymacro": {
+    "body": [
+      "Anymacro",
+      "安宁"
+    ]
+  },
+  "richmail": {
+    "body": [
+      "Richmail",
+      "彩讯"
+    ]
+  },
+  "ldap-admin": {
+    "body": [
+      "LDAP Admin"
+    ]
+  },
+  "phpldapadmin": {
+    "body": [
+      "phpLDAPadmin"
+    ]
+  },
+  "lam": {
+    "body": [
+      "LDAP Account Manager"
+    ]
+  },
+  "apache-ds": {
+    "body": [
+      "Apache Directory"
+    ]
+  },
+  "openldap": {
+    "body": [
+      "OpenLDAP"
+    ]
+  },
+  "389ds": {
+    "body": [
+      "389 Directory"
+    ]
+  },
+  "freeipa": {
+    "body": [
+      "FreeIPA"
+    ]
+  },
+  "samba-ad": {
+    "body": [
+      "Samba"
+    ]
+  },
+  "adfs": {
+    "body": [
+      "ADFS",
+      "AD FS"
+    ]
+  },
+  "azure-ad": {
+    "body": [
+      "Azure AD"
+    ]
+  },
+  "lldap": {
+    "body": [
+      "LLDAP"
+    ]
+  },
+  "glauth": {
+    "body": [
+      "GLAuth"
+    ]
+  },
+  "snmp-manager": {
+    "body": [
+      "SNMP"
+    ]
+  },
+  "librenms": {
+    "body": [
+      "LibreNMS"
+    ]
+  },
+  "observium": {
+    "body": [
+      "Observium"
+    ]
+  },
+  "mrtg": {
+    "body": [
+      "MRTG"
+    ]
+  },
+  "ntopng": {
+    "body": [
+      "ntopng"
+    ]
+  },
+  "nfsen": {
+    "body": [
+      "NfSen"
+    ]
+  },
+  "pmacct": {
+    "body": [
+      "pmacct"
+    ]
+  },
+  "netflow": {
+    "body": [
+      "NetFlow"
+    ]
+  },
+  "sflow": {
+    "body": [
+      "sFlow"
+    ]
+  },
+  "smokeping": {
+    "body": [
+      "SmokePing"
+    ]
+  },
+  "opennms": {
+    "body": [
+      "OpenNMS"
+    ]
+  },
+  "netxms": {
+    "body": [
+      "NetXMS"
+    ]
+  },
+  "nedi": {
+    "body": [
+      "NeDi"
+    ]
+  },
+  "oxidized": {
+    "body": [
+      "Oxidized"
+    ]
+  },
+  "rancid": {
+    "body": [
+      "RANCID"
+    ]
+  },
+  "unimus": {
+    "body": [
+      "Unimus"
+    ]
+  },
+  "napalm": {
+    "body": [
+      "NAPALM"
+    ]
+  },
+  "nipap": {
+    "body": [
+      "NIPAP"
+    ]
+  },
+  "opendcim": {
+    "body": [
+      "openDCIM"
+    ]
+  },
+  "huawei-nms": {
+    "body": [
+      "eSight"
+    ]
+  },
+  "h3c-imcv7": {
+    "body": [
+      "iMC"
+    ]
+  },
+  "ruijie-nms": {
+    "body": [
+      "RG-SNC"
+    ]
+  },
+  "zte-nms": {
+    "body": [
+      "中兴",
+      "NetNumen"
+    ]
+  },
+  "modsecurity": {
+    "body": [
+      "ModSecurity"
+    ]
+  },
+  "naxsi": {
+    "body": [
+      "NAXSI"
+    ]
+  },
+  "openresty-waf": {
+    "body": [
+      "OpenResty"
+    ]
+  },
+  "safeline": {
+    "body": [
+      "SafeLine",
+      "雷池"
+    ]
+  },
+  "openrasp": {
+    "body": [
+      "OpenRASP"
+    ]
+  },
+  "snort": {
+    "body": [
+      "Snort"
+    ]
+  },
+  "suricata": {
+    "body": [
+      "Suricata"
+    ]
+  },
+  "zeek": {
+    "body": [
+      "Zeek",
+      "Bro"
+    ]
+  },
+  "ossec": {
+    "body": [
+      "OSSEC"
+    ]
+  },
+  "wazuh": {
+    "body": [
+      "Wazuh"
+    ]
+  },
+  "alienvault": {
+    "body": [
+      "AlienVault",
+      "OSSIM"
+    ]
+  },
+  "securityonion": {
+    "body": [
+      "Security Onion"
+    ]
+  },
+  "selks": {
+    "body": [
+      "SELKS"
+    ]
+  },
+  "elk-stack": {
+    "body": [
+      "Elastic",
+      "Kibana"
+    ]
+  },
+  "vector": {
+    "body": [
+      "Vector"
+    ]
+  },
+  "fluentd": {
+    "body": [
+      "Fluentd"
+    ]
+  },
+  "logstash": {
+    "body": [
+      "Logstash"
+    ]
+  },
+  "filebeat": {
+    "body": [
+      "Filebeat"
+    ]
+  },
+  "rsyslog": {
+    "body": [
+      "rsyslog"
+    ]
+  },
+  "nessus": {
+    "body": [
+      "Nessus"
+    ]
+  },
+  "openvas": {
+    "body": [
+      "OpenVAS",
+      "Greenbone"
+    ]
+  },
+  "nexpose": {
+    "body": [
+      "Nexpose"
+    ]
+  },
+  "qualys": {
+    "body": [
+      "Qualys"
+    ]
+  },
+  "nuclei": {
+    "body": [
+      "Nuclei"
+    ]
+  },
+  "awvs": {
+    "body": [
+      "Acunetix"
+    ]
+  },
+  "burpsuite": {
+    "body": [
+      "Burp"
+    ]
+  },
+  "arachni": {
+    "body": [
+      "Arachni"
+    ]
+  },
+  "nikto": {
+    "body": [
+      "Nikto"
+    ]
+  },
+  "w3af": {
+    "body": [
+      "w3af"
+    ]
+  },
+  "xray": {
+    "body": [
+      "Xray"
+    ],
+    "tags": [
+      "proxy"
+    ]
+  },
+  "sangfor-ngaf": {
+    "body": [
+      "深信服",
+      "NGAF"
+    ]
+  },
+  "nsfocus-waf": {
+    "body": [
+      "绿盟",
+      "WAF"
+    ]
+  },
+  "venustech-waf": {
+    "body": [
+      "启明星辰",
+      "WAF"
+    ]
+  },
+  "dbapp-waf": {
+    "body": [
+      "安恒",
+      "WAF"
+    ]
+  },
+  "hillstone-waf": {
+    "body": [
+      "山石",
+      "WAF"
+    ]
+  },
+  "topsec-waf": {
+    "body": [
+      "天融信",
+      "WAF"
+    ]
+  },
+  "dptech-waf": {
+    "body": [
+      "迪普",
+      "WAF"
+    ]
+  },
+  "veeam": {
+    "body": [
+      "Veeam"
+    ]
+  },
+  "acronis": {
+    "body": [
+      "Acronis"
+    ]
+  },
+  "commvault": {
+    "body": [
+      "Commvault"
+    ]
+  },
+  "veritas-netbackup": {
+    "body": [
+      "NetBackup"
+    ]
+  },
+  "rubrik": {
+    "body": [
+      "Rubrik"
+    ]
+  },
+  "cohesity": {
+    "body": [
+      "Cohesity"
+    ]
+  },
+  "barracuda-backup": {
+    "body": [
+      "Barracuda Backup"
+    ]
+  },
+  "datto": {
+    "body": [
+      "Datto"
+    ]
+  },
+  "duplicati": {
+    "body": [
+      "Duplicati"
+    ]
+  },
+  "restic": {
+    "body": [
+      "Restic"
+    ]
+  },
+  "borg": {
+    "body": [
+      "Borg"
+    ]
+  },
+  "bacula": {
+    "body": [
+      "Bacula"
+    ]
+  },
+  "bareos": {
+    "body": [
+      "Bareos"
+    ]
+  },
+  "amanda": {
+    "body": [
+      "Amanda"
+    ]
+  },
+  "urbackup": {
+    "body": [
+      "UrBackup"
+    ]
+  },
+  "proxmox-backup": {
+    "body": [
+      "Proxmox Backup"
+    ]
+  },
+  "netapp-ontap": {
+    "body": [
+      "NetApp",
+      "ONTAP"
+    ]
+  },
+  "dell-emc-unity": {
+    "body": [
+      "Unity"
+    ]
+  },
+  "dell-emc-powerstore": {
+    "body": [
+      "PowerStore"
+    ]
+  },
+  "hpe-3par": {
+    "body": [
+      "3PAR"
+    ]
+  },
+  "hpe-nimble": {
+    "body": [
+      "Nimble"
+    ]
+  },
+  "purestorage": {
+    "body": [
+      "Pure Storage"
+    ]
+  },
+  "ibm-storwize": {
+    "body": [
+      "Storwize"
+    ]
+  },
+  "huawei-oceanstor": {
+    "body": [
+      "OceanStor"
+    ]
+  },
+  "inspur-storage": {
+    "body": [
+      "Inspur",
+      "存储"
+    ]
+  },
+  "h3c-storage": {
+    "body": [
+      "H3C",
+      "存储"
+    ]
+  },
+  "servicenow": {
+    "body": [
+      "ServiceNow"
+    ]
+  },
+  "bmc-remedy": {
+    "body": [
+      "Remedy"
+    ]
+  },
+  "cherwell": {
+    "body": [
+      "Cherwell"
+    ]
+  },
+  "freshservice": {
+    "body": [
+      "Freshservice"
+    ]
+  },
+  "manageengine-sd": {
+    "body": [
+      "ServiceDesk Plus"
+    ]
+  },
+  "jira-sm": {
+    "body": [
+      "Jira Service"
+    ]
+  },
+  "otrs": {
+    "body": [
+      "OTRS"
+    ]
+  },
+  "znuny": {
+    "body": [
+      "Znuny"
+    ]
+  },
+  "request-tracker": {
+    "body": [
+      "Request Tracker",
+      "RT"
+    ]
+  },
+  "hesk": {
+    "body": [
+      "HESK"
+    ]
+  },
+  "itsm-cn": {
+    "body": [
+      "IT服务管理"
+    ]
+  },
+  "blueking-itsm": {
+    "body": [
+      "蓝鲸",
+      "ITSM"
+    ]
+  },
+  "weops": {
+    "body": [
+      "WeOps"
+    ]
+  },
+  "zookeeper": {
+    "body": [
+      "ZooKeeper"
+    ]
+  },
+  "nacos": {
+    "body": [
+      "Nacos"
+    ]
+  },
+  "apollo": {
+    "body": [
+      "Apollo"
+    ]
+  },
+  "spring-cloud-config": {
+    "body": [
+      "Spring Cloud Config"
+    ]
+  },
+  "eureka": {
+    "body": [
+      "Eureka"
+    ]
+  },
+  "seata": {
+    "body": [
+      "Seata"
+    ]
+  },
+  "sentinel": {
+    "body": [
+      "Sentinel"
+    ]
+  },
+  "disconf": {
+    "body": [
+      "Disconf"
+    ]
+  },
+  "diamond": {
+    "body": [
+      "Diamond"
+    ]
+  },
+  "filezilla-server": {
+    "body": [
+      "FileZilla"
+    ]
+  },
+  "webdav": {
+    "body": [
+      "WebDAV"
+    ]
+  },
+  "owncloud": {
+    "body": [
+      "ownCloud"
+    ]
+  },
+  "filebrowser": {
+    "body": [
+      "File Browser"
+    ]
+  },
+  "kodbox": {
+    "body": [
+      "KodBox",
+      "可道云"
+    ]
+  },
+  "cloudreve": {
+    "body": [
+      "Cloudreve"
+    ]
+  },
+  "zfile": {
+    "body": [
+      "ZFile"
+    ]
+  },
+  "alist": {
+    "body": [
+      "AList"
+    ]
+  },
+  "h5ai": {
+    "body": [
+      "h5ai"
+    ]
+  },
+  "directory-lister": {
+    "body": [
+      "Directory Lister"
+    ]
+  },
+  "dufs": {
+    "body": [
+      "Dufs"
+    ]
+  },
+  "miniserve": {
+    "body": [
+      "miniserve"
+    ]
+  },
+  "gerrit": {
+    "body": [
+      "Gerrit"
+    ]
+  },
+  "svn": {
+    "body": [
+      "Subversion",
+      "SVN"
+    ]
+  },
+  "mercurial": {
+    "body": [
+      "Mercurial",
+      "hg"
+    ]
+  },
+  "woodpecker": {
+    "body": [
+      "Woodpecker"
+    ]
+  },
+  "buildkite": {
+    "body": [
+      "Buildkite"
+    ]
+  },
+  "sonatype": {
+    "body": [
+      "Sonatype"
+    ]
+  },
+  "verdaccio": {
+    "body": [
+      "Verdaccio"
+    ]
+  },
+  "sinopia": {
+    "body": [
+      "Sinopia"
+    ]
+  },
+  "pypiserver": {
+    "body": [
+      "pypiserver"
+    ]
+  },
+  "devpi": {
+    "body": [
+      "devpi"
+    ]
+  },
+  "codecov": {
+    "body": [
+      "Codecov"
+    ]
+  },
+  "coveralls": {
+    "body": [
+      "Coveralls"
+    ]
+  },
+  "redoc": {
+    "body": [
+      "ReDoc"
+    ]
+  },
+  "apifox": {
+    "body": [
+      "Apifox"
+    ]
+  },
+  "yapi": {
+    "body": [
+      "YApi"
+    ]
+  },
+  "rap2": {
+    "body": [
+      "RAP2"
+    ]
+  },
+  "showdoc": {
+    "body": [
+      "ShowDoc"
+    ]
+  },
+  "eolinker": {
+    "body": [
+      "Eolinker"
+    ]
+  },
+  "apizza": {
+    "body": [
+      "Apizza"
+    ]
+  },
+  "asterisk": {
+    "body": [
+      "Asterisk"
+    ]
+  },
+  "3cx": {
+    "body": [
+      "3CX"
+    ]
+  },
+  "issabel": {
+    "body": [
+      "Issabel"
+    ]
+  },
+  "elastix": {
+    "body": [
+      "Elastix"
+    ]
+  },
+  "fusionpbx": {
+    "body": [
+      "FusionPBX"
+    ]
+  },
+  "kazoo": {
+    "body": [
+      "Kazoo"
+    ]
+  },
+  "wazo": {
+    "body": [
+      "Wazo"
+    ]
+  },
+  "yate": {
+    "body": [
+      "Yate"
+    ]
+  },
+  "kamailio": {
+    "body": [
+      "Kamailio"
+    ]
+  },
+  "opensips": {
+    "body": [
+      "OpenSIPS"
+    ]
+  },
+  "freeswitch": {
+    "body": [
+      "FreeSWITCH"
+    ]
+  },
+  "sipxecs": {
+    "body": [
+      "sipXecs"
+    ]
+  },
+  "cisco-cucm": {
+    "body": [
+      "Cisco Unified",
+      "CUCM"
+    ]
+  },
+  "avaya-aura": {
+    "body": [
+      "Avaya"
+    ]
+  },
+  "mitel": {
+    "body": [
+      "Mitel"
+    ]
+  },
+  "grandstream": {
+    "body": [
+      "Grandstream"
+    ]
+  },
+  "yealink": {
+    "body": [
+      "Yealink"
+    ]
+  },
+  "sangoma": {
+    "body": [
+      "Sangoma"
+    ]
+  },
+  "fanvil": {
+    "body": [
+      "Fanvil"
+    ]
+  },
+  "snom": {
+    "body": [
+      "Snom"
+    ]
+  },
+  "blueking-paas": {
+    "body": [
+      "蓝鲸",
+      "BlueKing"
+    ]
+  },
+  "blueking-cmdb": {
+    "body": [
+      "蓝鲸",
+      "CMDB"
+    ]
+  },
+  "blueking-job": {
+    "body": [
+      "蓝鲸",
+      "作业平台"
+    ]
+  },
+  "blueking-bkmonitor": {
+    "body": [
+      "蓝鲸",
+      "监控"
+    ]
+  },
+  "blueking-log": {
+    "body": [
+      "蓝鲸",
+      "日志"
+    ]
+  },
+  "blueking-sops": {
+    "body": [
+      "蓝鲸",
+      "标准运维"
+    ]
+  },
+  "spug": {
+    "body": [
+      "Spug"
+    ]
+  },
+  "walle": {
+    "body": [
+      "Walle"
+    ]
+  },
+  "ojbk": {
+    "body": [
+      "OJBK"
+    ]
+  },
+  "codo": {
+    "body": [
+      "CODO"
+    ]
+  },
+  "opsany": {
+    "body": [
+      "OpsAny"
+    ]
+  },
+  "yearning": {
+    "body": [
+      "Yearning"
+    ]
+  },
+  "archery": {
+    "body": [
+      "Archery"
+    ]
+  },
+  "bytebase": {
+    "body": [
+      "Bytebase"
+    ]
+  },
+  "dbgate": {
+    "body": [
+      "DbGate"
+    ]
+  },
+  "dbeaver": {
+    "body": [
+      "DBeaver"
+    ]
+  },
+  "cloudbeaver": {
+    "body": [
+      "CloudBeaver"
+    ]
+  },
+  "cisco-wlc": {
+    "body": [
+      "Wireless LAN Controller",
+      "Cisco"
+    ],
+    "vendor": "cisco"
+  },
+  "cisco-dna": {
+    "body": [
+      "DNA Center"
+    ],
+    "vendor": "cisco"
+  },
+  "cisco-prime": {
+    "body": [
+      "Prime Infrastructure"
+    ],
+    "vendor": "cisco"
+  },
+  "aruba-controller": {
+    "body": [
+      "Aruba"
+    ],
+    "vendor": "aruba"
+  },
+  "aruba-central": {
+    "body": [
+      "Aruba Central"
+    ],
+    "vendor": "aruba"
+  },
+  "ruckus-controller": {
+    "body": [
+      "Ruckus"
+    ],
+    "vendor": "ruckus"
+  },
+  "ruckus-smartzone": {
+    "body": [
+      "SmartZone"
+    ],
+    "vendor": "ruckus"
+  },
+  "ubiquiti-unifi": {
+    "body": [
+      "UniFi"
+    ],
+    "vendor": "ubiquiti"
+  },
+  "ubiquiti-uisp": {
+    "body": [
+      "UISP"
+    ],
+    "vendor": "ubiquiti"
+  },
+  "meraki": {
+    "body": [
+      "Meraki"
+    ],
+    "vendor": "cisco"
+  },
+  "cambium": {
+    "body": [
+      "Cambium"
+    ],
+    "vendor": "cambium"
+  },
+  "cambium-cnmaestro": {
+    "body": [
+      "cnMaestro"
+    ],
+    "vendor": "cambium"
+  },
+  "extreme-wing": {
+    "body": [
+      "WiNG"
+    ],
+    "vendor": "extreme"
+  },
+  "fortinet-fortiap": {
+    "body": [
+      "FortiAP"
+    ],
+    "vendor": "fortinet"
+  },
+  "mist": {
+    "body": [
+      "Mist"
+    ],
+    "vendor": "juniper"
+  },
+  "huawei-ac": {
+    "body": [
+      "华为",
+      "AC"
+    ],
+    "vendor": "huawei"
+  },
+  "h3c-ac": {
+    "body": [
+      "H3C",
+      "AC"
+    ],
+    "vendor": "h3c"
+  },
+  "ruijie-ac": {
+    "body": [
+      "锐捷",
+      "RG-AC"
+    ],
+    "vendor": "ruijie"
+  },
+  "zte-ac": {
+    "body": [
+      "中兴",
+      "AC"
+    ],
+    "vendor": "zte"
+  },
+  "sundray-ac": {
+    "body": [
+      "信锐",
+      "Sundray"
+    ],
+    "vendor": "sundray"
+  },
+  "tplink-omada": {
+    "body": [
+      "Omada"
+    ],
+    "vendor": "tplink"
+  },
+  "netgear-insight": {
+    "body": [
+      "Insight"
+    ],
+    "vendor": "netgear"
+  },
+  "dlink-nuclias": {
+    "body": [
+      "Nuclias"
+    ],
+    "vendor": "dlink"
+  },
+  "engenius-ezmaster": {
+    "body": [
+      "ezMaster"
+    ],
+    "vendor": "engenius"
+  },
+  "mikrotik-capsman": {
+    "body": [
+      "CAPsMAN"
+    ],
+    "vendor": "mikrotik"
+  },
+  "openwifi": {
+    "body": [
+      "OpenWiFi"
+    ]
+  },
+  "cisco-viptela": {
+    "body": [
+      "Viptela",
+      "vManage"
+    ],
+    "vendor": "cisco"
+  },
+  "cisco-sdwan": {
+    "body": [
+      "SD-WAN"
+    ],
+    "vendor": "cisco"
+  },
+  "vmware-velocloud": {
+    "body": [
+      "VeloCloud"
+    ],
+    "vendor": "vmware"
+  },
+  "fortinet-sdwan": {
+    "body": [
+      "Fortinet",
+      "SD-WAN"
+    ],
+    "vendor": "fortinet"
+  },
+  "paloalto-prisma": {
+    "body": [
+      "Prisma"
+    ],
+    "vendor": "paloalto"
+  },
+  "silverpeak": {
+    "body": [
+      "Silver Peak"
+    ],
+    "vendor": "aruba"
+  },
+  "versa-sdwan": {
+    "body": [
+      "Versa"
+    ],
+    "vendor": "versa"
+  },
+  "citrix-sdwan": {
+    "body": [
+      "Citrix",
+      "SD-WAN"
+    ],
+    "vendor": "citrix"
+  },
+  "aryaka": {
+    "body": [
+      "Aryaka"
+    ],
+    "vendor": "aryaka"
+  },
+  "cato-networks": {
+    "body": [
+      "Cato"
+    ],
+    "vendor": "cato"
+  },
+  "cloudgenix": {
+    "body": [
+      "CloudGenix"
+    ],
+    "vendor": "paloalto"
+  },
+  "huawei-sdwan": {
+    "body": [
+      "华为",
+      "SD-WAN"
+    ],
+    "vendor": "huawei"
+  },
+  "sangfor-sdwan": {
+    "body": [
+      "深信服",
+      "SD-WAN"
+    ],
+    "vendor": "sangfor"
+  },
+  "digi-portserver": {
+    "body": [
+      "Digi",
+      "PortServer"
+    ],
+    "vendor": "digi"
+  },
+  "moxa-nport": {
+    "body": [
+      "Moxa",
+      "NPort"
+    ],
+    "vendor": "moxa"
+  },
+  "lantronix-serial": {
+    "body": [
+      "Lantronix"
+    ],
+    "vendor": "lantronix"
+  },
+  "perle-iolan": {
+    "body": [
+      "Perle",
+      "IOLAN"
+    ],
+    "vendor": "perle"
+  },
+  "comtrol": {
+    "body": [
+      "Comtrol"
+    ],
+    "vendor": "comtrol"
+  },
+  "advantech-eki": {
+    "body": [
+      "Advantech",
+      "EKI"
+    ],
+    "vendor": "advantech"
+  },
+  "brainboxes": {
+    "body": [
+      "Brainboxes"
+    ],
+    "vendor": "brainboxes"
+  },
+  "sena-serial": {
+    "body": [
+      "Sena"
+    ],
+    "vendor": "sena"
+  },
+  "ublox-serial": {
+    "body": [
+      "u-blox"
+    ],
+    "vendor": "ublox"
+  },
+  "wti-console": {
+    "body": [
+      "WTI",
+      "Console Server"
+    ],
+    "vendor": "wti"
+  },
+  "opengear": {
+    "body": [
+      "Opengear"
+    ],
+    "vendor": "opengear"
+  },
+  "ser2net": {
+    "body": [
+      "ser2net"
+    ]
+  },
+  "apc-netbotz": {
+    "body": [
+      "NetBotz"
+    ],
+    "vendor": "apc",
+    "devicetype": "environment"
+  },
+  "geist-watchdog": {
+    "body": [
+      "Watchdog"
+    ],
+    "vendor": "vertiv",
+    "devicetype": "environment"
+  },
+  "avtech-roomalert": {
+    "body": [
+      "Room Alert"
+    ],
+    "vendor": "avtech",
+    "devicetype": "environment"
+  },
+  "sensaphone": {
+    "body": [
+      "Sensaphone"
+    ],
+    "vendor": "sensaphone",
+    "devicetype": "environment"
+  },
+  "akcp-sensorprobe": {
+    "body": [
+      "AKCP",
+      "sensorProbe"
+    ],
+    "vendor": "akcp",
+    "devicetype": "environment"
+  },
+  "jacarta": {
+    "body": [
+      "Jacarta"
+    ],
+    "vendor": "jacarta",
+    "devicetype": "environment"
+  },
+  "kentix": {
+    "body": [
+      "Kentix"
+    ],
+    "vendor": "kentix",
+    "devicetype": "environment"
+  },
+  "nlyte": {
+    "body": [
+      "Nlyte"
+    ],
+    "vendor": "nlyte",
+    "devicetype": "dcim"
+  },
+  "sunbird-dcim": {
+    "body": [
+      "Sunbird"
+    ],
+    "vendor": "sunbird",
+    "devicetype": "dcim"
+  },
+  "netdcmap": {
+    "body": [
+      "Netdcmap"
+    ],
+    "devicetype": "dcim"
+  },
+  "dcim-cn": {
+    "body": [
+      "动环",
+      "机房监控"
+    ],
+    "devicetype": "dcim"
+  },
+  "emerson-liebert": {
+    "body": [
+      "Liebert"
+    ],
+    "vendor": "vertiv",
+    "devicetype": "environment"
+  },
+  "schneider-struxure": {
+    "body": [
+      "StruxureWare"
+    ],
+    "vendor": "schneider",
+    "devicetype": "dcim"
+  },
+  "rittal-cmc": {
+    "body": [
+      "Rittal",
+      "CMC"
+    ],
+    "vendor": "rittal",
+    "devicetype": "environment"
+  },
+  "bacnet": {
+    "body": [
+      "BACnet"
+    ],
+    "devicetype": "bms"
+  },
+  "knx": {
+    "body": [
+      "KNX"
+    ],
+    "devicetype": "bms"
+  },
+  "lonworks": {
+    "body": [
+      "LonWorks"
+    ],
+    "devicetype": "bms"
+  },
+  "niagara-ax": {
+    "body": [
+      "Niagara"
+    ],
+    "vendor": "tridium",
+    "devicetype": "bms"
+  },
+  "niagara-n4": {
+    "body": [
+      "Niagara",
+      "N4"
+    ],
+    "vendor": "tridium",
+    "devicetype": "bms"
+  },
+  "johnson-metasys": {
+    "body": [
+      "Metasys"
+    ],
+    "vendor": "johnson",
+    "devicetype": "bms"
+  },
+  "honeywell-bms": {
+    "body": [
+      "Honeywell",
+      "WEBs"
+    ],
+    "vendor": "honeywell",
+    "devicetype": "bms"
+  },
+  "siemens-desigo": {
+    "body": [
+      "Desigo"
+    ],
+    "vendor": "siemens",
+    "devicetype": "bms"
+  },
+  "schneider-ecostruxure": {
+    "body": [
+      "EcoStruxure"
+    ],
+    "vendor": "schneider",
+    "devicetype": "bms"
+  },
+  "distech": {
+    "body": [
+      "Distech"
+    ],
+    "vendor": "distech",
+    "devicetype": "bms"
+  },
+  "delta-entelibus": {
+    "body": [
+      "enteliBUS"
+    ],
+    "vendor": "delta",
+    "devicetype": "bms"
+  },
+  "sauter-bms": {
+    "body": [
+      "Sauter"
+    ],
+    "vendor": "sauter",
+    "devicetype": "bms"
+  },
+  "loytec": {
+    "body": [
+      "Loytec"
+    ],
+    "vendor": "loytec",
+    "devicetype": "bms"
+  },
+  "crestron": {
+    "body": [
+      "Crestron"
+    ],
+    "vendor": "crestron",
+    "devicetype": "bms"
+  },
+  "control4": {
+    "body": [
+      "Control4"
+    ],
+    "vendor": "control4",
+    "devicetype": "bms"
+  },
+  "lutron": {
+    "body": [
+      "Lutron"
+    ],
+    "vendor": "lutron",
+    "devicetype": "bms"
+  },
+  "carrier-ivu": {
+    "body": [
+      "i-Vu"
+    ],
+    "vendor": "carrier",
+    "devicetype": "bms"
+  },
+  "chargepoint": {
+    "body": [
+      "ChargePoint"
+    ],
+    "vendor": "chargepoint",
+    "devicetype": "evse"
+  },
+  "blink-charging": {
+    "body": [
+      "Blink Charging",
+      "Blink Network",
+      "BlinkCharging"
+    ],
+    "vendor": "blink",
+    "devicetype": "evse"
+  },
+  "evbox": {
+    "body": [
+      "EVBox"
+    ],
+    "vendor": "evbox",
+    "devicetype": "evse"
+  },
+  "schneider-evlink": {
+    "body": [
+      "EVlink"
+    ],
+    "vendor": "schneider",
+    "devicetype": "evse"
+  },
+  "tritium": {
+    "body": [
+      "Tritium"
+    ],
+    "vendor": "tritium",
+    "devicetype": "evse"
+  },
+  "efacec": {
+    "body": [
+      "Efacec"
+    ],
+    "vendor": "efacec",
+    "devicetype": "evse"
+  },
+  "ocpp": {
+    "body": [
+      "OCPP"
+    ],
+    "devicetype": "evse"
+  },
+  "teld": {
+    "body": [
+      "特来电",
+      "TELD"
+    ],
+    "vendor": "teld",
+    "devicetype": "evse"
+  },
+  "starcharge": {
+    "body": [
+      "星星充电"
+    ],
+    "vendor": "starcharge",
+    "devicetype": "evse"
+  },
+  "echocharge": {
+    "body": [
+      "依威"
+    ],
+    "devicetype": "evse"
+  },
+  "nari-evse": {
+    "body": [
+      "南瑞",
+      "充电"
+    ],
+    "vendor": "nari",
+    "devicetype": "evse"
+  },
+  "xj-evse": {
+    "body": [
+      "许继"
+    ],
+    "vendor": "xj",
+    "devicetype": "evse"
+  },
+  "solaredge": {
+    "body": [
+      "SolarEdge"
+    ],
+    "vendor": "solaredge",
+    "devicetype": "solar"
+  },
+  "enphase": {
+    "body": [
+      "Enphase"
+    ],
+    "vendor": "enphase",
+    "devicetype": "solar"
+  },
+  "fronius": {
+    "body": [
+      "Fronius"
+    ],
+    "vendor": "fronius",
+    "devicetype": "solar"
+  },
+  "sma-sunny": {
+    "body": [
+      "SMA",
+      "Sunny"
+    ],
+    "vendor": "sma",
+    "devicetype": "solar"
+  },
+  "growatt": {
+    "body": [
+      "Growatt"
+    ],
+    "vendor": "growatt",
+    "devicetype": "solar"
+  },
+  "huawei-fusionsolar": {
+    "body": [
+      "FusionSolar"
+    ],
+    "vendor": "huawei",
+    "devicetype": "solar"
+  },
+  "sungrow": {
+    "body": [
+      "Sungrow",
+      "阳光电源"
+    ],
+    "vendor": "sungrow",
+    "devicetype": "solar"
+  },
+  "goodwe": {
+    "body": [
+      "GoodWe",
+      "固德威"
+    ],
+    "vendor": "goodwe",
+    "devicetype": "solar"
+  },
+  "ginlong-solis": {
+    "body": [
+      "Solis",
+      "锦浪"
+    ],
+    "vendor": "ginlong",
+    "devicetype": "solar"
+  },
+  "sofar-solar": {
+    "body": [
+      "Sofar",
+      "首航"
+    ],
+    "vendor": "sofar",
+    "devicetype": "solar"
+  },
+  "longi": {
+    "body": [
+      "隆基",
+      "LONGi"
+    ],
+    "vendor": "longi",
+    "devicetype": "solar"
+  },
+  "trina-solar": {
+    "body": [
+      "天合",
+      "Trina"
+    ],
+    "vendor": "trina",
+    "devicetype": "solar"
+  },
+  "jinko-solar": {
+    "body": [
+      "晶科",
+      "JinKo"
+    ],
+    "vendor": "jinko",
+    "devicetype": "solar"
+  },
+  "moodle": {
+    "body": [
+      "Moodle"
+    ]
+  },
+  "canvas-lms": {
+    "body": [
+      "Canvas"
+    ]
+  },
+  "blackboard": {
+    "body": [
+      "Blackboard"
+    ]
+  },
+  "sakai": {
+    "body": [
+      "Sakai"
+    ]
+  },
+  "open-edx": {
+    "body": [
+      "Open edX"
+    ]
+  },
+  "chamilo": {
+    "body": [
+      "Chamilo"
+    ]
+  },
+  "ilias": {
+    "body": [
+      "ILIAS"
+    ]
+  },
+  "totara": {
+    "body": [
+      "Totara"
+    ]
+  },
+  "schoology": {
+    "body": [
+      "Schoology"
+    ]
+  },
+  "koha": {
+    "body": [
+      "Koha"
+    ]
+  },
+  "evergreen": {
+    "body": [
+      "Evergreen"
+    ]
+  },
+  "openbiblio": {
+    "body": [
+      "OpenBiblio"
+    ]
+  },
+  "chaoxing": {
+    "body": [
+      "超星",
+      "学习通"
+    ]
+  },
+  "zhihuishu": {
+    "body": [
+      "智慧树"
+    ]
+  },
+  "xuexitong": {
+    "body": [
+      "学习通"
+    ]
+  },
+  "wanwei": {
+    "body": [
+      "万维"
+    ]
+  },
+  "tronclass": {
+    "body": [
+      "畅课",
+      "TronClass"
+    ]
+  },
+  "qingju": {
+    "body": [
+      "青桔"
+    ]
+  },
+  "mosoteach": {
+    "body": [
+      "云班课",
+      "蓝墨"
+    ]
+  },
+  "umu": {
+    "body": [
+      "UMU"
+    ]
+  },
+  "dingtalk-edu": {
+    "body": [
+      "钉钉",
+      "教育"
+    ]
+  },
+  "yuketang": {
+    "body": [
+      "雨课堂"
+    ]
+  },
+  "oracle-opera": {
+    "body": [
+      "OPERA"
+    ],
+    "vendor": "oracle",
+    "devicetype": "pms"
+  },
+  "protel": {
+    "body": [
+      "Protel"
+    ],
+    "vendor": "protel",
+    "devicetype": "pms"
+  },
+  "mews": {
+    "body": [
+      "Mews"
+    ],
+    "devicetype": "pms"
+  },
+  "cloudbeds": {
+    "body": [
+      "Cloudbeds"
+    ],
+    "devicetype": "pms"
+  },
+  "roommaster": {
+    "body": [
+      "RoomMaster"
+    ],
+    "devicetype": "pms"
+  },
+  "ezee": {
+    "body": [
+      "eZee"
+    ],
+    "devicetype": "pms"
+  },
+  "hotelogix": {
+    "body": [
+      "Hotelogix"
+    ],
+    "devicetype": "pms"
+  },
+  "stayntouch": {
+    "body": [
+      "StayNTouch"
+    ],
+    "devicetype": "pms"
+  },
+  "guestline": {
+    "body": [
+      "Guestline"
+    ],
+    "devicetype": "pms"
+  },
+  "fidelio": {
+    "body": [
+      "Fidelio"
+    ],
+    "vendor": "oracle",
+    "devicetype": "pms"
+  },
+  "shiji-pms": {
+    "body": [
+      "石基",
+      "Shiji"
+    ],
+    "devicetype": "pms"
+  },
+  "zhongsoft-pms": {
+    "body": [
+      "中软"
+    ],
+    "devicetype": "pms"
+  },
+  "greencloud": {
+    "body": [
+      "绿云"
+    ],
+    "devicetype": "pms"
+  },
+  "lvye-pms": {
+    "body": [
+      "住哲"
+    ],
+    "devicetype": "pms"
+  },
+  "sihot": {
+    "body": [
+      "SIHOT"
+    ],
+    "devicetype": "pms"
+  },
+  "toast": {
+    "body": [
+      "Toast"
+    ],
+    "devicetype": "pos"
+  },
+  "square": {
+    "body": [
+      "Square"
+    ],
+    "devicetype": "pos"
+  },
+  "clover": {
+    "body": [
+      "Clover"
+    ],
+    "devicetype": "pos"
+  },
+  "lightspeed": {
+    "body": [
+      "Lightspeed"
+    ],
+    "devicetype": "pos"
+  },
+  "shopify-pos": {
+    "body": [
+      "Shopify POS"
+    ],
+    "devicetype": "pos"
+  },
+  "vend": {
+    "body": [
+      "Vend"
+    ],
+    "devicetype": "pos"
+  },
+  "revel": {
+    "body": [
+      "Revel"
+    ],
+    "devicetype": "pos"
+  },
+  "touchbistro": {
+    "body": [
+      "TouchBistro"
+    ],
+    "devicetype": "pos"
+  },
+  "aloha": {
+    "body": [
+      "Aloha"
+    ],
+    "devicetype": "pos"
+  },
+  "micros": {
+    "body": [
+      "MICROS"
+    ],
+    "vendor": "oracle",
+    "devicetype": "pos"
+  },
+  "kelaile": {
+    "body": [
+      "客来乐"
+    ],
+    "devicetype": "pos"
+  },
+  "meiwei": {
+    "body": [
+      "美味不用等"
+    ],
+    "devicetype": "pos"
+  },
+  "erya": {
+    "body": [
+      "二维火"
+    ],
+    "devicetype": "pos"
+  },
+  "yuecloud": {
+    "body": [
+      "悦云"
+    ],
+    "devicetype": "pos"
+  },
+  "keruyun": {
+    "body": [
+      "客如云"
+    ],
+    "devicetype": "pos"
+  },
+  "youzan": {
+    "body": [
+      "有赞"
+    ],
+    "devicetype": "pos"
+  },
+  "weipos": {
+    "body": [
+      "微盟"
+    ],
+    "devicetype": "pos"
+  },
+  "scala": {
+    "body": [
+      "Scala"
+    ],
+    "devicetype": "signage"
+  },
+  "brightsign": {
+    "body": [
+      "BrightSign"
+    ],
+    "vendor": "brightsign",
+    "devicetype": "signage"
+  },
+  "signagelive": {
+    "body": [
+      "Signagelive"
+    ],
+    "devicetype": "signage"
+  },
+  "xibo": {
+    "body": [
+      "Xibo"
+    ],
+    "devicetype": "signage"
+  },
+  "screenly": {
+    "body": [
+      "Screenly"
+    ],
+    "devicetype": "signage"
+  },
+  "yodeck": {
+    "body": [
+      "Yodeck"
+    ],
+    "devicetype": "signage"
+  },
+  "rise-vision": {
+    "body": [
+      "Rise Vision"
+    ],
+    "devicetype": "signage"
+  },
+  "navori": {
+    "body": [
+      "Navori"
+    ],
+    "devicetype": "signage"
+  },
+  "mvix": {
+    "body": [
+      "Mvix"
+    ],
+    "devicetype": "signage"
+  },
+  "appspace": {
+    "body": [
+      "Appspace"
+    ],
+    "devicetype": "signage"
+  },
+  "samsung-magicinfo": {
+    "body": [
+      "MagicINFO"
+    ],
+    "vendor": "samsung",
+    "devicetype": "signage"
+  },
+  "lg-supersign": {
+    "body": [
+      "SuperSign"
+    ],
+    "vendor": "lg",
+    "devicetype": "signage"
+  },
+  "philips-cmo": {
+    "body": [
+      "CMND"
+    ],
+    "vendor": "philips",
+    "devicetype": "signage"
+  },
+  "skidata": {
+    "body": [
+      "SKIDATA"
+    ],
+    "vendor": "skidata",
+    "devicetype": "parking"
+  },
+  "designa": {
+    "body": [
+      "DESIGNA"
+    ],
+    "vendor": "designa",
+    "devicetype": "parking"
+  },
+  "flowbird": {
+    "body": [
+      "Flowbird"
+    ],
+    "vendor": "flowbird",
+    "devicetype": "parking"
+  },
+  "swarco": {
+    "body": [
+      "SWARCO"
+    ],
+    "vendor": "swarco",
+    "devicetype": "parking"
+  },
+  "scheidt-bachmann": {
+    "body": [
+      "Scheidt"
+    ],
+    "vendor": "scheidtbachmann",
+    "devicetype": "parking"
+  },
+  "amano": {
+    "body": [
+      "AMANO"
+    ],
+    "vendor": "amano",
+    "devicetype": "parking"
+  },
+  "genetec-autopvu": {
+    "body": [
+      "AutoVu"
+    ],
+    "vendor": "genetec",
+    "devicetype": "parking"
+  },
+  "aipark": {
+    "body": [
+      "AIPARK",
+      "爱泊车"
+    ],
+    "devicetype": "parking"
+  },
+  "etcp": {
+    "body": [
+      "ETCP"
+    ],
+    "devicetype": "parking"
+  },
+  "keytop": {
+    "body": [
+      "科拓",
+      "Keytop"
+    ],
+    "devicetype": "parking"
+  },
+  "jutai": {
+    "body": [
+      "捷顺"
+    ],
+    "devicetype": "parking"
+  },
+  "ankuai": {
+    "body": [
+      "安快"
+    ],
+    "devicetype": "parking"
+  },
+  "hikvision-parking": {
+    "body": [
+      "海康",
+      "停车"
+    ],
+    "vendor": "hikvision",
+    "devicetype": "parking"
+  },
+  "dahua-parking": {
+    "body": [
+      "大华",
+      "停车"
+    ],
+    "vendor": "dahua",
+    "devicetype": "parking"
+  },
+  "meinberg-ntp": {
+    "body": [
+      "Meinberg"
+    ],
+    "vendor": "meinberg",
+    "devicetype": "ntp"
+  },
+  "spectracom": {
+    "body": [
+      "Spectracom"
+    ],
+    "vendor": "spectracom",
+    "devicetype": "ntp"
+  },
+  "symmetricom": {
+    "body": [
+      "Symmetricom"
+    ],
+    "vendor": "symmetricom",
+    "devicetype": "ntp"
+  },
+  "microsemi": {
+    "body": [
+      "Microsemi"
+    ],
+    "vendor": "microsemi",
+    "devicetype": "ntp"
+  },
+  "galleon": {
+    "body": [
+      "Galleon"
+    ],
+    "vendor": "galleon",
+    "devicetype": "ntp"
+  },
+  "endrun": {
+    "body": [
+      "EndRun"
+    ],
+    "vendor": "endrun",
+    "devicetype": "ntp"
+  },
+  "hopf": {
+    "body": [
+      "Hopf"
+    ],
+    "vendor": "hopf",
+    "devicetype": "ntp"
+  },
+  "oscilloquartz": {
+    "body": [
+      "Oscilloquartz"
+    ],
+    "vendor": "adva",
+    "devicetype": "ntp"
+  },
+  "chrony": {
+    "body": [
+      "chrony"
+    ],
+    "devicetype": "ntp"
+  },
+  "ntpd": {
+    "body": [
+      "ntpd"
+    ],
+    "devicetype": "ntp"
+  },
+  "openntpd": {
+    "body": [
+      "OpenNTPD"
+    ],
+    "devicetype": "ntp"
+  },
+  "microsoft-ca": {
+    "body": [
+      "Certificate Services",
+      "证书服务"
+    ],
+    "vendor": "microsoft",
+    "tags": [
+      "pki",
+      "security"
+    ]
+  },
+  "ejbca": {
+    "body": [
+      "EJBCA"
+    ],
+    "tags": [
+      "pki",
+      "security"
+    ]
+  },
+  "dogtag": {
+    "body": [
+      "Dogtag"
+    ],
+    "tags": [
+      "pki",
+      "security"
+    ]
+  },
+  "cfssl": {
+    "body": [
+      "CFSSL"
+    ],
+    "tags": [
+      "pki",
+      "security"
+    ]
+  },
+  "step-ca": {
+    "body": [
+      "step-ca"
+    ],
+    "tags": [
+      "pki",
+      "security"
+    ]
+  },
+  "boulder": {
+    "body": [
+      "Boulder"
+    ],
+    "tags": [
+      "pki",
+      "security"
+    ]
+  },
+  "lemur": {
+    "body": [
+      "Lemur"
+    ],
+    "tags": [
+      "pki",
+      "security"
+    ]
+  },
+  "hashicorp-vault-pki": {
+    "body": [
+      "Vault",
+      "PKI"
+    ],
+    "tags": [
+      "pki",
+      "security"
+    ]
+  },
+  "venafi": {
+    "body": [
+      "Venafi"
+    ],
+    "vendor": "venafi",
+    "tags": [
+      "pki",
+      "security"
+    ]
+  },
+  "keyfactor": {
+    "body": [
+      "Keyfactor"
+    ],
+    "vendor": "keyfactor",
+    "tags": [
+      "pki",
+      "security"
+    ]
+  },
+  "digicert-pki": {
+    "body": [
+      "DigiCert"
+    ],
+    "vendor": "digicert",
+    "tags": [
+      "pki",
+      "security"
+    ]
+  },
+  "entrust-pki": {
+    "body": [
+      "Entrust"
+    ],
+    "vendor": "entrust",
+    "tags": [
+      "pki",
+      "security"
+    ]
+  },
+  "globalsign": {
+    "body": [
+      "GlobalSign"
+    ],
+    "vendor": "globalsign",
+    "tags": [
+      "pki",
+      "security"
+    ]
+  },
+  "nginx-proxy": {
+    "body": [
+      "nginx"
+    ],
+    "tags": [
+      "proxy"
+    ]
+  },
+  "haproxy-proxy": {
+    "body": [
+      "HAProxy"
+    ],
+    "tags": [
+      "proxy"
+    ]
+  },
+  "varnish": {
+    "body": [
+      "Varnish"
+    ],
+    "tags": [
+      "proxy"
+    ]
+  },
+  "traefik-proxy": {
+    "body": [
+      "Traefik"
+    ],
+    "tags": [
+      "proxy"
+    ]
+  },
+  "envoy-proxy": {
+    "body": [
+      "Envoy"
+    ],
+    "tags": [
+      "proxy"
+    ]
+  },
+  "privoxy": {
+    "body": [
+      "Privoxy"
+    ],
+    "tags": [
+      "proxy"
+    ]
+  },
+  "dante": {
+    "body": [
+      "Dante"
+    ],
+    "tags": [
+      "proxy"
+    ]
+  },
+  "tinyproxy": {
+    "body": [
+      "Tinyproxy"
+    ],
+    "tags": [
+      "proxy"
+    ]
+  },
+  "ccproxy": {
+    "body": [
+      "CCProxy"
+    ],
+    "tags": [
+      "proxy"
+    ]
+  },
+  "polipo": {
+    "body": [
+      "Polipo"
+    ],
+    "tags": [
+      "proxy"
+    ]
+  },
+  "charles": {
+    "body": [
+      "Charles Proxy"
+    ],
+    "tags": [
+      "proxy"
+    ]
+  },
+  "fiddler": {
+    "body": [
+      "Fiddler"
+    ],
+    "tags": [
+      "proxy"
+    ]
+  },
+  "mitmproxy": {
+    "body": [
+      "mitmproxy"
+    ],
+    "tags": [
+      "proxy"
+    ]
+  },
+  "goproxy": {
+    "body": [
+      "goproxy"
+    ],
+    "tags": [
+      "proxy"
+    ]
+  },
+  "v2ray": {
+    "body": [
+      "V2Ray"
+    ],
+    "tags": [
+      "proxy"
+    ]
+  },
+  "clash": {
+    "body": [
+      "Clash"
+    ],
+    "tags": [
+      "proxy"
+    ]
+  },
+  "singbox": {
+    "body": [
+      "sing-box"
+    ],
+    "tags": [
+      "proxy"
+    ]
+  },
+  "shadowsocks": {
+    "body": [
+      "Shadowsocks"
+    ],
+    "tags": [
+      "proxy"
+    ]
+  },
+  "trojan": {
+    "body": [
+      "Trojan"
+    ],
+    "tags": [
+      "proxy"
+    ]
+  },
+  "hysteria": {
+    "body": [
+      "Hysteria"
+    ],
+    "tags": [
+      "proxy"
+    ]
+  },
+  "ncr-atm": {
+    "body": [
+      "NCR"
+    ],
+    "vendor": "ncr",
+    "devicetype": "atm"
+  },
+  "diebold-atm": {
+    "body": [
+      "Diebold"
+    ],
+    "vendor": "diebold",
+    "devicetype": "atm"
+  },
+  "wincor-atm": {
+    "body": [
+      "Wincor"
+    ],
+    "vendor": "wincor",
+    "devicetype": "atm"
+  },
+  "hyosung-atm": {
+    "body": [
+      "Hyosung"
+    ],
+    "vendor": "hyosung",
+    "devicetype": "atm"
+  },
+  "grgbanking": {
+    "body": [
+      "广电运通",
+      "GRG"
+    ],
+    "vendor": "grg",
+    "devicetype": "atm"
+  },
+  "eastcom": {
+    "body": [
+      "东方通信"
+    ],
+    "vendor": "eastcom",
+    "devicetype": "atm"
+  },
+  "yihua": {
+    "body": [
+      "御银"
+    ],
+    "vendor": "yihua",
+    "devicetype": "atm"
+  },
+  "cashway": {
+    "body": [
+      "中钞信达"
+    ],
+    "devicetype": "atm"
+  },
+  "verifone": {
+    "body": [
+      "Verifone"
+    ],
+    "vendor": "verifone",
+    "devicetype": "pos"
+  },
+  "ingenico": {
+    "body": [
+      "Ingenico"
+    ],
+    "vendor": "ingenico",
+    "devicetype": "pos"
+  },
+  "pax": {
+    "body": [
+      "PAX"
+    ],
+    "vendor": "pax",
+    "devicetype": "pos"
+  },
+  "newland": {
+    "body": [
+      "新大陆",
+      "Newland"
+    ],
+    "vendor": "newland",
+    "devicetype": "pos"
+  },
+  "liandi": {
+    "body": [
+      "联迪"
+    ],
+    "vendor": "liandi",
+    "devicetype": "pos"
+  },
+  "harmonic": {
+    "body": [
+      "Harmonic"
+    ],
+    "vendor": "harmonic",
+    "devicetype": "broadcast"
+  },
+  "arris-dsr": {
+    "body": [
+      "ARRIS"
+    ],
+    "vendor": "arris",
+    "devicetype": "broadcast"
+  },
+  "ericsson-encoder": {
+    "body": [
+      "Ericsson"
+    ],
+    "vendor": "ericsson",
+    "devicetype": "broadcast"
+  },
+  "ateme": {
+    "body": [
+      "ATEME"
+    ],
+    "vendor": "ateme",
+    "devicetype": "broadcast"
+  },
+  "elemental": {
+    "body": [
+      "Elemental"
+    ],
+    "vendor": "aws",
+    "devicetype": "broadcast"
+  },
+  "envivio": {
+    "body": [
+      "Envivio"
+    ],
+    "vendor": "envivio",
+    "devicetype": "broadcast"
+  },
+  "imagine-communications": {
+    "body": [
+      "Imagine"
+    ],
+    "vendor": "imagine",
+    "devicetype": "broadcast"
+  },
+  "snell-advanced": {
+    "body": [
+      "Snell"
+    ],
+    "vendor": "snell",
+    "devicetype": "broadcast"
+  },
+  "grass-valley": {
+    "body": [
+      "Grass Valley"
+    ],
+    "vendor": "grassvalley",
+    "devicetype": "broadcast"
+  },
+  "ross-video": {
+    "body": [
+      "Ross"
+    ],
+    "vendor": "ross",
+    "devicetype": "broadcast"
+  },
+  "blackmagic": {
+    "body": [
+      "Blackmagic"
+    ],
+    "vendor": "blackmagic",
+    "devicetype": "broadcast"
+  },
+  "aja": {
+    "body": [
+      "AJA"
+    ],
+    "vendor": "aja",
+    "devicetype": "broadcast"
+  },
+  "newtek": {
+    "body": [
+      "NewTek",
+      "TriCaster"
+    ],
+    "vendor": "newtek",
+    "devicetype": "broadcast"
+  },
+  "vmix": {
+    "body": [
+      "vMix"
+    ],
+    "devicetype": "broadcast"
+  },
+  "obs": {
+    "body": [
+      "OBS Studio"
+    ],
+    "devicetype": "broadcast"
+  },
+  "datavideo": {
+    "body": [
+      "Datavideo"
+    ],
+    "vendor": "datavideo",
+    "devicetype": "broadcast"
+  },
+  "trimble": {
+    "body": [
+      "Trimble"
+    ],
+    "vendor": "trimble",
+    "devicetype": "gps"
+  },
+  "ublox": {
+    "body": [
+      "u-blox"
+    ],
+    "vendor": "ublox",
+    "devicetype": "gps"
+  },
+  "novatel": {
+    "body": [
+      "NovAtel"
+    ],
+    "vendor": "novatel",
+    "devicetype": "gps"
+  },
+  "septentrio": {
+    "body": [
+      "Septentrio"
+    ],
+    "vendor": "septentrio",
+    "devicetype": "gps"
+  },
+  "topcon": {
+    "body": [
+      "Topcon"
+    ],
+    "vendor": "topcon",
+    "devicetype": "gps"
+  },
+  "leica-geosystems": {
+    "body": [
+      "Leica"
+    ],
+    "vendor": "leica",
+    "devicetype": "gps"
+  },
+  "hemisphere-gnss": {
+    "body": [
+      "Hemisphere"
+    ],
+    "vendor": "hemisphere",
+    "devicetype": "gps"
+  },
+  "javad": {
+    "body": [
+      "JAVAD"
+    ],
+    "vendor": "javad",
+    "devicetype": "gps"
+  },
+  "south-gnss": {
+    "body": [
+      "南方",
+      "SOUTH"
+    ],
+    "vendor": "south",
+    "devicetype": "gps"
+  },
+  "hi-target": {
+    "body": [
+      "中海达",
+      "Hi-Target"
+    ],
+    "vendor": "hitarget",
+    "devicetype": "gps"
+  },
+  "chc-nav": {
+    "body": [
+      "华测",
+      "CHC"
+    ],
+    "vendor": "chc",
+    "devicetype": "gps"
+  },
+  "beidou": {
+    "body": [
+      "北斗",
+      "BeiDou"
+    ],
+    "devicetype": "gps"
+  },
+  "moxa-mgate": {
+    "body": [
+      "MGate"
+    ],
+    "vendor": "moxa",
+    "devicetype": "gateway"
+  },
+  "advantech-wise": {
+    "body": [
+      "Advantech WISE",
+      "WISE-4000",
+      "WISE-2000"
+    ],
+    "vendor": "advantech",
+    "devicetype": "gateway"
+  },
+  "red-lion-flexedge": {
+    "body": [
+      "FlexEdge"
+    ],
+    "vendor": "redlion",
+    "devicetype": "gateway"
+  },
+  "wago-750": {
+    "body": [
+      "WAGO",
+      "750"
+    ],
+    "vendor": "wago",
+    "devicetype": "gateway"
+  },
+  "siemens-scalance": {
+    "body": [
+      "SCALANCE"
+    ],
+    "vendor": "siemens",
+    "devicetype": "gateway"
+  },
+  "cisco-ie": {
+    "body": [
+      "Industrial Ethernet"
+    ],
+    "vendor": "cisco",
+    "devicetype": "gateway"
+  },
+  "hirschmann": {
+    "body": [
+      "Hirschmann"
+    ],
+    "vendor": "hirschmann",
+    "devicetype": "gateway"
+  },
+  "belden": {
+    "body": [
+      "Belden"
+    ],
+    "vendor": "belden",
+    "devicetype": "gateway"
+  },
+  "westermo": {
+    "body": [
+      "Westermo"
+    ],
+    "vendor": "westermo",
+    "devicetype": "gateway"
+  },
+  "kontron": {
+    "body": [
+      "Kontron"
+    ],
+    "vendor": "kontron",
+    "devicetype": "gateway"
+  },
+  "oring": {
+    "body": [
+      "ORing"
+    ],
+    "vendor": "oring",
+    "devicetype": "gateway"
+  },
+  "planet-igs": {
+    "body": [
+      "IGS"
+    ],
+    "vendor": "planet",
+    "devicetype": "gateway"
+  },
+  "antaira": {
+    "body": [
+      "Antaira"
+    ],
+    "vendor": "antaira",
+    "devicetype": "gateway"
+  },
+  "3onedata": {
+    "body": [
+      "三旺",
+      "3onedata"
+    ],
+    "vendor": "3onedata",
+    "devicetype": "gateway"
+  },
+  "maiwe": {
+    "body": [
+      "迈威"
+    ],
+    "vendor": "maiwe",
+    "devicetype": "gateway"
+  },
+  "kyland": {
+    "body": [
+      "东土",
+      "Kyland"
+    ],
+    "vendor": "kyland",
+    "devicetype": "gateway"
+  },
+  "frank-mayer": {
+    "body": [
+      "Frank Mayer"
+    ],
+    "devicetype": "kiosk"
+  },
+  "kioware": {
+    "body": [
+      "KioWare"
+    ],
+    "devicetype": "kiosk"
+  },
+  "sitekiosk": {
+    "body": [
+      "SiteKiosk"
+    ],
+    "devicetype": "kiosk"
+  },
+  "porteus-kiosk": {
+    "body": [
+      "Porteus Kiosk"
+    ],
+    "devicetype": "kiosk"
+  },
+  "chrome-kiosk": {
+    "body": [
+      "Kiosk Mode"
+    ],
+    "devicetype": "kiosk"
+  },
+  "webconverger": {
+    "body": [
+      "Webconverger"
+    ],
+    "devicetype": "kiosk"
+  },
+  "intelli-check": {
+    "body": [
+      "Intellicheck"
+    ],
+    "devicetype": "kiosk"
+  },
+  "nayax": {
+    "body": [
+      "Nayax"
+    ],
+    "vendor": "nayax",
+    "devicetype": "kiosk"
+  },
+  "usa-tech": {
+    "body": [
+      "USA Technologies"
+    ],
+    "devicetype": "kiosk"
+  },
+  "live555": {
+    "body": [
+      "Live555"
+    ],
+    "tags": [
+      "streaming",
+      "rtsp"
+    ]
+  },
+  "vlc-streaming": {
+    "body": [
+      "VLC"
+    ],
+    "tags": [
+      "streaming",
+      "rtsp"
+    ]
+  },
+  "gstreamer": {
+    "body": [
+      "GStreamer"
+    ],
+    "tags": [
+      "streaming",
+      "rtsp"
+    ]
+  },
+  "ffmpeg-server": {
+    "body": [
+      "FFmpeg"
+    ],
+    "tags": [
+      "streaming",
+      "rtsp"
+    ]
+  },
+  "darwin-streaming": {
+    "body": [
+      "Darwin"
+    ],
+    "tags": [
+      "streaming",
+      "rtsp"
+    ]
+  },
+  "unreal-media": {
+    "body": [
+      "Unreal Media"
+    ],
+    "tags": [
+      "streaming",
+      "rtsp"
+    ]
+  },
+  "milestone-xprotect": {
+    "body": [
+      "XProtect"
+    ],
+    "vendor": "milestone",
+    "tags": [
+      "vms",
+      "video"
+    ]
+  },
+  "genetec-security-center": {
+    "body": [
+      "Security Center"
+    ],
+    "vendor": "genetec",
+    "tags": [
+      "vms",
+      "video"
+    ]
+  },
+  "avigilon-acc": {
+    "body": [
+      "ACC"
+    ],
+    "vendor": "avigilon",
+    "tags": [
+      "vms",
+      "video"
+    ]
+  },
+  "exacq": {
+    "body": [
+      "exacqVision"
+    ],
+    "vendor": "exacq",
+    "tags": [
+      "vms",
+      "video"
+    ]
+  },
+  "digifort": {
+    "body": [
+      "Digifort"
+    ],
+    "tags": [
+      "vms",
+      "video"
+    ]
+  },
+  "nx-witness": {
+    "body": [
+      "Nx Witness"
+    ],
+    "tags": [
+      "vms",
+      "video"
+    ]
+  },
+  "zoneminder": {
+    "body": [
+      "ZoneMinder"
+    ],
+    "tags": [
+      "vms",
+      "video"
+    ]
+  },
+  "shinobi": {
+    "body": [
+      "Shinobi"
+    ],
+    "tags": [
+      "vms",
+      "video"
+    ]
+  },
+  "blueiris": {
+    "body": [
+      "Blue Iris"
+    ],
+    "tags": [
+      "vms",
+      "video"
+    ]
+  },
+  "frigate": {
+    "body": [
+      "Frigate"
+    ],
+    "tags": [
+      "vms",
+      "video"
+    ]
+  },
+  "agentdvr": {
+    "body": [
+      "Agent DVR"
+    ],
+    "tags": [
+      "vms",
+      "video"
+    ]
+  },
+  "rdp-gateway": {
+    "body": [
+      "Remote Desktop Gateway"
+    ],
+    "tags": [
+      "remote-desktop"
+    ]
+  },
+  "rdweb": {
+    "body": [
+      "RD Web Access"
+    ],
+    "tags": [
+      "remote-desktop"
+    ]
+  },
+  "citrix-storefront": {
+    "body": [
+      "StoreFront"
+    ],
+    "vendor": "citrix",
+    "tags": [
+      "remote-desktop"
+    ]
+  },
+  "citrix-receiver": {
+    "body": [
+      "Receiver"
+    ],
+    "vendor": "citrix",
+    "tags": [
+      "remote-desktop"
+    ]
+  },
+  "vmware-horizon-client": {
+    "body": [
+      "Horizon Client"
+    ],
+    "vendor": "vmware",
+    "tags": [
+      "remote-desktop"
+    ]
+  },
+  "apache-guacamole": {
+    "body": [
+      "Guacamole"
+    ],
+    "tags": [
+      "remote-desktop"
+    ]
+  },
+  "xrdp": {
+    "body": [
+      "xrdp"
+    ],
+    "tags": [
+      "remote-desktop"
+    ]
+  },
+  "freerdp": {
+    "body": [
+      "FreeRDP"
+    ],
+    "tags": [
+      "remote-desktop"
+    ]
+  },
+  "nomachine": {
+    "body": [
+      "NoMachine"
+    ],
+    "tags": [
+      "remote-desktop"
+    ]
+  },
+  "x2go": {
+    "body": [
+      "X2Go"
+    ],
+    "tags": [
+      "remote-desktop"
+    ]
+  },
+  "tigervnc": {
+    "body": [
+      "TigerVNC"
+    ],
+    "tags": [
+      "remote-desktop",
+      "vnc"
+    ]
+  },
+  "tightvnc": {
+    "body": [
+      "TightVNC"
+    ],
+    "tags": [
+      "remote-desktop",
+      "vnc"
+    ]
+  },
+  "realvnc": {
+    "body": [
+      "RealVNC"
+    ],
+    "tags": [
+      "remote-desktop",
+      "vnc"
+    ]
+  },
+  "ultravnc": {
+    "body": [
+      "UltraVNC"
+    ],
+    "tags": [
+      "remote-desktop",
+      "vnc"
+    ]
+  },
+  "turbovnc": {
+    "body": [
+      "TurboVNC"
+    ],
+    "tags": [
+      "remote-desktop",
+      "vnc"
+    ]
+  },
+  "anydesk": {
+    "body": [
+      "AnyDesk"
+    ],
+    "tags": [
+      "remote-desktop"
+    ]
+  },
+  "teamviewer": {
+    "body": [
+      "TeamViewer"
+    ],
+    "tags": [
+      "remote-desktop"
+    ]
+  },
+  "parsec": {
+    "body": [
+      "Parsec"
+    ],
+    "tags": [
+      "remote-desktop"
+    ]
+  },
+  "sunlogin": {
+    "body": [
+      "向日葵",
+      "Sunlogin"
+    ],
+    "tags": [
+      "remote-desktop"
+    ]
+  },
+  "todesk": {
+    "body": [
+      "ToDesk"
+    ],
+    "tags": [
+      "remote-desktop"
+    ]
+  },
+  "frp": {
+    "body": [
+      "frp"
+    ],
+    "tags": [
+      "tunnel"
+    ]
+  },
+  "nps": {
+    "body": [
+      "nps"
+    ],
+    "tags": [
+      "tunnel"
+    ]
+  },
+  "ngrok": {
+    "body": [
+      "ngrok"
+    ],
+    "tags": [
+      "tunnel"
+    ]
+  },
+  "bore": {
+    "body": [
+      "bore"
+    ],
+    "tags": [
+      "tunnel"
+    ]
+  },
+  "rathole": {
+    "body": [
+      "rathole"
+    ],
+    "tags": [
+      "tunnel"
+    ]
+  },
+  "chisel": {
+    "body": [
+      "chisel"
+    ],
+    "tags": [
+      "tunnel"
+    ]
+  },
+  "sish": {
+    "body": [
+      "sish"
+    ],
+    "tags": [
+      "tunnel"
+    ]
+  },
+  "serveo": {
+    "body": [
+      "serveo"
+    ],
+    "tags": [
+      "tunnel"
+    ]
+  },
+  "localtunnel": {
+    "body": [
+      "localtunnel"
+    ],
+    "tags": [
+      "tunnel"
+    ]
+  },
+  "expose": {
+    "body": [
+      "expose"
+    ],
+    "tags": [
+      "tunnel"
+    ]
+  },
+  "sshuttle": {
+    "body": [
+      "sshuttle"
+    ],
+    "tags": [
+      "tunnel"
+    ]
+  },
+  "lanproxy": {
+    "body": [
+      "lanproxy"
+    ],
+    "tags": [
+      "tunnel"
+    ]
+  },
+  "natapp": {
+    "body": [
+      "NATAPP"
+    ],
+    "tags": [
+      "tunnel"
+    ]
+  },
+  "cpolar": {
+    "body": [
+      "cpolar"
+    ],
+    "tags": [
+      "tunnel"
+    ]
+  },
+  "hsk": {
+    "body": [
+      "花生壳"
+    ],
+    "tags": [
+      "tunnel"
     ]
   }
 }

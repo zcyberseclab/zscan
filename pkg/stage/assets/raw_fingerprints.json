@@ -2,93 +2,665 @@
   "ssh": {
     "patterns": [
       "(?i)SSH"
+    ],
+    "tags": [
+      "remote-access"
     ]
   },
   "netgear-router": {
-    "type": "router",
-    "manufacturer": "netgear",
     "patterns": [
       "(?i)NETGEAR"
-    ]
+    ],
+    "vendor": "netgear",
+    "devicetype": "router"
   },
   "pure-ftpd": {
     "patterns": [
       "Pure-FTPd"
+    ],
+    "tags": [
+      "file-transfer",
+      "ftp"
     ]
   },
   "proftpd": {
     "patterns": [
-      "(?i)ProFTPD"
+      "ProFTPD"
+    ],
+    "tags": [
+      "file-transfer",
+      "ftp"
     ]
   },
   "vsftpd": {
     "patterns": [
-      "(?i)vsftpd"
-    ]
+      "vsftpd"
+    ],
+    "tags": [
+      "file-transfer",
+      "ftp"
+    ],
+    "os": "linux"
   },
-  "ricoh":{
-    "type": "printer",
-    "manufacturer": "ricoh",
+  "ricoh": {
     "patterns": [
       "(?i)RICOH"
-    ]
+    ],
+    "vendor": "ricoh",
+    "devicetype": "printer"
   },
   "ricoh-maintenance": {
-    "type": "printer",
-    "manufacturer": "ricoh",
     "patterns": [
       "\\xff\\xfb\\x01\\xff\\xfb\\x03"
-    ]
+    ],
+    "vendor": "ricoh",
+    "devicetype": "printer"
   },
   "ftp": {
     "patterns": [
       "(?i)ftp"
+    ],
+    "tags": [
+      "file-transfer",
+      "ftp"
     ]
   },
   "mariadb": {
     "patterns": [
-      "(?i)MariaDB"
+      "MariaDB"
+    ],
+    "tags": [
+      "database"
     ]
   },
   "mysql": {
     "patterns": [
-      "(?i)MySQL"
+      "mysql",
+      "MariaDB"
+    ],
+    "tags": [
+      "database"
     ]
   },
   "vnc": {
     "patterns": [
       "(?i)RFB"
+    ],
+    "tags": [
+      "remote-desktop",
+      "vnc"
     ]
   },
   "redis": {
     "patterns": [
-      "(?i)Redis"
+      "REDIS",
+      "-ERR",
+      "+PONG"
+    ],
+    "tags": [
+      "database",
+      "cache"
     ]
   },
   "filezilla": {
     "patterns": [
       "(?i)FileZilla"
-    ]
+    ],
+    "tags": [
+      "file-transfer",
+      "ftp"
+    ],
+    "os": "windows"
   },
   "smtp": {
     "patterns": [
       "(?i)SMTP"
+    ],
+    "tags": [
+      "mail"
     ]
   },
   "pop3": {
     "patterns": [
       "(?i)POP3"
+    ],
+    "tags": [
+      "mail"
     ]
   },
   "imap": {
     "patterns": [
       "(?i)IMAP"
+    ],
+    "tags": [
+      "mail"
     ]
   },
   "netatalk": {
     "patterns": [
       "(?i)Netatalk"
+    ],
+    "tags": [
+      "file-transfer",
+      "afp"
+    ],
+    "os": "linux"
+  },
+  "postgresql": {
+    "patterns": [
+      "PostgreSQL"
+    ],
+    "tags": [
+      "database"
+    ]
+  },
+  "mongodb": {
+    "patterns": [
+      "MongoDB"
+    ],
+    "tags": [
+      "database",
+      "nosql"
+    ]
+  },
+  "oracle": {
+    "patterns": [
+      "Oracle",
+      "TNS"
+    ],
+    "tags": [
+      "database"
+    ],
+    "vendor": "oracle"
+  },
+  "mssql": {
+    "patterns": [
+      "Microsoft SQL Server",
+      "MSSQL"
+    ],
+    "tags": [
+      "database"
+    ],
+    "vendor": "microsoft",
+    "os": "windows"
+  },
+  "memcached": {
+    "patterns": [
+      "STAT",
+      "VERSION"
+    ],
+    "tags": [
+      "database",
+      "cache"
+    ]
+  },
+  "cassandra": {
+    "patterns": [
+      "Cassandra"
+    ],
+    "tags": [
+      "database",
+      "nosql"
+    ]
+  },
+  "derby": {
+    "patterns": [
+      "Derby"
+    ],
+    "tags": [
+      "database"
+    ]
+  },
+  "firebird": {
+    "patterns": [
+      "Firebird"
+    ],
+    "tags": [
+      "database"
+    ]
+  },
+  "db2": {
+    "patterns": [
+      "DB2"
+    ],
+    "tags": [
+      "database"
+    ],
+    "vendor": "ibm"
+  },
+  "timescaledb": {
+    "patterns": [
+      "TimescaleDB"
+    ],
+    "tags": [
+      "database",
+      "timeseries"
+    ]
+  },
+  "scylladb": {
+    "patterns": [
+      "Scylla"
+    ],
+    "tags": [
+      "database",
+      "nosql"
+    ]
+  },
+  "foundationdb": {
+    "patterns": [
+      "FoundationDB"
+    ],
+    "tags": [
+      "database",
+      "nosql"
+    ]
+  },
+  "singlestore": {
+    "patterns": [
+      "SingleStore",
+      "MemSQL"
+    ],
+    "tags": [
+      "database"
+    ]
+  },
+  "keydb": {
+    "patterns": [
+      "KeyDB"
+    ],
+    "tags": [
+      "database",
+      "cache"
+    ]
+  },
+  "dragonfly": {
+    "patterns": [
+      "Dragonfly"
+    ],
+    "tags": [
+      "database",
+      "cache"
+    ]
+  },
+  "valkey": {
+    "patterns": [
+      "valkey"
+    ],
+    "tags": [
+      "database",
+      "cache"
+    ]
+  },
+  "ftp-server": {
+    "patterns": [
+      "FTP",
+      "220"
+    ],
+    "tags": [
+      "file-transfer",
+      "ftp"
+    ]
+  },
+  "pureftpd": {
+    "patterns": [
+      "Pure-FTPd"
+    ],
+    "tags": [
+      "file-transfer",
+      "ftp"
+    ]
+  },
+  "samba": {
+    "patterns": [
+      "SMB"
+    ],
+    "tags": [
+      "file-transfer",
+      "smb"
+    ],
+    "os": "linux"
+  },
+  "nfs": {
+    "patterns": [
+      "NFS"
+    ],
+    "tags": [
+      "file-transfer",
+      "nfs"
+    ]
+  },
+  "modbus": {
+    "patterns": [
+      "Modbus"
+    ],
+    "tags": [
+      "ics",
+      "scada"
+    ]
+  },
+  "rtsp-server": {
+    "patterns": [
+      "RTSP"
+    ],
+    "tags": [
+      "streaming",
+      "rtsp"
+    ]
+  },
+  "telnet": {
+    "patterns": [
+      "(?i)telnet",
+      "\\xff\\xfd",
+      "\\xff\\xfb"
+    ],
+    "tags": [
+      "remote-access"
+    ]
+  },
+  "ldap": {
+    "patterns": [
+      "(?i)LDAP",
+      "objectClass"
+    ],
+    "tags": [
+      "directory"
+    ]
+  },
+  "kerberos": {
+    "patterns": [
+      "KRB5",
+      "Kerberos"
+    ],
+    "tags": [
+      "authentication"
+    ]
+  },
+  "dns": {
+    "patterns": [
+      "BIND",
+      "dnsmasq",
+      "PowerDNS"
+    ],
+    "tags": [
+      "dns"
+    ]
+  },
+  "dhcp": {
+    "patterns": [
+      "DHCP"
+    ],
+    "tags": [
+      "dhcp"
+    ]
+  },
+  "snmp": {
+    "patterns": [
+      "SNMP",
+      "public",
+      "private"
+    ],
+    "tags": [
+      "monitoring",
+      "snmp"
+    ]
+  },
+  "ntp": {
+    "patterns": [
+      "NTP",
+      "ntpd"
+    ],
+    "tags": [
+      "time"
+    ]
+  },
+  "rpc": {
+    "patterns": [
+      "RPC",
+      "portmap"
+    ],
+    "tags": [
+      "rpc"
+    ]
+  },
+  "rdp": {
+    "patterns": [
+      "RDP",
+      "Remote Desktop"
+    ],
+    "tags": [
+      "remote-desktop",
+      "rdp"
+    ],
+    "os": "windows"
+  },
+  "winrm": {
+    "patterns": [
+      "WinRM",
+      "WS-Management"
+    ],
+    "tags": [
+      "remote-access"
+    ],
+    "os": "windows"
+  },
+  "docker": {
+    "patterns": [
+      "Docker"
+    ],
+    "tags": [
+      "container"
+    ]
+  },
+  "kubernetes": {
+    "patterns": [
+      "Kubernetes",
+      "kubectl"
+    ],
+    "tags": [
+      "container",
+      "orchestration"
+    ]
+  },
+  "etcd": {
+    "patterns": [
+      "etcd"
+    ],
+    "tags": [
+      "database",
+      "distributed"
+    ]
+  },
+  "consul": {
+    "patterns": [
+      "Consul"
+    ],
+    "tags": [
+      "service-discovery"
+    ]
+  },
+  "zookeeper": {
+    "patterns": [
+      "ZooKeeper"
+    ],
+    "tags": [
+      "distributed"
+    ]
+  },
+  "elasticsearch": {
+    "patterns": [
+      "Elasticsearch",
+      "lucene"
+    ],
+    "tags": [
+      "database",
+      "search"
+    ]
+  },
+  "rabbitmq": {
+    "patterns": [
+      "RabbitMQ",
+      "AMQP"
+    ],
+    "tags": [
+      "message-queue"
+    ]
+  },
+  "kafka": {
+    "patterns": [
+      "Kafka"
+    ],
+    "tags": [
+      "message-queue"
+    ]
+  },
+  "mqtt": {
+    "patterns": [
+      "MQTT",
+      "mosquitto"
+    ],
+    "tags": [
+      "message-queue",
+      "iot"
+    ]
+  },
+  "coap": {
+    "patterns": [
+      "CoAP"
+    ],
+    "tags": [
+      "iot"
+    ]
+  },
+  "s7comm": {
+    "patterns": [
+      "S7comm",
+      "SIMATIC"
+    ],
+    "tags": [
+      "ics",
+      "plc"
+    ],
+    "vendor": "siemens"
+  },
+  "bacnet": {
+    "patterns": [
+      "BACnet"
+    ],
+    "tags": [
+      "ics",
+      "bms"
+    ]
+  },
+  "dnp3": {
+    "patterns": [
+      "DNP3"
+    ],
+    "tags": [
+      "ics",
+      "scada"
+    ]
+  },
+  "iec104": {
+    "patterns": [
+      "IEC-104",
+      "IEC 60870"
+    ],
+    "tags": [
+      "ics",
+      "scada"
+    ]
+  },
+  "opcua": {
+    "patterns": [
+      "OPC-UA",
+      "OPC UA"
+    ],
+    "tags": [
+      "ics",
+      "opc"
+    ]
+  },
+  "enip": {
+    "patterns": [
+      "EtherNet/IP",
+      "CIP"
+    ],
+    "tags": [
+      "ics",
+      "plc"
+    ]
+  },
+  "ipmi": {
+    "patterns": [
+      "IPMI",
+      "BMC"
+    ],
+    "tags": [
+      "server-mgmt"
+    ],
+    "devicetype": "bmc"
+  },
+  "hp-ilo": {
+    "patterns": [
+      "iLO",
+      "Integrated Lights-Out"
+    ],
+    "tags": [
+      "server-mgmt"
+    ],
+    "vendor": "hp",
+    "devicetype": "bmc"
+  },
+  "dell-idrac": {
+    "patterns": [
+      "iDRAC"
+    ],
+    "tags": [
+      "server-mgmt"
+    ],
+    "vendor": "dell",
+    "devicetype": "bmc"
+  },
+  "supermicro-ipmi": {
+    "patterns": [
+      "Supermicro",
+      "ATEN IPMI"
+    ],
+    "tags": [
+      "server-mgmt"
+    ],
+    "vendor": "supermicro",
+    "devicetype": "bmc"
+  },
+  "rpc-portmapper": {
+    "patterns": [
+      "\\x00\\x00\\x00\\x01",
+      "portmapper",
+      "rpcbind"
+    ],
+    "tags": [
+      "rpc",
+      "infrastructure"
+    ]
+  },
+  "rsync": {
+    "patterns": [
+      "@RSYNCD",
+      "RSYNCD"
+    ],
+    "tags": [
+      "file-transfer",
+      "backup"
+    ]
+  },
+  "nfs": {
+    "patterns": [
+      "nfsd",
+      "NFS"
+    ],
+    "tags": [
+      "file-transfer",
+      "storage"
     ]
   }
-  
 }

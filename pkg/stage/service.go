@@ -42,21 +42,23 @@ var dirwordlist string
 
 // Fingerprint represents a service fingerprint
 type Fingerprint struct {
-	Headers      []string `json:"headers"`
-	Body         []string `json:"body"`
-	IconMD5      []string `json:"icon_md5"`
-	URL          []string `json:"url"`
-	Type         string   `json:"type,omitempty"`
-	Manufacturer string   `json:"manufacturer,omitempty"`
-	Ports        []int    `json:"ports,omitempty"`
+	Headers    []string `json:"headers"`
+	Body       []string `json:"body"`
+	IconMD5    []string `json:"icon_md5"`
+	URL        []string `json:"url"`
+	Devicetype string   `json:"devicetype,omitempty"` // 硬件类型: router, printer, camera, nas, server 等
+	Tags       []string `json:"tags,omitempty"`       // 服务标签: database, webserver, monitoring 等
+	vendor     string   `json:"vendor,omitempty"`
+	Ports      []int    `json:"ports,omitempty"`
 }
 
 // RawFingerprint represents a raw service fingerprint
 type RawFingerprint struct {
-	Type         string   `json:"type,omitempty"`
-	Manufacturer string   `json:"manufacturer,omitempty"`
-	Devicetype   string   `json:"devicetype,omitempty"`
-	Patterns     []string `json:"patterns"`
+	Devicetype string   `json:"devicetype,omitempty"` // 硬件类型
+	Tags       []string `json:"tags,omitempty"`       // 服务标签
+	vendor     string   `json:"vendor,omitempty"`
+	OS         string   `json:"os,omitempty"` // 操作系统
+	Patterns   []string `json:"patterns"`
 }
 
 // ServiceAnalyzer interface for service analysis
@@ -66,10 +68,10 @@ type ServiceAnalyzer interface {
 
 // PortFingerprint represents port-specific fingerprint information
 type PortFingerprint struct {
-	Devicetype   string `json:"devicetype"`
-	Type         string `json:"type,omitempty"`
-	Manufacturer string `json:"manufacturer,omitempty"`
-	OS           string `json:"os,omitempty"`
+	Devicetype string   `json:"devicetype,omitempty"` // 硬件类型
+	Tags       []string `json:"tags,omitempty"`       // 服务标签
+	vendor     string   `json:"vendor,omitempty"`
+	OS         string   `json:"os,omitempty"`
 }
 
 // ServiceDetector struct and methods remain unchanged
@@ -435,12 +437,14 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 
 	if len(info.Types) == 0 {
 		if portFp, exists := sd.PortFingerprints[port]; exists {
-			info.Types = []string{portFp.Type}
+			if len(portFp.Tags) > 0 {
+				info.Types = append(info.Types, portFp.Tags...)
+			}
 			if portFp.Devicetype != "" {
 				info.Devicetype = portFp.Devicetype
 			}
-			if portFp.Manufacturer != "" {
-				info.Manufacturer = portFp.Manufacturer
+			if portFp.vendor != "" {
+				info.vendor = portFp.vendor
 			}
 			if portFp.OS != "" {
 				info.OS = portFp.OS
@@ -582,12 +586,16 @@ func (sd *ServiceDetector) matchFingerprint(ctx *detectionContext) *ServiceInfo 
 
 		if <-matchChan {
 			info.Types = append(info.Types, service) // Add matched service type
-			// Only update device info if not already set
-			if info.Devicetype == "" && fingerprint.Type != "" {
-				info.Devicetype = fingerprint.Type
+			// Add tags from fingerprint
+			if len(fingerprint.Tags) > 0 {
+				info.Types = append(info.Types, fingerprint.Tags...)
 			}
-			if info.Manufacturer == "" && fingerprint.Manufacturer != "" {
-				info.Manufacturer = fingerprint.Manufacturer
+			// Only update device info if not already set
+			if info.Devicetype == "" && fingerprint.Devicetype != "" {
+				info.Devicetype = fingerprint.Devicetype
+			}
+			if info.vendor == "" && fingerprint.vendor != "" {
+				info.vendor = fingerprint.vendor
 			}
 		}
 	}
@@ -664,6 +672,82 @@ func getIconMD5(client *http.Client, url string) string {
 	hash := md5.Sum(data)
 	return hex.EncodeToString(hash[:])
 }
+
+// tcpProbes 定义了针对特定端口的探测包
+var tcpProbes = map[int][]byte{
+	// 111 - RPC Portmapper: RPC call to get portmapper info
+	111: {
+		0x80, 0x00, 0x00, 0x28, // Fragment header
+		0x00, 0x00, 0x00, 0x01, // XID
+		0x00, 0x00, 0x00, 0x00, // Message type: Call
+		0x00, 0x00, 0x00, 0x02, // RPC version
+		0x00, 0x01, 0x86, 0xa0, // Program: Portmapper (100000)
+		0x00, 0x00, 0x00, 0x02, // Program version
+		0x00, 0x00, 0x00, 0x00, // Procedure: NULL
+		0x00, 0x00, 0x00, 0x00, // Auth flavor: AUTH_NULL
+		0x00, 0x00, 0x00, 0x00, // Auth length
+		0x00, 0x00, 0x00, 0x00, // Verifier flavor: AUTH_NULL
+		0x00, 0x00, 0x00, 0x00, // Verifier length
+	},
+	// 873 - rsync: 需要发送换行符触发 banner
+	873: []byte("\n"),
+	// 1433 - MSSQL: TDS prelogin
+	1433: {
+		0x12, 0x01, 0x00, 0x34, 0x00, 0x00, 0x00, 0x00,
+		0x00, 0x00, 0x15, 0x00, 0x06, 0x01, 0x00, 0x1b,
+		0x00, 0x01, 0x02, 0x00, 0x1c, 0x00, 0x0c, 0x03,
+		0x00, 0x28, 0x00, 0x04, 0xff, 0x08, 0x00, 0x01,
+		0x55, 0x00, 0x00, 0x00, 0x4d, 0x53, 0x53, 0x51,
+		0x4c, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x00,
+		0x00, 0x00, 0x00, 0x00,
+	},
+	// 3306 - MySQL: 空探测，MySQL 应该主动发送 banner
+	// 5432 - PostgreSQL: startup message
+	5432: {
+		0x00, 0x00, 0x00, 0x08, // Length
+		0x00, 0x03, 0x00, 0x00, // Protocol version 3.0
+	},
+	// 6379 - Redis: INFO command
+	6379: []byte("*1\r\n$4\r\nINFO\r\n"),
+	// 27017 - MongoDB: isMaster command
+	27017: {
+		0x3f, 0x00, 0x00, 0x00, // Message length
+		0x00, 0x00, 0x00, 0x00, // Request ID
+		0x00, 0x00, 0x00, 0x00, // Response To
+		0xd4, 0x07, 0x00, 0x00, // OpCode: OP_QUERY
+		0x00, 0x00, 0x00, 0x00, // Flags
+		0x61, 0x64, 0x6d, 0x69, 0x6e, 0x2e, 0x24, 0x63,
+		0x6d, 0x64, 0x00, // admin.$cmd
+		0x00, 0x00, 0x00, 0x00, // Skip
+		0x01, 0x00, 0x00, 0x00, // Return
+		0x15, 0x00, 0x00, 0x00, // Document length
+		0x10, 0x69, 0x73, 0x4d, 0x61, 0x73, 0x74, 0x65,
+		0x72, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
+	},
+	// 11211 - Memcached: version command
+	11211: []byte("version\r\n"),
+	// 9200 - Elasticsearch
+	9200: []byte("GET / HTTP/1.0\r\n\r\n"),
+	// 2181 - ZooKeeper: ruok command
+	2181: []byte("ruok"),
+	// 2379 - etcd: version request
+	2379: []byte("GET /version HTTP/1.0\r\n\r\n"),
+	// 8500 - Consul
+	8500: []byte("GET /v1/status/leader HTTP/1.0\r\n\r\n"),
+	// 5672 - RabbitMQ AMQP: protocol header
+	5672: []byte("AMQP\x00\x00\x09\x01"),
+	// 9092 - Kafka: API versions request
+	9092: {
+		0x00, 0x00, 0x00, 0x23, // Size
+		0x00, 0x12, // API Key: ApiVersions
+		0x00, 0x00, // API Version
+		0x00, 0x00, 0x00, 0x01, // Correlation ID
+		0x00, 0x09, 0x6b, 0x61, 0x66, 0x6b, 0x61, 0x2d,
+		0x67, 0x6f, // Client ID: "kafka-go"
+		0x00, // Empty tagged fields
+	},
+}
+
 func (sd *ServiceDetector) detectTCP(ip string, port int) []ServiceInfo {
 	var results []ServiceInfo
 	conn, err := net.DialTimeout("tcp", fmt.Sprintf("%s:%d", ip, port), 5*time.Second)
@@ -672,13 +756,24 @@ func (sd *ServiceDetector) detectTCP(ip string, port int) []ServiceInfo {
 	}
 	defer conn.Close()
 
+	buffer := make([]byte, 4096)
+	var n int
+
+	// 针对特定端口发送探测包
+	if probe, exists := tcpProbes[port]; exists && len(probe) > 0 {
+		conn.SetWriteDeadline(time.Now().Add(3 * time.Second))
+		conn.Write(probe)
+		// 发送后等待一小会儿让服务响应
+		time.Sleep(200 * time.Millisecond)
+	}
+
 	if err := conn.SetReadDeadline(time.Now().Add(3 * time.Second)); err != nil {
 		log.Printf("Error setting read deadline: %v", err)
 		return results
 	}
 
-	buffer := make([]byte, 4096)
-	n, err := conn.Read(buffer)
+	n, err = conn.Read(buffer)
+
 	if err != nil && !errors.Is(err, io.EOF) {
 		return results
 	}
@@ -701,16 +796,17 @@ func (sd *ServiceDetector) detectTCP(ip string, port int) []ServiceInfo {
 			}
 			if re.MatchString(cleanedBanner) {
 				info := ServiceInfo{
-					Types:        []string{},
-					Banner:       cleanedBanner,
-					Manufacturer: fp.Manufacturer,
-					Devicetype:   fp.Devicetype,
+					Types:      []string{name},
+					Banner:     cleanedBanner,
+					vendor:     fp.vendor,
+					Devicetype: fp.Devicetype,
+					OS:         fp.OS,
 				}
 
-				if fp.Type != "" {
-					info.Types = append(info.Types, fp.Type)
+				// Add tags from fingerprint
+				if len(fp.Tags) > 0 {
+					info.Types = append(info.Types, fp.Tags...)
 				}
-				info.Types = append(info.Types, name)
 
 				results = append(results, info)
 				matched = true
@@ -729,11 +825,12 @@ func (sd *ServiceDetector) detectTCP(ip string, port int) []ServiceInfo {
 		}
 
 		if portFp, exists := sd.PortFingerprints[port]; exists {
-			if portFp.Type != "" {
-				info.Types = append(info.Types, portFp.Type)
+			if len(portFp.Tags) > 0 {
+				info.Types = append(info.Types, portFp.Tags...)
 			}
 			info.Devicetype = portFp.Devicetype
-			info.Manufacturer = portFp.Manufacturer
+			info.vendor = portFp.vendor
+			info.OS = portFp.OS
 		}
 
 		results = append(results, info)
@@ -754,6 +851,40 @@ func cleanBanner(banner string) string {
 	return cleaned.String()
 }
 
+// UDP 探测包定义
+var udpServiceProbes = map[int][]byte{
+	// DNS - 标准查询 version.bind
+	53: {0x00, 0x1e, 0x01, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+		0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x04, 0x62, 0x69, 0x6e, 0x64,
+		0x00, 0x00, 0x10, 0x00, 0x03},
+	// NTP - Mode 3 Client Request
+	123: {0x1b, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+		0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+		0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+		0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+	// NetBIOS Name Service - NBSTAT query
+	137: {0x80, 0xf0, 0x00, 0x10, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+		0x20, 0x43, 0x4b, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41,
+		0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41,
+		0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x00, 0x00, 0x21, 0x00, 0x01},
+	// SNMP v1 GetRequest - public community
+	161: {0x30, 0x26, 0x02, 0x01, 0x01, 0x04, 0x06, 0x70, 0x75, 0x62, 0x6c, 0x69, 0x63,
+		0xa0, 0x19, 0x02, 0x04, 0x00, 0x00, 0x00, 0x01, 0x02, 0x01, 0x00, 0x02, 0x01, 0x00,
+		0x30, 0x0b, 0x30, 0x09, 0x06, 0x05, 0x2b, 0x06, 0x01, 0x02, 0x01, 0x05, 0x00},
+	// IPMI RMCP - Get Channel Auth
+	623: {0x06, 0x00, 0xff, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+		0x00, 0x09, 0x20, 0x18, 0xc8, 0x81, 0x00, 0x38, 0x8e, 0x04, 0xb5},
+	// MSSQL Browser
+	1434: {0x02},
+	// SIP OPTIONS
+	5060: []byte("OPTIONS sip:nm SIP/2.0\r\nVia: SIP/2.0/UDP nm;branch=z9hG4bK\r\nMax-Forwards: 0\r\nTo: <sip:nm>\r\nFrom: <sip:nm>;tag=nm\r\nCall-ID: nm\r\nCSeq: 1 OPTIONS\r\nContent-Length: 0\r\n\r\n"),
+	// mDNS - 查询 _services._dns-sd._udp.local
+	5353: {0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+		0x09, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x73, 0x07, 0x5f,
+		0x64, 0x6e, 0x73, 0x2d, 0x73, 0x64, 0x04, 0x5f, 0x75, 0x64, 0x70, 0x05,
+		0x6c, 0x6f, 0x63, 0x61, 0x6c, 0x00, 0x00, 0x0c, 0x00, 0x01},
+}
+
 func (sd *ServiceDetector) detectUDP(ip string, port int) []ServiceInfo {
 	var results []ServiceInfo
 
@@ -763,14 +894,20 @@ func (sd *ServiceDetector) detectUDP(ip string, port int) []ServiceInfo {
 	}
 	defer conn.Close()
 
-	// Send a probe packet (empty or with common probe data)
-	_, err = conn.Write([]byte("\x00"))
+	// 获取协议特定的探测包
+	probe, exists := udpServiceProbes[port]
+	if !exists {
+		probe = []byte{0x00}
+	}
+
+	// Send probe packet
+	_, err = conn.Write(probe)
 	if err != nil {
 		return results
 	}
 
 	// Set read deadline
-	if err := conn.SetReadDeadline(time.Now().Add(2 * time.Second)); err != nil {
+	if err := conn.SetReadDeadline(time.Now().Add(3 * time.Second)); err != nil {
 		log.Printf("Error setting read deadline: %v", err)
 	}
 
@@ -797,16 +934,17 @@ func (sd *ServiceDetector) detectUDP(ip string, port int) []ServiceInfo {
 			}
 			if re.MatchString(cleanedBanner) {
 				info := ServiceInfo{
-					Types:        []string{}, // Initialize empty Types slice
-					Banner:       cleanedBanner,
-					Manufacturer: fp.Manufacturer,
-					Devicetype:   fp.Devicetype,
+					Types:      []string{name},
+					Banner:     cleanedBanner,
+					vendor:     fp.vendor,
+					Devicetype: fp.Devicetype,
+					OS:         fp.OS,
 				}
 
-				if fp.Type != "" {
-					info.Types = append(info.Types, fp.Type)
+				// Add tags from fingerprint
+				if len(fp.Tags) > 0 {
+					info.Types = append(info.Types, fp.Tags...)
 				}
-				info.Types = append(info.Types, name)
 
 				results = append(results, info)
 				matched = true
@@ -820,16 +958,17 @@ func (sd *ServiceDetector) detectUDP(ip string, port int) []ServiceInfo {
 
 	if !matched && banner != "" {
 		info := ServiceInfo{
-			Types:  []string{}, // Initialize empty Types slice
+			Types:  []string{},
 			Banner: banner,
 		}
 
 		if portFp, exists := sd.PortFingerprints[port]; exists {
-			if portFp.Type != "" {
-				info.Types = append(info.Types, portFp.Type)
+			if len(portFp.Tags) > 0 {
+				info.Types = append(info.Types, portFp.Tags...)
 			}
 			info.Devicetype = portFp.Devicetype
-			info.Manufacturer = portFp.Manufacturer
+			info.vendor = portFp.vendor
+			info.OS = portFp.OS
 		}
 
 		results = append(results, info)
@@ -1268,8 +1407,8 @@ func (sd *ServiceDetector) updateServiceInfoFromLua(info *ServiceInfo, tbl *lua.
 	if v := tbl.RawGetString("OS"); v != lua.LNil {
 		info.OS = v.String()
 	}
-	if v := tbl.RawGetString("Manufacturer"); v != lua.LNil {
-		info.Manufacturer = v.String()
+	if v := tbl.RawGetString("vendor"); v != lua.LNil {
+		info.vendor = v.String()
 	}
 	if v := tbl.RawGetString("Devicetype"); v != lua.LNil {
 		info.Devicetype = v.String()

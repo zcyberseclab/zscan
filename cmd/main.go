@@ -46,9 +46,6 @@ func main() {
 	configPath := flag.String("config", "config/config.yaml", "Path to config file")
 	templatesDir := flag.String("templates", "templates", "Path to templates directory")
 	enableGeo := flag.Bool("geo", false, "Enable geolocation and IP info lookup")
-	enableCensys := flag.Bool("censys", false, "Enable Censys data enrichment")
-	censysAPIKey := flag.String("censys-api-key", "", "Censys API Key")
-	censysSecret := flag.String("censys-secret", "", "Censys API Secret")
 	versionFlag := flag.Bool("version", false, "Show version information")
 	outputFormat := flag.String("output", "", "Output format: json, html, or md")
 	portList := flag.String("port", "", "Custom ports to scan (comma-separated, e.g., '80,443,8080')")
@@ -83,17 +80,6 @@ func main() {
 		}
 	}
 
-	if *enableCensys {
-		if *censysAPIKey == "" || *censysSecret == "" {
-			*censysAPIKey = os.Getenv("CENSYS_API_KEY")
-			*censysSecret = os.Getenv("CENSYS_SECRET")
-		}
-		if *censysAPIKey == "" || *censysSecret == "" {
-			log.Printf("Warning: Censys integration enabled but credentials not provided. Skipping Censys data enrichment.")
-			*enableCensys = false
-		}
-	}
-
 	var targets []string
 	if *targetFile != "" {
 		data, err := os.ReadFile(*targetFile)
@@ -122,9 +108,6 @@ func main() {
 		*configPath,
 		*templatesDir,
 		*enableGeo,
-		*enableCensys,
-		*censysAPIKey,
-		*censysSecret,
 		customPorts,
 	)
 	if err != nil {

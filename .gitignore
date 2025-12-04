@@ -2,3 +2,4 @@ log.json
 nuclei-templates/
 output/
 tools/pocs/
+*.exe

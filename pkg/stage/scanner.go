@@ -8,7 +8,6 @@ import (
 	"os"
 	"strings"
 	"sync"
-	"time"
 
 	"gopkg.in/yaml.v3"
 )
@@ -22,9 +21,7 @@ type Scanner struct {
 	config          Config
 	ServiceDetector *ServiceDetector
 	ipInfo          *IPInfo
-	censysClient    *CensysClient
 	enableGeo       bool
-	enableCensys    bool
 	semaphore       chan struct{}
 	customPorts     []int
 }
@@ -33,9 +30,6 @@ func NewScanner(
 	configPath string,
 	templatesDir string,
 	enableGeo bool,
-	enableCensys bool,
-	censysAPIKey string,
-	censysSecret string,
 	customPorts []int,
 ) (*Scanner, error) {
 	config := loadConfig(configPath)
@@ -55,18 +49,11 @@ func NewScanner(
 		}
 	}
 
-	var censysClient *CensysClient
-	if enableCensys && censysAPIKey != "" && censysSecret != "" {
-		censysClient = NewCensysClient(censysAPIKey, censysSecret)
-	}
-
 	return &Scanner{
 		config:          config,
 		ServiceDetector: detector,
 		ipInfo:          ipInfo,
-		censysClient:    censysClient,
 		enableGeo:       enableGeo,
-		enableCensys:    enableCensys,
 		semaphore:       make(chan struct{}, 10),
 		customPorts:     customPorts,
 	}, nil
@@ -88,109 +75,7 @@ func (s *Scanner) Scan(target string) ([]Node, error) {
 	}
 
 	ips := expandCIDR(targetIP)
-
-	var wg sync.WaitGroup
-	var zscanResult []Node
-	var censysResult []Node
-	var censysErr error
-
-	wg.Add(2)
-
-	go func() {
-		defer wg.Done()
-		zscanResult = s.scanParallel(ips)
-	}()
-
-	go func() {
-		defer wg.Done()
-		if s.enableCensys && s.censysClient != nil {
-			censysResult, censysErr = s.censysSearch(ips)
-		}
-	}()
-
-	wg.Wait()
-
-	if censysErr != nil {
-		log.Printf("Warning: Censys search failed: %v", censysErr)
-	}
-
-	return s.mergeResults(zscanResult, censysResult), nil
-}
-
-func (s *Scanner) censysSearch(ips []string) ([]Node, error) {
-	var results []Node
-	for _, ip := range ips {
-		censysData, err := s.censysClient.GetHostInfo(ip)
-		if err != nil {
-			log.Printf("Warning: Failed to get Censys data for %s: %v", ip, err)
-			break
-		}
-
-		node := Node{
-			IP:    ip,
-			Tags:  []string{},
-			Ports: []*ServiceInfo{},
-		}
-
-		MergeCensysData(&node, censysData)
-		results = append(results, node)
-
-		// 避免触发API限制
-		time.Sleep(200 * time.Millisecond)
-	}
-	return results, nil
-}
-
-func (s *Scanner) mergeResults(zscanResults, censysResults []Node) []Node {
-	nodeMap := make(map[string]*Node)
-
-	// Add zscan results to map
-	for i := range zscanResults {
-		node := zscanResults[i]
-		nodeMap[node.IP] = &node
-	}
-
-	// Merge censys results
-	for _, censysNode := range censysResults {
-		if existingNode, exists := nodeMap[censysNode.IP]; exists {
-			// Merge ports
-			for _, port := range censysNode.Ports {
-				found := false
-				for _, existingPort := range existingNode.Ports {
-					if existingPort.Port == port.Port {
-						found = true
-						break
-					}
-				}
-				if !found {
-					existingNode.Ports = append(existingNode.Ports, port)
-				}
-			}
-
-			// Merge tags
-			for _, tag := range censysNode.Tags {
-				found := false
-				for _, existingTag := range existingNode.Tags {
-					if existingTag == tag {
-						found = true
-						break
-					}
-				}
-				if !found {
-					existingNode.Tags = append(existingNode.Tags, tag)
-				}
-			}
-		} else {
-			nodeMap[censysNode.IP] = &censysNode
-		}
-	}
-
-	var finalResults []Node
-	for _, node := range nodeMap {
-		finalResults = append(finalResults, *node)
-	}
-
-	return finalResults
+	return s.scanParallel(ips), nil
 }
 
 func (s *Scanner) parseTarget(target string) (string, error) {
@@ -316,8 +201,17 @@ func (s *Scanner) scanTCPPort(target string, port int, wg *sync.WaitGroup, semap
 
 	if ScanTCPPort(target, port) {
 		services := s.ServiceDetector.DetectService(target, port, "tcp")
-		for _, service := range services {
-			resultsChan <- service
+		if len(services) > 0 {
+			for _, service := range services {
+				resultsChan <- service
+			}
+		} else {
+			// 端口开放但无指纹匹配，返回基本信息
+			resultsChan <- ServiceInfo{
+				Port:     port,
+				Protocol: "tcp",
+				Types:    []string{},
+			}
 		}
 	}
 }
@@ -329,8 +223,17 @@ func (s *Scanner) scanUDPPort(target string, port int, wg *sync.WaitGroup, semap
 
 	if ScanUDPPort(target, port) {
 		services := s.ServiceDetector.DetectService(target, port, "udp")
-		for _, service := range services {
-			resultsChan <- service
+		if len(services) > 0 {
+			for _, service := range services {
+				resultsChan <- service
+			}
+		} else {
+			// 端口开放但无指纹匹配，返回基本信息
+			resultsChan <- ServiceInfo{
+				Port:     port,
+				Protocol: "udp",
+				Types:    []string{},
+			}
 		}
 	}
 }
@@ -377,7 +280,7 @@ func (s *Scanner) updateNodeWithIPDetails(node *Node, details *IPDetails) {
 
 func (s *Scanner) processResults(node *Node, resultsChan chan ServiceInfo) {
 	osSet := make(map[string]struct{})
-	manufacturerSet := make(map[string]struct{})
+	vendorSet := make(map[string]struct{})
 	devicetypeSet := make(map[string]struct{})
 	sensitiveInfoSet := make(map[string]struct{})
 	vulnerabilitiesMap := make(map[string]POCResult)
@@ -394,9 +297,9 @@ func (s *Scanner) processResults(node *Node, resultsChan chan ServiceInfo) {
 			osSet[result.OS] = struct{}{}
 			node.OS = result.OS
 		}
-		if result.Manufacturer != "" {
-			manufacturerSet[result.Manufacturer] = struct{}{}
-			node.Manufacturer = result.Manufacturer
+		if result.vendor != "" {
+			vendorSet[result.vendor] = struct{}{}
+			node.vendor = result.vendor
 		}
 		if result.Devicetype != "" {
 			devicetypeSet[result.Devicetype] = struct{}{}

@@ -1,9 +1,13 @@
 tcp_ports:
+  # ============ 基础服务 ============
   - 21    # FTP Control
   - 22    # SSH
   - 23    # Telnet
   - 25    # SMTP
-  - 70
+  - 53    # DNS
+  - 69    # TFTP
+  - 70    # Gopher
+  - 79    # Finger
   - 80    # HTTP
   - 81    # HTTP Alternate
   - 82    # HTTP Alternate
@@ -14,130 +18,375 @@ tcp_ports:
   - 88    # Kerberos
   - 90    # HTTP Alternate
   - 110   # POP3
-  - 111   # RPCbind
-  - 117
-  - 135   # Microsoft EPMAP
+  - 111   # RPCbind/Portmapper
+  - 113   # Ident
+  - 117   # UUCP
+  - 119   # NNTP
+  - 123   # NTP
+
+  # ============ Windows/AD ============
+  - 135   # Microsoft EPMAP/RPC
   - 137   # NetBIOS Name Service
   - 139   # NetBIOS Session Service
-  - 143   # IMAP
-  - 179   # BGP
-  - 389   # LDAP
-  - 444
-  - 443   # HTTPS
   - 445   # Microsoft-DS (SMB)
+  - 464   # Kerberos Password Change
+  - 593   # HTTP RPC Endpoint Mapper
+  - 3268  # Global Catalog LDAP
+  - 3269  # Global Catalog LDAPS
+  - 5040  # Windows Remote Management
+  - 5985  # WinRM HTTP
+  - 5986  # WinRM HTTPS
+  - 9389  # AD Web Services
+  - 49152 # Windows Dynamic Ports
+  - 49153 # Windows Dynamic Ports
+  - 49154 # Windows Dynamic Ports
+  - 49155 # Windows Dynamic Ports
+  - 49156 # Windows Dynamic Ports
+  - 49664 # Windows Remote Management
+
+  # ============ 邮件服务 ============
+  - 143   # IMAP
   - 465   # SMTPS
-  - 514   # Shell
-  - 515   # Printer (LPD/LPR)
-  - 548   # Nettalk
-  - 631   # IPP (Internet Printing Protocol)
   - 587   # SMTP Submission
-  - 636   # LDAPS
-  - 873   # rsync
-  - 989   # FTPS Data
-  - 990   # FTPS Control
   - 993   # IMAPS
   - 995   # POP3S
-  - 1000
-  - 1024 
+  - 2525  # SMTP Alternate
+
+  # ============ 目录服务 ============
+  - 389   # LDAP
+  - 636   # LDAPS
+  - 1812  # RADIUS Auth
+  - 1813  # RADIUS Accounting
+
+  # ============ 文件共享 ============
+  - 443   # HTTPS
+  - 444   # SNPP
+  - 548   # AFP (Apple)
+  - 873   # rsync
+  - 2049  # NFS
+  - 3260  # iSCSI
+  - 3261  # iSCSI Discovery
+
+  # ============ 打印服务 ============
+  - 515   # LPD/LPR
+  - 631   # IPP (CUPS)
+  - 9100  # Raw Printer (JetDirect)
+  - 9101  # Printer
+  - 9102  # Printer
+
+  # ============ 远程访问 ============
+  - 179   # BGP
+  - 514   # Syslog/Shell
   - 1194  # OpenVPN
-  - 1433  # Microsoft SQL Server
-  - 1434  # Microsoft SQL Monitor
-  - 1521  # Oracle DB
   - 1701  # L2TP
   - 1723  # PPTP
-  - 2021
-  - 2049  # NFS
-  - 2181  # ZooKeeper
-  - 2375  # Docker
-  - 2376  # Docker SSL
-  - 2480
-  - 2555  # Proxmox VE
-  - 3008
-  - 3128  # Squid Proxy
-  - 3265  # Synology DSM iSCSI
-  - 3306  # MySQL
+  - 1194  # OpenVPN
   - 3389  # RDP
-  - 4000  # TiDB
-  - 4369  # Erlang Port Mapper
-  - 5000  # Docker Registry
-  - 5001
-  - 5222
-  - 5040  # Windows Remote Management
-  - 5432  # PostgreSQL
-  - 5672  # RabbitMQ
+  - 4899  # Radmin
   - 5900  # VNC
-  - 6002
-  - 6100
+  - 5901  # VNC :1
+  - 5902  # VNC :2
+  - 5903  # VNC :3
+  - 5800  # VNC HTTP
+  - 8291  # MikroTik Winbox
+
+  # ============ 数据库 ============
+  - 1433  # MSSQL
+  - 1434  # MSSQL Browser
+  - 1521  # Oracle
+  - 1525  # Oracle
+  - 1526  # Oracle
+  - 1830  # Oracle
+  - 2483  # Oracle SSL
+  - 2484  # Oracle SSL
+  - 3050  # Firebird
+  - 3306  # MySQL/MariaDB
+  - 3307  # MySQL Alternate
+  - 4000  # TiDB
+  - 5432  # PostgreSQL
+  - 5433  # PostgreSQL Alternate
   - 6379  # Redis
-  - 6443  # Kubernetes API
-  - 7001  # WebLogic
-  - 7080  # Generic
-  - 7080  # Generic
-  - 7680  # Windows Update Delivery Optimization
-  - 7788
-  - 8000
-  - 8001  # HTTP Alternate
-  - 8002  # HTTP Alternate
-  - 8008
-  - 8012
-  - 8022
-  - 8056
-  - 8080  # HTTP Alternate
-  - 8081  # HTTP Alternate
-  - 8082  # HTTP Alternate
-  - 8083  # HTTP Alternate
-  - 8084  # HTTP Alternate
-  - 8088
-  - 8089
-  - 8090  # HTTP Alternate
-  - 8111
-  - 8123
-  - 8127
-  - 8443  # HTTPS Alternate
-  - 8447
-  - 8887
-  - 8888  # HTTP Alternate
-  - 8889  # HTTP Alternate
-  - 8899
-  - 9000  # Jenkins
-  - 9005  
-  - 9006 
-  - 9007 
-  - 9008 
-  - 9020
-  - 9088
-  - 9090  # Generic
-  - 9100  # Raw Printer Port / HP JetDirect
+  - 6380  # Redis Alternate
+  - 7000  # Cassandra
+  - 7001  # WebLogic/Cassandra
+  - 7199  # Cassandra JMX
+  - 9042  # Cassandra CQL
+  - 9160  # Cassandra Thrift
+  - 11211 # Memcached
+  - 16379 # Redis Cluster
+  - 26379 # Redis Sentinel
+  - 27017 # MongoDB
+  - 27018 # MongoDB Shard
+  - 27019 # MongoDB Config
+  - 28017 # MongoDB Web
+  - 50000 # DB2
+
+  # ============ 消息队列 ============
+  - 1883  # MQTT
+  - 4369  # Erlang EPMD
+  - 5671  # AMQP SSL
+  - 5672  # RabbitMQ AMQP
+  - 6650  # Pulsar
+  - 8883  # MQTT SSL
+  - 9092  # Kafka
+  - 15672 # RabbitMQ Management
+  - 25672 # RabbitMQ Clustering
+  - 61613 # STOMP
+  - 61614 # STOMP SSL
+  - 61616 # ActiveMQ
+
+  # ============ 搜索引擎 ============
   - 9200  # Elasticsearch HTTP
   - 9300  # Elasticsearch Transport
-  - 9050  # aoweiya
-  - 9095
-  - 9666
-  - 9999
-  - 10000 # Network Data Management
-  - 10005
-  - 10080 # TiDB
-  - 11211 # Memcached
-  - 12320 # Proprietary
-  - 12321 # Proprietary
-  - 15672 # RabbitMQ Management
-  - 16379 # Redis Cluster
-  - 18080
-  - 25022 
-  - 25251 
-  - 27017 # MongoDB
-  - 28017 # MongoDB Web
-  - 32080
-  - 38800
-  - 49664 # Windows Remote Management
-  - 50000 # Generic
-  - 53002 # Generic
-  - 60001 # Generic
-  - 60774 # Generic
-  - 62443
-  - 65101
-  
+  - 7700  # Meilisearch
+  - 8108  # Typesense
+  - 19530 # Milvus
+
+  # ============ 分布式协调 ============
+  - 2181  # ZooKeeper
+  - 2379  # etcd Client
+  - 2380  # etcd Peer
+  - 8300  # Consul RPC
+  - 8301  # Consul LAN
+  - 8302  # Consul WAN
+  - 8500  # Consul HTTP
+  - 8501  # Consul HTTPS
+  - 8600  # Consul DNS
+
+  # ============ 容器/K8s ============
+  - 2375  # Docker
+  - 2376  # Docker SSL
+  - 2377  # Docker Swarm
+  - 4243  # Docker
+  - 4244  # Docker
+  - 5000  # Docker Registry
+  - 5001  # Docker Registry
+  - 6443  # Kubernetes API
+  - 8472  # Flannel VXLAN
+  - 10250 # Kubelet API
+  - 10251 # Kube-scheduler
+  - 10252 # Kube-controller
+  - 10255 # Kubelet Read-only
+  - 10256 # Kube-proxy
+  - 30000 # NodePort Range Start
+  - 30080 # NodePort
+  - 30443 # NodePort
+  - 32767 # NodePort Range End
+
+  # ============ 虚拟化 ============
+  - 902   # VMware vCenter
+  - 903   # VMware Console
+  - 443   # vCenter Web
+  - 2555  # Proxmox VE
+  - 5480  # VMware Appliance
+  - 5988  # CIM HTTP
+  - 5989  # CIM HTTPS
+  - 8006  # Proxmox Web
+  - 16509 # libvirt
+  - 16514 # libvirt TLS
+
+  # ============ 代理/负载均衡 ============
+  - 1080  # SOCKS
+  - 3128  # Squid
+  - 8080  # HTTP Proxy
+  - 8118  # Privoxy
+  - 9080  # Generic Proxy
+
+  # ============ 监控/运维 ============
+  - 161   # SNMP
+  - 162   # SNMP Trap
+  - 199   # SNMP Unix
+  - 705   # AgentX
+  - 1099  # JMX RMI
+  - 2003  # Graphite
+  - 3000  # Grafana
+  - 4317  # OpenTelemetry gRPC
+  - 4318  # OpenTelemetry HTTP
+  - 5044  # Logstash Beats
+  - 5601  # Kibana
+  - 8086  # InfluxDB
+  - 9090  # Prometheus
+  - 9091  # Prometheus Pushgateway
+  - 9093  # Alertmanager
+  - 9094  # Alertmanager Cluster
+  - 9115  # Blackbox Exporter
+  - 9116  # SNMP Exporter
+  - 9182  # Windows Exporter
+  - 14268 # Jaeger
+  - 16686 # Jaeger UI
+  - 24224 # Fluentd
+
+  # ============ CI/CD ============
+  - 9000  # SonarQube/Jenkins
+  - 8080  # Jenkins
+  - 8111  # TeamCity
+  - 50000 # Jenkins Agent
+
+  # ============ 代码仓库/制品库 ============
+  - 7990  # Bitbucket
+  - 8081  # Nexus/Artifactory
+  - 8082  # Nexus Docker
+  - 8929  # GitLab SSH
+  - 9418  # Git
+
+  # ============ Web服务器/应用 ============
+  - 8000  # HTTP Alt
+  - 8001  # HTTP Alt
+  - 8002  # HTTP Alt
+  - 8008  # HTTP Alt
+  - 8009  # AJP
+  - 8010  # HTTP Alt
+  - 8012  # HTTP Alt
+  - 8022  # HTTP Alt
+  - 8056  # HTTP Alt
+  - 8083  # HTTP Alt
+  - 8084  # HTTP Alt
+  - 8085  # HTTP Alt
+  - 8087  # HTTP Alt
+  - 8088  # HTTP Alt
+  - 8089  # Splunk
+  - 8090  # HTTP Alt
+  - 8091  # HTTP Alt
+  - 8123  # Home Assistant
+  - 8127  # HTTP Alt
+  - 8161  # ActiveMQ Web
+  - 8443  # HTTPS Alt
+  - 8447  # HTTP Alt
+  - 8848  # Nacos
+  - 8880  # HTTP Alt
+  - 8887  # HTTP Alt
+  - 8888  # HTTP Alt
+  - 8889  # HTTP Alt
+  - 8899  # HTTP Alt
+  - 9001  # Supervisor
+  - 9002  # HTTP Alt
+  - 9003  # PHP-FPM
+  - 9005  # HTTP Alt
+  - 9006  # HTTP Alt
+  - 9007  # HTTP Alt
+  - 9008  # HTTP Alt
+  - 9010  # HTTP Alt
+  - 9020  # HTTP Alt
+  - 9050  # Tor SOCKS
+  - 9080  # HTTP Alt
+  - 9088  # HTTP Alt
+  - 9095  # HTTP Alt
+  - 9443  # HTTPS Alt
+  - 9666  # HTTP Alt
+  - 9943  # HTTP Alt
+  - 9999  # HTTP Alt
+  - 10000 # Webmin
+  - 10001 # HTTP Alt
+  - 10005 # HTTP Alt
+  - 10080 # HTTP Alt
+  - 10443 # HTTPS Alt
+  - 12320 # HTTP Alt
+  - 12321 # HTTP Alt
+  - 18080 # HTTP Alt
+  - 18443 # HTTPS Alt
+  - 20000 # Webmin MiniServ
+  - 32080 # HTTP Alt
+  - 38800 # HTTP Alt
+
+  # ============ 工控/SCADA ============
+  - 102   # Siemens S7
+  - 502   # Modbus
+  - 1911  # Niagara Fox
+  - 1962  # PCWorx
+  - 2222  # EtherNet/IP
+  - 4840  # OPC UA
+  - 4911  # Niagara Fox SSL
+  - 9600  # OMRON FINS
+  - 18245 # GE SRTP
+  - 20000 # DNP3
+  - 34962 # PROFINET
+  - 34963 # PROFINET
+  - 34964 # PROFINET
+  - 44818 # EtherNet/IP
+  - 47808 # BACnet
+  - 55000 # FL-net
+  - 55003 # Mitsubishi MELSEC
+
+  # ============ 视频监控 ============
+  - 554   # RTSP
+  - 8554  # RTSP Alt
+  - 37777 # Dahua
+  - 37778 # Dahua Data
+  - 8000  # Hikvision
+
+  # ============ 堡垒机/安全设备 ============
+  - 4433  # 深信服SSL VPN
+  - 8022  # JumpServer SSH
+  - 8080  # Web Console
+  - 9443  # 深信服
+  - 10443 # 安全设备
+
+  # ============ 服务器管理 ============
+  - 623   # IPMI/BMC
+  - 664   # Secure IPMI
+  - 3052  # APC PowerChute
+  - 5988  # HP iLO
+  - 17988 # Dell iDRAC
+  - 17990 # Dell iDRAC
+
+  # ============ LLM/AI ============
+  - 11434 # Ollama
+  - 8080  # vLLM/TGI
+  - 7860  # Gradio
+  - 8501  # Streamlit
+  - 3001  # ChatGPT-Next-Web
+  - 3010  # Lobe Chat
+
+  # ============ 其他内网服务 ============
+  - 989   # FTPS Data
+  - 990   # FTPS Control
+  - 1000  # HTTP Alt
+  - 1024  # Reserved
+  - 2021  # FTP Alt
+  - 2480  # OrientDB
+  - 3265  # Synology iSCSI
+  - 5222  # XMPP
+  - 5223  # XMPP SSL
+  - 5269  # XMPP Server
+  - 6002  # X11
+  - 6100  # X11
+  - 7080  # HTTP Alt
+  - 7443  # HTTPS Alt
+  - 7680  # Windows Update
+  - 7788  # HTTP Alt
+  - 8180  # HTTP Alt
+  - 25022 # SSH Alt
+  - 25251 # HTTP Alt
+  - 53002 # HTTP Alt
+  - 60001 # HTTP Alt
+  - 60774 # HTTP Alt
+  - 62443 # HTTP Alt
+  - 65101 # HTTP Alt
 
 udp_ports:
+  - 53    # DNS
+  - 67    # DHCP Server
+  - 68    # DHCP Client
+  - 69    # TFTP
+  - 123   # NTP
+  - 137   # NetBIOS
+  - 138   # NetBIOS
+  - 161   # SNMP
+  - 162   # SNMP Trap
+  - 500   # IKE/IPSec
+  - 514   # Syslog
+  - 520   # RIP
+  - 623   # IPMI
+  - 1194  # OpenVPN
+  - 1434  # MSSQL Browser
+  - 1701  # L2TP
+  - 1812  # RADIUS
+  - 1813  # RADIUS Accounting
+  - 4500  # NAT-T
+  - 4789  # VXLAN
+  - 5060  # SIP
+  - 5353  # mDNS
+  - 6343  # sFlow
+  - 8472  # Flannel VXLAN
  
 

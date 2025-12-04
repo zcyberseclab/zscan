@@ -1,30 +1,48 @@
 {
-  "3265":{
+  "3265": {
     "devicetype": "nas",
-    "manufacturer": "synology",
-    "type": "synology-dsm"
+    "vendor": "synology",
+    "tags": [
+      "synology-dsm"
+    ]
   },
-  "1900":{
+  "1900": {
     "devicetype": "nas",
-    "manufacturer": "synology",
-    "type": "synology-audiostation"
+    "vendor": "synology",
+    "tags": [
+      "synology-audiostation"
+    ]
   },
-  "9100":{
-    "type": "prometheus"
+  "9100": {
+    "tags": [
+      "monitoring",
+      "prometheus"
+    ]
   },
-  "3306":{
-    "type": "mysql"
+  "3306": {
+    "tags": [
+      "database",
+      "mysql"
+    ]
   },
-  "23":{
-    "type": "telnet"
+  "23": {
+    "tags": [
+      "telnet"
+    ]
   },
-  "25":{
-    "type": "smtp"
+  "25": {
+    "tags": [
+      "mail",
+      "smtp"
+    ]
   },
-  "1194":{
-    "type": "openvpn"
+  "1194": {
+    "tags": [
+      "vpn",
+      "openvpn"
+    ]
   },
-  "445":{
+  "445": {
     "os": "windows"
   }
 }
