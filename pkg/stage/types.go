@@ -17,6 +17,7 @@ type Node struct {
 	Model            string         `json:"model,omitempty"`
 	SensitiveInfo    []string       `json:"sensitive_info,omitempty"`
 	Vulnerabilities  []POCResult    `json:"vulnerabilities,omitempty"`
+	VMPlatform       string         `json:"vm_platform,omitempty"` // vmware, virtualbox, hyperv, kvm, xen, etc.
 
 	// Geographic Information
 	Continent     string  `json:"continent,omitempty"`

@@ -21,6 +21,7 @@ type Scanner struct {
 	config          Config
 	ServiceDetector *ServiceDetector
 	ipInfo          *IPInfo
+	vmDetector      *VMDetector
 	enableGeo       bool
 	semaphore       chan struct{}
 	customPorts     []int
@@ -53,6 +54,7 @@ func NewScanner(
 		config:          config,
 		ServiceDetector: detector,
 		ipInfo:          ipInfo,
+		vmDetector:      NewVMDetector(),
 		enableGeo:       enableGeo,
 		semaphore:       make(chan struct{}, 10),
 		customPorts:     customPorts,
@@ -374,6 +376,19 @@ func (s *Scanner) processResults(node *Node, resultsChan chan ServiceInfo) {
 	node.Vulnerabilities = make([]POCResult, 0, len(vulnerabilitiesMap))
 	for _, vuln := range vulnerabilitiesMap {
 		node.Vulnerabilities = append(node.Vulnerabilities, vuln)
+	}
+
+	// 虚拟机检测
+	if s.vmDetector != nil {
+		var services []ServiceInfo
+		for _, p := range node.Ports {
+			if p != nil {
+				services = append(services, *p)
+			}
+		}
+		if isVM, platform, _ := s.vmDetector.DetectVM(node, services); isVM {
+			node.VMPlatform = string(platform)
+		}
 	}
 }
 

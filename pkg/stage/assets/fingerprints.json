@@ -4921,14 +4921,6 @@
     "vendor": "barracuda",
     "devicetype": "loadbalancer"
   },
-  "array-apv": {
-    "body": [
-      "Array",
-      "APV"
-    ],
-    "vendor": "array",
-    "devicetype": "loadbalancer"
-  },
   "sangfor-ad": {
     "body": [
       "Sangfor AD",
@@ -4970,45 +4962,74 @@
     "devicetype": "loadbalancer"
   },
   "vmware-vcenter": {
+    "headers": [
+      "Server: VMware vCenter",
+      "vmware-api-session"
+    ],
     "body": [
       "vCenter",
-      "VMware"
+      "VMware vSphere",
+      "vsphere-client",
+      "vmware-vsphere-client"
     ],
     "vendor": "vmware",
+    "devicetype": "hypervisor",
     "tags": [
       "virtualization"
     ]
   },
   "vmware-esxi": {
+    "headers": [
+      "Server: VMware ESXi"
+    ],
     "body": [
-      "ESXi"
+      "ESXi",
+      "VMware ESXi",
+      "hostd",
+      "vmware-hostd"
     ],
     "vendor": "vmware",
+    "devicetype": "hypervisor",
     "tags": [
       "virtualization"
     ]
   },
   "vmware-horizon": {
     "body": [
-      "Horizon"
+      "VMware Horizon",
+      "Horizon View",
+      "horizon-client"
     ],
     "vendor": "vmware",
     "tags": [
-      "virtualization"
+      "virtualization",
+      "vdi"
     ]
   },
   "vmware-nsx": {
     "body": [
-      "NSX"
+      "NSX Manager",
+      "VMware NSX"
+    ],
+    "vendor": "vmware",
+    "tags": [
+      "virtualization",
+      "sdn"
+    ]
+  },
+  "vmware-vrealize": {
+    "body": [
+      "vRealize",
+      "VMware vRealize"
     ],
     "vendor": "vmware",
     "tags": [
       "virtualization"
     ]
   },
-  "vmware-vrealize": {
+  "vmware-workstation": {
     "body": [
-      "vRealize"
+      "VMware Workstation"
     ],
     "vendor": "vmware",
     "tags": [
@@ -5016,18 +5037,27 @@
     ]
   },
   "proxmox-ve": {
-    "body": [
-      "Proxmox"
+    "headers": [
+      "Server: pve-api-daemon"
     ],
+    "body": [
+      "Proxmox VE",
+      "Proxmox Virtual Environment",
+      "pvemanagerlib"
+    ],
+    "vendor": "proxmox",
+    "devicetype": "hypervisor",
     "tags": [
       "virtualization"
     ]
   },
   "citrix-xenserver": {
     "body": [
-      "XenServer"
+      "XenServer",
+      "Citrix XenServer"
     ],
     "vendor": "citrix",
+    "devicetype": "hypervisor",
     "tags": [
       "virtualization"
     ]
@@ -5037,15 +5067,19 @@
       "Citrix Hypervisor"
     ],
     "vendor": "citrix",
+    "devicetype": "hypervisor",
     "tags": [
       "virtualization"
     ]
   },
   "microsoft-hyperv": {
     "body": [
-      "Hyper-V"
+      "Hyper-V",
+      "Windows Server Virtualization",
+      "Microsoft Hyper-V"
     ],
     "vendor": "microsoft",
+    "devicetype": "hypervisor",
     "tags": [
       "virtualization"
     ]
@@ -5053,9 +5087,43 @@
   "nutanix-ahv": {
     "body": [
       "Nutanix",
-      "Prism"
+      "Prism",
+      "Acropolis"
     ],
     "vendor": "nutanix",
+    "devicetype": "hypervisor",
+    "tags": [
+      "virtualization",
+      "hci"
+    ]
+  },
+  "virtualbox": {
+    "body": [
+      "VirtualBox",
+      "Oracle VM VirtualBox"
+    ],
+    "vendor": "oracle",
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "qemu-kvm": {
+    "body": [
+      "QEMU",
+      "KVM",
+      "libvirt"
+    ],
+    "devicetype": "hypervisor",
+    "tags": [
+      "virtualization"
+    ]
+  },
+  "parallels": {
+    "body": [
+      "Parallels Desktop",
+      "Parallels"
+    ],
+    "vendor": "parallels",
     "tags": [
       "virtualization"
     ]

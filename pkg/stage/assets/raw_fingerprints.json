@@ -19,7 +19,6 @@
       "Pure-FTPd"
     ],
     "tags": [
-      "file-transfer",
       "ftp"
     ]
   },
@@ -28,7 +27,6 @@
       "ProFTPD"
     ],
     "tags": [
-      "file-transfer",
       "ftp"
     ]
   },
@@ -37,7 +35,6 @@
       "vsftpd"
     ],
     "tags": [
-      "file-transfer",
       "ftp"
     ],
     "os": "linux"
@@ -61,7 +58,6 @@
       "(?i)ftp"
     ],
     "tags": [
-      "file-transfer",
       "ftp"
     ]
   },
@@ -107,7 +103,6 @@
       "(?i)FileZilla"
     ],
     "tags": [
-      "file-transfer",
       "ftp"
     ],
     "os": "windows"
@@ -141,7 +136,6 @@
       "(?i)Netatalk"
     ],
     "tags": [
-      "file-transfer",
       "afp"
     ],
     "os": "linux"
@@ -297,7 +291,6 @@
       "220"
     ],
     "tags": [
-      "file-transfer",
       "ftp"
     ]
   },
@@ -306,7 +299,6 @@
       "Pure-FTPd"
     ],
     "tags": [
-      "file-transfer",
       "ftp"
     ]
   },
@@ -315,19 +307,9 @@
       "SMB"
     ],
     "tags": [
-      "file-transfer",
       "smb"
     ],
     "os": "linux"
-  },
-  "nfs": {
-    "patterns": [
-      "NFS"
-    ],
-    "tags": [
-      "file-transfer",
-      "nfs"
-    ]
   },
   "modbus": {
     "patterns": [
@@ -396,11 +378,8 @@
   "snmp": {
     "patterns": [
       "SNMP",
-      "public",
-      "private"
     ],
     "tags": [
-      "monitoring",
       "snmp"
     ]
   },
@@ -408,9 +387,6 @@
     "patterns": [
       "NTP",
       "ntpd"
-    ],
-    "tags": [
-      "time"
     ]
   },
   "rpc": {
@@ -649,7 +625,6 @@
       "RSYNCD"
     ],
     "tags": [
-      "file-transfer",
       "backup"
     ]
   },
@@ -659,7 +634,6 @@
       "NFS"
     ],
     "tags": [
-      "file-transfer",
       "storage"
     ]
   }
