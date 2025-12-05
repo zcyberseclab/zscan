@@ -16,9 +16,12 @@ jobs:
       uses: actions/setup-go@v4
       with:
         go-version: '1.22.x'
-        
+
+    - name: Install libpcap
+      run: sudo apt-get update && sudo apt-get install -y libpcap-dev
+
     - name: Install golangci-lint
       run: go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-      
+
     - name: Run linters
-      run: golangci-lint run 
+      run: golangci-lint run
