@@ -85,9 +85,17 @@
     "devicetype": "camera"
   },
   "dahua-camera": {
+    "headers": [
+      "Server: DNVRS-Webs",
+      "Server: Embedded Web Server",
+      "Server: DWS"
+    ],
     "body": [
       "Dahua",
-      "大华"
+      "大华",
+      "DHVideoClient",
+      "DahuaWeb",
+      "dahua-web-player"
     ],
     "vendor": "dahua",
     "devicetype": "camera"
@@ -338,14 +346,6 @@
     ],
     "body": [
       "Django"
-    ]
-  },
-  "bfe": {
-    "headers": [
-      "(?i)bfe"
-    ],
-    "body": [
-      "(?i)bfe"
     ]
   },
   "ehang.io": {
@@ -698,9 +698,18 @@
     ]
   },
   "hikvision-camera": {
+    "headers": [
+      "Server: DVRDVS-Webs",
+      "Server: DNVRS-Webs",
+      "Server: Hikvision",
+      "Server: HiPServer"
+    ],
     "body": [
       "HIKVISION",
-      "海康威视"
+      "海康威视",
+      "webComponents",
+      "doc/page/login",
+      "Hikvision Digital Technology"
     ],
     "vendor": "hikvision",
     "devicetype": "camera"
@@ -5205,11 +5214,6 @@
   "minikube": {
     "body": [
       "Minikube"
-    ]
-  },
-  "kind": {
-    "body": [
-      "kind"
     ]
   },
   "k0s": {
