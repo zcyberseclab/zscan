@@ -141,7 +141,7 @@ func ScanUDPPort(ip string, port int) bool {
 	}
 
 	// 设置读写超时
-	conn.SetDeadline(time.Now().Add(3 * time.Second))
+	_ = conn.SetDeadline(time.Now().Add(3 * time.Second))
 
 	// 发送探测包
 	_, err = conn.Write(probe)

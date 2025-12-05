@@ -322,9 +322,9 @@ func (s *Scanner) processResults(node *Node, resultsChan chan ServiceInfo) {
 			osSet[result.OS] = struct{}{}
 			node.OS = result.OS
 		}
-		if result.vendor != "" {
-			vendorSet[result.vendor] = struct{}{}
-			node.vendor = result.vendor
+		if result.Vendor != "" {
+			vendorSet[result.Vendor] = struct{}{}
+			node.Vendor = result.Vendor
 		}
 		if result.Devicetype != "" {
 			devicetypeSet[result.Devicetype] = struct{}{}

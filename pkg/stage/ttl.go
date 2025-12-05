@@ -92,7 +92,7 @@ func getPingTTL(ip string) int {
 
 	select {
 	case <-time.After(3 * time.Second):
-		cmd.Process.Kill()
+		_ = cmd.Process.Kill()
 		return -1
 	case err := <-done:
 		if err != nil {

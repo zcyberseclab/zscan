@@ -48,7 +48,7 @@ type Fingerprint struct {
 	URL        []string `json:"url"`
 	Devicetype string   `json:"devicetype,omitempty"` // 硬件类型: router, printer, camera, nas, server 等
 	Tags       []string `json:"tags,omitempty"`       // 服务标签: database, webserver, monitoring 等
-	vendor     string   `json:"vendor,omitempty"`
+	Vendor     string   `json:"vendor,omitempty"`
 	Ports      []int    `json:"ports,omitempty"`
 }
 
@@ -56,7 +56,7 @@ type Fingerprint struct {
 type RawFingerprint struct {
 	Devicetype string   `json:"devicetype,omitempty"` // 硬件类型
 	Tags       []string `json:"tags,omitempty"`       // 服务标签
-	vendor     string   `json:"vendor,omitempty"`
+	Vendor     string   `json:"vendor,omitempty"`
 	OS         string   `json:"os,omitempty"` // 操作系统
 	Patterns   []string `json:"patterns"`
 }
@@ -70,7 +70,7 @@ type ServiceAnalyzer interface {
 type PortFingerprint struct {
 	Devicetype string   `json:"devicetype,omitempty"` // 硬件类型
 	Tags       []string `json:"tags,omitempty"`       // 服务标签
-	vendor     string   `json:"vendor,omitempty"`
+	Vendor     string   `json:"vendor,omitempty"`
 	OS         string   `json:"os,omitempty"`
 }
 
@@ -443,8 +443,8 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 			if portFp.Devicetype != "" {
 				info.Devicetype = portFp.Devicetype
 			}
-			if portFp.vendor != "" {
-				info.vendor = portFp.vendor
+			if portFp.Vendor != "" {
+				info.Vendor = portFp.Vendor
 			}
 			if portFp.OS != "" {
 				info.OS = portFp.OS
@@ -594,8 +594,8 @@ func (sd *ServiceDetector) matchFingerprint(ctx *detectionContext) *ServiceInfo 
 			if info.Devicetype == "" && fingerprint.Devicetype != "" {
 				info.Devicetype = fingerprint.Devicetype
 			}
-			if info.vendor == "" && fingerprint.vendor != "" {
-				info.vendor = fingerprint.vendor
+			if info.Vendor == "" && fingerprint.Vendor != "" {
+				info.Vendor = fingerprint.Vendor
 			}
 		}
 	}
@@ -761,8 +761,8 @@ func (sd *ServiceDetector) detectTCP(ip string, port int) []ServiceInfo {
 
 	// 针对特定端口发送探测包
 	if probe, exists := tcpProbes[port]; exists && len(probe) > 0 {
-		conn.SetWriteDeadline(time.Now().Add(3 * time.Second))
-		conn.Write(probe)
+		_ = conn.SetWriteDeadline(time.Now().Add(3 * time.Second))
+		_, _ = conn.Write(probe)
 		// 发送后等待一小会儿让服务响应
 		time.Sleep(200 * time.Millisecond)
 	}
@@ -798,7 +798,7 @@ func (sd *ServiceDetector) detectTCP(ip string, port int) []ServiceInfo {
 				info := ServiceInfo{
 					Types:      []string{name},
 					Banner:     cleanedBanner,
-					vendor:     fp.vendor,
+					Vendor:     fp.Vendor,
 					Devicetype: fp.Devicetype,
 					OS:         fp.OS,
 				}
@@ -829,7 +829,7 @@ func (sd *ServiceDetector) detectTCP(ip string, port int) []ServiceInfo {
 				info.Types = append(info.Types, portFp.Tags...)
 			}
 			info.Devicetype = portFp.Devicetype
-			info.vendor = portFp.vendor
+			info.Vendor = portFp.Vendor
 			info.OS = portFp.OS
 		}
 
@@ -936,7 +936,7 @@ func (sd *ServiceDetector) detectUDP(ip string, port int) []ServiceInfo {
 				info := ServiceInfo{
 					Types:      []string{name},
 					Banner:     cleanedBanner,
-					vendor:     fp.vendor,
+					Vendor:     fp.Vendor,
 					Devicetype: fp.Devicetype,
 					OS:         fp.OS,
 				}
@@ -967,7 +967,7 @@ func (sd *ServiceDetector) detectUDP(ip string, port int) []ServiceInfo {
 				info.Types = append(info.Types, portFp.Tags...)
 			}
 			info.Devicetype = portFp.Devicetype
-			info.vendor = portFp.vendor
+			info.Vendor = portFp.Vendor
 			info.OS = portFp.OS
 		}
 
@@ -1014,7 +1014,6 @@ func (sd *ServiceDetector) detectOS(info ServiceInfo) string {
 func (sd *ServiceDetector) detectOSFromBanner(banner string) string {
 	lowerBanner := strings.ToLower(banner)
 
- 
 	if strings.Contains(lowerBanner, "ubuntu") {
 		return "ubuntu"
 	}
@@ -1046,7 +1045,6 @@ func (sd *ServiceDetector) detectOSFromBanner(banner string) string {
 		return "raspbian"
 	}
 
- 
 	if strings.Contains(lowerBanner, "freebsd") {
 		return "freebsd"
 	}
@@ -1057,7 +1055,6 @@ func (sd *ServiceDetector) detectOSFromBanner(banner string) string {
 		return "netbsd"
 	}
 
- 
 	if strings.Contains(lowerBanner, "cisco") {
 		if strings.Contains(lowerBanner, "ios-xe") || strings.Contains(lowerBanner, "ios xe") {
 			return "cisco-ios-xe"
@@ -1074,42 +1071,35 @@ func (sd *ServiceDetector) detectOSFromBanner(banner string) string {
 		return "cisco-ios"
 	}
 
- 
 	if strings.Contains(lowerBanner, "huawei") || strings.Contains(lowerBanner, "vrp") {
 		return "huawei-vrp"
 	}
 
- 
 	if strings.Contains(lowerBanner, "comware") || strings.Contains(lowerBanner, "h3c") {
 		return "h3c-comware"
 	}
 
- 
 	if strings.Contains(lowerBanner, "junos") || strings.Contains(lowerBanner, "juniper") {
 		return "juniper-junos"
 	}
 
- 
 	if strings.Contains(lowerBanner, "fortigate") || strings.Contains(lowerBanner, "fortios") {
 		return "fortinet-fortios"
 	}
 
- 
 	if strings.Contains(lowerBanner, "pan-os") || strings.Contains(lowerBanner, "palo alto") {
 		return "paloalto-panos"
 	}
 
- 
+	//nolint:misspell // routeros is the correct product name
 	if strings.Contains(lowerBanner, "mikrotik") || strings.Contains(lowerBanner, "routeros") {
-		return "mikrotik-routeros"
+		return "mikrotik-routeros" //nolint:misspell
 	}
 
- 
 	if strings.Contains(lowerBanner, "arista") || strings.Contains(lowerBanner, "eos") {
 		return "arista-eos"
 	}
 
- 
 	if strings.Contains(lowerBanner, "ruijie") || strings.Contains(lowerBanner, "锐捷") {
 		return "ruijie"
 	}
@@ -1150,7 +1140,6 @@ func (sd *ServiceDetector) detectOSFromBanner(banner string) string {
 		return "citrix-netscaler"
 	}
 
- 
 	if strings.Contains(lowerBanner, "linux") {
 		return "linux"
 	}
@@ -1199,7 +1188,7 @@ func (sd *ServiceDetector) detectOSFromHTTP(info ServiceInfo) string {
 			return "fortinet-fortios"
 		}
 		if strings.Contains(lowerServer, "mikrotik") {
-			return "mikrotik-routeros"
+			return "mikrotik-routeros" // nolint:misspell
 		}
 	}
 
@@ -1580,8 +1569,8 @@ func (sd *ServiceDetector) updateServiceInfoFromLua(info *ServiceInfo, tbl *lua.
 	if v := tbl.RawGetString("OS"); v != lua.LNil {
 		info.OS = v.String()
 	}
-	if v := tbl.RawGetString("vendor"); v != lua.LNil {
-		info.vendor = v.String()
+	if v := tbl.RawGetString("Vendor"); v != lua.LNil {
+		info.Vendor = v.String()
 	}
 	if v := tbl.RawGetString("Devicetype"); v != lua.LNil {
 		info.Devicetype = v.String()
