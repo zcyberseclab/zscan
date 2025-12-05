@@ -10003,8 +10003,7 @@
     ],
     "vendor": "milestone",
     "tags": [
-      "vms",
-      "video"
+      "vms"
     ]
   },
   "genetec-security-center": {
@@ -10013,8 +10012,7 @@
     ],
     "vendor": "genetec",
     "tags": [
-      "vms",
-      "video"
+      "vms"
     ]
   },
   "avigilon-acc": {
@@ -10023,8 +10021,7 @@
     ],
     "vendor": "avigilon",
     "tags": [
-      "vms",
-      "video"
+      "vms"
     ]
   },
   "exacq": {
@@ -10033,8 +10030,7 @@
     ],
     "vendor": "exacq",
     "tags": [
-      "vms",
-      "video"
+      "vms"
     ]
   },
   "digifort": {
@@ -10042,8 +10038,7 @@
       "Digifort"
     ],
     "tags": [
-      "vms",
-      "video"
+      "vms"
     ]
   },
   "nx-witness": {
@@ -10051,8 +10046,7 @@
       "Nx Witness"
     ],
     "tags": [
-      "vms",
-      "video"
+      "vms"
     ]
   },
   "zoneminder": {
@@ -10060,8 +10054,7 @@
       "ZoneMinder"
     ],
     "tags": [
-      "vms",
-      "video"
+      "vms"
     ]
   },
   "shinobi": {
@@ -10069,8 +10062,7 @@
       "Shinobi"
     ],
     "tags": [
-      "vms",
-      "video"
+      "vms"
     ]
   },
   "blueiris": {
@@ -10078,8 +10070,7 @@
       "Blue Iris"
     ],
     "tags": [
-      "vms",
-      "video"
+      "vms"
     ]
   },
   "frigate": {
@@ -10087,8 +10078,7 @@
       "Frigate"
     ],
     "tags": [
-      "vms",
-      "video"
+      "vms"
     ]
   },
   "agentdvr": {
@@ -10096,8 +10086,7 @@
       "Agent DVR"
     ],
     "tags": [
-      "vms",
-      "video"
+      "vms"
     ]
   },
   "rdp-gateway": {

@@ -377,7 +377,7 @@
   },
   "snmp": {
     "patterns": [
-      "SNMP",
+      "SNMP"
     ],
     "tags": [
       "snmp"
