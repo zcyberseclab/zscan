@@ -15,28 +15,30 @@ A fast, customizable service detection tool powered by a flexible fingerprint sy
 
 ## ✨Features
 
-- **Fast Scanning Engine**: High-performance concurrent scanning
-- **Precise POC targeting**: 
-  - High-precision POC targeting via fingerprinting, faster and more accurate than traditional scanners
-- **Third-party Integration**:
-  - Censys integration for extended scanning
-  - Additional threat intelligence support
-- **Flexible Fingerprint System**: 
+- **Active Scanning Engine**: High-performance concurrent port scanning and service detection
+- **Passive Network Discovery**:
+  - Real-time packet capture using gopacket/pcap
+  - Protocol analysis (ARP, TCP, HTTP, DNS, mDNS, NetBIOS)
+  - Automatic asset discovery without active probing
+- **Intelligent Detection**:
+  - MAC vendor identification (200+ OUI mappings)
+  - Virtual machine detection (VMware, VirtualBox, Hyper-V, KVM, etc.)
+  - OS fingerprinting
+- **Precise POC targeting**:
+  - High-precision POC targeting via fingerprinting
+  - Faster and more accurate than traditional scanners
+- **Flexible Fingerprint System**:
   - Custom fingerprint definition support
-  - Multiple protocol support (HTTP, HTTPS, TCP)
+  - Multiple protocol support (HTTP, HTTPS, TCP, UDP)
   - Pattern matching and response analysis
 - **Service Detection**:
   - Web service identification
   - Common application framework detection
   - TLS/SSL configuration analysis
-- **Plugin System**:
-  - Extensible plugin architecture
-  - Hot-reload support
-  - Multi-language plugin support (Lua, YAML)
 - **Output Formats**:
   - JSON output for integration
   - Human-readable console output
-  - Custom report generation
+  - Remote reporting via HTTP API
 
 ## 📦 Installation
 
@@ -46,71 +48,87 @@ Download the latest version from [Releases](https://github.com/zcyberseclab/zsca
 
 ## 🚀 Usage
 
-Basic usage:
+### Active Scanning
 
 ```bash
+# Scan single IP
 zscan -target 192.168.1.1
+
+# Scan CIDR range
 zscan -target 192.168.1.0/24
-zscan -targetfile targets.txt    # Scan multiple targets from file
-```
 
-With options:
-```bash
-# Enable geolocation lookup
-zscan -target 192.168.1.1 -geo
-
-# Enable Censys integration
-zscan -target 192.168.1.1 -censys -censys-api-key YOUR_KEY -censys-secret YOUR_SECRET
-
-# Custom config and templates
-zscan -target 192.168.1.1 -config custom_config.yaml -templates /path/to/templates
-
-# Save results in different formats
-zscan -target 192.168.1.1 -output json   # Save as zscan_results.json
-zscan -target 192.168.1.1 -output html   # Save as zscan_results.html
-zscan -target 192.168.1.1 -output md     # Save as zscan_results.md
+# Scan multiple targets (separated by ; or ,)
+zscan -target "192.168.1.0/24;10.0.0.0/24"
+zscan -target "192.168.1.1,192.168.1.2,192.168.1.3"
 
 # Scan specific ports
-zscan -target 192.168.1.1 -port 80,443,8080,8443
+zscan -target 192.168.1.1 -port 80,443,8080
 
-# Scan with target-specific ports
-zscan -target "192.168.1.1:80,443"       # Scan specific ports for this target
-zscan -targetfile targets.txt            # Can also specify ports in file: 192.168.1.1:80,443
+# Save results to JSON file
+zscan -target 192.168.1.1 -output results.json
+
+# Report results to remote server
+zscan -target 192.168.1.0/24 -report-url http://server/api/assets
 ```
 
-Available options:
-- `-target`: IP address or CIDR range to scan
-- `-targetfile`: Path to file containing targets (one per line)
-- `-config`: Path to config file (default: config/config.yaml)
-- `-templates`: Path to templates directory (default: templates)
-- `-geo`: Enable geolocation and IP info lookup
-- `-censys`: Enable Censys data enrichment
-- `-censys-api-key`: Censys API Key
-- `-censys-secret`: Censys API Secret
-- `-output`: Output format (json, html, or md)
-- `-version`: Show version information
-- `-port`: Custom ports to scan (comma-separated, e.g., '80,443,8080')
-- `-dirbrute`: Enable directory bruteforce scanning for web services
-- `-concurrent`: Number of concurrent requests for directory bruteforce (default: 20)
-
-### Examples
+### Passive Listening
 
 ```bash
-# Basic scan
-zscan -target 192.168.1.1
+# Basic passive listening (auto-detect interface)
+zscan listen
 
-# Scan with custom ports
-zscan -target example.com -port 80,443,8080
+# Specify network interface
+zscan listen -i eth0
 
-# Directory bruteforce scan
-zscan -target example.com -dirbrute
+# Run for specific duration
+zscan listen --duration 2h
 
-# Directory bruteforce with custom concurrency
-zscan -target example.com -dirbrute -concurrent 30
+# Save discovered assets to file
+zscan listen --duration 1h --output assets.json
 
-# Full scan with all features
-zscan -target example.com -geo -dirbrute -concurrent 30 -port 80,443,8080 -output json
+# Report to remote server
+zscan listen --report http://server/api/assets
+
+# Combined: Passive listening + Periodic active scanning
+zscan listen --active-interval 6h --target "192.168.1.0/24;10.0.0.0/24"
+
+# Full example with all options
+zscan listen --active-interval 1h --target "192.168.1.0/24" --output /var/log/zscan/assets.json --report http://server/api
 ```
+
+### Available Options
+
+**Active Scanning:**
+| Option | Description |
+|--------|-------------|
+| `-target` | IP address or CIDR range (supports `;` or `,` separators) |
+| `-port` | Custom ports to scan (comma-separated) |
+| `-config` | Path to config file (default: config/config.yaml) |
+| `-geo` | Enable geolocation and IP info lookup |
+| `-output` | Output file path (e.g., results.json) |
+| `-report-url` | URL to report scan results |
+| `-version` | Show version information |
+
+**Passive Listening (`listen` subcommand):**
+| Option | Description |
+|--------|-------------|
+| `-i, --interface` | Network interface to capture packets |
+| `--duration` | Listening duration (e.g., 1h, 30m, 24h) |
+| `--output` | Output file path for discovered assets |
+| `--report` | URL to report discovered assets |
+| `--active-interval` | Interval for periodic active scanning |
+| `--target` | Target ranges for active scanning |
+
+### Supported Protocols (Passive Mode)
+
+| Protocol | Discovered Information |
+|----------|----------------------|
+| ARP | IP, MAC, Vendor, VM Platform |
+| TCP SYN-ACK | Open ports |
+| HTTP | Service fingerprints, Server info |
+| DNS | Hostnames, Domain names |
+| mDNS | Device names, Service types |
+| NetBIOS | Windows hostnames |
 
 ### Using as a Go Library
 
