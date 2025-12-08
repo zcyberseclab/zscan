@@ -14,9 +14,41 @@
     ]
   },
   "9100": {
+    "devicetype": "printer",
     "tags": [
-      "monitoring",
-      "prometheus"
+      "jetdirect",
+      "raw-printing"
+    ]
+  },
+  "9101": {
+    "devicetype": "printer",
+    "tags": [
+      "raw-printing"
+    ]
+  },
+  "9102": {
+    "devicetype": "printer",
+    "tags": [
+      "raw-printing"
+    ]
+  },
+  "515": {
+    "devicetype": "printer",
+    "tags": [
+      "lpd",
+      "lpr"
+    ]
+  },
+  "631": {
+    "devicetype": "printer",
+    "tags": [
+      "ipp",
+      "cups"
+    ]
+  },
+  "161": {
+    "tags": [
+      "snmp"
     ]
   },
   "3306": {

@@ -377,7 +377,7 @@
   },
   "snmp": {
     "patterns": [
-      "SNMP",
+      "SNMP"
     ],
     "tags": [
       "snmp"
@@ -635,6 +635,198 @@
     ],
     "tags": [
       "storage"
+    ]
+  },
+  "hp-printer": {
+    "patterns": [
+      "(?i)HP LaserJet",
+      "(?i)HP Color LaserJet",
+      "(?i)HP OfficeJet",
+      "(?i)HP DeskJet",
+      "(?i)HP ENVY",
+      "(?i)HP PageWide",
+      "(?i)Hewlett-Packard",
+      "(?i)HP JetDirect"
+    ],
+    "vendor": "hp",
+    "devicetype": "printer"
+  },
+  "canon-printer": {
+    "patterns": [
+      "(?i)Canon",
+      "(?i)imageRUNNER",
+      "(?i)imageCLASS",
+      "(?i)PIXMA",
+      "(?i)MAXIFY",
+      "(?i)imagePROGRAF"
+    ],
+    "vendor": "canon",
+    "devicetype": "printer"
+  },
+  "epson-printer": {
+    "patterns": [
+      "(?i)EPSON",
+      "(?i)WorkForce",
+      "(?i)EcoTank",
+      "(?i)Expression"
+    ],
+    "vendor": "epson",
+    "devicetype": "printer"
+  },
+  "brother-printer": {
+    "patterns": [
+      "(?i)Brother",
+      "(?i)HL-",
+      "(?i)MFC-",
+      "(?i)DCP-"
+    ],
+    "vendor": "brother",
+    "devicetype": "printer"
+  },
+  "xerox-printer": {
+    "patterns": [
+      "(?i)Xerox",
+      "(?i)WorkCentre",
+      "(?i)Phaser",
+      "(?i)VersaLink",
+      "(?i)AltaLink"
+    ],
+    "vendor": "xerox",
+    "devicetype": "printer"
+  },
+  "lexmark-printer": {
+    "patterns": [
+      "(?i)Lexmark"
+    ],
+    "vendor": "lexmark",
+    "devicetype": "printer"
+  },
+  "kyocera-printer": {
+    "patterns": [
+      "(?i)KYOCERA",
+      "(?i)TASKalfa",
+      "(?i)ECOSYS"
+    ],
+    "vendor": "kyocera",
+    "devicetype": "printer"
+  },
+  "konica-printer": {
+    "patterns": [
+      "(?i)KONICA MINOLTA",
+      "(?i)bizhub",
+      "(?i)AccurioPress"
+    ],
+    "vendor": "konica",
+    "devicetype": "printer"
+  },
+  "sharp-printer": {
+    "patterns": [
+      "(?i)SHARP MX-",
+      "(?i)SHARP BP-"
+    ],
+    "vendor": "sharp",
+    "devicetype": "printer"
+  },
+  "toshiba-printer": {
+    "patterns": [
+      "(?i)TOSHIBA e-STUDIO",
+      "(?i)e-STUDIO"
+    ],
+    "vendor": "toshiba",
+    "devicetype": "printer"
+  },
+  "samsung-printer": {
+    "patterns": [
+      "(?i)Samsung (Xpress|ProXpress|MultiXpress)"
+    ],
+    "vendor": "samsung",
+    "devicetype": "printer"
+  },
+  "oki-printer": {
+    "patterns": [
+      "(?i)OKI (C|MC|B)\\d+"
+    ],
+    "vendor": "oki",
+    "devicetype": "printer"
+  },
+  "pantum-printer": {
+    "patterns": [
+      "(?i)Pantum",
+      "(?i)奔图"
+    ],
+    "vendor": "pantum",
+    "devicetype": "printer"
+  },
+  "zebra-printer": {
+    "patterns": [
+      "(?i)Zebra",
+      "(?i)ZPL",
+      "(?i)ZTC"
+    ],
+    "vendor": "zebra",
+    "devicetype": "printer"
+  },
+  "lenovo-printer": {
+    "patterns": [
+      "(?i)Lenovo (LJ|M|CS)\\d+"
+    ],
+    "vendor": "lenovo",
+    "devicetype": "printer"
+  },
+  "fuji-printer": {
+    "patterns": [
+      "(?i)FUJIFILM",
+      "(?i)Fuji Xerox",
+      "(?i)DocuPrint",
+      "(?i)DocuCentre",
+      "(?i)Apeos"
+    ],
+    "vendor": "fujifilm",
+    "devicetype": "printer"
+  },
+  "sindoh-printer": {
+    "patterns": [
+      "(?i)Sindoh"
+    ],
+    "vendor": "sindoh",
+    "devicetype": "printer"
+  },
+  "develop-printer": {
+    "patterns": [
+      "(?i)Develop ineo"
+    ],
+    "vendor": "develop",
+    "devicetype": "printer"
+  },
+  "jetdirect": {
+    "patterns": [
+      "(?i)JetDirect",
+      "@PJL"
+    ],
+    "devicetype": "printer",
+    "tags": [
+      "jetdirect"
+    ]
+  },
+  "pjl-printer": {
+    "patterns": [
+      "@PJL INFO",
+      "@PJL USTATUS",
+      "@PJL RDYMSG"
+    ],
+    "devicetype": "printer",
+    "tags": [
+      "pjl"
+    ]
+  },
+  "ipp-printer": {
+    "patterns": [
+      "(?i)ipp://",
+      "(?i)application/ipp"
+    ],
+    "devicetype": "printer",
+    "tags": [
+      "ipp"
     ]
   }
 }

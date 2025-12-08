@@ -1754,45 +1754,247 @@
   },
   "hp-printer": {
     "headers": [
-      "Server: HP HTTP Server"
+      "Server: HP HTTP Server",
+      "Server: HP-ChaiSOE",
+      "Server: Virata-EmWeb"
     ],
     "body": [
       "HP LaserJet",
-      "HP Color",
-      "Hewlett-Packard"
+      "HP Color LaserJet",
+      "HP OfficeJet",
+      "HP DeskJet",
+      "HP ENVY",
+      "HP PageWide",
+      "HP Designjet",
+      "Hewlett-Packard",
+      "HP Embedded Web Server",
+      "hplogo\\.gif",
+      "/hp/device/this\\.LCDispatcher"
     ],
     "vendor": "hp",
     "devicetype": "printer"
   },
   "canon-printer": {
+    "headers": [
+      "Server: KS_HTTP",
+      "Server: CANON HTTP Server"
+    ],
     "body": [
       "Canon",
-      "imageRUNNER"
+      "imageRUNNER",
+      "imageCLASS",
+      "imagePRESS",
+      "imagePROGRAF",
+      "PIXMA",
+      "MAXIFY",
+      "Canon Inc\\.",
+      "Remote UI",
+      "/rui/"
     ],
     "vendor": "canon",
     "devicetype": "printer"
   },
   "epson-printer": {
+    "headers": [
+      "Server: EPSON_Linux",
+      "Server: EPSON HTTP Server"
+    ],
     "body": [
       "EPSON",
-      "Epson"
+      "Epson",
+      "WorkForce",
+      "EcoTank",
+      "Expression",
+      "Stylus",
+      "EPSON Web Config",
+      "Seiko Epson"
     ],
     "vendor": "epson",
     "devicetype": "printer"
   },
+  "brother-printer": {
+    "headers": [
+      "Server: debut"
+    ],
+    "body": [
+      "Brother Industries",
+      "Brother HL-",
+      "Brother MFC-",
+      "Brother DCP-",
+      "/general/status\\.html"
+    ],
+    "vendor": "brother",
+    "devicetype": "printer"
+  },
   "kyocera-printer": {
+    "headers": [
+      "Server: KYOCERA"
+    ],
     "body": [
       "KYOCERA",
-      "Kyocera"
+      "Kyocera",
+      "TASKalfa",
+      "ECOSYS",
+      "Kyocera Document Solutions"
     ],
     "vendor": "kyocera",
     "devicetype": "printer"
   },
+  "xerox-printer": {
+    "headers": [
+      "Server: Allegra-Software",
+      "Server: Apache.*Xerox"
+    ],
+    "body": [
+      "Xerox Corporation",
+      "WorkCentre",
+      "Phaser",
+      "VersaLink",
+      "AltaLink",
+      "ColorQube",
+      "/dyn/status\\.xml"
+    ],
+    "vendor": "xerox",
+    "devicetype": "printer"
+  },
+  "konica-printer": {
+    "headers": [
+      "Server: Apache.*KONICA MINOLTA"
+    ],
+    "body": [
+      "KONICA MINOLTA",
+      "Konica Minolta",
+      "bizhub",
+      "AccurioPress",
+      "AccurioPrint",
+      "/wcd/top\\.xml"
+    ],
+    "vendor": "konica",
+    "devicetype": "printer"
+  },
+  "ricoh-printer": {
+    "headers": [
+      "Server: Web-Server"
+    ],
+    "body": [
+      "RICOH",
+      "Ricoh",
+      "Aficio",
+      "imagio",
+      "MP C",
+      "/web/guest/en/websys/webArch/mainFrame\\.cgi"
+    ],
+    "vendor": "ricoh",
+    "devicetype": "printer"
+  },
+  "sharp-printer": {
+    "body": [
+      "SHARP",
+      "Sharp Corporation",
+      "SHARP MX-",
+      "SHARP BP-",
+      "/mfp_top\\.html"
+    ],
+    "vendor": "sharp",
+    "devicetype": "printer"
+  },
+  "toshiba-printer": {
+    "body": [
+      "TOSHIBA",
+      "e-STUDIO",
+      "TopAccess"
+    ],
+    "vendor": "toshiba",
+    "devicetype": "printer"
+  },
+  "lexmark-printer": {
+    "headers": [
+      "Server: Lexmark"
+    ],
+    "body": [
+      "Lexmark",
+      "Lexmark International"
+    ],
+    "vendor": "lexmark",
+    "devicetype": "printer"
+  },
+  "samsung-printer": {
+    "headers": [
+      "Server: Samsung"
+    ],
+    "body": [
+      "Samsung Electronics",
+      "SyncThru Web Service"
+    ],
+    "vendor": "samsung",
+    "devicetype": "printer"
+  },
+  "oki-printer": {
+    "body": [
+      "OKI Data",
+      "OKI Electric Industry"
+    ],
+    "vendor": "oki",
+    "devicetype": "printer"
+  },
+  "fuji-printer": {
+    "headers": [
+      "Server: Fuji Xerox"
+    ],
+    "body": [
+      "FUJIFILM",
+      "Fuji Xerox",
+      "DocuPrint",
+      "DocuCentre",
+      "ApeosPort",
+      "Apeos"
+    ],
+    "vendor": "fujifilm",
+    "devicetype": "printer"
+  },
+  "pantum-printer": {
+    "body": [
+      "Pantum",
+      "奔图",
+      "pantum\\.com"
+    ],
+    "vendor": "pantum",
+    "devicetype": "printer"
+  },
+  "lenovo-printer": {
+    "body": [
+      "Lenovo LJ",
+      "Lenovo M",
+      "联想打印机"
+    ],
+    "vendor": "lenovo",
+    "devicetype": "printer"
+  },
+  "zebra-printer": {
+    "headers": [
+      "Server: Zebra"
+    ],
+    "body": [
+      "Zebra Technologies",
+      "ZTC",
+      "ZPL"
+    ],
+    "vendor": "zebra",
+    "devicetype": "printer"
+  },
   "dell-printer": {
     "body": [
-      "Dell"
+      "Dell Printer",
+      "Dell Laser"
     ],
     "vendor": "dell",
+    "devicetype": "printer"
+  },
+  "sindoh-printer": {
+    "body": [
+      "Sindoh"
+    ],
+    "vendor": "sindoh",
     "devicetype": "printer"
   },
   "cups-printer": {

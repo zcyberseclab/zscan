@@ -68,7 +68,7 @@ zscan -target 192.168.1.1 -port 80,443,8080
 zscan -target 192.168.1.1 -output results.json
 
 # Report results to remote server
-zscan -target 192.168.1.0/24 -report-url http://server/api/assets
+zscan -target 192.168.1.0/24 -report http://server/api/assets
 ```
 
 ### Passive Listening
@@ -81,19 +81,19 @@ zscan listen
 zscan listen -i eth0
 
 # Run for specific duration
-zscan listen --duration 2h
+zscan listen -duration 2h -daemon
 
 # Save discovered assets to file
-zscan listen --duration 1h --output assets.json
+zscan listen -daemon -duration 1h -output assets.json 
 
 # Report to remote server
-zscan listen --report http://server/api/assets
+go run .\cmd\main.go listen -daemon -report http://server/api/assets
 
 # Combined: Passive listening + Periodic active scanning
-zscan listen --active-interval 6h --target "192.168.1.0/24;10.0.0.0/24"
+go run .\cmd\main.go listen  -active-interval 6h -target "192.168.1.0/24;10.0.0.0/24"
 
 # Full example with all options
-zscan listen --active-interval 1h --target "192.168.1.0/24" --output /var/log/zscan/assets.json --report http://server/api
+go run .\cmd\main.go listen  -active-interval 1h -target "192.168.1.0/24" -output assets.json -report http://server/api
 ```
 
 ### Available Options
@@ -106,18 +106,22 @@ zscan listen --active-interval 1h --target "192.168.1.0/24" --output /var/log/zs
 | `-config` | Path to config file (default: config/config.yaml) |
 | `-geo` | Enable geolocation and IP info lookup |
 | `-output` | Output file path (e.g., results.json) |
-| `-report-url` | URL to report scan results |
+| `-report` | URL to report scan results |
+| `-apikey` | API key for report authentication (Bearer token) |
 | `-version` | Show version information |
 
 **Passive Listening (`listen` subcommand):**
 | Option | Description |
 |--------|-------------|
-| `-i, --interface` | Network interface to capture packets |
-| `--duration` | Listening duration (e.g., 1h, 30m, 24h) |
-| `--output` | Output file path for discovered assets |
-| `--report` | URL to report discovered assets |
-| `--active-interval` | Interval for periodic active scanning |
-| `--target` | Target ranges for active scanning |
+| `-i`, `-interface` | Network interface to capture packets |
+| `-duration` | Listening duration (e.g., 1h, 30m, 24h) |
+| `-output` | Output file path for discovered assets |
+| `-report` | URL to report discovered assets |
+| `-apikey` | API key for report authentication (Bearer token) |
+| `-report-interval` | Minimum interval between reports for same IP (default 10m) |
+| `-cache-dir` | Cache directory for passive discovery (default .zscan_cache) |
+| `-active-interval` | Interval for periodic active scanning |
+| `-target` | Target ranges for active scanning |
 
 ### Supported Protocols (Passive Mode)
 

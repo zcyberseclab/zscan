@@ -72,6 +72,49 @@ var macVendorMap = map[string]string{
 	// Dahua
 	"3c:ef:8c": "Dahua", "4c:11:bf": "Dahua", "90:02:a9": "Dahua",
 	"a0:bd:1d": "Dahua", "b0:a7:32": "Dahua", "e0:50:8b": "Dahua", "e4:24:6c": "Dahua",
+	// === Printer Vendors ===
+	// Canon
+	"00:00:85": "Canon", "00:1e:8f": "Canon", "00:bb:c1": "Canon", "18:0c:ac": "Canon",
+	"2c:9e:fc": "Canon", "34:64:a9": "Canon", "3c:a9:f4": "Canon", "64:00:6a": "Canon",
+	"84:ba:3b": "Canon", "88:87:17": "Canon", "a0:8c:9b": "Canon", "c4:36:55": "Canon",
+	"c8:d0:83": "Canon", "ec:37:69": "Canon", "f4:81:39": "Canon", "f8:0d:60": "Canon",
+	// Epson
+	"00:00:48": "Epson", "00:1b:3f": "Epson", "00:26:ab": "Epson", "04:11:19": "Epson",
+	"2c:49:5d": "Epson", "3c:18:a0": "Epson", "44:d2:44": "Epson", "60:a6:c5": "Epson",
+	"64:eb:8c": "Epson", "88:12:4e": "Epson", "a4:5d:36": "Epson", "ac:18:26": "Epson",
+	"b0:e8:92": "Epson", "c8:2a:14": "Epson", "d0:40:f0": "Epson", "e0:22:02": "Epson",
+	// Brother
+	"00:1b:a9": "Brother", "00:80:77": "Brother", "30:05:5c": "Brother", "34:6f:92": "Brother",
+	"44:5e:f3": "Brother", "58:5a:b1": "Brother", "78:8c:54": "Brother", "a0:66:10": "Brother",
+	"a8:6b:ad": "Brother", "d4:90:e0": "Brother", "f4:4e:fd": "Brother",
+	// Xerox
+	"00:00:74": "Xerox", "00:00:aa": "Xerox", "00:08:b4": "Xerox", "00:12:d2": "Xerox",
+	"00:14:05": "Xerox", "00:25:6b": "Xerox", "00:55:d4": "Xerox", "3c:12:7f": "Xerox",
+	"64:00:f1": "Xerox", "8c:89:a5": "Xerox", "9c:93:4e": "Xerox", "a0:93:47": "Xerox",
+	// Lexmark
+	"00:04:00": "Lexmark", "00:20:00": "Lexmark", "00:21:b7": "Lexmark",
+	// Kyocera
+	"00:0c:ca": "Kyocera", "00:17:c8": "Kyocera", "00:c0:ee": "Kyocera", "10:4f:a8": "Kyocera",
+	"50:20:7b": "Kyocera", "5c:c1:d7": "Kyocera", "c4:b9:cd": "Kyocera",
+	// Konica Minolta
+	"00:50:aa": "Konica Minolta", "00:d0:17": "Konica Minolta", "00:d1:1c": "Konica Minolta",
+	// Ricoh
+	"00:26:73": "Ricoh", "2c:5a:0f": "Ricoh", "4c:21:d0": "Ricoh",
+	"60:6b:bd": "Ricoh", "64:2a:6c": "Ricoh", "ac:4e:91": "Ricoh", "e0:a0:ec": "Ricoh",
+	// Sharp
+	"00:22:f3": "Sharp", "50:1c:b0": "Sharp", "98:6b:5d": "Sharp", "b8:78:2e": "Sharp",
+	// Toshiba
+	"00:0e:7b": "Toshiba", "00:1c:7e": "Toshiba", "00:1e:c9": "Toshiba", "00:e0:e4": "Toshiba",
+	// OKI
+	"00:00:87": "OKI", "00:80:87": "OKI",
+	// Pantum
+	"00:90:7f": "Pantum", "10:0f:f8": "Pantum", "54:c3:d2": "Pantum",
+	// Zebra
+	"00:07:4d": "Zebra", "00:1e:8b": "Zebra", "00:23:68": "Zebra", "ac:3f:a4": "Zebra",
+	// Fujifilm/Fuji Xerox
+	"00:a0:e4": "Fujifilm", "a4:c6:4f": "Fujifilm",
+	// Sindoh
+	"00:15:99": "Sindoh", "00:23:87": "Sindoh",
 }
 
 // GetVendorFromMAC 从 MAC 地址获取厂商

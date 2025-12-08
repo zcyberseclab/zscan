@@ -53,7 +53,8 @@ func main() {
 	versionFlag := flag.Bool("version", false, "Show version information")
 	outputFormat := flag.String("output", "", "Output format: json, html, or md")
 	portList := flag.String("port", "", "Custom ports to scan (comma-separated, e.g., '80,443,8080')")
-	reportURL := flag.String("report-url", "", "URL to report scan results")
+	reportURL := flag.String("report", "", "URL to report scan results")
+	apiKey := flag.String("apikey", "", "API key for report authentication (Bearer token)")
 	flag.Parse()
 
 	if *versionFlag {
@@ -132,7 +133,7 @@ func main() {
 		}
 
 		if *reportURL != "" {
-			if err := reportResults(results, *reportURL); err != nil {
+			if err := reportResults(results, *reportURL, *apiKey); err != nil {
 				log.Printf("Error reporting results for target %s: %v", target, err)
 			} else {
 				log.Printf("Successfully reported results for target %s", target)
@@ -237,7 +238,7 @@ func jsonToMarkdown(jsonData []byte, filename string) error {
 	return os.WriteFile(filename, []byte(md.String()), 0644)
 }
 
-func reportResults(results []stage.Node, reportURL string) error {
+func reportResults(results []stage.Node, reportURL string, apiKey string) error {
 	if reportURL == "" {
 		return nil
 	}
@@ -247,7 +248,17 @@ func reportResults(results []stage.Node, reportURL string) error {
 		return fmt.Errorf("failed to marshal results for reporting: %v", err)
 	}
 
-	resp, err := http.Post(reportURL, "application/json", bytes.NewBuffer(jsonData))
+	req, err := http.NewRequest("POST", reportURL, bytes.NewBuffer(jsonData))
+	if err != nil {
+		return fmt.Errorf("failed to create request: %v", err)
+	}
+	req.Header.Set("Content-Type", "application/json")
+	if apiKey != "" {
+		req.Header.Set("Authorization", "Bearer "+apiKey)
+	}
+
+	client := &http.Client{Timeout: 30 * time.Second}
+	resp, err := client.Do(req)
 	if err != nil {
 		return fmt.Errorf("failed to send report: %v", err)
 	}
@@ -270,6 +281,9 @@ func runListenMode() {
 	target := listenCmd.String("target", "", "Target for active scan (supports ; or , as separator)")
 	output := listenCmd.String("output", "", "Output file path (JSON format)")
 	reportURL := listenCmd.String("report", "", "Report URL for asset reporting")
+	apiKey := listenCmd.String("apikey", "", "API key for report authentication (Bearer token)")
+	reportInterval := listenCmd.Duration("report-interval", 10*time.Minute, "Minimum interval between reports for same IP (default 10m)")
+	cacheDir := listenCmd.String("cache-dir", ".zscan_cache", "Cache directory for passive discovery")
 	configPath := listenCmd.String("config", "config/config.yaml", "Path to config file")
 	help := listenCmd.Bool("help", false, "Show help for listen command")
 	helpShort := listenCmd.Bool("h", false, "Show help for listen command")
@@ -314,6 +328,9 @@ func runListenMode() {
 		Targets:        targets,
 		OutputPath:     *output,
 		ReportURL:      *reportURL,
+		APIKey:         *apiKey,
+		ReportInterval: *reportInterval,
+		CacheDir:       *cacheDir,
 		ConfigPath:     *configPath,
 		TemplatesDir:   "templates",
 	}
@@ -330,6 +347,9 @@ func runListenMode() {
 	}
 	if config.ReportURL != "" {
 		fmt.Printf("Report URL: %s\n", config.ReportURL)
+		if config.APIKey != "" {
+			fmt.Println("API Key: ********")
+		}
 	}
 	fmt.Println("Press Ctrl+C to stop...")
 	fmt.Println()
