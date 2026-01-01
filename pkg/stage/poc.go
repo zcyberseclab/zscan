@@ -380,7 +380,7 @@ func evaluateExpression(poc *POC, expr string, ctx *ExprContext, pocCtx *POCCont
 		for _, part := range parts {
 			subExpr := strings.TrimSpace(part)
 			if !evaluateExpression(poc, subExpr, ctx, pocCtx) {
-				fmt.Printf("[DEBUG] %s AND chain failed at: %q\n", formatHitMark(false), subExpr)
+				//fmt.Printf("[DEBUG] %s AND chain failed at: %q\n", formatHitMark(false), subExpr)
 				return false
 			}
 		}
@@ -392,7 +392,7 @@ func evaluateExpression(poc *POC, expr string, ctx *ExprContext, pocCtx *POCCont
 		for _, part := range parts {
 			subExpr := strings.TrimSpace(part)
 			if evaluateExpression(poc, subExpr, ctx, pocCtx) {
-				fmt.Printf("[DEBUG] %s OR chain succeeded at: %q\n", formatHitMark(true), subExpr)
+				//fmt.Printf("[DEBUG] %s OR chain succeeded at: %q\n", formatHitMark(true), subExpr)
 				return true
 			}
 		}
@@ -403,12 +403,12 @@ func evaluateExpression(poc *POC, expr string, ctx *ExprContext, pocCtx *POCCont
 	if strings.HasPrefix(expr, "status==") {
 		code, err := strconv.Atoi(strings.TrimPrefix(expr, "status=="))
 		if err != nil {
-			fmt.Printf("[DEBUG] ❌ Invalid status code format\n")
+			//fmt.Printf("[DEBUG]  Invalid status code format\n")
 			return false
 		}
 		result := ctx.StatusCode == code
-		fmt.Printf("[DEBUG] %s Status check: %d == %d: %v\n",
-			formatHitMark(result), ctx.StatusCode, code, result)
+		//fmt.Printf("[DEBUG] %s Status check: %d == %d: %v\n",
+		//	formatHitMark(result), ctx.StatusCode, code, result)
 		return result
 	}
 
@@ -416,8 +416,8 @@ func evaluateExpression(poc *POC, expr string, ctx *ExprContext, pocCtx *POCCont
 	if strings.HasPrefix(expr, "contains(") && strings.HasSuffix(expr, ")") {
 		content := expr[9 : len(expr)-1]
 		result := strings.Contains(ctx.Body, content)
-		fmt.Printf("[DEBUG] %s Contains check for %q: %v\n",
-			formatHitMark(result), content, result)
+		//fmt.Printf("[DEBUG] %s Contains check for %q: %v\n",
+		//	formatHitMark(result), content, result)
 		return result
 	}
 
@@ -447,8 +447,8 @@ func evaluateExpression(poc *POC, expr string, ctx *ExprContext, pocCtx *POCCont
 		if matches := re.FindStringSubmatch(expr); len(matches) == 2 {
 			expectedStatus, _ := strconv.Atoi(matches[1])
 			result := ctx.StatusCode == expectedStatus
-			fmt.Printf("[DEBUG] %s Response status check: %d == %d: %v\n",
-				formatHitMark(result), ctx.StatusCode, expectedStatus, result)
+			//fmt.Printf("[DEBUG] %s Response status check: %d == %d: %v\n",
+			//	formatHitMark(result), ctx.StatusCode, expectedStatus, result)
 			return result
 		}
 	}
@@ -458,7 +458,7 @@ func evaluateExpression(poc *POC, expr string, ctx *ExprContext, pocCtx *POCCont
 		pattern := expr[8 : len(expr)-1]
 		re, err := regexp.Compile(pattern)
 		if err != nil {
-			fmt.Printf("[DEBUG] ❌ Invalid regex pattern: %v\n", err)
+			fmt.Printf("[DEBUG] Invalid regex pattern: %v\n", err)
 			return false
 		}
 		result := re.MatchString(ctx.Body)
@@ -472,14 +472,14 @@ func evaluateExpression(poc *POC, expr string, ctx *ExprContext, pocCtx *POCCont
 		content := expr[7 : len(expr)-1]
 		parts := strings.SplitN(content, ":", 2)
 		if len(parts) != 2 {
-			fmt.Printf("[DEBUG] ❌ Invalid header format\n")
+			//fmt.Printf("[DEBUG] ❌ Invalid header format\n")
 			return false
 		}
 		headerKey := strings.TrimSpace(parts[0])
 		headerValue := strings.TrimSpace(parts[1])
 		result := containsHeader(ctx.Headers, headerKey, headerValue)
-		fmt.Printf("[DEBUG] %s Header check %q: %q: %v\n",
-			formatHitMark(result), headerKey, headerValue, result)
+		//fmt.Printf("[DEBUG] %s Header check %q: %q: %v\n",
+		//	formatHitMark(result), headerKey, headerValue, result)
 		return result
 	}
 
@@ -493,19 +493,19 @@ func evaluateExpression(poc *POC, expr string, ctx *ExprContext, pocCtx *POCCont
 
 			searchStr = strings.ReplaceAll(searchStr, `\"`, `"`)
 			result := strings.Contains(strings.ToLower(ctx.ContentType), strings.ToLower(searchStr))
-			fmt.Printf("[DEBUG] %s content_type.contains search for %q in %q: %v\n",
-				formatHitMark(result), searchStr, ctx.ContentType, result)
+			//fmt.Printf("[DEBUG] %s content_type.contains search for %q in %q: %v\n",
+			//	formatHitMark(result), searchStr, ctx.ContentType, result)
 			return result
 		}
 	}
 
-	fmt.Printf("[DEBUG] ❌ No matching expression found for: %s\n", expr)
+	fmt.Printf("[DEBUG] No matching expression found for: %s\n", expr)
 	return false
 }
 
 func formatHitMark(hit bool) string {
 	if hit {
-		return "✅ HIT!"
+		return "HIT!"
 	}
-	return "❌ MISS"
+	return "MISS"
 }

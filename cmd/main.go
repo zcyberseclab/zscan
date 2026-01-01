@@ -41,12 +41,6 @@ func normalizeTarget(input string) string {
 }
 
 func main() {
-	// 检查是否是 listen 子命令
-	if len(os.Args) > 1 && os.Args[1] == "listen" {
-		runListenMode()
-		return
-	}
-
 	target := flag.String("target", "", "IP address or CIDR range to scan (supports multiple targets separated by ; or ,)")
 	configPath := flag.String("config", "config/config.yaml", "Path to config file")
 	enableGeo := flag.Bool("geo", false, "Enable geolocation and IP info lookup")
@@ -269,97 +263,4 @@ func reportResults(results []stage.Node, reportURL string, apiKey string) error 
 	}
 
 	return nil
-}
-
-func runListenMode() {
-	listenCmd := flag.NewFlagSet("listen", flag.ExitOnError)
-	iface := listenCmd.String("i", "", "Network interface (auto-detect if not specified)")
-	ifaceLong := listenCmd.String("interface", "", "Network interface (auto-detect if not specified)")
-	duration := listenCmd.Duration("duration", 0, "Run duration (0 = run forever)")
-	daemon := listenCmd.Bool("daemon", false, "Run in daemon mode")
-	activeInterval := listenCmd.Duration("active-interval", 0, "Active scan interval (requires -target)")
-	target := listenCmd.String("target", "", "Target for active scan (supports ; or , as separator)")
-	output := listenCmd.String("output", "", "Output file path (JSON format)")
-	reportURL := listenCmd.String("report", "", "Report URL for asset reporting")
-	apiKey := listenCmd.String("apikey", "", "API key for report authentication (Bearer token)")
-	reportInterval := listenCmd.Duration("report-interval", 10*time.Minute, "Minimum interval between reports for same IP (default 10m)")
-	cacheDir := listenCmd.String("cache-dir", ".zscan_cache", "Cache directory for passive discovery")
-	configPath := listenCmd.String("config", "config/config.yaml", "Path to config file")
-	help := listenCmd.Bool("help", false, "Show help for listen command")
-	helpShort := listenCmd.Bool("h", false, "Show help for listen command")
-
-	if err := listenCmd.Parse(os.Args[2:]); err != nil {
-		os.Exit(1)
-	}
-
-	if *help || *helpShort {
-		fmt.Println("Usage: zscan listen [options]")
-		fmt.Println()
-		fmt.Println("Passive network listening mode for asset discovery")
-		fmt.Println()
-		fmt.Println("Options:")
-		listenCmd.PrintDefaults()
-		return
-	}
-
-	// 使用长参数或短参数
-	interfaceName := *iface
-	if *ifaceLong != "" {
-		interfaceName = *ifaceLong
-	}
-
-	// 解析多个目标，支持分号和逗号分隔
-	var targets []string
-	if *target != "" {
-		targetStr := strings.ReplaceAll(*target, ";", ",")
-		for _, t := range strings.Split(targetStr, ",") {
-			t = strings.TrimSpace(t)
-			if t != "" {
-				targets = append(targets, normalizeTarget(t))
-			}
-		}
-	}
-
-	config := stage.PassiveConfig{
-		Interface:      interfaceName,
-		Duration:       *duration,
-		Daemon:         *daemon,
-		ActiveInterval: *activeInterval,
-		Targets:        targets,
-		OutputPath:     *output,
-		ReportURL:      *reportURL,
-		APIKey:         *apiKey,
-		ReportInterval: *reportInterval,
-		CacheDir:       *cacheDir,
-		ConfigPath:     *configPath,
-		TemplatesDir:   "templates",
-	}
-
-	fmt.Println("╔════════════════════════════════════════════════════════════╗")
-	fmt.Println("║              ZSCAN - Passive Listening Mode                ║")
-	fmt.Println("╚════════════════════════════════════════════════════════════╝")
-	fmt.Printf("Interface: %s (auto-detect: %v)\n", config.Interface, config.Interface == "")
-	fmt.Printf("Duration: %v (0 = forever)\n", config.Duration)
-	fmt.Printf("Daemon: %v\n", config.Daemon)
-	if config.ActiveInterval > 0 {
-		fmt.Printf("Active Interval: %v\n", config.ActiveInterval)
-		fmt.Printf("Targets: %v\n", config.Targets)
-	}
-	if config.ReportURL != "" {
-		fmt.Printf("Report URL: %s\n", config.ReportURL)
-		if config.APIKey != "" {
-			fmt.Println("API Key: ********")
-		}
-	}
-	fmt.Println("Press Ctrl+C to stop...")
-	fmt.Println()
-
-	listener, err := stage.NewPassiveListener(config)
-	if err != nil {
-		log.Fatalf("Failed to create passive listener: %v", err)
-	}
-
-	if err := listener.Start(); err != nil {
-		log.Fatalf("Passive listener error: %v", err)
-	}
 }

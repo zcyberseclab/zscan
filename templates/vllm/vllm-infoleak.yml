@@ -1,0 +1,11 @@
+cve-id: vllm-infoleak
+rules:
+- method: GET
+  path: /v1/models
+  expression: 'response.status == 200 && response.content_type.contains("json") && (response.body.bcontains(b"id") || response.body.bcontains(b"model"))'
+- method: GET
+  path: /docs
+  expression: 'response.status == 200 && response.body.bcontains(b"swagger") || response.body.bcontains(b"openapi")'
+severity: medium
+type: infoleak
+

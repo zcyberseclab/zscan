@@ -1,14 +1,14 @@
 {
   "3265": {
     "devicetype": "nas",
-    "vendor": "synology",
+    "vendor": "Synology",
     "tags": [
       "synology-dsm"
     ]
   },
   "1900": {
     "devicetype": "nas",
-    "vendor": "synology",
+    "vendor": "Synology",
     "tags": [
       "synology-audiostation"
     ]
@@ -16,21 +16,14 @@
   "9100": {
     "devicetype": "printer",
     "tags": [
-      "jetdirect",
-      "raw-printing"
+      "jetdirect"
     ]
   },
   "9101": {
-    "devicetype": "printer",
-    "tags": [
-      "raw-printing"
-    ]
+    "devicetype": "printer"
   },
   "9102": {
-    "devicetype": "printer",
-    "tags": [
-      "raw-printing"
-    ]
+    "devicetype": "printer"
   },
   "515": {
     "devicetype": "printer",

@@ -2,16 +2,13 @@
   "ssh": {
     "patterns": [
       "(?i)SSH"
-    ],
-    "tags": [
-      "remote-access"
     ]
   },
   "netgear-router": {
     "patterns": [
       "(?i)NETGEAR"
     ],
-    "vendor": "netgear",
+    "vendor": "Netgear",
     "devicetype": "router"
   },
   "pure-ftpd": {
@@ -43,14 +40,14 @@
     "patterns": [
       "(?i)RICOH"
     ],
-    "vendor": "ricoh",
+    "vendor": "Ricoh",
     "devicetype": "printer"
   },
   "ricoh-maintenance": {
     "patterns": [
       "\\xff\\xfb\\x01\\xff\\xfb\\x03"
     ],
-    "vendor": "ricoh",
+    "vendor": "Ricoh",
     "devicetype": "printer"
   },
   "ftp": {
@@ -89,13 +86,10 @@
   },
   "redis": {
     "patterns": [
-      "REDIS",
-      "-ERR",
-      "+PONG"
+      "REDIS"
     ],
     "tags": [
-      "database",
-      "cache"
+      "database"
     ]
   },
   "filezilla": {
@@ -105,38 +99,26 @@
     "tags": [
       "ftp"
     ],
-    "os": "windows"
+    "os": "Windows"
   },
   "smtp": {
     "patterns": [
       "(?i)SMTP"
-    ],
-    "tags": [
-      "mail"
     ]
   },
   "pop3": {
     "patterns": [
       "(?i)POP3"
-    ],
-    "tags": [
-      "mail"
     ]
   },
   "imap": {
     "patterns": [
       "(?i)IMAP"
-    ],
-    "tags": [
-      "mail"
     ]
   },
   "netatalk": {
     "patterns": [
       "(?i)Netatalk"
-    ],
-    "tags": [
-      "afp"
     ],
     "os": "linux"
   },
@@ -159,13 +141,11 @@
   },
   "oracle": {
     "patterns": [
-      "Oracle",
-      "TNS"
+      "Oracle"
     ],
     "tags": [
       "database"
-    ],
-    "vendor": "oracle"
+    ]
   },
   "mssql": {
     "patterns": [
@@ -175,18 +155,7 @@
     "tags": [
       "database"
     ],
-    "vendor": "microsoft",
-    "os": "windows"
-  },
-  "memcached": {
-    "patterns": [
-      "STAT",
-      "VERSION"
-    ],
-    "tags": [
-      "database",
-      "cache"
-    ]
+    "os": "Windows"
   },
   "cassandra": {
     "patterns": [
@@ -219,8 +188,7 @@
     ],
     "tags": [
       "database"
-    ],
-    "vendor": "ibm"
+    ]
   },
   "timescaledb": {
     "patterns": [
@@ -289,9 +257,6 @@
     "patterns": [
       "FTP",
       "220"
-    ],
-    "tags": [
-      "ftp"
     ]
   },
   "pureftpd": {
@@ -309,7 +274,7 @@
     "tags": [
       "smb"
     ],
-    "os": "linux"
+    "os": "Linux"
   },
   "modbus": {
     "patterns": [
@@ -334,9 +299,6 @@
       "(?i)telnet",
       "\\xff\\xfd",
       "\\xff\\xfb"
-    ],
-    "tags": [
-      "remote-access"
     ]
   },
   "ldap": {
@@ -407,17 +369,14 @@
       "remote-desktop",
       "rdp"
     ],
-    "os": "windows"
+    "os": "Windows"
   },
   "winrm": {
     "patterns": [
       "WinRM",
       "WS-Management"
     ],
-    "tags": [
-      "remote-access"
-    ],
-    "os": "windows"
+    "os": "Windows"
   },
   "docker": {
     "patterns": [
@@ -594,7 +553,7 @@
     "tags": [
       "server-mgmt"
     ],
-    "vendor": "dell",
+    "vendor": "Dell",
     "devicetype": "bmc"
   },
   "supermicro-ipmi": {
@@ -605,7 +564,7 @@
     "tags": [
       "server-mgmt"
     ],
-    "vendor": "supermicro",
+    "vendor": "Supermicro",
     "devicetype": "bmc"
   },
   "rpc-portmapper": {
@@ -660,7 +619,7 @@
       "(?i)MAXIFY",
       "(?i)imagePROGRAF"
     ],
-    "vendor": "canon",
+    "vendor": "Canon",
     "devicetype": "printer"
   },
   "epson-printer": {
@@ -670,7 +629,7 @@
       "(?i)EcoTank",
       "(?i)Expression"
     ],
-    "vendor": "epson",
+    "vendor": "Epson",
     "devicetype": "printer"
   },
   "brother-printer": {
@@ -680,7 +639,7 @@
       "(?i)MFC-",
       "(?i)DCP-"
     ],
-    "vendor": "brother",
+    "vendor": "Brother",
     "devicetype": "printer"
   },
   "xerox-printer": {
@@ -691,14 +650,14 @@
       "(?i)VersaLink",
       "(?i)AltaLink"
     ],
-    "vendor": "xerox",
+    "vendor": "Xerox",
     "devicetype": "printer"
   },
   "lexmark-printer": {
     "patterns": [
       "(?i)Lexmark"
     ],
-    "vendor": "lexmark",
+    "vendor": "Lexmark",
     "devicetype": "printer"
   },
   "kyocera-printer": {
@@ -724,7 +683,7 @@
       "(?i)SHARP MX-",
       "(?i)SHARP BP-"
     ],
-    "vendor": "sharp",
+    "vendor": "Sharp",
     "devicetype": "printer"
   },
   "toshiba-printer": {
@@ -732,21 +691,21 @@
       "(?i)TOSHIBA e-STUDIO",
       "(?i)e-STUDIO"
     ],
-    "vendor": "toshiba",
+    "vendor": "Toshiba",
     "devicetype": "printer"
   },
   "samsung-printer": {
     "patterns": [
       "(?i)Samsung (Xpress|ProXpress|MultiXpress)"
     ],
-    "vendor": "samsung",
+    "vendor": "Samsung",
     "devicetype": "printer"
   },
   "oki-printer": {
     "patterns": [
       "(?i)OKI (C|MC|B)\\d+"
     ],
-    "vendor": "oki",
+    "vendor": "Oki",
     "devicetype": "printer"
   },
   "pantum-printer": {
@@ -754,7 +713,7 @@
       "(?i)Pantum",
       "(?i)奔图"
     ],
-    "vendor": "pantum",
+    "vendor": "Pantum",
     "devicetype": "printer"
   },
   "zebra-printer": {
@@ -763,7 +722,7 @@
       "(?i)ZPL",
       "(?i)ZTC"
     ],
-    "vendor": "zebra",
+    "vendor": "Zebra",
     "devicetype": "printer"
   },
   "lenovo-printer": {
@@ -781,21 +740,20 @@
       "(?i)DocuCentre",
       "(?i)Apeos"
     ],
-    "vendor": "fujifilm",
+    "vendor": "Fujifilm",
     "devicetype": "printer"
   },
   "sindoh-printer": {
     "patterns": [
       "(?i)Sindoh"
     ],
-    "vendor": "sindoh",
+    "vendor": "Sindoh",
     "devicetype": "printer"
   },
   "develop-printer": {
     "patterns": [
       "(?i)Develop ineo"
     ],
-    "vendor": "develop",
     "devicetype": "printer"
   },
   "jetdirect": {

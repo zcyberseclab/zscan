@@ -1015,41 +1015,38 @@ func (sd *ServiceDetector) detectOSFromBanner(banner string) string {
 	lowerBanner := strings.ToLower(banner)
 
 	if strings.Contains(lowerBanner, "ubuntu") {
-		return "ubuntu"
+		return "Ubuntu"
 	}
 	if strings.Contains(lowerBanner, "debian") {
-		return "debian"
+		return "Debian"
 	}
 	if strings.Contains(lowerBanner, "centos") {
-		return "centos"
+		return "Centos"
 	}
 	if strings.Contains(lowerBanner, "red hat") || strings.Contains(lowerBanner, "redhat") {
-		return "redhat"
+		return "Redhat"
 	}
 	if strings.Contains(lowerBanner, "fedora") {
-		return "fedora"
-	}
-	if strings.Contains(lowerBanner, "suse") {
-		return "suse"
+		return "Fedora"
 	}
 	if strings.Contains(lowerBanner, "alpine") {
-		return "alpine"
+		return "Alpine"
 	}
 	if strings.Contains(lowerBanner, "arch linux") {
-		return "arch"
+		return "Arch"
 	}
 	if strings.Contains(lowerBanner, "kali") {
-		return "kali"
+		return "Kali"
 	}
 	if strings.Contains(lowerBanner, "raspbian") || strings.Contains(lowerBanner, "raspberry") {
-		return "raspbian"
+		return "Raspbian"
 	}
 
 	if strings.Contains(lowerBanner, "freebsd") {
-		return "freebsd"
+		return "Freebsd"
 	}
 	if strings.Contains(lowerBanner, "openbsd") {
-		return "openbsd"
+		return "Openbsd"
 	}
 	if strings.Contains(lowerBanner, "netbsd") {
 		return "netbsd"
@@ -1072,13 +1069,10 @@ func (sd *ServiceDetector) detectOSFromBanner(banner string) string {
 	}
 
 	if strings.Contains(lowerBanner, "huawei") || strings.Contains(lowerBanner, "vrp") {
-		return "huawei-vrp"
+		return "huawei"
 	}
 
-	if strings.Contains(lowerBanner, "comware") || strings.Contains(lowerBanner, "h3c") {
-		return "h3c-comware"
-	}
-
+ 
 	if strings.Contains(lowerBanner, "junos") || strings.Contains(lowerBanner, "juniper") {
 		return "juniper-junos"
 	}
@@ -1107,7 +1101,7 @@ func (sd *ServiceDetector) detectOSFromBanner(banner string) string {
 		return "maipu"
 	}
 	if strings.Contains(lowerBanner, "sangfor") || strings.Contains(lowerBanner, "深信服") {
-		return "sangfor"
+		return "Sangfor"
 	}
 	if strings.Contains(lowerBanner, "hillstone") || strings.Contains(lowerBanner, "山石") {
 		return "hillstone"
@@ -1130,10 +1124,8 @@ func (sd *ServiceDetector) detectOSFromBanner(banner string) string {
 	if strings.Contains(lowerBanner, "radware") {
 		return "radware"
 	}
-	if strings.Contains(lowerBanner, "a10") {
-		return "a10"
-	}
-	if strings.Contains(lowerBanner, "f5") || strings.Contains(lowerBanner, "big-ip") {
+ 
+	if strings.Contains(lowerBanner, "big-ip") {
 		return "f5-bigip"
 	}
 	if strings.Contains(lowerBanner, "netscaler") || strings.Contains(lowerBanner, "citrix adc") {
@@ -1141,12 +1133,12 @@ func (sd *ServiceDetector) detectOSFromBanner(banner string) string {
 	}
 
 	if strings.Contains(lowerBanner, "linux") {
-		return "linux"
+		return "Linux"
 	}
 
 	// Windows
 	if strings.Contains(lowerBanner, "windows") || strings.Contains(lowerBanner, "microsoft") {
-		return "windows"
+		return "Windows"
 	}
 
 	return ""
@@ -1159,22 +1151,22 @@ func (sd *ServiceDetector) detectOSFromHTTP(info ServiceInfo) string {
 
 		// Linux 发行版
 		if strings.Contains(lowerServer, "ubuntu") {
-			return "ubuntu"
+			return "Ubuntu"
 		}
 		if strings.Contains(lowerServer, "debian") {
-			return "debian"
+			return "Debian"
 		}
 		if strings.Contains(lowerServer, "centos") {
-			return "centos"
+			return "Centos"
 		}
 		if strings.Contains(lowerServer, "freebsd") {
-			return "freebsd"
+			return "Freebsd"
 		}
 		if strings.Contains(lowerServer, "fedora") {
-			return "fedora"
+			return "Fedora"
 		}
 		if strings.Contains(lowerServer, "red hat") {
-			return "redhat"
+			return "Redhat"
 		}
 
 		// 网络设备
@@ -1182,7 +1174,7 @@ func (sd *ServiceDetector) detectOSFromHTTP(info ServiceInfo) string {
 			return "cisco-ios"
 		}
 		if strings.Contains(lowerServer, "huawei") {
-			return "huawei-vrp"
+			return "huawei"
 		}
 		if strings.Contains(lowerServer, "fortios") || strings.Contains(lowerServer, "fortigate") {
 			return "fortinet-fortios"
@@ -1196,7 +1188,7 @@ func (sd *ServiceDetector) detectOSFromHTTP(info ServiceInfo) string {
 	if poweredBy, ok := info.Headers["X-Powered-By"]; ok {
 		lowerPowered := strings.ToLower(poweredBy)
 		if strings.Contains(lowerPowered, "asp.net") {
-			return "windows"
+			return "Windows"
 		}
 	}
 
@@ -1682,7 +1674,7 @@ func (sd *ServiceDetector) loadServicePOCs(serviceType string) (map[string]*POC,
 	pocPath := filepath.Join(sd.pocDirs, serviceType)
 
 	if _, err := os.Stat(pocPath); os.IsNotExist(err) {
-		log.Printf("POC directory does not exist: %s", pocPath)
+		//log.Printf("POC directory does not exist: %s", pocPath)
 		sd.pocCache[serviceType] = pocs
 		return pocs, nil
 	}

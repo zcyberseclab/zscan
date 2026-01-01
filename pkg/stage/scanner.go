@@ -21,10 +21,10 @@ type Scanner struct {
 	config          Config
 	ServiceDetector *ServiceDetector
 	ipInfo          *IPInfo
-	vmDetector      *VMDetector
-	enableGeo       bool
-	semaphore       chan struct{}
-	customPorts     []int
+
+	enableGeo   bool
+	semaphore   chan struct{}
+	customPorts []int
 }
 
 func NewScanner(
@@ -54,10 +54,10 @@ func NewScanner(
 		config:          config,
 		ServiceDetector: detector,
 		ipInfo:          ipInfo,
-		vmDetector:      NewVMDetector(),
-		enableGeo:       enableGeo,
-		semaphore:       make(chan struct{}, 10),
-		customPorts:     customPorts,
+
+		enableGeo:   enableGeo,
+		semaphore:   make(chan struct{}, 10),
+		customPorts: customPorts,
 	}, nil
 }
 
@@ -146,12 +146,6 @@ func (s *Scanner) scanHost(target string) *Node {
 		Ports: []*ServiceInfo{},
 	}
 
-	// 通过 TTL 检测 OS (并行执行)
-	ttlChan := make(chan *OSInfo, 1)
-	go func() {
-		ttlChan <- DetectOSByTTL(target)
-	}()
-
 	// Handle IP info if enabled
 	if s.ipInfo != nil {
 		if ipDetails, err := s.ipInfo.GetIPInfo(target); err == nil {
@@ -178,25 +172,6 @@ func (s *Scanner) scanHost(target string) *Node {
 
 	// Process results
 	s.processResults(node, resultsChan)
-
-	// 获取 TTL 检测结果
-	if ttlInfo := <-ttlChan; ttlInfo != nil {
-		if node.OS != "" {
-			// Banner 检测到了具体 OS，解析并设置 osfamily
-			osResult := ParseOS(node.OS)
-			node.OS = osResult.OS
-			node.OSFamily = osResult.OSFamily
-		} else if ttlInfo.OS != "" {
-			// TTL 检测到了具体 OS
-			node.OS = ttlInfo.OS
-			node.OSFamily = ttlInfo.OSFamily
-		} else if ttlInfo.Devicetype != "" {
-			// TTL 只能识别设备类型（如 network-device），不设置 os/osfamily
-			if node.Devicetype == "" {
-				node.Devicetype = ttlInfo.Devicetype
-			}
-		}
-	}
 
 	if len(node.Ports) > 0 {
 		return node
@@ -346,28 +321,6 @@ func (s *Scanner) processResults(node *Node, resultsChan chan ServiceInfo) {
 		node.Ports = append(node.Ports, &result)
 	}
 
-	// 合并 OS 信息，优先使用 banner 检测到的
-	var osList []string
-	var familySet = make(map[string]struct{})
-	for os := range osSet {
-		result := ParseOS(os)
-		osList = append(osList, result.OS)
-		if result.OSFamily != "" {
-			familySet[result.OSFamily] = struct{}{}
-		}
-	}
-	if len(osList) > 0 {
-		node.OS = strings.Join(osList, "/")
-		// 合并所有 family
-		var families []string
-		for f := range familySet {
-			families = append(families, f)
-		}
-		if len(families) > 0 {
-			node.OSFamily = strings.Join(families, "/")
-		}
-	}
-
 	for info := range sensitiveInfoSet {
 		node.SensitiveInfo = append(node.SensitiveInfo, info)
 	}
@@ -378,18 +331,6 @@ func (s *Scanner) processResults(node *Node, resultsChan chan ServiceInfo) {
 		node.Vulnerabilities = append(node.Vulnerabilities, vuln)
 	}
 
-	// 虚拟机检测
-	if s.vmDetector != nil {
-		var services []ServiceInfo
-		for _, p := range node.Ports {
-			if p != nil {
-				services = append(services, *p)
-			}
-		}
-		if isVM, platform, _ := s.vmDetector.DetectVM(node, services); isVM {
-			node.VMPlatform = string(platform)
-		}
-	}
 }
 
 func expandCIDR(cidr string) []string {

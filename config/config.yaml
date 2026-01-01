@@ -331,6 +331,7 @@ tcp_ports:
 
   # ============ LLM/AI ============
   - 11434 # Ollama
+  - 8000  # vLLM
   - 8080  # vLLM/TGI
   - 7860  # Gradio
   - 8501  # Streamlit
