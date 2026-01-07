@@ -9922,5 +9922,27 @@
     "headers": [
       "x-astro-"
     ]
+  },
+  "jovision-camera": {
+    "headers": [
+      "Server: JDVR",
+      "Server: JVS",
+      "Server: JVSServer",
+      "Server: CloudSEE"
+    ],
+    "body": [
+      "CloudSee",
+      "Jovision",
+      "聚视",
+      "JVS-",
+      "云视通",
+      "NETDVRS"
+    ],
+    "title": [
+      "CloudSee",
+      "Jovision"
+    ],
+    "vendor": "Jovision",
+    "devicetype": "camera"
   }
 }
