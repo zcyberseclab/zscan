@@ -330,9 +330,7 @@ func (s *Scanner) processResults(node *Node, resultsChan chan ServiceInfo) {
 	for _, vuln := range vulnerabilitiesMap {
 		node.Vulnerabilities = append(node.Vulnerabilities, vuln)
 	}
-
 }
-
 func expandCIDR(cidr string) []string {
 	if !strings.Contains(cidr, "/") {
 		return []string{cidr}

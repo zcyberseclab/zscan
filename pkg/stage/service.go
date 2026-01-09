@@ -1072,7 +1072,6 @@ func (sd *ServiceDetector) detectOSFromBanner(banner string) string {
 		return "huawei"
 	}
 
- 
 	if strings.Contains(lowerBanner, "junos") || strings.Contains(lowerBanner, "juniper") {
 		return "juniper-junos"
 	}
@@ -1124,7 +1123,7 @@ func (sd *ServiceDetector) detectOSFromBanner(banner string) string {
 	if strings.Contains(lowerBanner, "radware") {
 		return "radware"
 	}
- 
+
 	if strings.Contains(lowerBanner, "big-ip") {
 		return "f5-bigip"
 	}
