@@ -332,7 +332,6 @@ func (s *Scanner) processResults(node *Node, resultsChan chan ServiceInfo) {
 	}
 
 }
-
 func expandCIDR(cidr string) []string {
 	if !strings.Contains(cidr, "/") {
 		return []string{cidr}
