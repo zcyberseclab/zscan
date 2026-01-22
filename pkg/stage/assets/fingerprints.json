@@ -212,7 +212,6 @@
     ],
     "devicetype": "camera"
   },
- 
   "tplink": {
     "body": [
       "TP-LINK",
@@ -4735,7 +4734,6 @@
     "vendor": "Netgear",
     "devicetype": "switch"
   },
-
   "dlink-switch": {
     "body": [
       "D-Link"
@@ -8129,7 +8127,6 @@
     ],
     "vendor": "Tridium"
   },
- 
   "johnson-metasys": {
     "body": [
       "Metasys"
@@ -9951,9 +9948,16 @@
     ],
     "vendor": "亿邮"
   },
-    "phicomm": {
+  "phicomm": {
     "title": "^(FIR(150M|151M|152M|300M|302B(| A[23])|302M|303B(| A[23]))|K[123](| 路由器)|K2P(| Web Service - Welcome| 路由器))$",
     "vendor": "斐讯",
     "devicetype": "router"
+  },
+  "sangfor-af": {
+    "body": [
+      "SANGFOR AF"
+    ],
+    "vendor": "深信服",
+    "devicetype": "firewall"
   }
 }
