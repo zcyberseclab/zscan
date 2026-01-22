@@ -9959,5 +9959,14 @@
     ],
     "vendor": "深信服",
     "devicetype": "firewall"
+  },
+  "sangfor-ad-report": {
+    "body": [
+      "ad.sangfor.com | AD Report",
+      "SANGFOR-AD",
+      "深信服应用交付报表系统"
+    ],
+    "vendor": "深信服",
+    "devicetype": "loadbalancer"
   }
 }
