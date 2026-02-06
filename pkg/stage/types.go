@@ -4,21 +4,17 @@ package stage
 type Node struct {
 	IP               string         `json:"ip"`
 	Domain           string         `json:"domain,omitempty"`
-	MAC              string         `json:"mac,omitempty"`
 	Hostname         string         `json:"hostname,omitempty"`
 	Tags             []string       `json:"tags,omitempty"`
 	OS               string         `json:"os,omitempty"`
 	OSFamily         string         `json:"osfamily,omitempty"`
 	Ports            []*ServiceInfo `json:"ports,omitempty"`
-	PortsHistory     []*ServiceInfo `json:"ports_history,omitempty"`
-	PortsHistoryDesc []string       `json:"ports_history_desc,omitempty"`
 	Vendor           string         `json:"vendor,omitempty"`
 	Devicetype       string         `json:"devicetype,omitempty"`
 	Model            string         `json:"model,omitempty"`
 	SensitiveInfo    []string       `json:"sensitive_info,omitempty"`
 	Vulnerabilities  []POCResult    `json:"vulnerabilities,omitempty"`
-	VMPlatform       string         `json:"vm_platform,omitempty"` // vmware, virtualbox, hyperv, kvm, xen, etc.
-
+	 
 	// Geographic Information
 	Continent     string  `json:"continent,omitempty"`
 	ContinentCode string  `json:"continent_code,omitempty"`

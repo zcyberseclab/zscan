@@ -3,6 +3,7 @@ package stage
 import (
 	"bufio"
 	"bytes"
+	"compress/flate"
 	"compress/gzip"
 	"context"
 	"crypto/md5"
@@ -27,6 +28,7 @@ import (
 
 	"embed"
 
+	"github.com/andybalholm/brotli"
 	lua "github.com/yuin/gopher-lua"
 	"gopkg.in/yaml.v3"
 )
@@ -337,7 +339,7 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 
 	var bodyReader io.Reader
 
-	// Check for gzip encoding
+	// Check for content encoding and decompress if needed
 	switch resp.Header.Get("Content-Encoding") {
 	case "gzip":
 		gzReader, err := gzip.NewReader(resp.Body)
@@ -347,6 +349,10 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 		}
 		defer gzReader.Close()
 		bodyReader = gzReader
+	case "br":
+		bodyReader = brotli.NewReader(resp.Body)
+	case "deflate":
+		bodyReader = flate.NewReader(resp.Body)
 	default:
 		bodyReader = resp.Body
 	}
