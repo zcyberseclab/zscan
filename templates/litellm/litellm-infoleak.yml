@@ -1,0 +1,26 @@
+cve-id: litellm-infoleak
+rules:
+- method: GET
+  path: /v1/models
+  expression: 'response.status == 200 && response.content_type.contains("json") && response.body.bcontains(b"id")'
+- method: GET
+  path: /model/info
+  expression: 'response.status == 200 && response.body.bcontains(b"litellm_params")'
+- method: GET
+  path: /key/info
+  expression: 'response.status == 200 && response.body.bcontains(b"key")'
+- method: GET
+  path: /user/info
+  expression: 'response.status == 200 && response.body.bcontains(b"user")'
+- method: GET
+  path: /team/info
+  expression: 'response.status == 200 && response.body.bcontains(b"team")'
+- method: GET
+  path: /global/spend/logs
+  expression: 'response.status == 200'
+- method: GET
+  path: /spend/logs
+  expression: 'response.status == 200'
+severity: medium
+type: infoleak
+

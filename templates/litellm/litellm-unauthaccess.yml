@@ -1,0 +1,20 @@
+cve-id: litellm-unauthaccess
+rules:
+- method: GET
+  path: /v1/models
+  expression: 'response.status == 200 && response.body.bcontains(b"data")'
+- method: GET
+  path: /models
+  expression: 'response.status == 200 && response.body.bcontains(b"data")'
+- method: GET
+  path: /model/info
+  expression: 'response.status == 200 && response.body.bcontains(b"model")'
+- method: GET
+  path: /health/liveliness
+  expression: 'response.status == 200'
+- method: GET
+  path: /health/readiness
+  expression: 'response.status == 200'
+severity: high
+type: unauthaccess
+

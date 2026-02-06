@@ -5910,6 +5910,21 @@
       "/v1/models"
     ]
   },
+  "litellm": {
+    "headers": [
+      "server: litellm"
+    ],
+    "body": [
+      "LiteLLM",
+      "litellm",
+      "/chat/completions",
+      "/model/info",
+      "/health/liveliness",
+      "/health/readiness",
+      "\"litellm_params\"",
+      "LiteLLM Proxy"
+    ]
+  },
   "llama-cpp": {
     "body": [
       "llama.cpp",
@@ -6209,21 +6224,6 @@
   "chat-api": {
     "body": [
       "Chat API"
-    ]
-  },
-  "litellm": {
-    "body": [
-      "LiteLLM"
-    ]
-  },
-  "openrouter": {
-    "body": [
-      "OpenRouter"
-    ]
-  },
-  "azure-openai": {
-    "body": [
-      "Azure OpenAI"
     ]
   },
   "autogpt": {
@@ -9966,7 +9966,6 @@
       "SANGFOR-AD",
       "深信服应用交付报表系统"
     ],
-    "vendor": "深信服",
-    "devicetype": "loadbalancer"
+    "vendor": "深信服"
   }
 }

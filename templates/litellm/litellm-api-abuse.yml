@@ -1,0 +1,38 @@
+cve-id: litellm-api-abuse
+rules:
+- method: POST
+  path: /v1/chat/completions
+  headers:
+    Content-Type: application/json
+  body: |
+    {
+      "model": "gpt-3.5-turbo",
+      "messages": [{"role": "user", "content": "hello"}],
+      "max_tokens": 1
+    }
+  expression: 'response.status == 200 && response.body.bcontains(b"choices")'
+- method: POST
+  path: /chat/completions
+  headers:
+    Content-Type: application/json
+  body: |
+    {
+      "model": "gpt-3.5-turbo",
+      "messages": [{"role": "user", "content": "hello"}],
+      "max_tokens": 1
+    }
+  expression: 'response.status == 200 && response.body.bcontains(b"choices")'
+- method: POST
+  path: /v1/completions
+  headers:
+    Content-Type: application/json
+  body: |
+    {
+      "model": "gpt-3.5-turbo",
+      "prompt": "hello",
+      "max_tokens": 1
+    }
+  expression: 'response.status == 200 && response.body.bcontains(b"choices")'
+severity: critical
+type: unauthaccess
+

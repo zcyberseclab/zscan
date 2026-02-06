@@ -16,10 +16,6 @@ A fast, customizable service detection tool powered by a flexible fingerprint sy
 ## ✨Features
 
 - **Active Scanning Engine**: High-performance concurrent port scanning and service detection
-- **Passive Network Discovery**:
-  - Real-time packet capture using gopacket/pcap
-  - Protocol analysis (ARP, TCP, HTTP, DNS, mDNS, NetBIOS)
-  - Automatic asset discovery without active probing
 - **Intelligent Detection**:
   - MAC vendor identification (200+ OUI mappings)
   - Virtual machine detection (VMware, VirtualBox, Hyper-V, KVM, etc.)
