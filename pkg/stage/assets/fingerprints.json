@@ -9949,7 +9949,12 @@
     "vendor": "亿邮"
   },
   "phicomm": {
-    "title": "^(FIR(150M|151M|152M|300M|302B(| A[23])|302M|303B(| A[23]))|K[123](| 路由器)|K2P(| Web Service - Welcome| 路由器))$",
+    "body": [
+      "(?i)斐讯",
+      "(?i)phicomm",
+      "(?i)\\bFIR(150M|151M|152M|300M|302B( A[23])?|302M|303B( A[23])?)\\b",
+      "(?i)\\bK(1|2P?|3)\\b"
+    ],
     "vendor": "斐讯",
     "devicetype": "router"
   },
