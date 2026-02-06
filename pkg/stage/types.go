@@ -12,9 +12,9 @@ type Node struct {
 	Vendor           string         `json:"vendor,omitempty"`
 	Devicetype       string         `json:"devicetype,omitempty"`
 	Model            string         `json:"model,omitempty"`
-	SensitiveInfo    []string       `json:"sensitive_info,omitempty"`
-	Vulnerabilities  []POCResult    `json:"vulnerabilities,omitempty"`
-	 
+	SensitiveInfo   []string    `json:"sensitive_info,omitempty"`
+	Vulnerabilities []POCResult `json:"vulnerabilities,omitempty"`
+
 	// Geographic Information
 	Continent     string  `json:"continent,omitempty"`
 	ContinentCode string  `json:"continent_code,omitempty"`
