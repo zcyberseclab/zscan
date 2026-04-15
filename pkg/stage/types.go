@@ -2,18 +2,18 @@ package stage
 
 // Node represents a scanned host with all its information
 type Node struct {
-	IP               string         `json:"ip"`
-	Domain           string         `json:"domain,omitempty"`
-	Hostname         string         `json:"hostname,omitempty"`
-	Tags             []string       `json:"tags,omitempty"`
-	OS               string         `json:"os,omitempty"`
-	OSFamily         string         `json:"osfamily,omitempty"`
-	Ports            []*ServiceInfo `json:"ports,omitempty"`
-	Vendor           string         `json:"vendor,omitempty"`
-	Devicetype       string         `json:"devicetype,omitempty"`
-	Model            string         `json:"model,omitempty"`
-	SensitiveInfo   []string    `json:"sensitive_info,omitempty"`
-	Vulnerabilities []POCResult `json:"vulnerabilities,omitempty"`
+	IP              string         `json:"ip"`
+	Domain          string         `json:"domain,omitempty"`
+	Hostname        string         `json:"hostname,omitempty"`
+	Tags            []string       `json:"tags,omitempty"`
+	OS              string         `json:"os,omitempty"`
+	OSFamily        string         `json:"osfamily,omitempty"`
+	Ports           []*ServiceInfo `json:"ports,omitempty"`
+	Vendor          string         `json:"vendor,omitempty"`
+	Devicetype      string         `json:"devicetype,omitempty"`
+	Model           string         `json:"model,omitempty"`
+	SensitiveInfo   []string       `json:"sensitive_info,omitempty"`
+	Vulnerabilities []POCResult    `json:"vulnerabilities,omitempty"`
 
 	// Geographic Information
 	Continent     string  `json:"continent,omitempty"`
