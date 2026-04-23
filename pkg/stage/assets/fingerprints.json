@@ -374,6 +374,9 @@
   "weblogic": {
     "headers": [
       "Server: WebLogic Server"
+    ],
+    "url": [
+      "/console/login/LoginForm.jsp"
     ]
   },
   "nss": {
