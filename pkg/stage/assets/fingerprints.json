@@ -7352,6 +7352,16 @@
       "Spring Cloud Config"
     ]
   },
+  "spring-data-rest": {
+    "headers": [
+      "Content-Type: application/hal\\+json"
+    ],
+    "body": [
+      "\"customers\"",
+      "\"profile\"",
+      "\"_links\""
+    ]
+  },
   "eureka": {
     "body": [
       "Eureka"
