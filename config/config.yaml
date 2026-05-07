@@ -80,7 +80,6 @@ tcp_ports:
   - 1194  # OpenVPN
   - 1701  # L2TP
   - 1723  # PPTP
-  - 1194  # OpenVPN
   - 3389  # RDP
   - 4899  # Radmin
   - 5900  # VNC
@@ -176,7 +175,6 @@ tcp_ports:
   # ============ 虚拟化 ============
   - 902   # VMware vCenter
   - 903   # VMware Console
-  - 443   # vCenter Web
   - 2555  # Proxmox VE
   - 5480  # VMware Appliance
   - 5988  # CIM HTTP
@@ -218,9 +216,7 @@ tcp_ports:
 
   # ============ CI/CD ============
   - 9000  # SonarQube/Jenkins
-  - 8080  # Jenkins
   - 8111  # TeamCity
-  - 50000 # Jenkins Agent
 
   # ============ 代码仓库/制品库 ============
   - 7990  # Bitbucket
@@ -268,7 +264,6 @@ tcp_ports:
   - 9010  # HTTP Alt
   - 9020  # HTTP Alt
   - 9050  # Tor SOCKS
-  - 9080  # HTTP Alt
   - 9088  # HTTP Alt
   - 9095  # HTTP Alt
   - 9443  # HTTPS Alt
@@ -298,7 +293,6 @@ tcp_ports:
   - 4911  # Niagara Fox SSL
   - 9600  # OMRON FINS
   - 18245 # GE SRTP
-  - 20000 # DNP3
   - 34962 # PROFINET
   - 34963 # PROFINET
   - 34964 # PROFINET
@@ -312,29 +306,20 @@ tcp_ports:
   - 8554  # RTSP Alt
   - 37777 # Dahua
   - 37778 # Dahua Data
-  - 8000  # Hikvision
 
   # ============ 堡垒机/安全设备 ============
   - 4433  # 深信服SSL VPN
-  - 8022  # JumpServer SSH
-  - 8080  # Web Console
-  - 9443  # 深信服
-  - 10443 # 安全设备
 
   # ============ 服务器管理 ============
   - 623   # IPMI/BMC
   - 664   # Secure IPMI
   - 3052  # APC PowerChute
-  - 5988  # HP iLO
   - 17988 # Dell iDRAC
   - 17990 # Dell iDRAC
 
   # ============ LLM/AI ============
   - 11434 # Ollama
-  - 8000  # vLLM
-  - 8080  # vLLM/TGI
   - 7860  # Gradio
-  - 8501  # Streamlit
   - 3001  # ChatGPT-Next-Web
   - 3010  # Lobe Chat
 
