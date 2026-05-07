@@ -38,6 +38,9 @@ func NewScanner(
 	if len(customPorts) > 0 {
 		config.TCPPorts = customPorts
 	}
+	// De-duplicate configured ports while preserving order to avoid repeated scans.
+	config.TCPPorts = dedupIntSlice(config.TCPPorts)
+	config.UDPPorts = dedupIntSlice(config.UDPPorts)
 
 	detector := NewServiceDetector(templatesDir)
 
@@ -59,6 +62,22 @@ func NewScanner(
 		semaphore:   make(chan struct{}, 10),
 		customPorts: customPorts,
 	}, nil
+}
+
+func dedupIntSlice(in []int) []int {
+	if len(in) <= 1 {
+		return in
+	}
+	seen := make(map[int]struct{}, len(in))
+	out := make([]int, 0, len(in))
+	for _, v := range in {
+		if _, ok := seen[v]; ok {
+			continue
+		}
+		seen[v] = struct{}{}
+		out = append(out, v)
+	}
+	return out
 }
 
 func (s *Scanner) Close() {
