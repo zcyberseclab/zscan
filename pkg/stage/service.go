@@ -17,6 +17,7 @@ import (
 	"math"
 	"net"
 	"net/http"
+	neturl "net/url"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -234,7 +235,9 @@ func (sd *ServiceDetector) DetectService(ip string, port int, protocol string) [
 	case "tcp":
 		if httpResults := sd.detectHTTP(ip, port); len(httpResults) > 0 {
 			for i := range httpResults {
-				httpResults[i].Protocol = "http"
+				if strings.TrimSpace(httpResults[i].Protocol) == "" {
+					httpResults[i].Protocol = "http"
+				}
 				httpResults[i].Port = port
 				// Only set OS if not empty
 				if os := sd.detectOS(httpResults[i]); os != "" {
@@ -275,34 +278,54 @@ func (sd *ServiceDetector) detectHTTP(ip string, port int) []ServiceInfo {
 		return []ServiceInfo{}
 	}
 
-	isIP := net.ParseIP(ip) != nil
-	var url string
-	var results []ServiceInfo
+	httpURL := fmt.Sprintf("http://%s:%d", ip, port)
+	httpsURL := fmt.Sprintf("https://%s:%d", ip, port)
 
-	if isIP {
-		if strings.Contains(fmt.Sprint(port), "443") {
-			url = fmt.Sprintf("https://%s:%d", ip, port)
-		} else {
-			url = fmt.Sprintf("http://%s:%d", ip, port)
-		}
-	} else {
-		if strings.Contains(fmt.Sprint(port), "443") {
-			url = fmt.Sprintf("https://%s", ip)
-		} else {
-			url = fmt.Sprintf("http://%s", ip)
-		}
+	httpProbe := sd.checkURL(httpURL, port)
+	httpsProbe := sd.checkURL(httpsURL, port)
+	httpInfo := probeInfo(httpProbe)
+	httpsInfo := probeInfo(httpsProbe)
+
+	// If HTTP says "HTTPS required", classify as HTTPS.
+	if httpInfo != nil && isHTTPSRequiredResponse(httpInfo) {
+		httpInfo.Protocol = "https"
+		return []ServiceInfo{*httpInfo}
 	}
 
-	if info := sd.checkURL(url, port); info != nil && len(info.Banner) > 0 {
-		results = append(results, *info)
+	// A successful HTTPS probe is stronger evidence than a generic HTTP page.
+	if httpsInfo != nil {
+		httpsInfo.Protocol = "https"
+		return []ServiceInfo{*httpsInfo}
 	}
 
-	return results
+	if httpInfo != nil {
+		httpInfo.Protocol = "http"
+		return []ServiceInfo{*httpInfo}
+	}
+
+	return []ServiceInfo{}
 }
 
-func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
+type httpProbeResult struct {
+	info       *ServiceInfo
+	statusCode int
+}
+
+func probeInfo(res *httpProbeResult) *ServiceInfo {
+	if res == nil {
+		return nil
+	}
+	return res.info
+}
+
+func (sd *ServiceDetector) checkURL(url string, port int) *httpProbeResult {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
+
+	originScheme := ""
+	if parsed, pErr := neturl.Parse(url); pErr == nil {
+		originScheme = strings.ToLower(strings.TrimSpace(parsed.Scheme))
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -324,18 +347,6 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 		return nil
 	}
 	defer resp.Body.Close()
-
-	// Handle HTTP 400 by trying HTTPS
-	if resp.StatusCode == 400 {
-		resp.Body.Close()
-		httpsURL := strings.Replace(url, "http://", "https://", 1)
-		req.URL, _ = req.URL.Parse(httpsURL)
-		resp, err = sd.client.Do(req)
-		if err != nil {
-			return nil
-		}
-		defer resp.Body.Close()
-	}
 
 	var bodyReader io.Reader
 
@@ -386,11 +397,11 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 		if redirectURL != "" {
 			// Handle both absolute and relative URLs
 			if !strings.HasPrefix(strings.ToLower(redirectURL), "http") {
-				baseURL := url
-				if !strings.HasSuffix(baseURL, "/") {
-					baseURL += "/"
+				base, baseErr := req.URL.Parse(req.URL.String())
+				rel, relErr := req.URL.Parse(redirectURL)
+				if baseErr == nil && relErr == nil {
+					redirectURL = base.ResolveReference(rel).String()
 				}
-				redirectURL = baseURL + strings.TrimPrefix(redirectURL, "/")
 			}
 
 			// Create new request for redirect
@@ -421,7 +432,7 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 	detCtx := &detectionContext{
 		headers: resp.Header,
 		body:    string(body),
-		baseURL: url,
+		baseURL: resp.Request.URL.String(),
 	}
 
 	info := sd.matchFingerprint(detCtx)
@@ -435,6 +446,16 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 		info.Banner = string(body)
 		info.Headers = convertHeaders(resp.Header)
 		info.Port = port
+	}
+
+	// Protocol should represent how this port probe was initiated (http/https),
+	// not the final redirected page scheme.
+	if originScheme != "" {
+		info.Protocol = originScheme
+	} else if resp != nil && resp.Request != nil && resp.Request.URL != nil {
+		if scheme := strings.ToLower(strings.TrimSpace(resp.Request.URL.Scheme)); scheme != "" {
+			info.Protocol = scheme
+		}
 	}
 
 	if strings.Contains(resp.Header.Get("Content-Type"), "text/html") {
@@ -519,7 +540,29 @@ func (sd *ServiceDetector) checkURL(url string, port int) *ServiceInfo {
 		}
 	}
 
-	return info
+	return &httpProbeResult{
+		info:       info,
+		statusCode: resp.StatusCode,
+	}
+}
+
+func isHTTPSRequiredResponse(info *ServiceInfo) bool {
+	if info == nil {
+		return false
+	}
+	text := strings.ToLower(info.Title + "\n" + info.Banner)
+	if info.Headers != nil {
+		if ct, ok := info.Headers["Content-Type"]; ok {
+			text += "\n" + strings.ToLower(ct)
+		}
+		if server, ok := info.Headers["Server"]; ok {
+			text += "\n" + strings.ToLower(server)
+		}
+	}
+	return strings.Contains(text, "plain http request was sent to https port") ||
+		strings.Contains(text, "https port") ||
+		strings.Contains(text, "use https") ||
+		strings.Contains(text, "https required")
 }
 
 type detectionContext struct {
