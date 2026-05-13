@@ -34,3 +34,8 @@ https://blodgettview.org
 https://dev.pixiii.de
 https://souzoku-chizai.or.jp
 https://www.fwv-baerenfels.de
+
+## CVE-2025-60188
+https://base.webseite-vorstellung.de
+https://hydraulik.werk-gruppe.com
+https://newstella.apdemo.it
