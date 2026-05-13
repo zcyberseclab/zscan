@@ -1,2 +1,2 @@
-# raisecom-router-vul-ips
-http://111.85.248.138
+﻿# raisecom-router-vul-ips
+ENCv1:ZjPbeuxJytBqLir9FpyK4A==:Gc862XuOtmq2oSdVr56rgg==:cPu1XXSp8NSvadU0mkeKWvd0mj8hLuLCD+mxkeUDdXs=

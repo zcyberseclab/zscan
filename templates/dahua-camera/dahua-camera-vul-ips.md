@@ -48,8 +48,7 @@
 5. 定期审计设备访问日志
 
 ## 参考链接
-- https://nvd.nist.gov/vuln/detail/CVE-2021-33044
-- https://nvd.nist.gov/vuln/detail/CVE-2021-33045
-- https://www.cisa.gov/known-exploited-vulnerabilities-catalog
-- https://github.com/bp2008/DahuaLoginBypass
-
+- ENCv1:Edz9MlwClTtA6ajicoOprw==:BA3pfk4DR8V853aHIeod3w==:XWDvhQo/YHZHTNNY/sONhNTvNxPFDmZPkLI+yguFhUXBsvAqtqmyOltYEB821MgP
+- ENCv1:1SWRZ9OA/3GbDSfgcrY2gw==:aX8Oqlpfln0MmCflNRageQ==:ClYHVrincb/yb5AzwcEb9ePujvYTVmGK105wSoR21dt/BAybFQcX+awhg1Yf6jFB
+- ENCv1:Kz4B2sRPGhloCE2N4Z05bA==:NAQpLGejNmTpRZbS1pmREQ==:VFG4bERh5jej3RJAGAido5ps65fRkzVpH1ErsFSdKXuePyQ46GoTpXYO8OqhehZ/RVZ3ZmfkAz1rc/rbIukb8A==
+- ENCv1:FoBAgvsc5U0Yqs/+nwmOGw==:0dXyXZVTW4im68pISFHkVQ==:EI9zDv1H0P07Tzj0FujaUmJqOX7I7w/K59D4VY3G9XfrsUBHGjH49U3yFHWyplxd

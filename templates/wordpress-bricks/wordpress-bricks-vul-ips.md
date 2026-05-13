@@ -45,8 +45,8 @@ curl -k -X POST https://target.com/wp-json/bricks/v1/render_element \
 ```
 
 ## 参考链接
-- https://nvd.nist.gov/vuln/detail/CVE-2024-25600
-- https://snicco.io/vulnerability-disclosure/bricks/unauthenticated-rce-in-bricks-1-9-6
-- https://github.com/Chocapikk/CVE-2024-25600
-- https://github.com/Christbowel/CVE-2024-25600_Nuclei-Template
+- ENCv1:htl6Oyo4CazlHqJV3JD1pA==:8VmRHB/D+7b/YmZVfFjrdw==:f27qL0cMyMNvaXYaP5kREO/vfc1ZE+u0ZbqwW9gq1t5Ra+mLiUJn6xEgtr/X+qfl
+- ENCv1:pCJNSckmCkfg2eGDxNw7BA==:/bBMBs4HdqI6dDBZ7tsxnA==:qyt29FmwiQjjeAVDHCWqsK1LdcWiXHEEZ0Uyx+HLDcJnpMlaWuf98C/CD1PNBHs++EfCO5T/R8vBSpbyXHcmN00cU8pVnjXbiiVuaqQ3MtP/FVbIXlxwb5RdDWiPU2GY
+- ENCv1:yhG0eGqNzAIWtc5LO4oVbg==:JjdQjyJAgfZM0nQqX9jrZA==:WmK6NnWaSisdkLljUc4okrY5ae+IjZ8wnO8w39Lz99l5+B55+pSPdg0ywLewsODN
+- ENCv1:Mp62qVePsqP4bONCPIreYw==:cWYSQb3F8knFHcFl51Y74w==:gdsmQlHByr0TwIm1U2iHEmhARXx/HPLjlmGHDjboUhHHTo7TZOFuy5MWJQ349Ny9U8MpIZPGV2oooKwaddcT0w==
 

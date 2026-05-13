@@ -1,11 +1,11 @@
-# dahuaipms (dahua-ipms-fastjson)
-http://222.244.147.215:888
-http://119.39.69.134:888
-http://47.98.203.68
-http://8.138.22.191
-http://ab110.net
-http://ab110.egesi.com
-http://ceshi.essj.cn
-http://essencystone.com
-http://jimielectronic.com
-http://m.qdbanma.cn
+﻿# dahuaipms (dahua-ipms-fastjson)
+ENCv1:ZFEjX2Mnc5xpMcAMhv4cnQ==:eHTdyBzB1zWgHGNGLPHHJg==:CefbMpzJNRnwiKICXe15TZJTsnBZqvSaHf1YN91VE5E=
+ENCv1:tMqeiQhhqXKjZeGpehPASA==:3BLfjQvqgUl/alEzrOn8sA==:QLcXBd6SMa8OXSq39xqGhJVzXhvIrBMn6pZHbXW5z5w=
+ENCv1:S2feNrjxs5PMIXt4mcqNyQ==:I5xRjPbBgwrclh7qG+DaCw==:sFLE2Ez0k8y/TXj0VHHL7dOTR2NMkqFHlBEXQCmLyrA=
+ENCv1:q7hGfQ6JbSSco6WRAB26tg==:9jbM7HmavcBOCUjWINTEBA==:yVD8lX7aW1O8ImeozTad68LnQs4fcPFd0dysASf4iNw=
+ENCv1:ddWz/2G7Z89RxuxYX7omGA==:9BPnXmUnzWAUK83pKwa4RQ==:kILOT087ECXgBNVMT4fqoGgGOZcoz44nhA9IlVHJfhc=
+ENCv1:pIusZuZIF3it6R6e/6VR0Q==:vX8Jw4OiwDAmuZF/Kk2PlA==:+vWf7cz0jfEfr/PiGA7WikQIHZexPSVoGev7ktzdrRI=
+ENCv1:uayd2wdXM1xwbtiPJ96Ysw==:kDWHGmIe0Giw97876juJ/Q==:4dgHNgz2qvP6NQRMU7cYglQt4Znrru0xVBFzDnB+XUE=
+ENCv1:M6sta8KgOYeC60FFult5BA==:ofSz0Zwr0BHAW4kicoDLVQ==:WJbnsZTjg4bioM1cxcPP2rgvXtStM50NLlZQL9D0ZbE=
+ENCv1:QLrM8aql9qc8IjmWsmxFeg==:UrCbYt6X5Eub83bWG9o84Q==:PeybbfuP3DrlqtF3SakIE5zmw9dgLVnbmzepfnaj10M=
+ENCv1:omZDq5ULWCWtsfjkT8fTHQ==:csvzC4ZhGJDoAMIMXZe1cw==:MUQX9iY1uXj2rOFf4Kf8R3RnayYpGGySLtV7vml4E/o=

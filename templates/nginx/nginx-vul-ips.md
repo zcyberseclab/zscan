@@ -1,68 +1,69 @@
-# nginx-vul-ips.md
-http://65.0.69.161:5985
+﻿# nginx-vul-ips.md
+ENCv1:xSTGc5asggmGrgtHT3t4Ng==:H5FmD/wgeHnsc5EXvImlAQ==:+n4bj3DvttChzsEly6EwVd/29F8UeCXcfSMATVnjfjg=
 
 ## CVE-2025-10210
-https://47.116.19.171
-http://47.116.19.171:80
-https://203.83.228.158
-https://8.145.43.111
-http://8.145.43.111:8181
-https://shxgtgs.com
-https://www.shxgtgs.com
+ENCv1:gjeM7EhMd15umXz2LamHsw==:QBvJw0mJGmpi1f3RDfcg6Q==:Fn8jKaGsI8vI3uMrJhfOQXSJKLe7WpV9loQmud/PQ+I=
+ENCv1:1lPYZ/TmS5DA0luScl6EQg==:9YllLmPAYGuuAGS4GyBPgA==:jj0Zl5xragMJ1mb9yzc8y0FSfLORl7SZw5s7k3M+5iA=
+ENCv1:RMX8uSIabs9+x+Da8pCE+g==:ZzLt/xw7b/OZf3hbkWB+cQ==:guGdBq7nTRg2NUT+saHjv8hr4cfKJvJAX4XgZ13pLxU=
+ENCv1:qI0aI37239A/d3Y1fJgggw==:OtMpc0UqlZzjIauh4bKUQQ==:6aJ4vmQxgvYKTfnnNO46dDm3lghXzbG1clCbjDrsydA=
+ENCv1:6qQkgacGCGhwn7l9E11WYQ==:09JWUArX3UmgJ4X+JfKXfA==:93uAH51doLfJ1++E4x8eIP7KsHzUHpB/oDsoV4pvtqo=
+ENCv1:oK8/qSuB297Wx9tIy0YKOw==:xOo86RHII0v7RYatqIi+fQ==:OUVVQ9UXrLVBhZGNDCaYBkXzvujuNevSozW9ByfjBxk=
+ENCv1:fuy6lq6blWzedS1BRfkxcw==:Zii4QJYos63mM5S18PKryA==:qom8s6zQR6pUWJbBa61xwdQgt2OJ5ivGwl1WK4Guwfk=
 
 ## CVE-2025-11580
-http://112.124.31.204:80
-http://112.74.54.98:80
-http://121.43.49.55:80
-https://121.43.49.55
-http://139.224.196.153:80
-http://139.224.196.153:7700
-http://47.103.51.104:80
-http://47.104.97.60:80
-http://47.117.34.237:80
-http://47.117.34.237:7700
+ENCv1:HkKE/o2ONr1HFwl9wWCakg==:H+6VMeZsXdAviBTIiga+9g==:UDYqEs6EaYzDT01GIh1nE1wwhvEFgTKF3JZLJtEiRkA=
+ENCv1:6JbESdSfybp0ROBPAVFOxQ==:VWwlMluJR4OZ4WLTCVEOSw==:v+NZP8CozOM8hsoExCuBlTfO4pXk5Mhw7I+wiaf6v8M=
+ENCv1:sc8GksQjgevwxEFymTX9/g==:ioKGe71E7blyyvN5tIAgAA==:xBQbLpAlt5W25U1b2fmOVRXB9QyCn8PgL747hOUBvnA=
+ENCv1:uswAO/Kwr2JJ5jyfH6bQdg==:vrTpJ4MIJTLABUYczbH7gg==:d/XTAyhczNoLWCV5ZzM4dOFAdKRoX0JzAtfhedGO9rM=
+ENCv1:SkBk/2onhr7DU2dn2fvaLw==:Mz1G1PqbDCzYWT4zpT68nw==:kQYyhrM4uYqYnzJT5Lso5x6QSoYMyT94VLrpwTbeHCs=
+ENCv1:cV1K3kpQoesdYNWjsOkyhg==:qBv6tjZ08IikLVn9Hr+Miw==:xNJGdRvXfaxAl2ulfH/gKOgspoKMz0awMqQovAUdvyY=
+ENCv1:AhUiyAs9x8vfD7B5cATonw==:9mMgAEJQo7pVnYnTesv/FQ==:wbZWLS4abkE16ZjDBx7IunlDCLnkD8UEaHX5Hn9TUR0=
+ENCv1:fDwivf/Ndu828qy54F0XoA==:/1WLUlOJJD9V29gfgYHf/g==:J4whXHBAAp9F/e7DkbhTfe1tweK/0LaV2mAeA7cW/ZI=
+ENCv1:jLZS043d0/YY1LfbHwj9pA==:IyoWfvu9TA1Gi0ILIs75YQ==:1Ltwmb3wxCv95s2c1fcLDNlwwoGgcYg4RM+xpZsKD4g=
+ENCv1:Ib7YYzq2ugQE0leMmUftkQ==:ONSkizURKjm/ZXEHoNa/9g==:LZYBjDfcKqyd37uOhU4xRqBEjugII0iZS5HLe4dMisk=
 
 ## CVE-2025-1743
-http://47.108.167.74:80
-http://58.35.255.141:1318
-https://112.23.27.50:4401
-http://112.23.27.50:4400
-http://113.120.171.76:8094
+ENCv1:7y79OcV0E0zGa0O9RaqWmQ==:KVgVGGcNfMxwH35xSYLZ0g==:6zLOKW26FcpPBCP4Ic64h3PleZdPDKiKwYtzp1Sa21s=
+ENCv1:0ssqRQOqU6P5xW/8I0pNhg==:0Q5wrHzi/KBLrn4tt1AL4A==:Axk3YCTGcXggnuEeR03lDw/gC4PRTcLLJf/Wx9s+G+I=
+ENCv1:liBKkGWHIy4o1Iq44ZjpJA==:BZb9SQ9TOmLY66xhMz1ivg==:cm2oAi17K3auWmhYG2BDe5hAgM1PSYxUQ86Z+pVGIH4=
+ENCv1:FWEVMrpOZtPG2YGLlu33aA==:egmB8vP0YK4IXUlGjc92Vw==:+BQESilL9vdMOo/gMxy5y8i01AIZmVcw8D4BqrJNbxA=
+ENCv1:lNCjCQVD7HiGoe3dBhZRYw==:MskYP9hx3/cx3AsHHNIvSQ==:y6fPivqEFLl7hmhmv4bF1oZOd4b2e9FtTR68erO0yVQ=
 
 ## CVE-2025-22952
-https://38.246.253.123
-https://38.76.204.143
-https://47.100.119.87
-https://47.102.215.58
-https://54.37.158.195
-https://74.48.100.233
-https://8.141.14.98
-https://memos.inmo.dev
-https://memos.tylab.top
-https://stau.ssrr.today
+ENCv1:TYo6R/Fi2THeTpFRwyB8aA==:6T7vLjxhdnPDh3pPiHGZxw==:fi0ERuNJHnx8zO8+H3MCnfhe/EA7dDTuf2Pc5S1dISM=
+ENCv1:QB8L3UHgPUb8cykHLJLC4A==:GEDo7IHdO8+JxH8+OAwG7w==:V5E6FSFAOuHU7TKbPcM2hlyep6IbkSBUzhIoyFJkNSs=
+ENCv1:JtslUNWrKZCe4dnbyTBPNg==:aFLdCpzF/4WNYpeofBz5vg==:3X9Jij1/4lgWrYQxqOPBAnQhBJtMG0zLn1XIxsLNCHc=
+ENCv1:NiBOJfHtstQcLczyK1nuOw==:fr1viB2KEzLSiZoNRC0Xyw==:CCOqlA94gWaNQDobXyui8A/ArCHC+ql19YCOJHYHMoY=
+ENCv1:771G4YEXaDJQX+DbrlaS5w==:A8OAu8OK0v1JX6MUzDtlng==:SyyziTtXejrV1EiEQ6ufoxGOKhPA68pesuMUDYLvH8A=
+ENCv1:yrSrI8071GRM67kShjjg0g==:TUcY6Zw87YS3RPLEmCxehg==:YrSl+TT86cHSBI7Y74PwoupwLzZE3I+pm8LRMNR6yw4=
+ENCv1:3+QVz6NLkIQk/2+cCNxP6Q==:+b8OSq7FJOzrl565BKvjsQ==:2g1V3EyJBHQ5+vLXgYBwIb1Ncq1ArXmF0qZopZ3bjiM=
+ENCv1:E2Kug+ZKxikuVXtKDw260g==:Yo/sl/Yr4IPaS7apS8JNxg==:WQbyVNHnu6BC3UWeY/kofxBHj3PTGGziJ2MM7rM1jlQ=
+ENCv1:RqakTApt/RcFR8HZTzySCg==:Vz7weJd4fcX0kP0gW5QT4A==:g9/6g7vcbk1orHoMplfoRyxXdjnfAxE3oMQW0hDuhRE=
+ENCv1:e2rWFSK5YUK9NFNJQe+0PQ==:chC8kJne51qHLoYcUrTonQ==:BkLIMb74ifYrKzTvBmfFwrUdeAF7XzfdwbeU/GL7950=
 
 ## CVE-2025-24893
-https://wiki.perevody.com
-https://www.pgdenik.cz
+ENCv1:PUcY5+3MNYteVNE/0znUEg==:UUpMFtycdZuIE2BITnv1GQ==:87wdiSa3fGjO7DP9PCVV6M8Nfs6gbIcMP3iytnwoXzk=
+ENCv1:ENJLIdnlqcEHA6hiGPLZZQ==:59Qt0V9ULuOTOr5mmX41ZA==:XFgZPrHbQ7ksuSsnoTpUOlNWW+1N20pFHrwvy3ebaBU=
 
 ## CVE-2025-25231
-https://43.175.211.246
+ENCv1:330cyDE8U6EO0A6b1aAa0A==:9DqSV4GBzxn2O8R3BCfaLg==:kAUCWv8tc2BE9kNSSudkRvurZev/W2MHIMzvrDWjeLc=
 
 ## CVE-2025-49002
-https://124.126.77.179
-https://bi.demo-caii.com
+ENCv1:2+DJzoBdiCTiiwpLtlZE2A==:MCLu0O7MX//rIZWPf04N2w==:3C95jjCFVu/OCeyGllymmkQQAt9HqsNhZrRNB1yz3qs=
+ENCv1:qnuSAHknn5hiKAorkIBB8A==:h4YT8VKDc+4U0uj/CHZY1Q==:hy4kC5CoERys/lXLps+8z3wDr0TCnKb5g9PA2USAY2E=
 
 ## CVE-2026-27645
-https://85.201.50.75
+ENCv1:Ze8Lpg5me/B3OWWrKA20Hg==:vnxEkBNmOMMI82o7tPtjRA==:hTu+BBlq0sNiBm3XEuj2Na2eMyJuwymDDQz/NkAdt8A=
 
 ## CVE-2025-27506
-https://129.146.50.89
-https://137.184.27.55
-https://164.52.196.240
-https://178.128.206.49
-https://3.111.167.73
-https://3.93.218.15
-https://45.79.251.31
-https://49.13.199.37
-https://91.202.171.188
-https://answermagic.5cn.co.in
+ENCv1:WzmMVY2+qVAMjmB13YbvjA==:dGS/te5zq79NjUjh288Mkg==:SQccr6iWMn8IS0VYPlZW5ztVFeM6Kt3pySspzx7fbHQ=
+ENCv1:N3Wv/gQTi3RGX4+KuXhbjA==:omN8tU1KogErqOq+p5SjQg==:G2zq/QJyDhh3rLx3hZ0pH8hKnW0nytnk/WnUMKfh7d4=
+ENCv1:YLZMIWtH5pdQIyLIXGtYiQ==:vTaCkoK7TU8zlfYEmlz/vQ==:GtTAI2mRi6Nzp9uLHvQk53P3QsNO3nrfG5S4pn75Yfo=
+ENCv1:L7YYcWUrzxUiFTckSMhRew==:8KYh8Ydq8HPTRPjGNw1LqA==:IYjid8ZtYC77uSqjRpafnZhIKpysPkDaZ67ITq0VY8Q=
+ENCv1:jkr5jkeWiQIVnS5sQsYS6A==:H6OxvBoONtJzFOvPdaAGwQ==:KJQW9IwBRQZ0+XPxgMvq8ZwMvKVxUzk9eCsJPjGxti0=
+ENCv1:e8vfYbsTNHWBBjYvcpEA4Q==:tHXJiuLVBNlThaURpXs3SA==:HqHgGXFOqxHxCcs66cihqhvDB3HkYqN+5vZ1TeuC0Fg=
+ENCv1:Ku6w4/eR2TZomOSttdRDSQ==:4FLdNQckY7el9PH/xW6roQ==:D6bJYzboVv1aLfd3Usm5nErAyqBnwa6qMXOLR1Z8oN8=
+ENCv1:iy5j98h6ZF0SjJYFhia5hw==:d6pVAOdHSLbucox8jw23NA==:tFrkb/XG6Wg11be14qJoG3r28ITFq+OZRLskDhCyEx0=
+ENCv1:jQ3tWQPZYgJ2SwpntooaQA==:l0LLClfqT2al9Ucf6/NBYg==:hSkwM6tV7+JDk8TRQGJOd3SwGJojTWj0h9nJwLjCPI8=
+ENCv1:Se1tC5TMgGQBvOivLDqOsA==:n7+iNXlKx61mDEvTQ1pYzw==:bpXmsNC+yG2EHiMJXjX9Y6qp8wdIUgKEIovd28jSVOA=
+

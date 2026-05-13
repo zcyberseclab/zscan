@@ -1,2 +1,2 @@
 ﻿# asp.net-vul-ips.md
-https://13.201.23.83:8238
+ENCv1:P4hVLnzSEVBRsMKlC4Drfw==:OXTGIZXs+a52GTkj6wEylQ==:6Fqmc0oX+ATo6sUgBlPoXSjrWBL9oQRQ6xiubCvkezs=

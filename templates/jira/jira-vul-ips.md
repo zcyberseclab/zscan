@@ -1,0 +1,10 @@
+﻿# jira(jira-cve-2020-14179)
+ENCv1:7ql1xPt7XITKOu58+qtdNg==:FWSJsZkItE/zM9Yh1dpMcA==:b6Trb3a0/HRDWpJP+o1HtW8zZKN4eOwfRSo3i70h1mQ=
+
+ENCv1:3qYebLJpYrZ+nDCHHRrYwA==:xv9CfttnP6p51EzVDjZyGw==:Qlzri9RYhQQa5xCuEIVaWn3v+jXa3AC6NuEkcD/yaro=
+
+# jira(jira-cve-2019-8442)
+ENCv1:YLvvNBC4TQaacEFtobLxNQ==:08EMkR4RxPU9t9xX+uSyPg==:zpTN6TCNuM6Qa875RDTNFtQGVvXdJU8IyuqOuze1d/U=
+
+# jira(jira-cve-2019-8442)
+ENCv1:8S3h7lrZMoZ+93BOAWGx1Q==:rb35EszHMV3przFNBA4anA==:v/IxE4bRCT0rJhh8Oa6XNsEgfvPxF66jQ5JLdxNP5LU=

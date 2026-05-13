@@ -47,8 +47,8 @@ React 是由 Meta 开发的流行 JavaScript 库，Next.js 是基于 React 的�
 3. 使用 WAF 临时阻止可疑的 RSC payload 请求
 
 ## 参考链接
-- https://www.wiz.io/blog/critical-vulnerability-in-react-cve-2025-55182
-- https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components
-- https://vercel.com/changelog/cve-2025-55182
-- https://snyk.io/blog/security-advisory-critical-rce-vulnerabilities-react-server-components/
+- ENCv1:bDBTiIWZgPnw/lGZ1VA+3Q==:ehp01V8+8n8CRb0dx4bOCg==:+k/jMh8OL+7cVpMQepiKTu25rdLkLb2nrnITi5o8d0F0qUOCBNIDJuxYLhUqkd2OBl0l0ZQrTJi1UJehPoiJJsBKzUe0URC5dhZewe6rMxk=
+- ENCv1:K0XMZ9tlOFXuXdaTuqIHow==:48nA5CiOr/VgqCe2Y++E2g==:4hUvT6P12FBx1hpTQWJYUcX7oo8+jDK6uHIKdPM1lErGbZUABeuM1Ep9oRLYCuREhDJg0qkl3wTXOTvWjUimXTRNSkjVU4U3tjUCvjmhsZ5OdR5KIUIC4ZA5FNZfZwUj
+- ENCv1:U19RT5aiYi3o3yTaxQk71Q==:Vm1wzaNUvMdp3XartcgkfA==:5OZXK2ML1hIKPZLA3eLJIHv/d5eM9MlUbjbnYH+ONpw4gueMTHJE8to6Kis6ROXL
+- ENCv1:Csh8GJfKUoVQqEmQatuj0g==:9GDfruZP7YPcdRUDxTq8yQ==:2PQYEPyEiXO/c8ri86JLKq6HZrGkZZW/dpjWc88l2Gpz60Tp6JVXIE8qa1P415UzHKNxk3jNm+1iHKQNXMfOPjx/4wGM2GQPocdbyzH+tUqYim6LbU4NWEqAbfeR1JF4
 

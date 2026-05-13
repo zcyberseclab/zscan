@@ -1,2 +1,2 @@
-# cdata-arc-vul-ips
-http://20.232.139.54
+﻿# cdata-arc-vul-ips
+ENCv1:4vhel620fdec+YQIXw1MCA==:i9O5N8vzDMOQdLWdmWNUBA==:V/XdcA1dV6T4oKY5Cq27BGBK/J7I7uvc8dSPw0P0Vyo=

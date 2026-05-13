@@ -1,3 +1,3 @@
-# expedition-vul-ips
+﻿# expedition-vul-ips
 
-https://178.251.249.130
+ENCv1:mIoXHdwjnzGqyYTRyE+fqA==:PTWvwuq6AeH5L5Q/zufAyQ==:t5sobi3evJLnlSs8BifVJ7opUB5V+zW+wTeB7vBsz/0=

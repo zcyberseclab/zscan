@@ -1,2 +1,2 @@
-# fastadmin-vul-ips
-http://111.203.232.80
+﻿# fastadmin-vul-ips
+ENCv1:QWFXoWZ5LsurENBg4sWTrA==:Rz67NFFKybXJ68XLD5yMsQ==:CAx5ZWI/5vWJMr2UHBAzoj3yghqagO3sHCHgVMSU7pk=

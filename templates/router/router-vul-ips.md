@@ -1,6 +1,6 @@
-# router-vul-ips.md
+﻿# router-vul-ips.md
 
 <!-- CVE-2023-20198 -->
-http://13.233.20.25:2103
-https://13.233.20.25:444
-https://13.204.253.244:9443
+ENCv1:e9cnzhy7kpkbBHvus5CxVw==:nsIGCAc5rOHMEr9737D2xQ==:VABT+aOuhnSV+H8TLcco9L0wedK74guzInx6dMC+l4E=
+ENCv1:k6KJmQQROPOLl6O4FVBrVQ==:ItYe+bHD/Sfbm1qXqBLJDg==:I9F3tfk8jgdK+Nbn2Gj1OTaXM3ymJJR7cpEKoFQg0Es=
+ENCv1:wN/gntRT5PwJ2FGGoC5vRg==:yqNuJ+/jYVc5Z/aAGSCieg==:YJBgT7E35LG7XP8C5PUhTauwL2k3V85c0O/C/Fw3F4s=

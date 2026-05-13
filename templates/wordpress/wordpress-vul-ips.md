@@ -1,41 +1,42 @@
-# wordpress-vul-ips.md
-http://142.93.26.0:80
-https://northokanoganindivisible.org
+﻿# wordpress-vul-ips.md
+ENCv1:VycrwDOHKUJE6t5LtTBA2g==:1VaJxXOblmqkjnT6Oz5fmg==:ejcnDQVFcJzUlE0I9ypvX2WrY7RvZqAb2ABKzmDWZg8=
+ENCv1:5q5gUptaqW0Wm5scLCwHpg==:8pXgaP20M1i2Q/dS7Rol7w==:TCueaEVTowAD5VHuZ1fJESy+jR/JmGcB9El5L/ihVSHvjVgj0ODQFg7YSDrwLgM9
 
 ## CVE-2025-4302
-http://120.138.19.225:80
-http://134.209.185.20:80
+ENCv1:vH9c+mzTNhMoki5UzFvWQA==:27u5tmLnDQkRaz2n+7SbuQ==:JIJU9Afs1PnHKehxVBNnNWRtTUsoi/x7bPWRZBgRYXc=
+ENCv1:ZuyqMOsqHz2CVv3PryAdFQ==:PjMJXhaWvidgaP1rFB0L7A==:4VAPRzAy395oQfkQYddf4HCBciTZ5pBsFL9udjQ4E8U=
 
 ## CVE-2025-47539
-http://35.154.171.42:80
-https://35.154.171.42
-https://mun.mlrit.ac.in
+ENCv1:gUzNGeSw8Me+PzoF0nc9eQ==:pCzyzd2nq6l2LY4MvT9dQg==:82QtY7exvQ+6+TlbIuT/fx6iYDEpZPh1xCB13Ks7zBU=
+ENCv1:8GuSEEJzSDpHZZwADxV3oQ==:3ROfvqEMxPA1e26VNM4eAg==:dacoTyzfFulTeJyYw5wvv5/9OLfUyp9HCu+7XklTmVA=
+ENCv1:bKRdBSUpQrRppCxyf1Eg5w==:u7FkQzQ5n05xiTr81WpQ7g==:oEx/XlFXO2sGz4Q1rM3BP0hoHS+TduMuj3RHOCPFj5Q=
 
 ## CVE-2025-9209
-https://23.235.218.160
-https://babursi.digitaldiner.co.uk
-https://mrkebabrestaurant.com
-https://nansnummies.com
+ENCv1:nCeSlFLmPzZtPY1IFUrU2g==:xBafnmvRTYAf/+RUfeCfNg==:eoGs487z746ew8PeVFtnv3DU4NfxZoZxc67fyiJZueI=
+ENCv1:bIw9NeVr860ejqLuZLzozg==:rTVsLDAv//5/QOGEDt3UXQ==:gTUqRfrnN5lFvlM4SxQjEsgRSTa9OT70xLkzU6wDEo/F5+yqGMp45l421+xZWq/N
+ENCv1:fXBO3EWlpPdaPiJkVU58mw==:y5W9qQXUTWKWJo+RwpBfoA==:Fz5JNExaqWOnClj4MK6FvF1tTRs8OYsOADx7kzjeH1s=
+ENCv1:yCuoyrlObB2cxxtxS5IUjg==:lvWOfKsRQHV6/k59OhXIyw==:nAHqk/aW9eZiuJXpQn1OC+3VhdVEk2NkXicSQnsjuiA=
 
 ## CVE-2026-1314
-https://78.47.78.99
-https://ct-varna.com
-https://digibe.ch
-https://ifi.nia.or.th
-https://nainitalnews24.com
-https://obudaianziksz.hu
-https://tanishaartexport.com
+ENCv1:Qn+JbyRbILb0dVkl/YaNbA==:8hbQJsX5o3w62XOsCSo2Og==:9O8tKHN4kQLUafA9NsWVpM+dIwESPX9jdPWugmzbpVw=
+ENCv1:Z8a1SMWX+9rPCKQkRlUKbA==:OITbPVedpLkaW9eEVjzp3w==:8a0cITJnTMKYu8JzHUEsPDF4KQ5qOR2reshPyhvJrM0=
+ENCv1:YsEZwDghc8DvX4ecPOCTtg==:ElW3Vl9QzKg60Lh3JRJH8A==:0nHiQvr+pIjeeuYFeoaEdh4UMv9d3jp8mv9UO3cnLgI=
+ENCv1:NsQtV9LpQFUr120Cc09LHw==:Ypvi9Q6toGxA4PdSA2wKEw==:QLXfGS2Siua/tD/zPK73E+c6dHZzKoUKWF+T+5pe7Pg=
+ENCv1:6zlvCPxbqZnYbxb/+gDxzQ==:MJ8U/v9uBCFLUlvKORyY0w==:Tleu0xgtgFRDidJRxsNv9gHv7S691NhpKN+Ke4i7tAs=
+ENCv1:/je7p2dV4bbGqJWoZNAxfw==:Rzs87omJ6JVitkKoBgc14Q==:EdLDCg+G78dOjqq9b1i+qVKY+1DxdxfCFUDXhBT34EM=
+ENCv1:FdA7xw2bnG0NM+DDmdqsZw==:UzBA56/AElNouslfzhnKmQ==:Eh7QndqVlDxccbIRbT4smtLLcbAGFNMyFWXcXKfEvnE=
 
 ## CVE-2026-4020
-http://20.120.181.14:80
+ENCv1:UXR00Vg5mUThuCTNDQqGXQ==:XqYo9QiDf5i/KMxF4ECAWQ==:ygCWgZzpe8ZJheUUCxD2QrBNEqYeMz3xlxOrZ0dXvAE=
 
 ## CVE-2026-40308
-https://blodgettview.org
-https://dev.pixiii.de
-https://souzoku-chizai.or.jp
-https://www.fwv-baerenfels.de
+ENCv1:yaZYaxdXEFgNztqH+7N2sQ==:BcKe05CGY7TfQ4FQcf7t4w==:ieFKiWti14Yzngvby7IJGdhXKXbnB7+nD1NMXn9MUNA=
+ENCv1:+dP9yFJV4rwu0IGlIw+IuA==:MYQUlZRupBUFcvpg6VmQ5Q==:HhLHnmvJ32ZHx0A4fx3b8rwnvA3sp6isOyjTGERGhL0=
+ENCv1:kGJl1bN/PGNxcuslt9W8TA==:ll8jOrk+40vH2dzuEVj62g==:CP/4CDQxA/kCdLjMWhFWw1/k/RXRM7DurcGvR3M4XQ0=
+ENCv1:za+tUgaQP5/vSmaQ4THtrg==:5GTh6olUOjL8843hGAIzaA==:4f1zMVzsj+9oMzgkKk1wckloTEjufVquhRmyL8glRyQ=
 
 ## CVE-2025-60188
-https://base.webseite-vorstellung.de
-https://hydraulik.werk-gruppe.com
-https://newstella.apdemo.it
+ENCv1:RvZC/KI6+w7mg0LwHNu/Kw==:CvOcmxqs4I+8VBPYfH7b5g==:XLfTi1Lirr6lC3iPSQpQQ+cPLlcohlBhvbYLkzDf98nxDzAtMxAnGV91aMQK6S8W
+ENCv1:xWU/zQN5EMANGe8uhAIU0A==:0+CHI7clFSTxpnbzOLs48Q==:/Q8Ge9SPB5kVG5sAzxBk3pGxPedZGQqWoz+OdSPqpZ9rhTcWhePan0Cckpb8hEsu
+ENCv1:nRRaEtLOoq5tjzGUEaiRBw==:pIGA69+zP1A8vYyG9vgSkg==:YsU0BSgNPczgFMI9xw9B9IqhJ9Axo8+Ke5b80Gvg1FM=
+

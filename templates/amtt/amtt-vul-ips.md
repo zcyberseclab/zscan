@@ -1,10 +1,10 @@
-# amtt-vul-ips
-https://202.97.137.228:62443
+﻿# amtt-vul-ips
+ENCv1:CKP5p53iTImqHFVBqJZ43A==:JIv+AsL6ryF2bex33UhWUw==:0aSUGhT1gI282KlyT69IW1+HbhKEtcuzpcZJG1wNF54=
 
-https://113.140.76.67:6070
+ENCv1:tWgXMCwN/dfXDce6lxqOGg==:/jXqdM00kFkipvXOT+NpsQ==:PcDHmY6FcirwcwLH13IpgS4qlZUtXxxMHKK0l3RHCDo=
 
-https://219.159.104.201:9898
+ENCv1:wr4lG7JSOugugP3oS3quwQ==:c5xg4W0+7LCpwQfA6G/Kcw==:vIowhj+aUWWKdLByzVOF482ZLiS8WJDUnGSZuSn4TXI=
 
-https://113.140.76.67:6070
+ENCv1:M6RsnxNvMGyMx8ahGSGDCw==:mEnmT58Y6jwYOKbokVRwrA==:Lhmb9qOJttyS4JI63KVslCGJylpc4qD6t58nH4CzzZk=
 
-https://113.140.76.67:6070
+ENCv1:Phoan/ePAfLZgK9kajwjhQ==:7AvWrQemIrkLB9eZJRXE6g==:TD7A/IIXcou+GuA/g1z9Rk10a7vluhWCyntvE6JIdpk=

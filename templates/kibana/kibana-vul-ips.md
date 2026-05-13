@@ -1,4 +1,4 @@
 ﻿# kibana-vul-ips.md
-http://119.29.215.126:5601
-http://43.242.130.141:5601
-http://43.242.130.82:5601
+ENCv1:cswSZVrPMSHRbm0iuhLw7A==:QQ8ZA6lErv9LFMNrMYvHUw==:NO1DssrswkKZJ8xeojjhrRTRNpEvyO9si/QmD4AzPqw=
+ENCv1:UwnXme+bozT0SEM1NC3i/A==:N1PjxqbQshPAAgtFG/ERXg==:OOD4dhb3gNk1m9tuX3gPAXB4/GdcjlrfrPbDYj1z53U=
+ENCv1:aJSPLe4ZZUwp4ILW4svWPA==:5vokzQQDnDxzk34VEzUUNQ==:MK0VJSPam50NaZgHPhu1EzZe8IWydK+UCr6MloblQGc=

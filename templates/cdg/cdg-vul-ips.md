@@ -1,4 +1,4 @@
-# cdg(cdg-uploadfiletocatalog-sqli)
-http://111.207.114.231:8089
+﻿# cdg(cdg-uploadfiletocatalog-sqli)
+ENCv1:4Nze8DxETOjakG/CbR+MKQ==:RPr47AW/C6fqdfqCFb1GtQ==:y1TV/FXIsJMy8GA9AYr3ASgsTac9iupReLI9wiuw4go=
 
-http://111.20.159.76:8888
+ENCv1:qnm66NpCX2A3V0UlCZB9jg==:KyrQ2gh0Mh6ru5MG3TjoLQ==:pYyd6QrR386sBq0MGrArmE9hauLMCjSj7ppsNp9MDA0=

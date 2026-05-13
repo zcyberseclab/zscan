@@ -1,9 +1,9 @@
-# jboss-vul-ips.md
+﻿# jboss-vul-ips.md
 
 ## CVE-2025-68645
-http://3.110.153.2:8008
+ENCv1:GCQJObN6GcdWBnyc02x34w==:9CYDyBtpYy6XzTaelapapw==:oO0Qlf6y1jZLqBjTebTd0YD0GHGOX+rphzI8oEFKUZo=
 
 ## CVE-2025-7160
-http://16.112.226.34:83
-http://16.112.226.34:8983
-https://16.112.226.34:8018
+ENCv1:hAV1dKRGyo0Pt7Hrm4ibog==:0HY/Bb8Hba9fKUrjwcfqvw==:H2OiVwltZgJwwqA4l7SErM33hmhNQN6d6lDoixHoIJQ=
+ENCv1:uzG3JzPE1gVFprN4KciM7A==:OEQFBe7sXqU4+oAZD9veVg==:GqxSTK47ZspwhXceIXJ7IYpl16RX+wO9DikwuXzfoK8=
+ENCv1:jdy0ipvJiOe8DbCPCvbwtg==:DS6ICJk2mIPJwXaBI327Bg==:zMIs7MbvCgcXYJK4iayCq5mGuTmJNIfTaKGfk+KVw6E=

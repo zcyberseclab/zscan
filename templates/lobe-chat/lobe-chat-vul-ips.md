@@ -1,4 +1,4 @@
-
+﻿
 # lobe-chat-vul-ips
 
-http://101.133.157.179
+ENCv1:0aEq4l7CrAtVKGqBZluyRg==:RMo9JQFKwGOQfDNXS6Hg7g==:/cpBuNro4lgh0phWRMi5Pw7ZiSCJyCHrx557u5I0X38=

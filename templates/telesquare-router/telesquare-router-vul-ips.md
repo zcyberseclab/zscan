@@ -1,2 +1,2 @@
-# telesquare-router-vul-ips
-http://223.62.60.181
+﻿# telesquare-router-vul-ips
+ENCv1:psOVRVxw/c8VujpSPBg1gA==:LPSHBPP/vHQvAi6dV6weJg==:7uvzMDxmPCbuFGB07f0wCORbPwaNxUe0RoOsJYdc8dU=

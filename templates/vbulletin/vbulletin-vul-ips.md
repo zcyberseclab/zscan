@@ -1,5 +1,5 @@
-# vbulletin-vul-ips.md
+﻿# vbulletin-vul-ips.md
 
 <!-- CVE-2023-25135 -->
-http://18.144.12.23:4660
-http://78.12.192.70:7170
+ENCv1:jH2jNyrhyH4cJBCEfnyQMQ==:1cgANdGzJrlausluWiJgRw==:v3+EhI7VLgnPBAsncFzPJEfSc+nGKHTm1C6uGkMQXEo=
+ENCv1:5wUf5mWkyYg4OJLDhn1Yow==:EIwZyfbPxBnF3qbyzP0o/Q==:5qTOfQk27GB8jpXUBUSH/MzgHCkZiZDjVUXGWuBDNaU=

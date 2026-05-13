@@ -30,8 +30,8 @@ Ollama 是一个流行的开源 AI 模型运行框架，用于本地部署和运
 - **修复建议**: 升级到 0.1.34 或更高版本。
 
 ## 参考链接
-- https://www.wiz.io/blog/probllama-ollama-vulnerability-cve-2024-37032
-- https://nvd.nist.gov/vuln/detail/CVE-2024-37032
-- https://nvd.nist.gov/vuln/detail/CVE-2024-39721
-- https://nvd.nist.gov/vuln/detail/CVE-2024-39722
+- ENCv1:5AHZGCQEVpUUs4AaF4mypA==:84I795fPKxZjBhHJLkXHQw==:9CQKeYrbnALVI/tGjlM4JA02IBJUPf27C1mswpfGJMLFELW9q6mh0/d9O9DcLAgZGepEQrd+oETqaWgwP31mDnGg+eAp7rfeq3Yce15hoWc=
+- ENCv1:Z0FBQikDtatItYxa93lgNg==:qCV3b42h4PcwWTD/yQdKwA==:h5+ymm8jzU69vV6uFNY3EJlHy1bdi+priELnDhsyfXj07AfPq3z3HM5n1PLr6moV
+- ENCv1:UE2RwuADg4lhtSOcm+L9kA==:5Euhjhvhe4Hr1EdRdAzSfA==:OkVgvdGDFncF3nm2WjyTiLECBsnosz9EnyLLwQZmtGyMGk7A3Lszj7noSBnAq4Ip
+- ENCv1:TA49E3E4XPCVHQQdZSQIpw==:poIfiafHKENEIH4kk67iLQ==:YvFYdX7FVzuPosA3SC+I22RR/Hp6cUpBhDp929HsUp2nVMUg9ERNq1n94PeUd98s
 

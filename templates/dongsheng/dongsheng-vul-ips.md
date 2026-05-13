@@ -1,18 +1,18 @@
-# dongsheng (dongsheng-getdatalist-sqli)
-http://101.200.143.56:8088
-http://101.201.145.254:8088
-http://101.200.143.56:8066
-http://114.215.165.65:8088
-http://114.215.139.138:8086
-http://114.215.139.138:8888
-http://115.29.108.236:8002
-http://115.29.108.236:8003
-http://115.29.108.236:8020
-http://115.29.108.236:8033
-http://115.29.108.236:8012
-http://115.29.108.236:8021
-http://115.29.108.236:8036
-http://115.29.108.236:8007H
+﻿# dongsheng (dongsheng-getdatalist-sqli)
+ENCv1:XDz1XJdZgtgLQD5lGxhusw==:FRQj1xxOuZU06ptg8OO1Xw==:QMm/5mOjU4C3TaV2Ymfk06ms+zVeMEtp9uDkUEnVmSQ=
+ENCv1:+p5LslyNzpFcfa5QoRi8SQ==:GXYdr4jkt009yPBsnRnvcQ==:Ljk1w0BF2snHYtccTOSLhWtU+yzS0p2FEet/xw1qo7k=
+ENCv1:SH4fEWV7YmWqf/Q/QyYyOA==:xDipGBKXbANlgG5wmAGX8A==:8vZ8TKcMNMZO94UdjulBbZCFV8Dm+5TxETZUHTxw5/A=
+ENCv1:iv52xb/NLWqxdNc6Y0cV5w==:14fxqFVuh0lDt/mvCF1duQ==:MScU9zSgbqpJjXjaBbjzN/q54Fp2g87ssCbV+dWhyPg=
+ENCv1:MFZ1NR6Ex+DYd01VHMijJg==:Gxdpq9DH90qLUNH6RXaRzw==:zwrLM1NBOKReBn5c5IqYbfP1MmNUYMXSvfO+KKp6Eck=
+ENCv1:ak/6SADjvGGBlnpho/7Q1Q==:xyA0y5L89/GkBynf0OZokw==:tK2PtVk+LdDAwgQCl2jZr2/Qqii13s2DTLyD+ZxfyuI=
+ENCv1:mIJr5UIN1Ibct0j0T2crEw==:sKUKSuhgl5XqdBPohUOVJA==:OMLQVCBRNBpXR8DGBBXKjXnKyiUsc+5rvo0kTKTVHNw=
+ENCv1:RQqun750ezBNB84qjT9+eQ==:OnSIy3f0w5zYtuC8AOsO1g==:lkae4mPkM15h2bZv7rlSYre2qIcv3KtViUMQS/2MWVw=
+ENCv1:EruA77JIygZSzZpvruTF1w==:IftDoCitw8RiMc9L2QKemw==:FHe+1pZ6OVyU5xQ6yJVq+Ay7G2aEYsaAKFNfK/KAktI=
+ENCv1:bnVQHo/yvLxzDCzlFBzDZg==:dhUJsIfzcXpzQEoAC9omCw==:OQ6ffKpq91Y0op26bYkw3uZ4eTljBA859Il49/RhlWg=
+ENCv1:eAhAyDClzlXsbYS0kg0nIA==:eDNLvljETamvAXUjt1CLWQ==:RNATeZGmg9Oi2cHYMjXtHuQSx29lSS1a8SE0N2CXxyA=
+ENCv1:rANU0kTfTQzZrs0yOFunog==:ylvmKa9oPBgYqjFMGa4Mow==:RVJ6bDlqHuSegfsbH3b7EQzn0VXHQQgAvUDjbNM3wUg=
+ENCv1:zyaJiPf8PjDhJujmPFtW9A==:HTCXIf2q4paVk4uFC9c1Fw==:2ln9+80uBsS3ZGr5UZRdsnfYXS86R0YWYico1sQOQZU=
+ENCv1:GAadU+SIep06uyodLo8OCA==:gZaKevVQylVtz0yuZnsxhw==:cEbip211n39JAG2i5FN6nnVFdbRBgwAGaxk9feqOJE8=
 
 
 

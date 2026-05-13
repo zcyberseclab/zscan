@@ -1,4 +1,4 @@
-# kirisun(CVE-2024-2620)
-http://95.0.143.91
+﻿# kirisun(CVE-2024-2620)
+ENCv1:ns6OY/63k1zeyhpjrCF+Mw==:1BeXzD1QNee2ezDh4n86+Q==:JsT5Kv3VRd5hs7CGC1bvMaoi51CXRVIYI14dmEnbcWE=
 
-http://47.245.96.175
+ENCv1:dYncA6ar5OSzIH7r7Yl/DQ==:T51/UwM4yLVsfVxWl/X8hg==:CoZUmsLcLYM3ANduKv02cakg8DEJpc7FSITDilgsu30=

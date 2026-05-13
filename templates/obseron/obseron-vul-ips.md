@@ -1,2 +1,2 @@
-# obseron-vul-ips
-http://12.117.174.246
+﻿# obseron-vul-ips
+ENCv1:ttbEAJ9cBjc0s/wANhK7Xw==:qza5RgwsEmesI7Zd0ZNjqQ==:DdUNs/w/ypuLlyKeoaG17RKnHIO3t43CxRHbcEORCw0=

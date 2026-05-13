@@ -1,3 +1,3 @@
-# teamcity-vul-ips
-https://192.162.101.186
-http://1.94.137.181
+﻿# teamcity-vul-ips
+ENCv1:nElEOetfWjJm2eO3Igufww==:xuUaI+koP3DIZOYx08/2tg==:IUJQmkzM0mDU69EB3EV9OR845PX8p8ra3a9mCu8ktM4=
+ENCv1:7AaQTW8od3IV46cJZsXgVQ==:k2d9T+DZ9XFFl0O35hMQyw==:fOQuuJZwNfEJsuwwqttHu99XE2VIcpIQ7d3fJ5xN+0g=

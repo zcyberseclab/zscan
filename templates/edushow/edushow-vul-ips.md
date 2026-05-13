@@ -1,8 +1,8 @@
-# edushow
-http://8.134.117.242
+﻿# edushow
+ENCv1:ziFcoGXHAqvTHnRXMaen8A==:wffpOjM2mPBmoYSGXcU2WA==:xUbCVYBj1t184yAjtWIMKlB+WXUFTA6HTGm+zmFNTcM=
 
-http://111.231.31.20
+ENCv1:41bnSKrlOqgEevqhlkjUIg==:0/LmGTLbeJKTzh/OLUcyCA==:EuxeTDDLk3LmZ4vl029NShTwBJN1DhHkTwC/JBjstpA=
 
-http://www.ykxzx.com
+ENCv1:ZnJzQY4VjQZ/o/eZCOT4WQ==:zllS8C9U9TBHmdJlcEORrg==:GfmMtua9jJkxbthYlzUJEGi8A+cZuhtDJUPCsOCxeeo=
 
-http://edusoho.tianxiabuyi.com
+ENCv1:ym+CS6gB1IdG+QO8nYJfFw==:m3Iq9BbL1m9G035MjC8wcw==:JeLjCSsIH7XUbSy+tBOFvGSdbb4TuPPQtTfctTp0hnw=

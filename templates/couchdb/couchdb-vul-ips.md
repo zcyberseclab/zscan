@@ -1,0 +1,2 @@
+﻿# couchdb(cve-2017-12635)
+ENCv1:AdROvLKFIE/VJNV4o2CwXw==:fZjhDQzase4w5kepkK0IgA==:VMtNDIZS+2QRo0HrCJ2mjW8C4I9fOBx26N06sqwbn6g=

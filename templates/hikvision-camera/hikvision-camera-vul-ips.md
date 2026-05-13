@@ -47,7 +47,6 @@
 5. 定期检查设备日志
 
 ## 参考链接
-- https://nvd.nist.gov/vuln/detail/CVE-2021-36260
-- https://www.cisa.gov/known-exploited-vulnerabilities-catalog
-- https://nvd.nist.gov/vuln/detail/CVE-2023-6895
-
+- ENCv1:GlX7/ivuopt7SM79VQnEqw==:1auD+nCLvkgZoIlWxZqsDA==:6e6h7x+YqFrRfTBFrRLFKn6PBYcXGUfuEKUWj9SHO3SpcRwruyv+C7ESQKQk/WbM
+- ENCv1:WEW9Di/Gbl44XP8nl373tQ==:9RSsurBSCMqDxVpw7b7pTw==:192Rz91zz+IFlP+6/tLwRPPUO9V9O3QimNIj9V+U5emJ9RxLRG9JViJhAQbC9E7QkgKxV8hQuufEuYZwyZq85A==
+- ENCv1:/VSDnHzsq55TO/TKgvLU7g==:6Jic41PISVWqOFQZFOGfaw==:gYIZG4E3GzSPMO0Lw6qNudhlAweh2qGvNFtoEX0bUmvlGzX3oCBVmEqFgYFfb/eW
