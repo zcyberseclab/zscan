@@ -135,11 +135,6 @@ func (s *Scanner) scanParallel(ips []string, spec TargetSpec) []Node {
 	return results
 }
 
-func (s *Scanner) scanHost(target string) *Node {
-	spec := TargetSpec{Host: target, Raw: target}
-	return s.scanHostWithSpec(spec)
-}
-
 func (s *Scanner) scanHostWithSpec(spec TargetSpec) *Node {
 	target := spec.Host
 	resultsChan := make(chan ServiceInfo, len(s.config.TCPPorts)+len(s.config.UDPPorts))

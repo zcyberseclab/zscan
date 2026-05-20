@@ -398,16 +398,6 @@ func (p *AuthFrameworkPlugin) credentialCandidates(service string) []UserPass {
 	return out
 }
 
-func maskSecret(s string) string {
-	if s == "" {
-		return ""
-	}
-	if len(s) <= 2 {
-		return "**"
-	}
-	return s[:1] + strings.Repeat("*", len(s)-2) + s[len(s)-1:]
-}
-
 func LoadLinesFile(path string) ([]string, error) {
 	if strings.TrimSpace(path) == "" {
 		return nil, nil
