@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"bytes"
 	"encoding/json"
 	"flag"
@@ -40,13 +41,61 @@ func normalizeTarget(input string) string {
 	return input
 }
 
+func loadTargetsFromFile(path string) ([]string, error) {
+	f, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+	defer f.Close()
+
+	var targets []string
+	sc := bufio.NewScanner(f)
+	for sc.Scan() {
+		line := strings.TrimPrefix(sc.Text(), "\uFEFF")
+		line = strings.ReplaceAll(line, "\uFEFF", "")
+		line = strings.TrimSpace(line)
+		if line == "" || strings.HasPrefix(line, "#") {
+			continue
+		}
+		targets = append(targets, normalizeTarget(line))
+	}
+	if err := sc.Err(); err != nil {
+		return nil, err
+	}
+	return targets, nil
+}
+
+func parseTargets(input string) ([]string, error) {
+	input = strings.TrimSpace(input)
+	if input == "" {
+		return nil, fmt.Errorf("empty target input")
+	}
+
+	if st, err := os.Stat(input); err == nil && !st.IsDir() {
+		return loadTargetsFromFile(input)
+	}
+
+	var targets []string
+	targetStr := strings.ReplaceAll(input, ";", ",")
+	for _, t := range strings.Split(targetStr, ",") {
+		t = strings.TrimSpace(t)
+		if t != "" {
+			targets = append(targets, normalizeTarget(t))
+		}
+	}
+	return targets, nil
+}
+
 func main() {
-	target := flag.String("target", "", "IP address or CIDR range to scan (supports multiple targets separated by ; or ,)")
+	target := flag.String("target", "", "Smart target input: ip/host/cidr/list, or target file path")
+	targetShort := flag.String("t", "", "Short for -target (same smart mode)")
 	configPath := flag.String("config", "config/config.yaml", "Path to config file")
 	enableGeo := flag.Bool("geo", false, "Enable geolocation and IP info lookup")
 	versionFlag := flag.Bool("version", false, "Show version information")
 	outputFormat := flag.String("output", "", "Output format: json, html, or md")
+	outputShort := flag.String("o", "", "Short for -output")
 	portList := flag.String("port", "", "Custom ports to scan (comma-separated, e.g., '80,443,8080')")
+	portShort := flag.String("p", "", "Short for -port")
 	reportURL := flag.String("report", "", "URL to report scan results")
 	apiKey := flag.String("apikey", "", "API key for report authentication (Bearer token)")
 	flag.Parse()
@@ -56,6 +105,16 @@ func main() {
 		fmt.Printf("Build Time: %s\n", BuildTime)
 		fmt.Printf("Git Commit: %s\n", CommitSHA)
 		return
+	}
+
+	if *target == "" && *targetShort != "" {
+		*target = *targetShort
+	}
+	if *outputFormat == "" && *outputShort != "" {
+		*outputFormat = *outputShort
+	}
+	if *portList == "" && *portShort != "" {
+		*portList = *portShort
 	}
 
 	if *target == "" {
@@ -78,13 +137,9 @@ func main() {
 	}
 
 	// 支持分号和逗号分隔的多目标
-	var targets []string
-	targetStr := strings.ReplaceAll(*target, ";", ",")
-	for _, t := range strings.Split(targetStr, ",") {
-		t = strings.TrimSpace(t)
-		if t != "" {
-			targets = append(targets, normalizeTarget(t))
-		}
+	targets, err := parseTargets(*target)
+	if err != nil {
+		log.Fatalf("Failed to parse targets: %v", err)
 	}
 	if len(targets) == 0 {
 		log.Fatal("No valid targets specified")
@@ -104,33 +159,27 @@ func main() {
 	defer scanner.Close()
 
 	for _, t := range targets {
-		target := t
-		if strings.Contains(t, ":") {
-			parts := strings.Split(t, ":")
-			target = parts[0]
-		}
-
-		results, err := scanner.Scan(target)
+		results, err := scanner.Scan(t)
 		if err != nil {
-			log.Printf("Scan failed for target %s: %v", target, err)
+			log.Printf("Scan failed for target %s: %v", t, err)
 			continue
 		}
 
 		if *outputFormat != "" {
 			if err := saveResults(results, *outputFormat); err != nil {
-				log.Printf("Error saving results for target %s: %v", target, err)
+				log.Printf("Error saving results for target %s: %v", t, err)
 			}
 		} else {
 			if err := stage.PrintResults(results); err != nil {
-				log.Printf("Error printing results for target %s: %v", target, err)
+				log.Printf("Error printing results for target %s: %v", t, err)
 			}
 		}
 
 		if *reportURL != "" {
 			if err := reportResults(results, *reportURL, *apiKey); err != nil {
-				log.Printf("Error reporting results for target %s: %v", target, err)
+				log.Printf("Error reporting results for target %s: %v", t, err)
 			} else {
-				log.Printf("Successfully reported results for target %s", target)
+				log.Printf("Successfully reported results for target %s", t)
 			}
 		}
 	}
