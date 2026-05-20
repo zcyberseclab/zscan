@@ -1,10 +1,8 @@
 package stage
 
 import (
-	"fmt"
 	"log"
 	"net"
-	"net/url"
 	"os"
 	"strings"
 	"sync"
@@ -25,6 +23,7 @@ type Scanner struct {
 	enableGeo   bool
 	semaphore   chan struct{}
 	customPorts []int
+	plugins     *PluginRegistry
 }
 
 func NewScanner(
@@ -61,6 +60,7 @@ func NewScanner(
 		enableGeo:   enableGeo,
 		semaphore:   make(chan struct{}, 10),
 		customPorts: customPorts,
+		plugins:     NewPluginRegistry(),
 	}, nil
 }
 
@@ -90,40 +90,19 @@ func (s *Scanner) Close() {
 }
 
 func (s *Scanner) Scan(target string) ([]Node, error) {
-	targetIP, err := s.parseTarget(target)
+	spec, err := ParseTargetSpec(target)
 	if err != nil {
 		return nil, err
 	}
-
-	ips := expandCIDR(targetIP)
-	return s.scanParallel(ips), nil
+	return s.ScanTargetWithContext(spec)
 }
 
-func (s *Scanner) parseTarget(target string) (string, error) {
-	if strings.HasPrefix(target, "http://") || strings.HasPrefix(target, "https://") {
-		u, err := url.Parse(target)
-		if err != nil {
-			return "", fmt.Errorf("invalid URL: %v", err)
-		}
-		target = u.Host
-
-		if strings.Contains(target, ":") {
-			target = strings.Split(target, ":")[0]
-		}
-	}
-
-	if strings.Contains(target, "/") {
-		return target, nil
-	}
-
-	if ip := net.ParseIP(target); ip != nil {
-		return target, nil
-	}
-
-	return target, nil
+func (s *Scanner) ScanTargetWithContext(spec TargetSpec) ([]Node, error) {
+	ips := expandCIDR(spec.Host)
+	return s.scanParallel(ips, spec), nil
 }
 
-func (s *Scanner) scanParallel(ips []string) []Node {
+func (s *Scanner) scanParallel(ips []string, spec TargetSpec) []Node {
 	resultsChan := make(chan *Node, len(ips))
 	var wg sync.WaitGroup
 	semaphore := make(chan struct{}, 20)
@@ -135,7 +114,9 @@ func (s *Scanner) scanParallel(ips []string) []Node {
 			semaphore <- struct{}{}
 			defer func() { <-semaphore }()
 
-			if node := s.scanHost(target); node != nil {
+			perHostSpec := spec
+			perHostSpec.Host = target
+			if node := s.scanHostWithSpec(perHostSpec); node != nil {
 				resultsChan <- node
 			}
 		}(ip)
@@ -155,6 +136,12 @@ func (s *Scanner) scanParallel(ips []string) []Node {
 }
 
 func (s *Scanner) scanHost(target string) *Node {
+	spec := TargetSpec{Host: target, Raw: target}
+	return s.scanHostWithSpec(spec)
+}
+
+func (s *Scanner) scanHostWithSpec(spec TargetSpec) *Node {
+	target := spec.Host
 	resultsChan := make(chan ServiceInfo, len(s.config.TCPPorts)+len(s.config.UDPPorts))
 	var wg sync.WaitGroup
 	semaphore := make(chan struct{}, 100)
@@ -172,14 +159,19 @@ func (s *Scanner) scanHost(target string) *Node {
 		}
 	}
 
-	// Scan TCP ports
-	for _, port := range s.config.TCPPorts {
+	tcpPorts := s.config.TCPPorts
+	udpPorts := s.config.UDPPorts
+	if spec.Port > 0 {
+		tcpPorts = []int{spec.Port}
+		udpPorts = []int{}
+	}
+
+	for _, port := range tcpPorts {
 		wg.Add(1)
 		go s.scanTCPPort(target, port, &wg, semaphore, resultsChan)
 	}
 
-	// Scan UDP ports
-	for _, port := range s.config.UDPPorts {
+	for _, port := range udpPorts {
 		wg.Add(1)
 		go s.scanUDPPort(target, port, &wg, semaphore, resultsChan)
 	}
@@ -190,7 +182,7 @@ func (s *Scanner) scanHost(target string) *Node {
 	}()
 
 	// Process results
-	s.processResults(node, resultsChan)
+	s.processResults(node, spec, resultsChan)
 
 	if len(node.Ports) > 0 {
 		return node
@@ -299,12 +291,12 @@ func (s *Scanner) updateNodeWithIPDetails(node *Node, details *IPDetails) {
 	}
 }
 
-func (s *Scanner) processResults(node *Node, resultsChan chan ServiceInfo) {
+func (s *Scanner) processResults(node *Node, spec TargetSpec, resultsChan chan ServiceInfo) {
 	osSet := make(map[string]struct{})
 	vendorSet := make(map[string]struct{})
 	devicetypeSet := make(map[string]struct{})
 	sensitiveInfoSet := make(map[string]struct{})
-	vulnerabilitiesMap := make(map[string]POCResult)
+	hasVuln := false
 
 	for result := range resultsChan {
 		if len(result.Types) > 0 {
@@ -332,23 +324,71 @@ func (s *Scanner) processResults(node *Node, resultsChan chan ServiceInfo) {
 			}
 		}
 		if len(result.Vulnerabilities) > 0 {
-			for _, vuln := range result.Vulnerabilities {
-				vulnerabilitiesMap[vuln.CVEID] = vuln
-			}
+			hasVuln = true
 		}
 
 		node.Ports = append(node.Ports, &result)
+		authEvents := s.RunServicePlugins(spec, result)
+		node.AuthEvents = append(node.AuthEvents, authEvents...)
+		for _, ae := range authEvents {
+			if !strings.EqualFold(ae.Result, "success") || ae.Port != result.Port {
+				continue
+			}
+			proto := strings.ToLower(strings.TrimSpace(ae.Protocol))
+			if proto == "" {
+				proto = strings.ToLower(strings.TrimSpace(result.Protocol))
+			}
+			if proto != strings.ToLower(strings.TrimSpace(result.Protocol)) {
+				continue
+			}
+			pa := PortAuth{
+				Tags: strings.ToLower(strings.TrimSpace(ae.Service)),
+			}
+			if strings.TrimSpace(pa.Tags) == "" && len(result.Types) > 0 {
+				pa.Tags = strings.ToLower(strings.TrimSpace(result.Types[0]))
+			}
+			if strings.TrimSpace(ae.Username) != "" || strings.TrimSpace(ae.Password) != "" {
+				// Weak credential hit: keep user/password only.
+				pa.Username = ae.Username
+				pa.Password = ae.Password
+			} else {
+				// Unauthenticated access: keep evidence only.
+				pa.Evidence = ae.Evidence
+			}
+			result.Auth = append(result.Auth, pa)
+		}
 	}
 
 	for info := range sensitiveInfoSet {
 		node.SensitiveInfo = append(node.SensitiveInfo, info)
 	}
 
-	node.Vulnerabilities = nil // Clear any existing vulnerabilities
-	node.Vulnerabilities = make([]POCResult, 0, len(vulnerabilitiesMap))
-	for _, vuln := range vulnerabilitiesMap {
-		node.Vulnerabilities = append(node.Vulnerabilities, vuln)
+	node.Vulnerabilities = nil
+	node.HasVuln = hasVuln
+}
+
+func (s *Scanner) RegisterPlugin(plugin Plugin) {
+	if s.plugins == nil {
+		s.plugins = NewPluginRegistry()
 	}
+	s.plugins.Register(plugin)
+}
+
+func (s *Scanner) RunServicePlugins(spec TargetSpec, service ServiceInfo) []AuthEvent {
+	if s.plugins == nil {
+		return nil
+	}
+	ctx := PluginContext{Target: spec, Service: service}
+	events := s.plugins.RunAuthPlugins(ctx)
+	for i := range events {
+		if events[i].Port == 0 {
+			events[i].Port = service.Port
+		}
+		if strings.TrimSpace(events[i].Protocol) == "" {
+			events[i].Protocol = service.Protocol
+		}
+	}
+	return events
 }
 func expandCIDR(cidr string) []string {
 	if !strings.Contains(cidr, "/") {
