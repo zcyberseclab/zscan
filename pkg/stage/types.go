@@ -3,17 +3,18 @@ package stage
 // Node represents a scanned host with all its information
 type Node struct {
 	IP              string         `json:"ip"`
+	HasVuln         bool           `json:"hasvuln"`
 	Domain          string         `json:"domain,omitempty"`
 	Hostname        string         `json:"hostname,omitempty"`
 	Tags            []string       `json:"tags,omitempty"`
 	OS              string         `json:"os,omitempty"`
 	OSFamily        string         `json:"osfamily,omitempty"`
 	Ports           []*ServiceInfo `json:"ports,omitempty"`
-	Vendor          string         `json:"vendor,omitempty"`
-	Devicetype      string         `json:"devicetype,omitempty"`
+	Vendor          string         `json:"-"`
+	Devicetype      string         `json:"-"`
 	Model           string         `json:"model,omitempty"`
-	SensitiveInfo   []string       `json:"sensitive_info,omitempty"`
-	Vulnerabilities []POCResult    `json:"vulnerabilities,omitempty"`
+	SensitiveInfo   []string       `json:"-"`
+	Vulnerabilities []POCResult    `json:"-"`
 
 	// Geographic Information
 	Continent     string  `json:"continent,omitempty"`
@@ -59,7 +60,7 @@ type ServiceInfo struct {
 	Extra           map[string]string `json:"extra,omitempty"`
 	SensitiveInfo   []string          `json:"sensitive_info,omitempty"`
 	TLS             *TLSInfo          `json:"tls,omitempty"`
-	Vulnerabilities []POCResult       `json:"vulnerabilities,omitempty"`
+	Vulnerabilities []POCResult       `json:"vulns,omitempty"`
 }
 
 // TLSInfo represents TLS certificate information

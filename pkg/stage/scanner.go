@@ -303,8 +303,7 @@ func (s *Scanner) processResults(node *Node, resultsChan chan ServiceInfo) {
 	osSet := make(map[string]struct{})
 	vendorSet := make(map[string]struct{})
 	devicetypeSet := make(map[string]struct{})
-	sensitiveInfoSet := make(map[string]struct{})
-	vulnerabilitiesMap := make(map[string]POCResult)
+	hasVuln := false
 
 	for result := range resultsChan {
 		if len(result.Types) > 0 {
@@ -327,28 +326,18 @@ func (s *Scanner) processResults(node *Node, resultsChan chan ServiceInfo) {
 			node.Devicetype = result.Devicetype
 		}
 		if len(result.SensitiveInfo) > 0 {
-			for _, info := range result.SensitiveInfo {
-				sensitiveInfoSet[info] = struct{}{}
-			}
+			// Keep sensitive info at port level only.
 		}
 		if len(result.Vulnerabilities) > 0 {
-			for _, vuln := range result.Vulnerabilities {
-				vulnerabilitiesMap[vuln.CVEID] = vuln
-			}
+			hasVuln = true
 		}
 
 		node.Ports = append(node.Ports, &result)
 	}
 
-	for info := range sensitiveInfoSet {
-		node.SensitiveInfo = append(node.SensitiveInfo, info)
-	}
-
-	node.Vulnerabilities = nil // Clear any existing vulnerabilities
-	node.Vulnerabilities = make([]POCResult, 0, len(vulnerabilitiesMap))
-	for _, vuln := range vulnerabilitiesMap {
-		node.Vulnerabilities = append(node.Vulnerabilities, vuln)
-	}
+	node.Vulnerabilities = nil
+	node.SensitiveInfo = nil
+	node.HasVuln = hasVuln
 }
 func expandCIDR(cidr string) []string {
 	if !strings.Contains(cidr, "/") {
