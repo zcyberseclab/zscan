@@ -325,9 +325,6 @@ func (s *Scanner) processResults(node *Node, resultsChan chan ServiceInfo) {
 			devicetypeSet[result.Devicetype] = struct{}{}
 			node.Devicetype = result.Devicetype
 		}
-		if len(result.SensitiveInfo) > 0 {
-			// Keep sensitive info at port level only.
-		}
 		if len(result.Vulnerabilities) > 0 {
 			hasVuln = true
 		}
