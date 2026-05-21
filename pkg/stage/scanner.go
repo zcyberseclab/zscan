@@ -290,7 +290,6 @@ func (s *Scanner) processResults(node *Node, spec TargetSpec, resultsChan chan S
 	osSet := make(map[string]struct{})
 	vendorSet := make(map[string]struct{})
 	devicetypeSet := make(map[string]struct{})
-	sensitiveInfoSet := make(map[string]struct{})
 	hasVuln := false
 
 	for result := range resultsChan {
@@ -312,11 +311,6 @@ func (s *Scanner) processResults(node *Node, spec TargetSpec, resultsChan chan S
 		if result.Devicetype != "" {
 			devicetypeSet[result.Devicetype] = struct{}{}
 			node.Devicetype = result.Devicetype
-		}
-		if len(result.SensitiveInfo) > 0 {
-			for _, info := range result.SensitiveInfo {
-				sensitiveInfoSet[info] = struct{}{}
-			}
 		}
 		if len(result.Vulnerabilities) > 0 {
 			hasVuln = true
@@ -354,11 +348,8 @@ func (s *Scanner) processResults(node *Node, spec TargetSpec, resultsChan chan S
 		}
 	}
 
-	for info := range sensitiveInfoSet {
-		node.SensitiveInfo = append(node.SensitiveInfo, info)
-	}
-
 	node.Vulnerabilities = nil
+	node.SensitiveInfo = nil
 	node.HasVuln = hasVuln
 }
 
