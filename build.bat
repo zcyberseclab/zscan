@@ -17,6 +17,7 @@ set GOARCH=amd64
 go build -ldflags="%LDFLAGS%" -o release\zscan_linux_amd64 cmd\main.go
 
 xcopy /E /I config release\config
+xcopy /E /I templates release\templates
 copy README.md release\
 
 cd release
