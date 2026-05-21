@@ -1,0 +1,65 @@
+name: Auto POC PR Gate
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - "templates/**"
+      - ".github/workflows/**"
+
+jobs:
+  poc-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.22.x"
+
+      - name: Collect changed template files
+        id: changed
+        run: |
+          CHANGED=$(git diff --name-only "origin/${{ github.base_ref }}...HEAD" | grep -E '^templates/.+\.(yml|yaml)$' || true)
+          echo "changed<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$CHANGED" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+          echo "$CHANGED"
+
+      - name: Validate changed POC schema
+        if: ${{ steps.changed.outputs.changed != '' }}
+        run: |
+          python - <<'PY'
+          import sys
+          from pathlib import Path
+          import yaml
+
+          raw = """${{ steps.changed.outputs.changed }}""".strip()
+          files = [x.strip() for x in raw.splitlines() if x.strip()]
+          bad = []
+          for rel in files:
+            p = Path(rel)
+            try:
+              obj = yaml.safe_load(p.read_text(encoding="utf-8"))
+            except Exception as e:
+              bad.append(f"{rel}: yaml parse error: {e}")
+              continue
+            if not isinstance(obj, dict):
+              bad.append(f"{rel}: root is not mapping")
+              continue
+            for k in ["cve-id", "severity", "type", "rules"]:
+              if k not in obj:
+                bad.append(f"{rel}: missing key {k}")
+            if "rules" in obj and not isinstance(obj["rules"], list):
+              bad.append(f"{rel}: rules must be list")
+          if bad:
+            print("\\n".join(bad))
+            sys.exit(1)
+          print(f"validated {len(files)} changed template files")
+          PY
+
+      - name: Build zscan
+        run: go build -o zscan-ci ./cmd
