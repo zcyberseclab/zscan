@@ -3,17 +3,19 @@ package stage
 // Node represents a scanned host with all its information
 type Node struct {
 	IP              string         `json:"ip"`
+	HasVuln         bool           `json:"hasvuln"`
 	Domain          string         `json:"domain,omitempty"`
 	Hostname        string         `json:"hostname,omitempty"`
 	Tags            []string       `json:"tags,omitempty"`
 	OS              string         `json:"os,omitempty"`
 	OSFamily        string         `json:"osfamily,omitempty"`
 	Ports           []*ServiceInfo `json:"ports,omitempty"`
-	Vendor          string         `json:"vendor,omitempty"`
-	Devicetype      string         `json:"devicetype,omitempty"`
+	Vendor          string         `json:"-"`
+	Devicetype      string         `json:"-"`
 	Model           string         `json:"model,omitempty"`
-	SensitiveInfo   []string       `json:"sensitive_info,omitempty"`
-	Vulnerabilities []POCResult    `json:"vulnerabilities,omitempty"`
+	SensitiveInfo   []string       `json:"-"`
+	Vulnerabilities []POCResult    `json:"-"`
+	AuthEvents      []AuthEvent    `json:"-"`
 
 	// Geographic Information
 	Continent     string  `json:"continent,omitempty"`
@@ -59,7 +61,29 @@ type ServiceInfo struct {
 	Extra           map[string]string `json:"extra,omitempty"`
 	SensitiveInfo   []string          `json:"sensitive_info,omitempty"`
 	TLS             *TLSInfo          `json:"tls,omitempty"`
-	Vulnerabilities []POCResult       `json:"vulnerabilities,omitempty"`
+	Vulnerabilities []POCResult       `json:"vulns,omitempty"`
+	Auth            []PortAuth        `json:"auth,omitempty"`
+}
+
+type PortAuth struct {
+	Tags     string `json:"tags,omitempty"`
+	Username string `json:"user,omitempty"`
+	Password string `json:"password,omitempty"`
+	Evidence string `json:"evidence,omitempty"`
+}
+
+// AuthEvent is an internal auth pipeline event used between auth plugins and scanner.
+// It is converted to ports[].auth before JSON output.
+type AuthEvent struct {
+	Service    string `json:"-"`
+	Port       int    `json:"-"`
+	Protocol   string `json:"-"`
+	Username   string `json:"-"`
+	Password   string `json:"-"`
+	Result     string `json:"-"`
+	Evidence   string `json:"-"`
+	ErrorKind  string `json:"-"`
+	DurationMS int64  `json:"-"`
 }
 
 // TLSInfo represents TLS certificate information
