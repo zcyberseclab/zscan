@@ -1,9 +1,5 @@
-# apache-vul-ips.md
-
-## CVE-2017-9791
-ENCv1:4uKTNzUEx/WhxuVIodNtNA==:137WCOOYP6RjD+iZDnUGUA==:rk6y/FB0u4inwZ8+fyqxMgDFmsH58GzNXarjubY72s8=
-
-## CVE-2021-37580
+﻿# apache-vul-ips.md
+<!-- CVE-2021-37580 -->
 ENCv1:fwnPT5jr7n9lH7YgdrYxRw==:4IQNSSg4YZFiIG2hLwudow==:gWqpQXKCpVlum7UEr7HRtF34c9rXDrJvIbkA64L1vts=
 ENCv1:gXStcvlE9oezKEw22x9HUw==:BlZZa+GMd1t7D96KpfahaA==:5DVdnnygfubP8KMDHGtMUj3Rdzr89xgsfp2Gm0eoHbA=
 ENCv1:RdZYswpcBTOl9oEugmjT5A==:yHWZ7PKA5fIkMu//lyB1Eg==:RJeQK9VQDio6JPGoy8WLltRPE9fW3hNHBCRuNbC4u4Q=
@@ -15,193 +11,10 @@ ENCv1:Idj+gh6BpDpHEZSdkBbrLg==:HNjermzvBv3CxVxJ/fYTDw==:3AcWqH+f0WYFOyK+iPVYRVM1
 ENCv1:pQ7yj9bl2Sf4DQTqQA6JPw==:dN4YKMDO4uiRMhtk5ntH8g==:WaQqWbMgvGwrf3tA/1wOkidxKehnj0JghSga0Yd5ZQk=
 ENCv1:Glg0EQAc6pgYjKWLqhz7Tw==:DEZSi78sh3OTkR3F0bEOVw==:3AaKoolj1KkgZtA2FNbrfW4bKUhKQaqKKWYCTSP5eEs=
 
-## CVE-2023-0527
-http://40.192.121.249:9090
+<!-- CVE-2017-9791 -->
+ENCv1:4uKTNzUEx/WhxuVIodNtNA==:137WCOOYP6RjD+iZDnUGUA==:rk6y/FB0u4inwZ8+fyqxMgDFmsH58GzNXarjubY72s8=
 
-## CVE-2023-0669
-http://20.85.210.24:8000
-https://20.85.210.24:8001
-
-## CVE-2023-0678
-https://202.140.139.20
-http://43.225.214.235:80
-http://103.157.186.163:80
-http://103.175.191.110:80
-https://162.245.129.244
-https://170.81.92.24
-http://8.135.2.38:8443
-https://47.106.179.80
-http://45.233.139.250:9090
-https://143.198.72.66
-https://3.20.230.247
-https://201.94.151.10
-http://94.125.121.50:80
-http://45.170.24.10:80
-http://131.255.160.19:80
-http://179.108.88.26:80
-http://199.87.250.3:80
-http://113.196.52.172:80
-http://103.137.88.34:80
-http://24.248.178.109:80
-http://194.53.176.10:80
-http://168.197.176.14:80
-http://54.39.21.67:80
-http://38.246.36.227:80
-http://186.250.48.16:80
-http://189.127.167.59:80
-http://168.253.86.50:80
-http://23.24.157.210:80
-https://149.18.103.244
-https://113.196.52.172
-https://138.229.109.139
-http://45.232.38.48:8002
-https://ip.shinfos.com
-http://179.42.7.195:80
-http://177.73.92.20:80
-https://ipam.ukrhub.net
-http://200.139.14.12:80
-https://ip.antidot.ua
-https://91.197.48.19
-https://94.125.121.50
-http://5.59.130.24:80
-https://ipam.rsc-bd.org
-http://52.67.231.64:80
-https://177.73.177.99
-https://102.69.224.163
-https://172.105.181.85
-http://201.94.151.10:80
-http://45.232.20.72:8080
-http://89.107.153.17:8080
-http://138.219.252.1:8080
-http://201.222.0.23:8080
-http://65.21.218.112:80
-https://65.21.218.112
-https://network-mnt.0011.de
-http://181.233.95.223:8004
-http://45.178.179.53:7070
-http://89.29.203.46:80
-http://187.62.201.240:20000
-http://200.6.136.48:5000
-http://138.36.228.94:8083
-http://170.233.149.163:8083
-http://138.36.228.43:8083
-http://138.36.231.139:8083
-http://131.255.120.214:8082
-http://45.184.140.13:80
-http://200.106.222.14:80
-http://168.195.153.66:80
-http://130.61.51.207:80
-http://138.36.231.137:8083
-http://138.36.231.136:8083
-http://103.148.22.34:80
-http://213.208.132.152:80
-http://177.128.213.234:80
-http://45.164.248.254:80
-http://72.44.20.71:80
-http://201.182.117.88:80
-http://80.87.208.185:80
-http://138.36.231.138:8083
-http://45.182.96.249:80
-http://192.140.116.204:80
-http://47.45.19.149:80
-http://138.36.212.10:80
-http://132.248.115.82:80
-http://138.255.112.18:80
-http://200.50.152.232:80
-https://ipam.serverclienti.com
-http://138.255.112.12:80
-http://186.251.179.94:80
-http://203.34.154.3:80
-http://192.145.220.17:80
-http://222.141.121.54:1234
-https://phpipamm.uniparthenope.it
-http://143.225.201.68:80
-http://38.123.65.90:81
-http://103.79.117.60:80
-http://45.236.255.27:80
-http://190.12.136.182:80
-https://ipadm.wiip.com.br
-http://45.5.217.6:80
-http://187.85.85.90:80
-http://169.239.71.104:80
-http://45.164.47.230:80
-http://103.237.39.75:80
-http://45.172.200.19:80
-http://45.162.104.1:8030
-http://216.238.80.244:80
-http://45.180.218.246:80
-http://85.8.44.7:80
-http://210.245.107.10:80
-http://187.111.192.27:80
-http://89.201.172.243:80
-http://103.221.221.246:80
-http://38.210.212.27:8083
-http://103.126.172.3:80
-http://185.226.232.236:80
-http://138.255.112.13:80
-http://45.184.64.244:80
-http://138.255.112.11:80
-http://202.146.130.50:80
-http://41.226.30.141:80
-http://74.208.159.217:80
-http://202.182.57.20:80
-http://143.198.72.66:80
-http://124.40.249.150:80
-http://103.84.36.7:80
-http://187.87.208.39:80
-http://103.236.188.6:80
-http://45.126.75.74:80
-
-## CVE-2023-0947
-https://172.105.23.70
-https://139.177.195.232
-http://198.211.99.140:80
-https://185.122.164.35
-https://144.217.243.137
-https://blog.tictactoe.cfd
-https://172.105.28.209
-https://89.117.217.91
-https://142.44.242.187
-https://144.217.241.44
-https://172.105.13.160
-https://172.105.3.119
-https://18.221.228.201
-https://89.201.160.10
-https://167.99.99.65
-https://blog.carachiola.com
-http://185.122.164.35:80
-https://172.105.20.42
-https://50.116.45.185
-https://172.105.97.236
-https://149.56.141.66
-https://nikola-belavic.from.hr
-https://furrix.zone
-https://www.furrix.zone
-https://hisham.hm
-https://blog.vexorsgames.lol
-https://blog.grindluprojects.xyz
-https://blog.ibraah-labs.vip
-https://89.117.38.213
-https://blog.sutekihost.com
-https://www.blog.sutekihost.com
-https://blog.s0und.space
-https://blog.rekindlegames.net
-https://blog.peluchegaming.fun
-https://blog.thatsmusic.art
-https://blog.myballs.fun
-https://www.nattypower.com
-https://la.indynet.co
-https://blog.pommeverte.lol
-https://lfc.openit.hr
-https://lazycoward.guide
-https://www.lazycoward.guide
-https://gardenblog.blacksquirrelfarm.xyz
-https://blog.funny-url.lol
-https://nattypower.com
-https://blog.samuela.xyz
-https://www.nikola-belavic.from.hr
-
-## CVE-2023-1454
+<!-- CVE-2023-1454 -->
 ENCv1:gy4B2+qnlkQYGuZAGRAl4g==:QhAWZpjauEgioQk2KAox9w==:JIFB9gfYMawNzsafJTI++qwt9RS5/wBFAh0mCInhCVE=
 ENCv1:3SvqxnmCV787K3MV/RNJ+w==:ZVqb18t94Jn7fW6Z2oqs3w==:OY5hZ9aj1zvwPNAqJBw6/7VrFdPkLcAI8vUvlfpE7fw=
 ENCv1:hW3JzTjv2WAC7eWIQjolFg==:HEu10iYoTujjTtZfGG8Tlw==:GOWTuDXelNIi4MC3wCYbhtYk1b63gzkPR4CefvTaqoI=
@@ -213,11 +26,7 @@ ENCv1:8/kTbv86acWoO51lZ4eA/g==:IOFzSQrcaRCnrn1dtfmWJQ==:0XCZ7J6MTBDiW8iIsXtPem71
 ENCv1:yx9UwmzbNOpi9ZN1+HVivw==:9V1hl7wmIw4VEQvd5B4UKQ==:1oK8JE+T7HwIvY7DljEFAJC6Lr8t/pKvkeIJmQY49+s=
 ENCv1:MK5MMBBc469Wm+NRF+Lybw==:9xLN1TYzU3sbbEEK+Mlsmg==:piHTfqXB8nwtyv8/ghfZ3pfN6WNRBlRe2U9BQe8zboY=
 
-## CVE-2023-26258
-ENCv1:i38ta2SbcJbrwl2zMIrmIA==:Ux/DF+pCwPS9U3IIl+ZU7A==:+EXgazUPGc7lO3LJPpt12P5qeb2AvLExxNtt7Sy3318=
-ENCv1:SgAY/RH8Cgplu2HBslcTPw==:iy2he55xkYvPVPJPszlXWA==:b3/xidhwmeSIo0w5wrxH+pR3+YNby/JDj8RK3IOuR/U=
-
-## CVE-2023-27524
+<!-- CVE-2023-27524 -->
 ENCv1:/DyDHmM/vUCWjgMPdFTeTQ==:1D9+de2W0Lq419/pfKpmbQ==:d2+WLqtcFoGrYQPvRF+IOkgFO+o4LZUIUknpD+npwoY=
 ENCv1:Yuq8C+MlVOuYJ20o7few7Q==:lxh+TWb64M9eAYzKmGeM2A==:n5weodZuJ94tYkXkYPtTJGSTS6JwkdFS/wknFnBP5ug=
 ENCv1:5GmfsXmhx6Hq6V8ftgB1ZQ==:II0ylnlxUl46rlWS2H8qEQ==:b/HXr4JGJHWpAbE8a2kFRl1OpWw0LEQXqFk8Iif9EMo=
@@ -228,8 +37,10 @@ ENCv1:EpRh+gslBFgLk0yBW5e6eg==:8RAlyNvyuywygGBbC/Rlwg==:z4S7zs2LzbGoB+o2L55hsVUq
 ENCv1:CtkiqlQr9DQUZMIDTmV/VA==:RJgmvOrlVSMZfvrOvR6TVA==:9dkLoROrnmO2AwVn0hRh5IAHDrKuXRMp+TtdS52c53Q=
 ENCv1:wj/3lWLzN4oUP1v/ojLsWQ==:BmnCurimZCriKXo5H2AYgA==:DS9lkDOvS0twYTOjAdHl4HyQ66RxSmkhd0GnaGnDCsU=
 ENCv1:6RsgHMJbx2+jqUx6yquAFg==:2vF0hPT5/u8cUmsPmWcjZA==:erKLflPx7L7Gmeir3CxVsBtWol+1Kt1T7aIxML+F2ig=
-
-## CVE-2023-34598
+<!-- CVE-2023-26258 -->
+ENCv1:i38ta2SbcJbrwl2zMIrmIA==:Ux/DF+pCwPS9U3IIl+ZU7A==:+EXgazUPGc7lO3LJPpt12P5qeb2AvLExxNtt7Sy3318=
+ENCv1:SgAY/RH8Cgplu2HBslcTPw==:iy2he55xkYvPVPJPszlXWA==:b3/xidhwmeSIo0w5wrxH+pR3+YNby/JDj8RK3IOuR/U=
+<!-- CVE-2023-34598 -->
 ENCv1:buUeVvRjz8Jq21ekR+F3qg==:wPDCNcOpivjxsHPyQQMssQ==:wtXDXV0ZJLwKBGDox19o9QTUYrFca3gk46SyJpadqiQ=
 ENCv1:V7VoLTSZRgsUhmG+m5FqGg==:pGh4yyzOqbJH6BTxJCeuZA==:aO0WPuCXlWPV2dwegtvlFwmeWw5HecClT6pQtvEpXFU=
 ENCv1:7kTmnZSrG7GK6nGNqyP6Yw==:BmmV3Ab0g45UREu0qwO/Fw==:Z7XrvVyDm6D/c9gbGOGPhXtDNZCiCfolggC4iaPUHDg=
@@ -264,16 +75,6 @@ ENCv1:iX3Y2fmjNmB62L9vGh9nYw==:NWR7MCqbRDbd2+TuTrZ/oA==:rNRtTuMQ6Apv+Mi0Mz9cObBd
 ENCv1:rM1DqvpA5dhM1F6i+/ziqA==:h/6zBLWz1zG+gdpAI1unIw==:ZSjHwCgzwOwDIFEa6FjcjoVb0syCSiRTye1meOj623A=
 ENCv1:gpI4p9Bhh9045qjB0MV1Hg==:EcwosnYTFTNRq1wkoKhlEA==:bhL+g4g2glEEb2S2r8wH0wfwKOYbbQz9tKTDSTJXRyk=
 ENCv1:lzYiausBxjhKRZZCtCm1RQ==:1+fcTZttaeLe21hsPQxc1Q==:ORFqRQ9s+Nt6Vyfevj5sddxl1ns2X1bmCRkDowQF6Rw=
-
-## CVE-2025-2711
-ENCv1:a7lw5QFU7wZjADCRisIjiA==:ubKDROezoxcFKqKGkwwKMw==:dBPWHcM7Ba8QKtccJyXJd8P1zyhLYuSd48yDRlteQz8=
-ENCv1:UDXKwm+3cmH3u8scQQWCUQ==:5nbBrU1Zj7TzUDX2erBnxw==:wwh9JQxcQgh5VYvGSPJWyKsJW3RI+2ZwdjN3+5wnhTY=
-ENCv1:fhAIIsgLDQKs5yMAQVoHKg==:sLgh/S0SBFpnJfowSZI8mw==:anCH2lK1dzWFjpmjsduO5RVGU6rHZj10VmO8VgmCDoo=
-
-## CVE-2025-2712
-ENCv1:l0H9u95m4DjzTLrEBGfYOA==:FtJeNOz3NtsVLxLbVKyCtw==:N/bCW8qWZ+KLI9iv5rcYnwnRmkgluVWQga1V/6rB/2U=
-ENCv1:sj5JQVIusgdUVvahPDjTFg==:Rkz5mBBtP+felf/dBNlm8w==:vPTNvt5F6WaiAXXV4/su90yWeMDv4clXiNh40yyobmc=
-ENCv1:ml3oE67c06b+LR7V2alTfg==:TEjuXnQaq+cnmT0mrv3SwQ==:1xLwjw2cN/UyP+E24fNm4/qRSMn0ZM858DyxbV4oQhk=
 
 ## CVE-2025-27222
 ENCv1:RXvxAl2IDiBCXiqW58ceeA==:v74ykWSc50mMaDg3bJk/UQ==:0xX+PVBwU2AUM/XuKQB/8b+ryms69SWymLEzCIAvTX80EzhqFon6RQtTxtBFQZJG
@@ -376,3 +177,62 @@ ENCv1:QqMkOEZEcK2jACNyu+aX2g==:snmbwY7lnmfMfwiQd+ya7Q==:3Gi8gbewqlXk2+OY0ewA4zej
 ENCv1:MiCB0ZAxdWjT+3h12iHzOA==:B/9ZX8Gy/iBZUOi1etaxHg==:juGnzR/tTKQW9RxixLmb3msKa5UsqTxKjNVqeDcRIE8=
 ENCv1:hcKIOkqy0i0/5o1KliJB+g==:CuE5SC3MCTPqT/nleytNlA==:p3fgqeT+tmLn/h7xZxRSww59UE+Lw0NoGCEK4+of55g=
 ENCv1:dUYfD6k+xLDQSv26s/7bvA==:FhvycnikpAkzz7k7urqxvA==:eI7AjvIbdd4pmfJLotKD3d/wsz2BJDf7UFtQ9w3unrU=
+
+## CVE-2025-2711
+ENCv1:a7lw5QFU7wZjADCRisIjiA==:ubKDROezoxcFKqKGkwwKMw==:dBPWHcM7Ba8QKtccJyXJd8P1zyhLYuSd48yDRlteQz8=
+ENCv1:UDXKwm+3cmH3u8scQQWCUQ==:5nbBrU1Zj7TzUDX2erBnxw==:wwh9JQxcQgh5VYvGSPJWyKsJW3RI+2ZwdjN3+5wnhTY=
+ENCv1:fhAIIsgLDQKs5yMAQVoHKg==:sLgh/S0SBFpnJfowSZI8mw==:anCH2lK1dzWFjpmjsduO5RVGU6rHZj10VmO8VgmCDoo=
+
+## CVE-2025-2712
+ENCv1:l0H9u95m4DjzTLrEBGfYOA==:FtJeNOz3NtsVLxLbVKyCtw==:N/bCW8qWZ+KLI9iv5rcYnwnRmkgluVWQga1V/6rB/2U=
+ENCv1:sj5JQVIusgdUVvahPDjTFg==:Rkz5mBBtP+felf/dBNlm8w==:vPTNvt5F6WaiAXXV4/su90yWeMDv4clXiNh40yyobmc=
+ENCv1:ml3oE67c06b+LR7V2alTfg==:TEjuXnQaq+cnmT0mrv3SwQ==:1xLwjw2cN/UyP+E24fNm4/qRSMn0ZM858DyxbV4oQhk=
+
+## CVE-2023-0947
+https://172.105.23.70
+https://139.177.195.232
+http://198.211.99.140:80
+https://185.122.164.35
+https://144.217.243.137
+https://blog.tictactoe.cfd
+https://172.105.28.209
+https://89.117.217.91
+https://142.44.242.187
+https://144.217.241.44
+https://172.105.13.160
+https://172.105.3.119
+https://18.221.228.201
+https://89.201.160.10
+https://167.99.99.65
+https://blog.carachiola.com
+http://185.122.164.35:80
+https://172.105.20.42
+https://50.116.45.185
+https://172.105.97.236
+https://149.56.141.66
+https://nikola-belavic.from.hr
+https://furrix.zone
+https://www.furrix.zone
+https://hisham.hm
+https://blog.vexorsgames.lol
+https://blog.grindluprojects.xyz
+https://blog.ibraah-labs.vip
+https://89.117.38.213
+https://blog.sutekihost.com
+https://www.blog.sutekihost.com
+https://blog.s0und.space
+https://blog.rekindlegames.net
+https://blog.peluchegaming.fun
+https://blog.thatsmusic.art
+https://blog.myballs.fun
+https://www.nattypower.com
+https://la.indynet.co
+https://blog.pommeverte.lol
+https://lfc.openit.hr
+https://lazycoward.guide
+https://www.lazycoward.guide
+https://gardenblog.blacksquirrelfarm.xyz
+https://blog.funny-url.lol
+https://nattypower.com
+https://blog.samuela.xyz
+https://www.nikola-belavic.from.hr
