@@ -1,6 +1,8 @@
 package stage
 
 import (
+	"compress/flate"
+	"compress/gzip"
 	"crypto/md5"
 	cryptorand "crypto/rand"
 	"encoding/base64"
@@ -15,6 +17,8 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/andybalholm/brotli"
 )
 
 type POC struct {
@@ -126,7 +130,7 @@ func (pe *POCExecutor) ExecutePOC(poc *POC, target string) *POCResult {
 
 		defer resp.Body.Close()
 
-		respBody, err := io.ReadAll(resp.Body)
+		respBody, err := readResponseBody(resp)
 		if err != nil {
 			log.Printf("Failed to read response body: %v", err)
 			continue
@@ -374,29 +378,32 @@ func evaluateSetExpression(expr string) string {
 
 func evaluateExpression(poc *POC, expr string, ctx *ExprContext, pocCtx *POCContext) bool {
 	expr = replaceVariables(expr, pocCtx)
-
-	if strings.Contains(expr, "&&") {
-		parts := strings.Split(expr, "&&")
-		for _, part := range parts {
-			subExpr := strings.TrimSpace(part)
-			if !evaluateExpression(poc, subExpr, ctx, pocCtx) {
-				//fmt.Printf("[DEBUG] %s AND chain failed at: %q\n", formatHitMark(false), subExpr)
-				return false
-			}
-		}
-		return true
+	expr = strings.TrimSpace(expr)
+	expr = stripOuterParentheses(expr)
+	if expr == "" {
+		return false
 	}
 
-	if strings.Contains(expr, "||") {
-		parts := strings.Split(expr, "||")
+	if strings.HasPrefix(expr, "!") {
+		return !evaluateExpression(poc, strings.TrimSpace(expr[1:]), ctx, pocCtx)
+	}
+
+	if parts := splitTopLevel(expr, "||"); len(parts) > 1 {
 		for _, part := range parts {
-			subExpr := strings.TrimSpace(part)
-			if evaluateExpression(poc, subExpr, ctx, pocCtx) {
-				//fmt.Printf("[DEBUG] %s OR chain succeeded at: %q\n", formatHitMark(true), subExpr)
+			if evaluateExpression(poc, part, ctx, pocCtx) {
 				return true
 			}
 		}
 		return false
+	}
+
+	if parts := splitTopLevel(expr, "&&"); len(parts) > 1 {
+		for _, part := range parts {
+			if !evaluateExpression(poc, part, ctx, pocCtx) {
+				return false
+			}
+		}
+		return true
 	}
 
 	// Status code equality
@@ -422,7 +429,6 @@ func evaluateExpression(poc *POC, expr string, ctx *ExprContext, pocCtx *POCCont
 	}
 
 	if strings.Contains(expr, ".bcontains(") {
-		fmt.Printf("[DEBUG] bcontains operation detected\n")
 		prefix := "response.body.bcontains(b\""
 		suffix := "\")"
 
@@ -458,12 +464,9 @@ func evaluateExpression(poc *POC, expr string, ctx *ExprContext, pocCtx *POCCont
 		pattern := expr[8 : len(expr)-1]
 		re, err := regexp.Compile(pattern)
 		if err != nil {
-			fmt.Printf("[DEBUG] Invalid regex pattern: %v\n", err)
 			return false
 		}
 		result := re.MatchString(ctx.Body)
-		fmt.Printf("[DEBUG] %s Regex match for pattern %q: %v\n",
-			formatHitMark(result), pattern, result)
 		return result
 	}
 
@@ -485,7 +488,6 @@ func evaluateExpression(poc *POC, expr string, ctx *ExprContext, pocCtx *POCCont
 
 	// 处理 content_type.contains
 	if strings.Contains(expr, "response.content_type.contains(") {
-		fmt.Printf("[DEBUG] content_type.contains operation detected\n")
 		prefix := "response.content_type.contains(\""
 		suffix := "\")"
 		if strings.HasPrefix(expr, prefix) && strings.HasSuffix(expr, suffix) {
@@ -499,13 +501,137 @@ func evaluateExpression(poc *POC, expr string, ctx *ExprContext, pocCtx *POCCont
 		}
 	}
 
-	fmt.Printf("[DEBUG] No matching expression found for: %s\n", expr)
 	return false
 }
 
-func formatHitMark(hit bool) string {
-	if hit {
-		return "HIT!"
+func readResponseBody(resp *http.Response) ([]byte, error) {
+	var reader io.Reader = resp.Body
+	encoding := strings.ToLower(strings.TrimSpace(resp.Header.Get("Content-Encoding")))
+	switch encoding {
+	case "gzip":
+		gzReader, err := gzip.NewReader(resp.Body)
+		if err != nil {
+			return nil, err
+		}
+		defer gzReader.Close()
+		reader = gzReader
+	case "br":
+		reader = brotli.NewReader(resp.Body)
+	case "deflate":
+		deflateReader := flate.NewReader(resp.Body)
+		defer deflateReader.Close()
+		reader = deflateReader
 	}
-	return "MISS"
+	return io.ReadAll(reader)
+}
+
+func stripOuterParentheses(expr string) string {
+	s := strings.TrimSpace(expr)
+	for len(s) >= 2 && strings.HasPrefix(s, "(") && strings.HasSuffix(s, ")") {
+		inner := strings.TrimSpace(s[1 : len(s)-1])
+		if inner == "" || !balancedParentheses(inner) {
+			break
+		}
+		s = inner
+	}
+	return s
+}
+
+func splitTopLevel(expr, op string) []string {
+	var parts []string
+	var current []byte
+	depth := 0
+	quote := byte(0)
+	escaped := false
+	for i := 0; i < len(expr); i++ {
+		ch := expr[i]
+		if escaped {
+			current = append(current, ch)
+			escaped = false
+			continue
+		}
+		if ch == '\\' {
+			current = append(current, ch)
+			escaped = true
+			continue
+		}
+		if quote != 0 {
+			current = append(current, ch)
+			if ch == quote {
+				quote = 0
+			}
+			continue
+		}
+		if ch == '\'' || ch == '"' {
+			quote = ch
+			current = append(current, ch)
+			continue
+		}
+		if ch == '(' {
+			depth++
+			current = append(current, ch)
+			continue
+		}
+		if ch == ')' {
+			if depth > 0 {
+				depth--
+			}
+			current = append(current, ch)
+			continue
+		}
+		if depth == 0 && strings.HasPrefix(expr[i:], op) {
+			part := strings.TrimSpace(string(current))
+			if part != "" {
+				parts = append(parts, part)
+			}
+			current = current[:0]
+			i += len(op) - 1
+			continue
+		}
+		current = append(current, ch)
+	}
+	tail := strings.TrimSpace(string(current))
+	if tail != "" {
+		parts = append(parts, tail)
+	}
+	if len(parts) == 0 {
+		return []string{strings.TrimSpace(expr)}
+	}
+	return parts
+}
+
+func balancedParentheses(expr string) bool {
+	depth := 0
+	quote := rune(0)
+	escaped := false
+	for _, r := range expr {
+		if escaped {
+			escaped = false
+			continue
+		}
+		if r == '\\' {
+			escaped = true
+			continue
+		}
+		if quote != 0 {
+			if r == quote {
+				quote = 0
+			}
+			continue
+		}
+		if r == '\'' || r == '"' {
+			quote = r
+			continue
+		}
+		if r == '(' {
+			depth++
+		}
+		if r == ')' {
+			depth--
+			if depth < 0 {
+				return false
+			}
+		}
+	}
+	return depth == 0 && quote == 0
 }
