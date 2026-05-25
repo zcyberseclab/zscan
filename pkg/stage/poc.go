@@ -635,10 +635,3 @@ func balancedParentheses(expr string) bool {
 	}
 	return depth == 0 && quote == 0
 }
-
-func formatHitMark(hit bool) string {
-	if hit {
-		return "HIT!"
-	}
-	return "MISS"
-}
