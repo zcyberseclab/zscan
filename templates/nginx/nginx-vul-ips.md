@@ -1,3 +1,5 @@
+# nginx-vul-ips.md
+
 ﻿# nginx-vul-ips.md
 ENCv1:xSTGc5asggmGrgtHT3t4Ng==:H5FmD/wgeHnsc5EXvImlAQ==:+n4bj3DvttChzsEly6EwVd/29F8UeCXcfSMATVnjfjg=
 
@@ -67,3 +69,43 @@ ENCv1:iy5j98h6ZF0SjJYFhia5hw==:d6pVAOdHSLbucox8jw23NA==:tFrkb/XG6Wg11be14qJoG3r2
 ENCv1:jQ3tWQPZYgJ2SwpntooaQA==:l0LLClfqT2al9Ucf6/NBYg==:hSkwM6tV7+JDk8TRQGJOd3SwGJojTWj0h9nJwLjCPI8=
 ENCv1:Se1tC5TMgGQBvOivLDqOsA==:n7+iNXlKx61mDEvTQ1pYzw==:bpXmsNC+yG2EHiMJXjX9Y6qp8wdIUgKEIovd28jSVOA=
 
+## CVE-2023-22897
+https://151.252.216.177
+https://80.147.170.223
+https://93.224.138.177
+
+## CVE-2023-23161
+https://16.28.78.253:50995
+https://54.180.86.136:50777
+http://3.80.48.174:5985
+http://43.209.184.154:10005
+http://43.209.184.154:55555
+https://43.209.184.154:51005
+https://15.152.116.221:111
+https://78.12.252.87:3561
+https://16.51.148.102:3175
+https://webhard.uwincore.com
+
+## CVE-2023-24278
+http://3.6.57.82:5010
+https://168.119.181.58
+https://content-sea.fromlabs.com
+https://cms.kinoshkola.org
+https://cms.vdtt.de
+http://168.119.181.58:3000
+http://159.65.2.228:5000
+http://35.195.88.13:80
+http://160.242.22.80:5001
+http://164.92.180.8:8181
+
+## CVE-2023-24322
+https://onlinequizleague.com
+https://quizbuzzers.co.uk
+https://sweetsilversong.co.uk
+https://quizliverpool.org.uk
+https://odquiz.org.uk
+https://merseysidequizleagues.org.uk
+https://ormskirkquizleague.org.uk
+https://wirralql.org.uk
+https://www.claycoseniors.org
+http://65.110.83.41:80
