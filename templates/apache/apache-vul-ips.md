@@ -1,3 +1,5 @@
+# apache-vul-ips.md
+
 ﻿# apache-vul-ips.md
 <!-- CVE-2021-37580 -->
 ENCv1:fwnPT5jr7n9lH7YgdrYxRw==:4IQNSSg4YZFiIG2hLwudow==:gWqpQXKCpVlum7UEr7HRtF34c9rXDrJvIbkA64L1vts=
@@ -188,3 +190,23 @@ ENCv1:l0H9u95m4DjzTLrEBGfYOA==:FtJeNOz3NtsVLxLbVKyCtw==:N/bCW8qWZ+KLI9iv5rcYnwnR
 ENCv1:sj5JQVIusgdUVvahPDjTFg==:Rkz5mBBtP+felf/dBNlm8w==:vPTNvt5F6WaiAXXV4/su90yWeMDv4clXiNh40yyobmc=
 ENCv1:ml3oE67c06b+LR7V2alTfg==:TEjuXnQaq+cnmT0mrv3SwQ==:1xLwjw2cN/UyP+E24fNm4/qRSMn0ZM858DyxbV4oQhk=
 
+## CVE-2023-30192
+ENCv1:rWne79TWor5ygonVdbzqWQ==:eY0wHPHkyP6C5u030ed+gw==:QjOip/tf1/dqn5uerEmRndnCXwf5CJT4H7l8dIw6v+A=
+ENCv1:ifJHIjj0FhjCKQtvLBXRlQ==:ahcN5D1w+rXnRgmNwkYBFw==:QkNOqbPSKZzkb193hb4nLRHzCY9rQZhgcJaIKKJWCjc=
+ENCv1:tKcsDJtpZEdPtt6nq8OzTA==:BseISQO119k2G8a0BuIYnA==:QMn4zopNFYyo8FaQeUS33mmtrb7EAnhzKk84xXz60RY=
+ENCv1:GrZ7WVTOy4uALWa/dMoA2Q==:x26Bf9ibeTiSXvr+4aK1UQ==:ne39YltYnq5gX60YsioYPmYvY+zveXN+bVa0cemrE7c=
+
+## CVE-2023-30194
+ENCv1:v2BLXQijZMJs8Ued52gLjg==:vZqPD94Wg5ndEuoAeDh1ww==:NFnk0S5Y1acqtNkumE+Upq5lyDYMxjiCH2oBDm1+was=
+
+## CVE-2023-30210
+ENCv1:xJviJ3PkpsoR3AbSaesvzg==:bLmwj491e0CyOazDMsfd3A==:cYAXvJO1XyaaBPgg2w1z7x8+u0sD0LaSkq4jfb/RWMg=
+ENCv1:NXLVyO1Q6R7rfxntANvLxw==:ON3nvGuBWC39IeOpvCBmpg==:xE8dgtI+47h36qdDSewvNIICyy6AFI+0aw/mhKTm2PI=
+ENCv1:8cb+K0F8w8gL6nNFPWk93Q==:s5bgaEeZE68PkT89Of0MMQ==:nPDZS3hkCI1AszBQec3RHJ0uhcUNIlofxFg1kybgf44=
+ENCv1:9fpINH6bLdRMQoc8nmmlXQ==:Ub6CvBov6FAlROCRBoDeLw==:HjWn9kI6zTrFXraShof+HfmY6sNC/9sWLppZKPDiHwo=
+ENCv1:WDbkCPCQuywKLkjKV9ueJA==:TE0nbc6nIxkwIyT1oWHQTg==:D/DDwB0ISwTSWEfCKza7JucWizqmEmsHPjQdlhU0t18=
+ENCv1:lhVJOPfX2QdfOMYYBAF+Nw==:1LwnaQ6+iBfNpba9jNSduw==:IPLBscX/l55aF+ixyLRaeJ/UcmCWjHV++DA0DaC5fnc=
+ENCv1:baLaFgJ3FoL7HK5qktt11Q==:ppMQy9FBgo5RAM21NXD/9Q==:cbD8W6Kt61XSHzC/wlPizpqjvjTXf72kDDmn2VjKQWc=
+ENCv1:zCtb61rz5REJzZeFgWQ/NA==:h+KPHd2NV9WXfTGewn6Byg==:p+iAafrUarKeSAy/51lQd750dDBWex7g6Br1wYfg0fA=
+ENCv1:ZgnBKDdEFA4rWgwdLUvQzg==:d3qpTq3lyCuw4rUf+q+Ycw==:hcgc9W7RgsfvC6U4uaQrlsbUqYYUL+A3HLa0WxJO5VQ=
+ENCv1:z6zSG9148IQ723k9bYCl1w==:1Jn/rZqT5H4WZp1v/bzXkQ==:kdOdfmgpLROgE+rrO1nMQNd5//O1o0tk59pyAKpeNQ8=
