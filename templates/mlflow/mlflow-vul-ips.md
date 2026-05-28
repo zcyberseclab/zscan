@@ -1,0 +1,9 @@
+# mlflow-vul-ips.md
+
+## CVE-2023-43472
+ENCv1:9Y6tT9WhdlxuiAzAZ5r8ZA==:HFRKgcMzRbVoKZbC5Zx0Gw==:rd/dpv4Mvvi5MnbqctWLPsWRkvT7PFMlXpNcOk8WzBo=
+ENCv1:wLs0q+5XkPZkFMMtz65NzA==:G4L9Ch3D0TBIr6700Ljobg==:knguwGsgW8I325vjAIF2zfMbask+0im9W4DKlLCgqEs=
+ENCv1:X0ymK/KhSGEnzTp+nErqIw==:yqd+wnsIKlZtcNPgPJSkfg==:/p3i6VaNq5Gu0+iibNiApWKnfY5xH97BOnVzX40EATc=
+ENCv1:rm+1MjzP0YeDCywtoHOVBQ==:0kYTPne7ih0+g5CLfNNf7A==:jL+JwebEmpimyUYO98moqhgMJJYXzsM7gkwKhqC4cpQ=
+ENCv1:CAjVNzCaXNNxXib7yFqMtw==:62X6ef4h294vtaKr9LMz+g==:0b+1rzmrnKok8Q08F2U4wc9DgQIWGbrUY2duvrVZIpk=
+ENCv1:FxCLXE/agbPlVvEEWzARuw==:4tyPHPKPtJ7ewW/tq59XNQ==:AnIfu51ffVtH3ljSC/W93EZofWAdNNJ3PT7TIqPWDHM=
