@@ -1,4 +1,18 @@
+# apache-tomcat-vul-ips.md
+
 ﻿# apache-tomcat-vul-ips.md
 
 ## CVE-2025-5605
 ENCv1:l2Y7RAsi+8YuwbdhEvQNfA==:PJBaEeMhNOD2cq88T7faHg==:IFMT1+8oGYncAkzfCqar0eTPPiViTtqROVe1kVeDYqk=
+
+## CVE-2023-37728
+ENCv1:juArrB41Ly6hSRUDBPxJzQ==:c0hYlpjmAbOK8ZHEuGO5Xg==:LubzmW/7jB0IFBAuG/H1ER7aoMQf+TplasZguRuPaq0=
+ENCv1:ikeDnQRPELSljGAaskLfVw==:cSyeTm7njDMtsW4VFLsmwQ==:V1zVzADSDmmFuFW9SRNMyq9n/HlIrK7BWMdqJHUFENo=
+ENCv1:yHGARprZiwzaieonGsSodA==:UlSGmJMhjadbDAWoQYs0NQ==:uCpsEoIWowzzm2dfhU6HQf2owAMJtonf9kyV+wblL2E=
+ENCv1:SrswL4kOY6aVWBbd+BCKvA==:PeT+oSlD/BGAGmCekjK4SA==:N+bYX7dCccTgTucnoCwnwioJ1E05rznN0x7WrrdBTkQ=
+ENCv1:QKVeI/jo0rpMXAUJcD8Lvw==:MmEQ8UxgWxE/0e6BkQXAjg==:DYKKDdAxrcMEUSAvEq5SgLx2wcwp0yTenKtCBzYzanM=
+ENCv1:LVHWqEEQIWsnfZ61W4Ackw==:jJ+2SgCxIKFYnRHHKnImhw==:Cs8WYStJg6aoF8IK3j6wWCr5F2GRuqGDFz3WA9e8dyY=
+ENCv1:pJ4ooU9tCxGajN8KiaqRlQ==:aSMrB9twOrz0Alkg3ZLBkw==:DLtBStOIS+YgeX/bEM0/3nmIK44gDJ93NwXsA3VIYKQ=
+ENCv1:DQThaZwJSsTOim7n/Th3BA==:oq9w531DN0/uwHnqNqNckA==:pJp6nLyEZetNxeWnMkk3nuiyty4Aq6eHhF836spzmfs=
+ENCv1:boZuxRX60FgsTRDUCFW3Uw==:92JbFDxnf0nBeetcufF/Tw==:5NEEsiY0mJPKHS78AIa5u5oySlTnUbC2ivIF6SZNSHc=
+ENCv1:mT5dg8EdbFa3wZY/bZOJUA==:3/ZOPLCzS70ERf6C+ByRCQ==:9iNzcELNSvV+kR59cVWJiWNiRGWkIOYI+/ogV/j+Ydg=
