@@ -1,3 +1,5 @@
+# wordpress-vul-ips.md
+
 ﻿# wordpress-vul-ips.md
 ENCv1:VycrwDOHKUJE6t5LtTBA2g==:1VaJxXOblmqkjnT6Oz5fmg==:ejcnDQVFcJzUlE0I9ypvX2WrY7RvZqAb2ABKzmDWZg8=
 ENCv1:5q5gUptaqW0Wm5scLCwHpg==:8pXgaP20M1i2Q/dS7Rol7w==:TCueaEVTowAD5VHuZ1fJESy+jR/JmGcB9El5L/ihVSHvjVgj0ODQFg7YSDrwLgM9
@@ -40,3 +42,14 @@ ENCv1:RvZC/KI6+w7mg0LwHNu/Kw==:CvOcmxqs4I+8VBPYfH7b5g==:XLfTi1Lirr6lC3iPSQpQQ+cP
 ENCv1:xWU/zQN5EMANGe8uhAIU0A==:0+CHI7clFSTxpnbzOLs48Q==:/Q8Ge9SPB5kVG5sAzxBk3pGxPedZGQqWoz+OdSPqpZ9rhTcWhePan0Cckpb8hEsu
 ENCv1:nRRaEtLOoq5tjzGUEaiRBw==:pIGA69+zP1A8vYyG9vgSkg==:YsU0BSgNPczgFMI9xw9B9IqhJ9Axo8+Ke5b80Gvg1FM=
 
+## CVE-2024-0881
+ENCv1:1ZGbOjBNOYd4maJQf2idqQ==:nymq0zJvwEXYJ68cOv3GSA==:bfQKixabzqmWxIpPfQysM3CEGzZsMqIhmEnpCVPQ6Cc=
+ENCv1:2DBXknrrfYDBaSncZJeJ8Q==:+k8167J9mwnLQRlv+sjKsg==:qdFEOzisfI13wIpM59yQloCIOnPeZf978UAx6NyZDUc=
+ENCv1:lQ6Dd67JGDjrnDF89e2XuA==:L8JKT5b9fvI4SQiprZONCQ==:zaj8VR0JR7dZwayzrzIk4zsz3RbHNrcpJHINH+QoeSY=
+ENCv1:7heWfJF2buJEUpOr/j9RdQ==:Fl8ugxL7f3IdKLOblzu8+A==:lsUpkVdny4gWb9x80Kp+v/i2JN3B1DuiusB+QEYAHvw=
+ENCv1:VVVsxtLLW4W2RazbbjknnA==:c9rcwotOU72XzGKlqAacig==:eiyoxSRjcv9/fU9WZnhcjdUVnykbeF/G/H7fVFB2q0M=
+ENCv1:NQnGT5WMwf3lP79oh7jtvg==:QcA3y5FjSirKtO4PjHdsfA==:n/hQ9B0nUopDDwaYke2nLIBGXFi+O5u5XW3JyytJKx8=
+ENCv1:tKZowLjZU/Uh5i9e4+xetg==:PY2jImDACz+pUuG0DfTXTg==:5JXAtbxkLG7I3mqK/qUZ11zwvAuPooVYiw0m4kXUG28=
+ENCv1:64eh21hhKRyWA5AnipRLMQ==:zb7zqOfvMpXsluJfxj7U7g==:0/3P18+azo+FrzRlCkM2Io4VYaXvJj9NnUdGv9Ruc6U=
+ENCv1:ZlzO5+x+kpeKWDrgDP3TmQ==:dhjdiI/9HiOV5uxGuXe1fg==:u+UKqar+MkbuogQO5STdzfkOA8THWz3grkauAoFvrTs=
+ENCv1:cSMI1MSKRDhWepE2tWRAEg==:9JW7P5bRTs/zapTylUAfCg==:+MrKzS+R4c4G8FOSKMhxnO71BVvyNPqlXj6xsD2b0Zw=
