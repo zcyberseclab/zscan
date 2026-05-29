@@ -1,0 +1,13 @@
+# mlflow-vul-ips.md
+
+## CVE-2023-6568
+ENCv1:sSi5cg4WpNagBWDEZvHlBQ==:1Qwf2hYSy/dJVDPMv88IGg==:6/1ZmgANhNcybrrQDRqiwuv3oFpVrP5y1b0gCDS4GjI=
+ENCv1:0Yp5vlKrKVxgc4pIyCO1eQ==:KP8TzbjNou+nu4VuJ6YFbQ==:qQelZ56g09cuids6Lt9hzQpPxAa8rxYGxlVKu9Wrx6c=
+ENCv1:LJD4hAXsL0R7+hqnAqKGag==:gMtOAZfulnflFOA7dA4YcA==:azh7X3gpsvJ1xk6dsxFsr57LguEqykfvCf5scROxfBk=
+ENCv1:6nPWoTvNAtUup3BP4Uq/ZQ==:5BousY5QntcTCg5hDsDoMg==:ObP1Peax9fw6bYJTx/wzt5RR0u6OevSf1VhVqJXt5N0=
+ENCv1:cSyaTv4H06lSS4wQEFOl/A==:HdnWfFL7qNtkuSedPNKmPQ==:LImN/KunIaij+oRG19XgjhKJGcj769aELWM3S+csGSY=
+ENCv1:ejkp4WKLRu8IT2OEug1Ccg==:8b01y1xfFpX+e5ZhZtdMwg==:ajhGjIoiN7gQUL6IhD1tGjQY7elE/o3ZlFLMJ0xNhTQ=
+ENCv1:iIvadXKihVjdQFObsRxQ0A==:0c8Ws8yP5naz52Iu0MeEBg==:1ukmq63jDGvRKu3QvFMuIkkyciLJHLJSlXFy5XrpFSk=
+ENCv1:bW5ONfpN+lgSidY8hLRRPQ==:nvS66Q2mCAbmsARIurPYNQ==:7zee0vfey9L+dAonukkHiYchpw34F0x9Ds9kHBmXrT8=
+ENCv1:miiAcVrrMtih/WIPmBZSZQ==:3wBaECAdFgZLORIVW4CRpA==:PzbVu259fOy0ixUNAnA8dyNAy2oYeFCfgW2IjFBhrgw=
+ENCv1:SDl5Vtwsu3/YRIzKDw/VvQ==:DOvcl/DyHNROca9dOA98wA==:wg7xxU4Xv6T7JiwVx0Y636Qj3m+TtBCg+pa5HlS3O+k=
