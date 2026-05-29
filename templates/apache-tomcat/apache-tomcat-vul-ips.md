@@ -1,4 +1,12 @@
+# apache-tomcat-vul-ips.md
+
 ﻿# apache-tomcat-vul-ips.md
 
 ## CVE-2025-5605
 ENCv1:l2Y7RAsi+8YuwbdhEvQNfA==:PJBaEeMhNOD2cq88T7faHg==:IFMT1+8oGYncAkzfCqar0eTPPiViTtqROVe1kVeDYqk=
+
+## CVE-2023-47248
+ENCv1:Ux3GxsZEOY7HAWPBUkNrpA==:qAhbkigI2P3/HpFy47xzyg==:99bd0wHwNcGGocw1xrnxB4LEy90Woq7xJv1hdFZVrls=
+ENCv1:wLuGsL/KcPXnhj9eTwYQmQ==:rc35RA6TLXZBMBpqVCtKRQ==:Gi3LCenp81P16uwWTLRJ7iVGxEsnek6WJOTK6g4DjJM=
+ENCv1:eg7ZXwzPWssH9OZurkgRTw==:kEjazRABStj5XHLV0GV1gQ==:60lhKlz8vkPC/cbRHEPA0GQkny4Q5L8SCH2JDF58SR8=
+ENCv1:r1MHtlrQ1kEOjsQ1yxFA2g==:O7K8HyuQHKd4VL20CpC7/A==:Z7azKc6V1rFproEvdT1lyX0+N/kkfUCLPc+R4UP8GLQ=
