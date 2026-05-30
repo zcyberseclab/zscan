@@ -1,0 +1,12 @@
+# webmin-vul-ips.md
+
+## CVE-2024-44762
+ENCv1:KAt723uW/G901SckbZUQJA==:Enxpdo1RZc73opz8ElVVsg==:ryZelTrjvPcb1D+1lq7+VMbw2iIhvA6BnLnqtpMtPDA=
+ENCv1:mScdCIn5ExoMldMCMaa0Ww==:CxACm6OstE1YaBTl5kqR2g==:J9Q5IfKyVnOdUZfcabPGk3T6TOC8cXno+OZZMLdV/0k=
+ENCv1:QrM2zG568rskM7PtMC+hpg==:Yc/X2A57Dy+BnqfGFGqB8Q==:IYynfRRRrJ5WdYRddtqaB5NAir0gmvIPgB8suhgZbxY=
+ENCv1:e36r0pzdMAuJKzcSAI6w7g==:G9Wwumv4bBmdET/OWIrDDA==:BVgNz9h8hBsnYvNbwAOCuETn68vjqZryyHw72fKqf10=
+ENCv1:t6A+vZ5whBEaPeY6PZe7ow==:kG2rqicVPziIfncnjDZfEw==:FglDxCTEY7CzMGAQaOf3xxdmAzSJWyLFfPNqumDUOXE=
+ENCv1:X8WV8YKTEZS63FzcMm727w==:4T7EuQ51B3UlRrTFfqRD4Q==:ByTA7Gx7oCYcWlPxquactyMHKJQQXPQxwhWGOVziTzg=
+ENCv1:Ri4Q2QYRyeQQUBazSt9ZqA==:Kfy1eOTIdvfM7oibzOspqQ==:bK7mdDyL1itocfPn3pJWZbepxfRlQ++aCQbESEGGk6A=
+ENCv1:LUsnQqJ0ac6/5PLcL/mp1w==:6+kH4CuijLcRT4Zl3zKedQ==:kU8FwQltFgym1VpH39rxjwc4yTdgpJ8Pi/dzffhz90Q=
+ENCv1:J5YjuKw+HGG761xA8viUaw==:VQDVDvDC30aJmkafTsksfQ==:tgMCqEvet25/lU10o2xT6S5lxSdP+dYA+JxGjQWvtoE=
