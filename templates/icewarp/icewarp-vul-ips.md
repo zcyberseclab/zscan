@@ -1,0 +1,5 @@
+# icewarp-vul-ips.md
+
+## CVE-2024-55218
+ENCv1:i+6kaUgRBaO8wNUDcKhFDg==:4KFQfz0y8Z2VBaCDuWuxYA==:EnHsErOgzv7XjmqNSkRLtJ0Sfb21uG6POjgQXUD3q3Q=
+ENCv1:fTEuw6/07B/QIl5eId8PEQ==:sPEH9PNXxXeaOWHUakKNNA==:DmFUNZlWmU/cNzayhNFfZ6Ncn8RhKbud4JguIRHGuXc=
