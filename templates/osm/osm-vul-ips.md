@@ -1,0 +1,10 @@
+# osm-vul-ips.md
+
+## CVE-2025-15503
+ENCv1:t5eSxs2ZEMk6/J8l52z4gg==:1che4RieZS3u1Nx3DMkdNA==:laD0dxaxRO17/MH+20f65XhgHAhC7aKyjQ//43laZfs=
+ENCv1:56j9fSmevd7G7ynNYTBbtQ==:YQK+kw+jkQwLpjtbL+8WeA==:xCyRUJ67dHUhlIDqcwqsrbYe4Ej2KeTFLdLUHsp9EeA=
+ENCv1:hhEdbq7bVvu9o5QYXUMtEw==:ksClJSVoJEgE61lx+Pd9dQ==:mMk5UIMvCkZF57D/VsOIUiV9yBsAgyQMbWzWBRp5+OE=
+ENCv1:X+MUoal7AZIQfA/kDuI2FQ==:5odBJK7Y3q/J3wO38QO/kg==:0JVcCwee+22XB4953yER1v0ccxrV5QlaB8uBIU/tJHc=
+ENCv1:/DArgHOuTw0rLonRbFa1uw==:OtwZwygcaT/2tMZ/hkszGA==:L6xzN3M0t7WfJ+uQ2yNw9YKWIR8zHTdY+ShLQnuvGu8=
+ENCv1:zKcX53F5sVswW2XRaSfVBw==:+S0F33WBo/jqntsMKWPbdg==:3UiryI6lAKloQ4XUjzXvVHBSB1e2aaWqS/DXzWCKfHw=
+ENCv1:sEMaPzkwKNlDzQE/VY5oqA==:7Nx6MNI8jXFIUkSwot2oWQ==:FcrxnoxpR7wMvjwcjf6IiZu8qfJ/xcGHuLqLdK7/qyk=
