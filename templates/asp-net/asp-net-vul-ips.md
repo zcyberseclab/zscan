@@ -1,0 +1,7 @@
+# asp-net-vul-ips.md
+
+## CVE-2025-30406
+ENCv1:K7HquQIVbTUIV5UqjiGgmg==:6dypx8AIXONLFnID0PS3kQ==:clNDkcpPQ7b9No/GX5wQ8/s1N6jFyHy2+t+HHNt9t5k=
+ENCv1:9CE8XzuKziUTaIfzhsbgjA==:wpRwhyWvwBAQ4LcVQoe0Yw==:A0JmLJdJr0LEl8XjZHuvZVhuH3QNqDpS6Mx7FrHneFQ=
+ENCv1:0fuAa2RkzJ05Yedhz5wdVg==:EZAQbHlxdQvoAGVYrR8DsQ==:Sufj+w1Sw2qwLlI0ZgXyzLCnsshLU62LXhq42F0sR0M=
+ENCv1:D1CVQclMa7tEAYN9cnisXw==:USogJtp3NC/Ufj0aUo4M9Q==:elkEX0XY6767cK3HscCj4JWbvyOlrmKUstC7AitMac8=
