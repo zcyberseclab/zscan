@@ -1,0 +1,13 @@
+# asp-net-vul-ips.md
+
+## CVE-2025-2747
+ENCv1:pvy+vjuEGMFX13dROhtkEA==:WREuxwOEVtWqlITq10qp3A==:RcgOJUdm/I+HVfa+hHlwhSrQvAyb86nuplZs4d9nFlc=
+ENCv1:NNMBN4ERxfTXuyLCpTtOXw==:TXn1YKuiYSdUzIp+xJsfSQ==:s07IkoUxoTDUsrrYIVX5e3PH/XhUQGKY5iNeOmBbdN4te7wLyJQQpPDNvs0tOtLl
+ENCv1:HR90vzQhtu91/gLCeeY2Ig==:WdbM4azM9mk9g21gyRY67A==:t7T1FB3icwK0WFLG4WWnROqftRveWbSgl9kuIMVAscMW6VumlZm3y/G6n6GzQ6DF
+ENCv1:ll+5+Gt9bSnczfe/5orsGQ==:rv2v6gf/Sd0WKfIuNRV/CQ==:Tu9cv5skU2gryc1KKuD29+za6jVxZK+ckIlFRq6PFeYSpU/KDwJ8cEeKSCZWfi4W
+ENCv1:JYalVzmI+X7SDpX/qzrRHQ==:jPzr5CIi+SgnpK4z2Qd7Vg==:ihQzFabzDO3n6Ip1aa5YGoic8dgsLIbnOoLOrnnjsTzUdNl+aHiGFbIc82L7CsKa
+ENCv1:imvBDSQeep1lgqCQ1bXJEA==:PeFPy4Zgpp784Fqx4Yttpg==:NQjuY7wskAp2iM2G8g2y7Vk28n0/URJn+lfkzwaOdyQ=
+ENCv1:tgJViqklttLAbv9nPadnEg==:OaZI4zWyk+ktcCVF6or2/w==:UFOoHw11CkgW9lgZbedD+rKGx4YbUeNyBM+nvR3TgbQ=
+ENCv1:iozMb5sQg+bozz3wuONnIA==:nIC73J8lr+Ts4fwMECIdAA==:5IExzHE2DFfNr8Igtu1CMsB+XCkVofIEhDbBeXJIbMQ=
+ENCv1:cJvNgEzlEoSS3Jn+Se5RTA==:2omm+0CEGA6WGj0EcYEyAA==:GBzA5iBst4jKz5I45k4MC/bFdmeHUuhgmN6p1zSX7ag=
+ENCv1:M8Qxr9mtmjwV/hOG/h5W0w==:7V1XmUh+pTFE2Bw09LVtbg==:lQf5U45nMmXSA1vb1OKf2ae9V9Y0D39d/BVK7KQKOkA=
