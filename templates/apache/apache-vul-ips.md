@@ -1,3 +1,5 @@
+# apache-vul-ips.md
+
 ﻿# apache-vul-ips.md
 <!-- CVE-2021-37580 -->
 ENCv1:fwnPT5jr7n9lH7YgdrYxRw==:4IQNSSg4YZFiIG2hLwudow==:gWqpQXKCpVlum7UEr7HRtF34c9rXDrJvIbkA64L1vts=
@@ -188,3 +190,14 @@ ENCv1:l0H9u95m4DjzTLrEBGfYOA==:FtJeNOz3NtsVLxLbVKyCtw==:N/bCW8qWZ+KLI9iv5rcYnwnR
 ENCv1:sj5JQVIusgdUVvahPDjTFg==:Rkz5mBBtP+felf/dBNlm8w==:vPTNvt5F6WaiAXXV4/su90yWeMDv4clXiNh40yyobmc=
 ENCv1:ml3oE67c06b+LR7V2alTfg==:TEjuXnQaq+cnmT0mrv3SwQ==:1xLwjw2cN/UyP+E24fNm4/qRSMn0ZM858DyxbV4oQhk=
 
+## CVE-2026-23482
+ENCv1:pnZ21TAJjzbiVxXrxz9+NA==:flx65gcQhzH3C0fmHXjAkg==:+rM2SRopUYBye5fhMCm7A5wKMIdIHIe3Bl1MGntmFVA=
+ENCv1:inVUcsPk/mxXoAyaLnrIIg==:Vm/6cvHJRBLYy0Ud8uzBZQ==:P/MKA6USnOGYgyp9RXFSvDbYZgofrTyqpNlVLv87rh4=
+ENCv1:eKL5tnU6hWSbpTpAk6fSeQ==:bjOuR1hcW/is+26nYRNrsg==:Xh/4H98xeIR4rP3joMXyMHFUhOHBzi00XL50rpDZZr4=
+ENCv1:XsVBO8lrwVKpdU3zpAX03w==:Bpvl1qxjjHFUIlcLeCiIRg==:g8qhtuNXhxw8y0g9rdIP737E0xY84s6bLgHo4JdGSfo=
+ENCv1:kV+QR88JMOjtS9K4c1TJaA==:CdnyVI8JC4rJnVXY6RKbVg==:kMATnwJKgLhRNXHFDAqgyumZS69fQIkIZDoh3WZ/ZSo=
+ENCv1:IyZA09A626UHmktYSUt+tw==:tMwRGg1nhjChNZJX3lQH8A==:7ujjzoSyDXFtySkCijVw6ULEd229GKFvQM6IzLh7TGc=
+ENCv1:Zw4Wngfo6JsHMmQII0sotw==:dBC4Rzr/oEjZ8k6rj4WBAg==:QLW+gTH86aKr1ki57fMhr/9chOTP1gEd2FCHYlsU31I=
+ENCv1:wo9yBwQZvrOTrsVS3OQzDg==:pVeu20V0x5VOEEe3Xm+RTA==:cF1tjlFos0lh+RRgUtkUeAm8fmOV0VGmuflOl1jUTT8=
+ENCv1:GamwAVyAr2rtwS5QwCzN8g==:ZSNIvXjbsU+YhvoBYUtlBg==:tOzGgcY/gTheHky8QhW+a4eWx3AkCW0bYRYreyzG2ys=
+ENCv1:9wJCNPc/n6H7+GhJXkh2eg==:aGroLWaUaMXh8GiXQjEu+g==:i8d/F3n3qQqTox5yWY4ARxNF2p5dx2YwsN/IFBrSZYA=
