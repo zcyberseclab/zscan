@@ -1,6 +1,6 @@
 # apache-vul-ips.md
 
-﻿# apache-vul-ips.md
+?? apache-vul-ips.md
 <!-- CVE-2021-37580 -->
 ENCv1:fwnPT5jr7n9lH7YgdrYxRw==:4IQNSSg4YZFiIG2hLwudow==:gWqpQXKCpVlum7UEr7HRtF34c9rXDrJvIbkA64L1vts=
 ENCv1:gXStcvlE9oezKEw22x9HUw==:BlZZa+GMd1t7D96KpfahaA==:5DVdnnygfubP8KMDHGtMUj3Rdzr89xgsfp2Gm0eoHbA=
@@ -285,3 +285,6 @@ ENCv1:yfIq81xMRAq9Nvqu6Z4Auw==:CZMN7YkcyHTi+52FmLcAiA==:GS9eHHVzXqMbeQl8xoBxKABN
 ENCv1:uzfIRBlIlOGfG/AlCWEmMg==:KSS+TK2fpSdr5k6L1D5+NQ==:pH9Qi/4WE932YPggaDf498ZIh/gX7JgCEaqZhyq6v/s=
 ENCv1:TXoSBSDBZy4uAokjg84uQg==:3mEQund13F1QYgUaQSRVaQ==:ReFjG5rW7SgB5HFLCGNWClq8mByTHix+eyV4yD2fsmUC2j3Hxz/qM/bxoreF8Tsn
 ENCv1:jM1kPtwfDM+2+FnqbkTWgA==:xDlKdK1UbnX6xytiUqHvBQ==:9LQiV8VUrFmrxH5frkHl7CdLd8M13hh+/Dib4iAwMjouO3tBk1qLFOTDRi6MUYNk
+
+## CVE-2025-40554
+ENCv1:dla1lxT6V4wWoniz9+I8Qw==:At8q+zxScFBNsYB4vAll+g==:w3Lh+4KRN77NXELrTXD/dCGPt/PCdHHpyMDd9S4lnZU=
