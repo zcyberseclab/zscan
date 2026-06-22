@@ -191,6 +191,7 @@ ENCv1:sj5JQVIusgdUVvahPDjTFg==:Rkz5mBBtP+felf/dBNlm8w==:vPTNvt5F6WaiAXXV4/su90yW
 ENCv1:ml3oE67c06b+LR7V2alTfg==:TEjuXnQaq+cnmT0mrv3SwQ==:1xLwjw2cN/UyP+E24fNm4/qRSMn0ZM858DyxbV4oQhk=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ## CVE-2025-66744
 ENCv1:FOhVHRJy6Xy1WIq1V2292A==:wenT8JgFFW5NfUfCKvulwA==:PumqKQGY7nzuWKxa9opkz/rdjLXlmdu8uF7fcNBho7w=
 ENCv1:hr1R7RPQHZ9UdpTbLXD6pw==:r2+WSrt6DFiIe+dmkhZqlQ==:lCUh0quQm3ZMspipEOpC25YtDiRijeaVxe3vrrxe8Lc=
@@ -251,3 +252,6 @@ ENCv1:0eGJl++x9toUw8e352B9tg==:O+OSaJQy4XKdL8bugjKaag==:6ynxQP/wAZhBFZwCbbvOvXRx
 ENCv1:onCpUAukk3asRiSzH4Q21w==:+kzX6o8jM9agHAhl6aV++Q==:9SuURHNyoPBLBYU79J7vp2e6VIbzpcZ5B1sdXP89TH4=
 ENCv1:vy1LHXDkZhKUf0dV2H7Nkg==:mlnU/L+Zhm4jmLo93OeV/A==:gBCoWM/GJPLFoIJ35Pas3vzrHtrdTVmQcodrfRcB+qs=
 ENCv1:I8xiAQJJXVPumy0ejiXS8Q==:cArad1uXjt/mdjSTWWVQwQ==:FJ5Dz5F2cPp0uaREd2gQhqr/o3VRtLqM2AMAUI+RzoY=
+## CVE-2025-54123
+ENCv1:myK8fwhaWRW0lHq3VA094A==:b6oMLyPE8LvHWb/55LBTvA==:ExqasFP+gW/E/WufQQaeE6gyoZU1+TYRov7gTDN4tWg=
+ENCv1:2zJgxeRenc4o+M8L2rllLA==:4q4JhILLCgf0MyxVxKpbgA==:Q70JHukP2/oyt+JvB1SuwrbbaH+GUi4cBOhUYVWC5Sc=
