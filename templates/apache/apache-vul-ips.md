@@ -213,3 +213,8 @@ ENCv1:Zw4Wngfo6JsHMmQII0sotw==:dBC4Rzr/oEjZ8k6rj4WBAg==:QLW+gTH86aKr1ki57fMhr/9c
 ENCv1:wo9yBwQZvrOTrsVS3OQzDg==:pVeu20V0x5VOEEe3Xm+RTA==:cF1tjlFos0lh+RRgUtkUeAm8fmOV0VGmuflOl1jUTT8=
 ENCv1:GamwAVyAr2rtwS5QwCzN8g==:ZSNIvXjbsU+YhvoBYUtlBg==:tOzGgcY/gTheHky8QhW+a4eWx3AkCW0bYRYreyzG2ys=
 ENCv1:9wJCNPc/n6H7+GhJXkh2eg==:aGroLWaUaMXh8GiXQjEu+g==:i8d/F3n3qQqTox5yWY4ARxNF2p5dx2YwsN/IFBrSZYA=
+
+## CVE-2025-55523
+ENCv1:cgXHdDNg6DWmadtejWnHUg==:uSHUFSq5YLlW+6F0gWb7ng==:UxohZZB3nS4rYKdcDs1pLwAYYKB4SEam7bYV+FQGsho=
+ENCv1:dVqGxf/dFaOOdQlT4iDMjA==:AvKg/k0GBHaZ55yuODZ6NA==:cEfciYj4InYqFJxzqM4hkKmauN0NqNkLqoqztAEjhl8=
+ENCv1:AXPD+n6/1qy+RO4T09jDSA==:FbvdX40lHmMyzpHjMAky8w==:1whNUt+Fyh8UeDyVkahKacCbPas9ACkRshbA0WpnyqQ=
