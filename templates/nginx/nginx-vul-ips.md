@@ -1,6 +1,6 @@
 # nginx-vul-ips.md
 
-﻿# nginx-vul-ips.md
+?? nginx-vul-ips.md
 ENCv1:xSTGc5asggmGrgtHT3t4Ng==:H5FmD/wgeHnsc5EXvImlAQ==:+n4bj3DvttChzsEly6EwVd/29F8UeCXcfSMATVnjfjg=
 
 ## CVE-2025-10210
@@ -103,3 +103,6 @@ ENCv1:XiCRdxIgGGeumfm2OPtk7w==:qxHLWV8ygOOBPxIm2oxdPQ==:vGMibF9Ku6iGAbg5hG8friQ+
 ENCv1:vKpjIqgxLnWp2LBU6SNzwQ==:obZX/5/1AIBHowEPcrx2RA==:5sirE/xKUTXeovyUSyW3cEhnPmJPPM6GThkLi4j9l0U=
 ENCv1:0GqCId0N8H4kzP8OTj5Yvg==:7FFEtfhHq7gFnOoBPZj4dA==:2ZwEPqO8RKZlcVyj4Sh7f479vaev7MyG/W6DQTzmSEA=
 ENCv1:nFpPrq1OKKEDjebQ+W9qYg==:Dmi4CgpGu69AhqlOULPcVA==:bUo17pSg4qlfqUS6wgFYYBUZ44SlQPyDySzBUzvDhw4=
+
+## CVE-2025-54589
+ENCv1:UdyZewIqlpyJ9TZyzfxRUw==:o32tehDvsfWK6NmxZFJXIw==:zW6Lx1VKH33qkm9OMUmB+9qR6BQGUlaVhlgS0d5aufI=
