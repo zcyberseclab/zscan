@@ -1,0 +1,13 @@
+# nocodb-vul-ips.md
+
+## CVE-2023-35843
+ENCv1:ne5oSaMpF6o6rhrKWFeZ+w==:Mk58LnB4XUdcfhpYUp0j1g==:rJq8sPXrPdbcheKBMjIcKbi2oiLPODuAEc3IvKnW6zc=
+ENCv1:/hERdPUZ3rBRLq+YM8NAzA==:XwtLeqiiIb3U+bJ+Fxm8Ng==:m6c1uNOpHS9z27XRJhR+JVaMDnMR+zkJBj1VmkPySuI=
+ENCv1:UGYVsl5JQgWowyYDpUgXPA==:LmqCdvTyWoDeww4AEU75Ow==:DmzYWdnxoijgtqgfTToGx6l6yVwP1IUMsjVLdiD3eDk=
+ENCv1:c0h8g6zQr1ryMJhvYpyGVg==:SEEmQtDujUHmicmIm6uHsg==:TAlYH4eFfaJKBtxldKcERVg8uNT7ufTUEX9STFnZiXo=
+ENCv1:tbwlYELK8+8bOby1BqB/og==:lMn5LAR4ZLmF4SVWjweqxw==:QgkV+FtKmEwz8QDdIGy1ll2WgDdITkiUjKEZoTMS0NI=
+ENCv1:GIkL3TwS60C0HRj3ACaB0g==:/dE2+KVgoGmrxSQaolzPrw==:6jnjqSSncfGstKGIkuFsXt2t+rsgmFT61zF57t4ksgY=
+ENCv1:6WdcrWQmjmCNyA+M5jAZOA==:6+WLQjD3ELPWQ4/z1hY9wA==:dJF6obSA4xV/PyytngN1Ed4M+ZNKYo9D/CT0fFqc1V0=
+ENCv1:yH5IiagTXCUF5jAmTQVReA==:wGKjcmZ/Rf6KA09rbKp2RA==:JxPIT+CwOgjj+eETDsKEwGTPV0nJfrurSx5Jcoe6ToM=
+ENCv1:2QtJ+RC7B1kzRE3AzX+XQw==:3/alX1JCCt1ahKHSnEJf9g==:9CxH/xqN+BLZidsI8NR9bJh6aZdPV8hkcgaGfaxcN/0=
+ENCv1:WpUddwv2JtBwnAxvTRLR4g==:3jOxlo2GhI0guoBgINOlOg==:WX22V75KbVVxxxFSyZsvqa1wLBk3lFNbhtMmtNysotk=
