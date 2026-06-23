@@ -938,3 +938,6 @@ ENCv1:wPnxRlGh5eoGwSWaVsLZPA==:VfXw/4AUib1fGBO/Zs8PWg==:HLNLAnQhYAXJlzUrCTFju6qb
 ENCv1:tGtDY/pPD6YDWe7UeVKn7w==:rCotTNiSzZo3AQEaTqQgdA==:CYBIrBguEe3SmoUZvH2UAV1OGVOrNqr5/SYedzDdGYY=
 ENCv1:Rwjwa9xu25dsZBb8qbc4Sw==:3tvY6VSTuva/wTq/jzvV0Q==:lJzLC5IYZrwtdxWoqhZ3jIoE8ctfcl/r+1KZkPYFTmg=
 
+## CVE-2023-27372
+ENCv1:1RHWWIrekuIpdhGjnPmxJQ==:GgrTrOVdDpn6SS3xIyOsgQ==:sfG+gMkMyA7TjzL8nvyicJGWrfhPCWkkpD6TUSwhdSY=
+
