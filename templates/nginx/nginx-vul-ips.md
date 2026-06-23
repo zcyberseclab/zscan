@@ -188,3 +188,7 @@ ENCv1:J4rjzG5S6GBuBkyRkqFsSg==:s4lARoP9RTP0nuJhVmd1Rg==:Af0w+T6XMK4Zt2VfOBgn0JYz
 ENCv1:P1C/gq61hyugnAb1SAvRpA==:QA14e20jWNiVXTiZjd6dNw==:xpLRBsSCjeVoJUDftLIUfvAconuHVsTrk+yT5Ifgelk=
 ENCv1:NokurST3ERqNcVRdOKpatg==:/PpeTaIaNGQgRvy6g+ZWHw==:8NWZCDu/3maWXTRLxzLqoRrCxobc/CzCg4rDtB0YJdY=
 
+## CVE-2024-21650
+ENCv1:on3XJ8Mg5mc/vXf3UulGfw==:o/qA29xZqZ0nFbhEdqjuWw==:yHGR5I/z1PsSYjBjHLUsd1iiomZJarMROxAExtUkuSM=
+ENCv1:LJZ96d33vQTXUgy7uUhw8A==:bdwaz0zZVD8sUDpNHZwYVw==:46edvwT/cCiUXEkbwu1ug1JrbCIz9v0azYFEzfJGPTU=
+
