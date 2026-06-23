@@ -874,3 +874,9 @@ ENCv1:wfhjhWrkqQqFKzNkM7GSuA==:3BjrzEJTruN+fLu7oIdxMg==:UMvATQAav1dWrjbWZ9Q30SPb
 ## CVE-2023-30194
 ENCv1:v2BLXQijZMJs8Ued52gLjg==:vZqPD94Wg5ndEuoAeDh1ww==:NFnk0S5Y1acqtNkumE+Upq5lyDYMxjiCH2oBDm1+was=
 
+## CVE-2023-30192
+ENCv1:rWne79TWor5ygonVdbzqWQ==:eY0wHPHkyP6C5u030ed+gw==:QjOip/tf1/dqn5uerEmRndnCXwf5CJT4H7l8dIw6v+A=
+ENCv1:ifJHIjj0FhjCKQtvLBXRlQ==:ahcN5D1w+rXnRgmNwkYBFw==:QkNOqbPSKZzkb193hb4nLRHzCY9rQZhgcJaIKKJWCjc=
+ENCv1:tKcsDJtpZEdPtt6nq8OzTA==:BseISQO119k2G8a0BuIYnA==:QMn4zopNFYyo8FaQeUS33mmtrb7EAnhzKk84xXz60RY=
+ENCv1:GrZ7WVTOy4uALWa/dMoA2Q==:x26Bf9ibeTiSXvr+4aK1UQ==:ne39YltYnq5gX60YsioYPmYvY+zveXN+bVa0cemrE7c=
+
