@@ -599,3 +599,7 @@ ENCv1:chkumRluINe/zIT4Z7uD6A==:rI/DJZbocVfTzLc1BmSLfQ==:i9gfh27p++edMSXb3R+jbb5+
 ENCv1:zod9TtyEgPRWUnGU7XWOjw==:Lva5hDbxhe4tE6s5Wkspkw==:HhJ+wAJXiiNyUTmi/eOzYBY+9ewpQWj47wkhBqVycsw=
 ENCv1:SBEwdoRmH7OSQoDpukBVPg==:DymY8p/EvfaDi3rfWUtUcg==:SH0yMEq4/J0ZyAnkousKIiaR6eytv7KRIBmwkqtYNS0=
 
+## CVE-2024-0305
+ENCv1:4jXYlBqckKXsGJDbhqswjQ==:KKyxAp7aLHr8ixDxpQTT2Q==:0LOiVsarUrbKPP7Kwn0DXWBQsrrLIkq68MJ+D+fb3a4=
+ENCv1:jThy/jrVrLuoGVYjcaRnng==:tCvi908pjVsnEulEskyskg==:JCOkWu6HY57Si87fnQEVubuTo2fxPnmVBWhueqrVTh4=
+
