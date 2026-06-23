@@ -1,6 +1,6 @@
 # wordpress-vul-ips.md
 
-﻿# wordpress-vul-ips.md
+?? wordpress-vul-ips.md
 ENCv1:VycrwDOHKUJE6t5LtTBA2g==:1VaJxXOblmqkjnT6Oz5fmg==:ejcnDQVFcJzUlE0I9ypvX2WrY7RvZqAb2ABKzmDWZg8=
 ENCv1:5q5gUptaqW0Wm5scLCwHpg==:8pXgaP20M1i2Q/dS7Rol7w==:TCueaEVTowAD5VHuZ1fJESy+jR/JmGcB9El5L/ihVSHvjVgj0ODQFg7YSDrwLgM9
 
@@ -75,3 +75,6 @@ ENCv1:2EJK/qcpy5oS+ASclMpYKA==:T+M7y3Maf7kD/Ep/jMFqYA==:ubKAz9VpSmZNwwXOTpgCa73n
 ENCv1:aX+JTXfV2q/XK2vmvNr+PQ==:JAuyiRcXdgNohIgBIiCLuA==:pxHZESM1VBB0Zf487tsKdG9SB05d5s/q19Gx1SS1EBKJh5kmcEEmEONAluvZugJm
 ENCv1:CvCC1Tncf6A0w84dwQvxNg==:gxp0weyRvQHLtzQROUr8LQ==:64ot0rSogJ2FhcTDFCEgqypWHTCftbWQuwTMaDyGonk=
 ENCv1:IphnXcX1GZrRsFa574GHkg==:Ffi7v2xhvMO0L8uhrp+ojQ==:arK9Qb/vw2SwvAY52q5qGjJqJN8BwxfBZmI/WnaYgzw=
+
+## CVE-2025-10897
+ENCv1:Nyq6z7Bd+Wf2bSFjG7tpqw==:frxv6bh2d6ThLYLhpJUNrQ==:D8NAnEnoz37QIW31h65dSxaGK+m/D/Xs0mc6kAk1fWM=
