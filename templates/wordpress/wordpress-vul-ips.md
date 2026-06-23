@@ -81,3 +81,6 @@ ENCv1:Nyq6z7Bd+Wf2bSFjG7tpqw==:frxv6bh2d6ThLYLhpJUNrQ==:D8NAnEnoz37QIW31h65dSxaG
 
 ## CVE-2024-9796
 ENCv1:xkNtm2p5KOu3hflq1n+gUg==:qf4z+qWMeX+j4twp44YlRA==:fW5GL5m6Cb8Zx3gRPG0MDOwhtNocbgxW0BjlwmYqKjE=
+
+## CVE-2024-9593
+ENCv1:0IdYcv7sI2ldPbfG4JIpAQ==:u0ns8QjNIlI7q0vbW+gR3g==:6u50sHPL6/Jf+SOPqhTYee1fFHnHUVtk8bR6JLt+9DU=
