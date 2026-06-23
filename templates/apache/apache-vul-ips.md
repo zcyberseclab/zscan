@@ -329,5 +329,8 @@ ENCv1:grJi7m1nTMo2iY1tlC9aOQ==:F6TYz+UJm9cGvNGlrwnuGA==:xpQDvMSo+Q7qTLiR++agQze1
 ## CVE-2024-57727
 ENCv1:d6JpsdPk2g5+R4F5jFGTVw==:B6VN5GfL+WFNbxqS9J+CnA==:qR/us9Q6jvtKiA4hqqiRHLpZ2nQc9NFbhtQ4phkW2kI=
 
+## CVE-2024-7120
+ENCv1:oaq1c71iwkrUvbtYVnmqTQ==:4CiBu2GB6biq8fQXV36boQ==:Ix7H+Wzcetv+igPfx5jnJj7Wb7Y9vRIkDbbxnzWjz0E=
+
 ## CVE-2024-57045
 ENCv1:Kft2z7jM9u7fN/32Q/30lw==:JvYv2FBoEAu3uo4iY4n23Q==:yljz1nMf16fF8wSf2jv4r5x9o7hfRZjORnMdtfDewSg=
