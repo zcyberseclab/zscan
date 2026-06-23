@@ -1,2 +1,6 @@
-﻿# qualitor-vul-ips
+# qualitor-vul-ips
 ENCv1:uqwpKuwRkpG7dWmr7atrmQ==:RdNYDInS5MkEGzD1dYBO3Q==:GkbxM5yymj9Ly8UAzYAukMSNxmPiE/O8/UC4I7C4x1Bz5cM4EgArLz4pQ3Wg/m2g
+
+## CVE-2024-44849
+ENCv1:WhCF8I7GtzfO6bOILmSlrA==:NUDkitiLbrF1lpKbsUy/+Q==:bBtq1/r+/Z6aYWjI/JUOHWuYIIueh9/2kaF1fryl3QiCt8udRyNo6Zopn51z/Y4O
+ENCv1:BWhGj4eyweHSzwR9XOehog==:RvZ2ERRoT2v7JUY8Sthd+Q==:9OppCoIMtH1AZLPyBFn0tBZCABJ4GgsRJYpMb25Zy4Qbn2vplgUojJq1DXkim51o
