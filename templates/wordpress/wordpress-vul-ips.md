@@ -103,3 +103,6 @@ ENCv1:JRt4OAKEs/WIVjD+KtqeOw==:+kJDFBknk/pSNm9Vq+GtcQ==:cRHlvm3xQYgHk6+0Yh8MHN6m
 ENCv1:iT5Gdk2yCsgOPr7f2j4d7g==:840DJJwKACeAST1yfkR7iA==:d/jFonbxCNju/OAZhHXlnjodfmHaXnQlN3ClxqtltBE=
 ENCv1:fCZqRzl+1yRSflcn5IhRIg==:qXanxp7xdOPfNUTRI0oaYQ==:27bqteMQaxFYkjdUQHFr8mkNOxICojdat6IfJIvUKWM=
 
+## CVE-2024-24882
+ENCv1:stcfH3UKqF4/AuYHooI0pQ==:02zpWbHTJjKJ4d2ur5LysQ==:kQ3edNDdXWw++QbgbTnZutGWzVWW4tbeVA6yIcaBgQg=
+
