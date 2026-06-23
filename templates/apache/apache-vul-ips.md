@@ -620,3 +620,11 @@ ENCv1:gduKoyefQumNU59jI5pxhg==:wLZYnd+2+QDnFa5QHCX5lA==:U0GhWe0dL1p9xfQw7ASdx7i1
 ENCv1:q4N3WimlkyDbsUQzTodtfw==:ZtvV7e8PqXxATsgSjfZWKw==:/WbwU3sMuFhKgxJneo57jGEKo45nBOkOPjh+fft4OlM=
 ENCv1:HfN2QWiG9TCDIJU3lMatFw==:qhXWZOV8CdiloGXe4Lppug==:C75LO/rVjJ9VIitLdFrlC6h5YxyfJH3urf7y7PBIisY=
 
+## CVE-2023-6020
+ENCv1:rXGlB3pL7J17T06x6+ER+g==:lO2+1G2pM8R+XU2AxyMsnw==:V1RuSqS9dpHzLBYMjFjglk5YYWKl/7zXBZqc3QrQ/4Q=
+ENCv1:VfQ3P2SclI5uGGSPsa/1ag==:LcSMenZHAHW8bS/ZGxGxrg==:jGJv4vgvwTTQUOLmkXwYmTkyT+XbgnEdufdGmfD7CZ8=
+ENCv1:lGVhTlWya+sx3Mtg/4t+rw==:cDWBf9OMRdasF3775WXExQ==:4A2nyfJ9EIaZsrA74P1zcj8eV7cKUMviLEIRicoPgb8=
+ENCv1:yW86NdWSgZP4fjilqhquLQ==:6c7XDg0C1J9/wroB7QsSxg==:/BrquMliDr9B04ODclIKMwwIxb7ZJNrmNeGhNH7WOWw=
+ENCv1:0QsA2fzdpw/rzDndK6Pi7g==:pw8ukygri3Olfc57HApEIA==:sQCHtR/rkkwxYkm3xoTtCICMsF7jyislw/HlGaXh4gQ=
+ENCv1:6BcCS6t9FRSbfRe0fxn9DQ==:Juh7geOCZ0uw0tjIErQ+4g==:ACQk7qm2YQ6Us+e2Ht6/nyeGY3pm4d3g3Ts9Wf+YRvI=
+
